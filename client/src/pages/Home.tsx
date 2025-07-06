@@ -2,20 +2,59 @@ export default function Home() {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <div className="hero-pattern min-h-screen flex items-center justify-center relative">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 py-20">
+      <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ 
+            backgroundImage: `linear-gradient(rgba(29, 29, 29, 0.7), rgba(29, 29, 29, 0.7)), url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2000&h=1200')`
+          }}
+        ></div>
+        
+        <div className="relative z-10 max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8 py-20">
           <h1 className="font-bold text-4xl md:text-6xl text-white mb-6 leading-tight">
             Strategic Technology Solutions for Enterprise Transformation
           </h1>
-          <p className="text-xl md:text-2xl text-white mb-8 leading-relaxed">
-            Delivering elite IT talent, digital transformation expertise, and end-to-end implementation
+          <p className="text-xl md:text-2xl text-white mb-8 leading-relaxed max-w-4xl mx-auto">
+            Delivering elite IT talent, digital transformation expertise, and end-to-end implementation for government entities and financial institutions
           </p>
-          <button 
-            className="text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transform hover:scale-105 transition-all duration-200 shadow-lg"
-            style={{ backgroundColor: "var(--asterik-red)" }}
-          >
-            Schedule Consultation
-          </button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button 
+              className="text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transform hover:scale-105 transition-all duration-200 shadow-lg"
+              style={{ backgroundColor: "var(--asterik-red)" }}
+            >
+              Schedule Consultation
+            </button>
+            <button 
+              className="text-white border-2 border-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-200"
+            >
+              View Our Approach
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Key Stats Section */}
+      <div className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="font-bold text-4xl mb-2" style={{ color: "var(--asterik-red)" }}>15+</div>
+              <p className="text-gray-600 font-semibold">Years Experience</p>
+            </div>
+            <div>
+              <div className="font-bold text-4xl mb-2" style={{ color: "var(--asterik-red)" }}>100+</div>
+              <p className="text-gray-600 font-semibold">Enterprise Clients</p>
+            </div>
+            <div>
+              <div className="font-bold text-4xl mb-2" style={{ color: "var(--asterik-red)" }}>99%</div>
+              <p className="text-gray-600 font-semibold">Compliance Rate</p>
+            </div>
+            <div>
+              <div className="font-bold text-4xl mb-2" style={{ color: "var(--asterik-red)" }}>24/7</div>
+              <p className="text-gray-600 font-semibold">Support Available</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -103,16 +142,190 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Industry Focus Section */}
+      <div className="py-20" style={{ backgroundColor: "var(--asterik-light)" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="font-bold text-3xl md:text-4xl mb-4" style={{ color: "var(--asterik-dark)" }}>
+              Transforming the GCC Region
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Leading digital transformation initiatives across key industries with regulatory compliance at the forefront
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+              <div 
+                className="text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
+                style={{ backgroundColor: "var(--asterik-red)" }}
+              >
+                <i className="fas fa-university text-2xl"></i>
+              </div>
+              <h3 className="font-bold text-xl mb-4">Government & Public Sector</h3>
+              <p className="text-gray-600 mb-4">Digital government initiatives, regulatory compliance, and citizen service enhancement programs.</p>
+              <ul className="text-sm text-gray-500 space-y-1">
+                <li>• ADGM regulatory frameworks</li>
+                <li>• Smart city implementations</li>
+                <li>• Public service digitization</li>
+              </ul>
+            </div>
+            
+            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+              <div 
+                className="text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
+                style={{ backgroundColor: "var(--asterik-orange)" }}
+              >
+                <i className="fas fa-chart-line text-2xl"></i>
+              </div>
+              <h3 className="font-bold text-xl mb-4">Financial Services</h3>
+              <p className="text-gray-600 mb-4">Banking modernization, fintech innovation, and regulatory technology implementations.</p>
+              <ul className="text-sm text-gray-500 space-y-1">
+                <li>• Core banking transformations</li>
+                <li>• RegTech compliance solutions</li>
+                <li>• Digital payment platforms</li>
+              </ul>
+            </div>
+            
+            <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+              <div 
+                className="text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
+                style={{ backgroundColor: "var(--asterik-red)" }}
+              >
+                <i className="fas fa-building text-2xl"></i>
+              </div>
+              <h3 className="font-bold text-xl mb-4">Enterprise Organizations</h3>
+              <p className="text-gray-600 mb-4">Large-scale digital transformation and enterprise technology modernization projects.</p>
+              <ul className="text-sm text-gray-500 space-y-1">
+                <li>• ERP implementations</li>
+                <li>• Cloud migration strategies</li>
+                <li>• Cybersecurity frameworks</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Featured Insights */}
+      <div className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="text-sm font-semibold uppercase tracking-wide" style={{ color: "var(--asterik-red)" }}>
+                Industry Insights
+              </span>
+              <h2 className="font-bold text-3xl md:text-4xl mt-2 mb-6" style={{ color: "var(--asterik-dark)" }}>
+                The Future of Enterprise Technology in the GCC
+              </h2>
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                Our latest research reveals key trends shaping digital transformation across government and financial sectors in the Middle East region.
+              </p>
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start">
+                  <div 
+                    className="w-2 h-2 rounded-full mt-2 mr-3"
+                    style={{ backgroundColor: "var(--asterik-red)" }}
+                  ></div>
+                  <p className="text-gray-600">Regulatory compliance driving 85% of technology investments</p>
+                </div>
+                <div className="flex items-start">
+                  <div 
+                    className="w-2 h-2 rounded-full mt-2 mr-3"
+                    style={{ backgroundColor: "var(--asterik-red)" }}
+                  ></div>
+                  <p className="text-gray-600">Cloud adoption accelerating in government sector</p>
+                </div>
+                <div className="flex items-start">
+                  <div 
+                    className="w-2 h-2 rounded-full mt-2 mr-3"
+                    style={{ backgroundColor: "var(--asterik-red)" }}
+                  ></div>
+                  <p className="text-gray-600">Skills gap widening in cybersecurity and AI domains</p>
+                </div>
+              </div>
+              <button className="font-semibold hover:text-gray-900 transition-colors duration-200" style={{ color: "var(--asterik-red)" }}>
+                Read Full Report <i className="fas fa-arrow-right ml-2"></i>
+              </button>
+            </div>
+            <div>
+              <img 
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+                alt="Professional technology consulting team collaborating on digital strategy" 
+                className="w-full h-auto rounded-xl shadow-lg" 
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Client Success Story */}
+      <div className="py-20" style={{ backgroundColor: "var(--asterik-dark)" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="font-bold text-3xl md:text-4xl text-white mb-4">
+              Client Success Stories
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Transforming enterprises through strategic technology partnerships
+            </p>
+          </div>
+          
+          <div className="bg-white rounded-2xl p-8 md:p-12">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <img 
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=500" 
+                  alt="Modern financial institution digital transformation" 
+                  className="w-full h-auto rounded-xl" 
+                />
+              </div>
+              <div>
+                <span className="text-sm font-semibold uppercase tracking-wide" style={{ color: "var(--asterik-red)" }}>
+                  Case Study
+                </span>
+                <h3 className="font-bold text-2xl md:text-3xl mt-2 mb-4" style={{ color: "var(--asterik-dark)" }}>
+                  Leading GCC Bank Digital Transformation
+                </h3>
+                <p className="text-lg text-gray-600 mb-6">
+                  "ASTERIK's compliance-first approach enabled us to modernize our core banking systems while maintaining full regulatory adherence. Their team delivered exceptional results."
+                </p>
+                <div className="mb-6">
+                  <p className="font-semibold" style={{ color: "var(--asterik-dark)" }}>Key Results:</p>
+                  <ul className="mt-2 space-y-2">
+                    <li className="flex items-center">
+                      <i className="fas fa-check-circle mr-3" style={{ color: "var(--asterik-orange)" }}></i>
+                      <span>40% reduction in processing time</span>
+                    </li>
+                    <li className="flex items-center">
+                      <i className="fas fa-check-circle mr-3" style={{ color: "var(--asterik-orange)" }}></i>
+                      <span>99.9% system uptime achieved</span>
+                    </li>
+                    <li className="flex items-center">
+                      <i className="fas fa-check-circle mr-3" style={{ color: "var(--asterik-orange)" }}></i>
+                      <span>Full regulatory compliance maintained</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="text-sm text-gray-500">
+                  <p className="font-semibold">Chief Technology Officer</p>
+                  <p>Major GCC Financial Institution</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Trust Badges */}
-      <div className="py-16" style={{ backgroundColor: "var(--asterik-dark)" }}>
+      <div className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h3 className="font-bold text-2xl text-white mb-8">Trusted by Industry Leaders</h3>
+          <h3 className="font-bold text-2xl mb-8" style={{ color: "var(--asterik-dark)" }}>Trusted by Industry Leaders</h3>
           <div className="flex flex-wrap justify-center items-center space-x-8 md:space-x-16">
-            <span className="text-white text-lg font-semibold mb-4">Serving Government Entities</span>
+            <span className="text-gray-700 text-lg font-semibold mb-4">Serving Government Entities</span>
             <span className="text-2xl" style={{ color: "var(--asterik-orange)" }}>|</span>
-            <span className="text-white text-lg font-semibold mb-4">Financial Institutions</span>
+            <span className="text-gray-700 text-lg font-semibold mb-4">Financial Institutions</span>
             <span className="text-2xl" style={{ color: "var(--asterik-orange)" }}>|</span>
-            <span className="text-white text-lg font-semibold mb-4">Enterprise Organizations</span>
+            <span className="text-gray-700 text-lg font-semibold mb-4">Enterprise Organizations</span>
           </div>
         </div>
       </div>
