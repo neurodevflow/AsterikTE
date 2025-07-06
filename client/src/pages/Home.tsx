@@ -1,3 +1,5 @@
+import leadershipImage from "@assets/leadership Image_1751810042614.jpg";
+
 export default function Home() {
   return (
     <div className="pt-16">
@@ -409,7 +411,7 @@ export default function Home() {
             <div>
               <div className="relative">
                 <img 
-                  src="/attached_assets/leadership Image_1751810042614.jpg" 
+                  src={leadershipImage} 
                   alt="ASTERIK Founder & CEO - Former PwC Middle East CX/DX Leader" 
                   className="w-80 h-80 rounded-full mx-auto object-cover shadow-lg border-4 border-white" 
                 />
