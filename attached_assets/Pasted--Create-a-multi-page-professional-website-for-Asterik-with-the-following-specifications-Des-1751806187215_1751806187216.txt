@@ -1,0 +1,102 @@
+**Create a multi-page professional website for Asterik with the following specifications:**
+
+**Design Requirements:**
+- Color Palette: 
+  Primary: #1d1d1d (dark gray), #ffffff (clean white)
+  Accents: #cf0a2c (PwC-inspired red), #e26a2c (warm orange)
+  Secondary: #f5f5f5 (light background)
+- Typography: 
+  Headings: Montserrat (700 weight)
+  Body: Open Sans (400 weight)
+  Fallback: Sans-serif
+- Layout Principles: Minimalist aesthetic, generous whitespace, grid-based sections, subtle animations on hover
+- Responsive: Fully mobile-optimized with hamburger menu
+
+**Content Structure:**
+
+1. **Header (All Pages):**
+   - Logo: "ASTERIK" in bold Montserrat
+   - Navigation: Home | About | Services | Approach | Contact | Insights
+   - Special Menu Items: "Staff Login" (right-aligned), "Customer Login" (next to staff login)
+   - Mobile: Collapsible hamburger menu
+
+2. **Home Page:**
+   - Hero Section:
+     * Full-width background with geometric pattern
+     * Tagline: "Strategic Technology Solutions for Enterprise Transformation"
+     * Subheading: "Delivering elite IT talent, digital transformation expertise, and end-to-end implementation"
+     * Primary CTA: "Schedule Consultation" (accent color)
+   - Services Grid (4-column):
+     * Manpower Supply
+     * IT Consulting
+     * Talent Acquisition
+     * Project Implementation
+     * Each with FontAwesome icon + 20-word description
+   - Trust Badges: "Serving Government Entities | Financial Institutions | Enterprise Organizations"
+
+3. **About Page:**
+   - Mission: "To redefine enterprise technology capabilities through strategic talent solutions"
+   - Founder Section:
+     * Headshot placeholder (circle crop)
+     * Bio: "Former CX/DX lead at PwC Middle East with 15+ years experience driving transformations for ADGM, MetLife Gulf, and Fortune 500 enterprises"
+   - Values Grid: Strategic Partnership | Technology Excellence | Compliance Focus | ROI-Driven
+
+4. **Services Overview:**
+   - Visual Layout: 4 cards with icon, title, brief description, and "Learn More" link
+   - Section Divider: Diagonal separator with accent color
+
+5. **Dedicated Service Pages:**
+   - Consistent Structure:
+     * Challenge Statement (e.g., "Bridging the IT Talent Gap in Regulated Industries")
+     * Solution Approach (3 bullet points)
+     * Process Diagram (SVG steps)
+     * Industry Use Case: "How we helped [Sector] overcome [Challenge]"
+
+6. **Our Approach:**
+   - Framework Visualization: Circular diagram with phases (Discover > Design > Deploy > Optimize)
+   - Problem-Solving Principles: 
+     * Regulatory Compliance First
+     * Technology-Agnostic Advisory
+     * Scalable Talent Models
+   - Sample Case Study: "Digital Transformation for GCC Financial Institution" (3-phase summary)
+
+7. **Contact Page:**
+   - Split Layout:
+     Left: Google Maps placeholder (Dubai/GCC focus)
+     Right: 
+       * Contact Form (Name, Email, Company, Message)
+       * Direct Contacts: hello@asterik.com | +971 X XXX XXXX
+       * Social Icons: LinkedIn | Twitter
+   - Office Hours: "Sunday-Thursday: 8AM-6PM GST"
+
+8. **Insights/Blog:**
+   - Featured Post Highlight
+   - 3-Column Grid: "Digital Transformation Trends 2023" | "Building RegTech Teams" | "Talent Retention Strategies"
+   - "View All Articles" CTA
+
+9. **Footer (All Pages):**
+   - 4 Columns:
+     1. Company Info (Logo + Tagline)
+     2. Quick Links
+     3. Service Offerings
+     4. Newsletter Signup (Minimal form)
+   - Copyright + Privacy Policy
+
+**Technical Requirements:**
+- Semantic HTML5 with aria-labels
+- CSS: Flexbox/Grid layout, mobile-first media queries
+- JavaScript: Form validation, mobile menu toggle
+- Assets: FontAwesome icons, SVG illustrations
+- Performance: Optimized images, lazy loading
+
+**Tone & Messaging:**
+- Voice: Authoritative yet approachable
+- Keywords: "Strategic partnership", "Enterprise-grade", "Compliance-focused", "Technology transformation"
+- Avoid: Startup jargon, excessive informality
+
+**Implementation Notes:**
+1. Create separate HTML files for each page
+2. Shared CSS in style.css
+3. Use Replit's built-in hosting
+4. Include placeholder images with descriptive alt text
+5. Add subtle hover animations for interactive elements
