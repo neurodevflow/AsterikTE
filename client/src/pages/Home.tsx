@@ -2,12 +2,7 @@ export default function Home() {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <div 
-        className="min-h-screen flex items-center justify-center relative bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "linear-gradient(rgba(29, 29, 29, 0.7), rgba(29, 29, 29, 0.7)), url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2084&q=80')"
-        }}
-      >
+      <div className="hero-pattern min-h-screen flex items-center justify-center relative">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 py-20">
           <h1 className="font-bold text-4xl md:text-6xl text-white mb-6 leading-tight">
             Strategic Technology Solutions for Enterprise Transformation
