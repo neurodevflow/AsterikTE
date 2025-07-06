@@ -329,6 +329,97 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* About Section */}
+      <div className="py-20" style={{ backgroundColor: "var(--asterik-light)" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="text-sm font-semibold uppercase tracking-wide" style={{ color: "var(--asterik-red)" }}>
+                About ASTERIK
+              </span>
+              <h2 className="font-bold text-3xl md:text-4xl mt-2 mb-6" style={{ color: "var(--asterik-dark)" }}>
+                Redefining Enterprise Technology Capabilities
+              </h2>
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                Led by former PwC Middle East CX/DX leadership with 15+ years of experience driving transformations for ADGM, MetLife Gulf, and Fortune 500 enterprises. We bring deep expertise in regulatory compliance, digital transformation, and enterprise technology implementation across the GCC region.
+              </p>
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div className="flex items-start">
+                  <div 
+                    className="text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
+                    style={{ backgroundColor: "var(--asterik-red)" }}
+                  >
+                    <i className="fas fa-handshake text-sm"></i>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg mb-2">Strategic Partnership</h4>
+                    <p className="text-gray-600 text-sm">Long-term collaborative relationships with enterprise clients</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div 
+                    className="text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
+                    style={{ backgroundColor: "var(--asterik-orange)" }}
+                  >
+                    <i className="fas fa-shield-alt text-sm"></i>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg mb-2">Compliance First</h4>
+                    <p className="text-gray-600 text-sm">Regulatory requirements integrated from project inception</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div 
+                    className="text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
+                    style={{ backgroundColor: "var(--asterik-red)" }}
+                  >
+                    <i className="fas fa-award text-sm"></i>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg mb-2">Technology Excellence</h4>
+                    <p className="text-gray-600 text-sm">Best-in-class technical expertise and innovation</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div 
+                    className="text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
+                    style={{ backgroundColor: "var(--asterik-orange)" }}
+                  >
+                    <i className="fas fa-chart-bar text-sm"></i>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg mb-2">ROI-Driven</h4>
+                    <p className="text-gray-600 text-sm">Measurable business outcomes and performance metrics</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button 
+                  className="text-white px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200"
+                  style={{ backgroundColor: "var(--asterik-red)" }}
+                >
+                  Learn More About Us
+                </button>
+                <button className="font-semibold hover:text-gray-900 transition-colors duration-200 px-6 py-3" style={{ color: "var(--asterik-red)" }}>
+                  Our Leadership Team <i className="fas fa-arrow-right ml-2"></i>
+                </button>
+              </div>
+            </div>
+            <div>
+              <img 
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=800" 
+                alt="ASTERIK leadership team - Professional business executives" 
+                className="w-full h-auto rounded-xl shadow-lg" 
+              />
+              <div className="mt-6 text-center">
+                <h4 className="font-bold text-lg mb-2" style={{ color: "var(--asterik-dark)" }}>Leadership Excellence</h4>
+                <p className="text-gray-600">Former PwC Middle East executives leading enterprise transformation initiatives</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
