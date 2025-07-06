@@ -407,14 +407,17 @@ export default function Home() {
               </div>
             </div>
             <div>
-              <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=800" 
-                alt="ASTERIK leadership team - Professional business executives" 
-                className="w-full h-auto rounded-xl shadow-lg" 
-              />
+              <div className="relative">
+                <img 
+                  src="/attached_assets/leadership Image_1751810042614.jpg" 
+                  alt="ASTERIK Founder & CEO - Former PwC Middle East CX/DX Leader" 
+                  className="w-80 h-80 rounded-full mx-auto object-cover shadow-lg border-4 border-white" 
+                />
+              </div>
               <div className="mt-6 text-center">
-                <h4 className="font-bold text-lg mb-2" style={{ color: "var(--asterik-dark)" }}>Leadership Excellence</h4>
-                <p className="text-gray-600">Former PwC Middle East executives leading enterprise transformation initiatives</p>
+                <h4 className="font-bold text-xl mb-2" style={{ color: "var(--asterik-dark)" }}>Leadership Excellence</h4>
+                <p className="text-gray-600 mb-3">Founder & Chief Executive Officer</p>
+                <p className="text-sm text-gray-500">Former PwC Middle East CX/DX Lead | 15+ Years Enterprise Transformation</p>
               </div>
             </div>
           </div>
