@@ -9,6 +9,71 @@ export const users = pgTable("users", {
   password: text("password").notNull(),
 });
 
+// Customer/Client users with business account features
+export const customerUsers = pgTable("customer_users", {
+  id: serial("id").primaryKey(),
+  email: text("email").notNull().unique(),
+  passwordHash: text("password_hash").notNull(),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  company: text("company").notNull(),
+  jobTitle: text("job_title"),
+  phone: text("phone"),
+  industry: text("industry"),
+  companySize: text("company_size"), // startup, small, medium, enterprise
+  isActive: boolean("is_active").notNull().default(true),
+  emailVerified: boolean("email_verified").notNull().default(false),
+  accountType: text("account_type").notNull().default("prospect"), // prospect, client, partner
+  lastLogin: timestamp("last_login"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+// Customer projects and service engagements
+export const customerProjects = pgTable("customer_projects", {
+  id: serial("id").primaryKey(),
+  customerId: integer("customer_id").notNull().references(() => customerUsers.id),
+  name: text("name").notNull(),
+  description: text("description"),
+  serviceType: text("service_type").notNull(), // consulting, development, support, etc.
+  status: text("status").notNull().default("inquiry"), // inquiry, proposal, active, completed, on_hold
+  priority: text("priority").notNull().default("medium"), // low, medium, high, urgent
+  budget: text("budget"), // confidential field
+  timeline: text("timeline"),
+  assignedTeam: jsonb("assigned_team"), // team member IDs and roles
+  startDate: timestamp("start_date"),
+  endDate: timestamp("end_date"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+// Customer document uploads and shared files
+export const customerDocuments = pgTable("customer_documents", {
+  id: serial("id").primaryKey(),
+  customerId: integer("customer_id").notNull().references(() => customerUsers.id),
+  projectId: integer("project_id").references(() => customerProjects.id),
+  fileName: text("file_name").notNull(),
+  fileType: text("file_type").notNull(),
+  fileSize: integer("file_size").notNull(),
+  uploadPath: text("upload_path").notNull(),
+  category: text("category").notNull().default("general"), // requirements, contracts, deliverables, etc.
+  isPublic: boolean("is_public").notNull().default(false),
+  uploadedAt: timestamp("uploaded_at").notNull().defaultNow(),
+});
+
+// Customer communication logs
+export const customerCommunications = pgTable("customer_communications", {
+  id: serial("id").primaryKey(),
+  customerId: integer("customer_id").notNull().references(() => customerUsers.id),
+  projectId: integer("project_id").references(() => customerProjects.id),
+  type: text("type").notNull(), // email, call, meeting, message
+  subject: text("subject").notNull(),
+  content: text("content").notNull(),
+  direction: text("direction").notNull(), // inbound, outbound
+  adminUserId: integer("admin_user_id").references(() => adminUsers.id),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
 // Admin users with enhanced permissions
 export const adminUsers = pgTable("admin_users", {
   id: serial("id").primaryKey(),

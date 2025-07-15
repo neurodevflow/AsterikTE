@@ -89,32 +89,32 @@ export default function Dashboard() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-soft-beige flex items-center justify-center">
+      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-navy-blue mx-auto"></div>
-          <p className="mt-4 text-charcoal">Loading dashboard...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
+          <p className="mt-4 text-gray-300">Loading dashboard...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-soft-beige">
+    <div className="min-h-screen bg-gray-900">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200 px-6 py-4">
+      <header className="bg-gray-800 border-b border-gray-700 px-6 py-4 shadow-lg">
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-bold text-navy-blue">
+            <h1 className="text-2xl font-bold text-white">
               Asterik Admin Dashboard
             </h1>
-            <p className="text-charcoal">
+            <p className="text-gray-300">
               Welcome back, {user?.name}
             </p>
           </div>
           <Button 
             onClick={handleLogout}
             variant="outline"
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white"
           >
             <LogOut className="h-4 w-4" />
             Logout
@@ -125,44 +125,44 @@ export default function Dashboard() {
       {/* Main Content */}
       <div className="p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-9 h-auto">
-            <TabsTrigger value="overview" className="flex items-center gap-2 text-xs">
+          <TabsList className="grid w-full grid-cols-9 h-auto bg-gray-800 border border-gray-700">
+            <TabsTrigger value="overview" className="flex items-center gap-2 text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white text-gray-300 hover:text-white hover:bg-gray-700">
               <BarChart3 className="h-4 w-4" />
               Overview
             </TabsTrigger>
-            <TabsTrigger value="analytics" className="flex items-center gap-2 text-xs">
+            <TabsTrigger value="analytics" className="flex items-center gap-2 text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white text-gray-300 hover:text-white hover:bg-gray-700">
               <TrendingUp className="h-4 w-4" />
               Analytics
             </TabsTrigger>
-            <TabsTrigger value="pagebuilder" className="flex items-center gap-2 text-xs">
+            <TabsTrigger value="pagebuilder" className="flex items-center gap-2 text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white text-gray-300 hover:text-white hover:bg-gray-700">
               <FileText className="h-4 w-4" />
               Page Builder
             </TabsTrigger>
-            <TabsTrigger value="users" className="flex items-center gap-2 text-xs">
+            <TabsTrigger value="users" className="flex items-center gap-2 text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white text-gray-300 hover:text-white hover:bg-gray-700">
               <UserCog className="h-4 w-4" />
               Users
             </TabsTrigger>
-            <TabsTrigger value="profile" className="flex items-center gap-2 text-xs">
+            <TabsTrigger value="profile" className="flex items-center gap-2 text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white text-gray-300 hover:text-white hover:bg-gray-700">
               <Settings className="h-4 w-4" />
               Profile
             </TabsTrigger>
-            <TabsTrigger value="integrations" className="flex items-center gap-2 text-xs">
+            <TabsTrigger value="integrations" className="flex items-center gap-2 text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white text-gray-300 hover:text-white hover:bg-gray-700">
               <Zap className="h-4 w-4" />
               Integrations
             </TabsTrigger>
-            <TabsTrigger value="contacts" className="flex items-center gap-2 text-xs">
+            <TabsTrigger value="contacts" className="flex items-center gap-2 text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white text-gray-300 hover:text-white hover:bg-gray-700">
               <Users className="h-4 w-4" />
               Contacts
             </TabsTrigger>
-            <TabsTrigger value="emails" className="flex items-center gap-2 text-xs">
+            <TabsTrigger value="emails" className="flex items-center gap-2 text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white text-gray-300 hover:text-white hover:bg-gray-700">
               <Mail className="h-4 w-4" />
               Emails
             </TabsTrigger>
-            <TabsTrigger value="content" className="flex items-center gap-2 text-xs">
+            <TabsTrigger value="content" className="flex items-center gap-2 text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white text-gray-300 hover:text-white hover:bg-gray-700">
               <FileText className="h-4 w-4" />
               Content
             </TabsTrigger>
-            <TabsTrigger value="customize" className="flex items-center gap-2 text-xs">
+            <TabsTrigger value="customize" className="flex items-center gap-2 text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white text-gray-300 hover:text-white hover:bg-gray-700">
               <Settings className="h-4 w-4" />
               Customize
             </TabsTrigger>
@@ -171,49 +171,49 @@ export default function Dashboard() {
           <TabsContent value="overview" className="space-y-6">
             {/* Key Metrics */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Card>
+              <Card className="bg-gray-800 border-gray-700">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">Total Page Views</CardTitle>
-                  <Globe className="h-4 w-4 text-muted-foreground" />
+                  <CardTitle className="text-sm font-medium text-white">Total Page Views</CardTitle>
+                  <Globe className="h-4 w-4 text-blue-400" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-navy-blue">
+                  <div className="text-2xl font-bold text-blue-400">
                     {stats?.totalPageViews || 0}
                   </div>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-gray-800 border-gray-700">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">Contact Submissions</CardTitle>
-                  <Users className="h-4 w-4 text-muted-foreground" />
+                  <CardTitle className="text-sm font-medium text-white">Contact Submissions</CardTitle>
+                  <Users className="h-4 w-4 text-green-400" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-navy-blue">
+                  <div className="text-2xl font-bold text-green-400">
                     {stats?.totalContacts || 0}
                   </div>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-gray-800 border-gray-700">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">User Sessions</CardTitle>
-                  <Smartphone className="h-4 w-4 text-muted-foreground" />
+                  <CardTitle className="text-sm font-medium text-white">User Sessions</CardTitle>
+                  <Smartphone className="h-4 w-4 text-purple-400" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-navy-blue">
+                  <div className="text-2xl font-bold text-purple-400">
                     {stats?.totalSessions || 0}
                   </div>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-gray-800 border-gray-700">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">AI Interactions</CardTitle>
-                  <Target className="h-4 w-4 text-muted-foreground" />
+                  <CardTitle className="text-sm font-medium text-white">AI Interactions</CardTitle>
+                  <Target className="h-4 w-4 text-orange-400" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-navy-blue">
+                  <div className="text-2xl font-bold text-orange-400">
                     {stats?.aiInteractions || 0}
                   </div>
                 </CardContent>
@@ -222,34 +222,34 @@ export default function Dashboard() {
 
             {/* Quick Stats */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card>
+              <Card className="bg-gray-800 border-gray-700">
                 <CardHeader>
-                  <CardTitle>Top Pages</CardTitle>
-                  <CardDescription>Most visited pages on your website</CardDescription>
+                  <CardTitle className="text-white">Top Pages</CardTitle>
+                  <CardDescription className="text-gray-300">Most visited pages on your website</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
                     {stats?.topPages?.slice(0, 5).map((page, index) => (
                       <div key={index} className="flex justify-between items-center">
-                        <span className="text-sm text-charcoal">{page.path}</span>
-                        <span className="text-sm font-medium text-navy-blue">{page.count}</span>
+                        <span className="text-sm text-gray-300">{page.path}</span>
+                        <span className="text-sm font-medium text-blue-400">{page.count}</span>
                       </div>
                     ))}
                   </div>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-gray-800 border-gray-700">
                 <CardHeader>
-                  <CardTitle>Device Breakdown</CardTitle>
-                  <CardDescription>Visitor device types</CardDescription>
+                  <CardTitle className="text-white">Device Breakdown</CardTitle>
+                  <CardDescription className="text-gray-300">Visitor device types</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
                     {stats?.deviceStats?.map((device, index) => (
                       <div key={index} className="flex justify-between items-center">
-                        <span className="text-sm text-charcoal capitalize">{device.device}</span>
-                        <span className="text-sm font-medium text-navy-blue">{device.count}</span>
+                        <span className="text-sm text-gray-300 capitalize">{device.device}</span>
+                        <span className="text-sm font-medium text-blue-400">{device.count}</span>
                       </div>
                     ))}
                   </div>
@@ -291,13 +291,13 @@ export default function Dashboard() {
           </TabsContent>
 
           <TabsContent value="customize" className="space-y-6">
-            <Card>
+            <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-white">
                   <Settings className="h-5 w-5" />
                   Dashboard Customization
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-gray-300">
                   Personalize your dashboard layout by adding, removing, and arranging widgets to fit your workflow.
                 </CardDescription>
               </CardHeader>
