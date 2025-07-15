@@ -117,7 +117,7 @@ export default function Footer() {
                   </li>
                   <li>
                     <Link href="/services/cybersecurity-resilience" className="text-light-grey hover:text-warm-orange transition-colors duration-200">
-                      Cybersecurity and Resilience
+                      Cybersecurity and Pen Testing
                     </Link>
                   </li>
                   <li>

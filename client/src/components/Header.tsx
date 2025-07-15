@@ -45,7 +45,7 @@ export default function Header() {
           category: "Digital Excellence",
           items: [
             { name: "Product Design", href: "/services/product-design" },
-            { name: "Cybersecurity and Resilience", href: "/services/cybersecurity-resilience" },
+            { name: "Cybersecurity and Pen Testing", href: "/services/cybersecurity-resilience" },
             { name: "Managed Support", href: "/services/managed-support" },
             { name: "Salesforce", href: "/services/salesforce" },
             { name: "All services", href: "/services" }

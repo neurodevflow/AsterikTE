@@ -256,6 +256,12 @@ This is a full-stack web application for ASTERIK, a professional technology cons
   - Created structured component system for hero sections, content blocks, services grids, and contact forms
   - Enhanced page builder UI with separate sections for existing pages vs custom pages
   - All existing website pages can now be edited through the admin page builder interface
+- July 15, 2025: Service Name Update and Content Enhancement
+  - Changed "Cybersecurity and Resilience" to "Cybersecurity and Pen Testing" in dropdown menu and footer
+  - Updated Cybersecurity service page with penetration testing focus and red team operations
+  - Enhanced content to emphasize vulnerability assessment and ethical hacking services
+  - Added comprehensive penetration testing methodologies and red team engagement options
+  - Updated CTAs and descriptions to align with penetration testing specialization
 
 ## User Preferences
 

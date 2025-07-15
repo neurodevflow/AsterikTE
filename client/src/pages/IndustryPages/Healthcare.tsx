@@ -284,6 +284,130 @@ export default function Healthcare() {
         </div>
       </section>
 
+      {/* Case Studies */}
+      <section className="py-20 bg-soft-beige">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-navy-blue mb-4">
+              Healthcare Transformation Success Stories
+            </h2>
+            <p className="text-xl text-charcoal max-w-3xl mx-auto">
+              Real outcomes from our healthcare technology implementations
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white rounded-lg p-8 shadow-lg">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-navy-blue rounded-lg flex items-center justify-center mr-4">
+                  <i className="fas fa-hospital text-white text-xl"></i>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-navy-blue">Regional Medical Center</h3>
+                  <p className="text-charcoal">500-bed healthcare system</p>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="flex justify-between">
+                  <span className="text-charcoal">Patient wait time reduction</span>
+                  <span className="font-bold text-navy-blue">35%</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-charcoal">Clinical workflow efficiency</span>
+                  <span className="font-bold text-navy-blue">40%</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-charcoal">Medication error reduction</span>
+                  <span className="font-bold text-navy-blue">60%</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-charcoal">Revenue cycle improvement</span>
+                  <span className="font-bold text-navy-blue">25%</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-8 shadow-lg">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-navy-blue rounded-lg flex items-center justify-center mr-4">
+                  <i className="fas fa-flask text-white text-xl"></i>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-navy-blue">Pharmaceutical Research Lab</h3>
+                  <p className="text-charcoal">Clinical trials acceleration</p>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="flex justify-between">
+                  <span className="text-charcoal">Trial setup time reduction</span>
+                  <span className="font-bold text-navy-blue">50%</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-charcoal">Data quality improvement</span>
+                  <span className="font-bold text-navy-blue">45%</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-charcoal">Regulatory submission speed</span>
+                  <span className="font-bold text-navy-blue">30%</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-charcoal">Cost reduction per trial</span>
+                  <span className="font-bold text-navy-blue">20%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Implementation Process */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-navy-blue mb-4">
+              Healthcare Technology Implementation Process
+            </h2>
+            <p className="text-xl text-charcoal max-w-3xl mx-auto">
+              Our proven methodology for successful healthcare technology deployments
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-navy-blue rounded-full flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-search text-white text-2xl"></i>
+              </div>
+              <h3 className="text-xl font-bold text-navy-blue mb-4">Assessment</h3>
+              <p className="text-charcoal">Comprehensive evaluation of current healthcare systems, workflows, and compliance requirements</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-navy-blue rounded-full flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-drafting-compass text-white text-2xl"></i>
+              </div>
+              <h3 className="text-xl font-bold text-navy-blue mb-4">Design</h3>
+              <p className="text-charcoal">Custom solution design with HIPAA compliance, interoperability, and clinical workflow optimization</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-navy-blue rounded-full flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-tools text-white text-2xl"></i>
+              </div>
+              <h3 className="text-xl font-bold text-navy-blue mb-4">Implementation</h3>
+              <p className="text-charcoal">Phased rollout with minimal disruption to patient care and comprehensive staff training</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-navy-blue rounded-full flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-chart-line text-white text-2xl"></i>
+              </div>
+              <h3 className="text-xl font-bold text-navy-blue mb-4">Optimization</h3>
+              <p className="text-charcoal">Continuous monitoring, performance optimization, and outcome measurement for sustained improvement</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-navy-blue text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
