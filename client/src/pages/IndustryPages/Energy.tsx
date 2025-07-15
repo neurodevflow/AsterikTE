@@ -12,7 +12,7 @@ export default function Energy() {
               Technology solutions for asset management, energy forecasting, modernization of energy systems, and enhanced operational resilience in the energy sector.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-warm-orange text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
+              <button className="bg-navy-blue text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
                 Get Started
               </button>
               <button className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium">
@@ -146,15 +146,15 @@ export default function Energy() {
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-center">
-                    <div className="w-3 h-3 bg-warm-orange rounded-full mr-4"></div>
+                    <div className="w-3 h-3 bg-navy-blue rounded-full mr-4"></div>
                     <span className="text-charcoal">Smart charging station management</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-3 h-3 bg-warm-orange rounded-full mr-4"></div>
+                    <div className="w-3 h-3 bg-navy-blue rounded-full mr-4"></div>
                     <span className="text-charcoal">Real-time monitoring and analytics</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-3 h-3 bg-warm-orange rounded-full mr-4"></div>
+                    <div className="w-3 h-3 bg-navy-blue rounded-full mr-4"></div>
                     <span className="text-charcoal">Customer mobile application</span>
                   </div>
                 </div>
@@ -186,7 +186,7 @@ export default function Energy() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-warm-orange rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-navy-blue rounded-full flex items-center justify-center mx-auto mb-4">
                 <i className="fas fa-bolt text-white text-2xl"></i>
               </div>
               <h3 className="text-xl font-bold text-navy-blue mb-4">Energy Expertise</h3>
@@ -195,7 +195,7 @@ export default function Energy() {
               </p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-warm-orange rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-navy-blue rounded-full flex items-center justify-center mx-auto mb-4">
                 <i className="fas fa-leaf text-white text-2xl"></i>
               </div>
               <h3 className="text-xl font-bold text-navy-blue mb-4">Sustainability Focus</h3>
@@ -204,7 +204,7 @@ export default function Energy() {
               </p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-warm-orange rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-navy-blue rounded-full flex items-center justify-center mx-auto mb-4">
                 <i className="fas fa-network-wired text-white text-2xl"></i>
               </div>
               <h3 className="text-xl font-bold text-navy-blue mb-4">Smart Grid Technology</h3>
@@ -226,7 +226,7 @@ export default function Energy() {
             Let's discuss how our energy solutions can optimize your operations and support your sustainability goals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-warm-orange text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
+            <button className="bg-navy-blue text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
               Contact Us Today
             </button>
             <button className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium">

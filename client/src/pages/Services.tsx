@@ -162,7 +162,7 @@ export default function Services() {
                   </ul>
                   <a 
                     href={service.href}
-                    className="inline-block bg-warm-orange text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition-colors duration-200 font-medium"
+                    className="inline-block bg-navy-blue text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition-colors duration-200 font-medium"
                   >
                     Learn More
                   </a>

@@ -50,7 +50,7 @@ export default function About() {
                 </div>
                 <div className="text-center">
                   <div 
-                    className="bg-warm-orange text-white w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto"
+                    className="bg-navy-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto"
                   >
                     <i className="fas fa-award text-xl"></i>
                   </div>
@@ -68,7 +68,7 @@ export default function About() {
                 </div>
                 <div className="text-center">
                   <div 
-                    className="bg-warm-orange text-white w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto"
+                    className="bg-navy-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto"
                   >
                     <i className="fas fa-chart-bar text-xl"></i>
                   </div>

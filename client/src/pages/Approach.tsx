@@ -28,7 +28,7 @@ export default function Approach() {
               </div>
               <div className="text-center">
                 <div 
-                  className="bg-warm-orange text-white w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto"
+                  className="bg-navy-blue text-white w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto"
                 >
                   <span className="font-bold text-xl">2</span>
                 </div>
@@ -50,7 +50,7 @@ export default function Approach() {
               </div>
               <div className="text-center">
                 <div 
-                  className="bg-warm-orange text-white w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto"
+                  className="bg-navy-blue text-white w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto"
                 >
                   <span className="font-bold text-xl">4</span>
                 </div>
@@ -75,7 +75,7 @@ export default function Approach() {
             </div>
             <div className="bg-white p-6 rounded-xl shadow-md">
               <div 
-                className="bg-warm-orange text-white w-12 h-12 rounded-full flex items-center justify-center mb-4"
+                className="bg-navy-blue text-white w-12 h-12 rounded-full flex items-center justify-center mb-4"
               >
                 <i className="fas fa-layer-group"></i>
               </div>

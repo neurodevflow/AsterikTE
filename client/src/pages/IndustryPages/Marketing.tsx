@@ -12,7 +12,7 @@ export default function Marketing() {
               Intent-based targeting, data-driven insights, and analytics to enhance campaign efficiency and maximize the ROI of your marketing investments.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-warm-orange text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
+              <button className="bg-navy-blue text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
                 Get Started
               </button>
               <button className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium">
@@ -146,15 +146,15 @@ export default function Marketing() {
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-center">
-                    <div className="w-3 h-3 bg-warm-orange rounded-full mr-4"></div>
+                    <div className="w-3 h-3 bg-navy-blue rounded-full mr-4"></div>
                     <span className="text-charcoal">Automated reporting platform</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-3 h-3 bg-warm-orange rounded-full mr-4"></div>
+                    <div className="w-3 h-3 bg-navy-blue rounded-full mr-4"></div>
                     <span className="text-charcoal">Real-time analytics dashboard</span>
                   </div>
                   <div className="flex items-center">
-                    <div className="w-3 h-3 bg-warm-orange rounded-full mr-4"></div>
+                    <div className="w-3 h-3 bg-navy-blue rounded-full mr-4"></div>
                     <span className="text-charcoal">Custom visualization tools</span>
                   </div>
                 </div>
@@ -186,7 +186,7 @@ export default function Marketing() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-warm-orange rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-navy-blue rounded-full flex items-center justify-center mx-auto mb-4">
                 <i className="fas fa-bullseye text-white text-2xl"></i>
               </div>
               <h3 className="text-xl font-bold text-navy-blue mb-4">Precision Targeting</h3>
@@ -195,7 +195,7 @@ export default function Marketing() {
               </p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-warm-orange rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-navy-blue rounded-full flex items-center justify-center mx-auto mb-4">
                 <i className="fas fa-chart-line text-white text-2xl"></i>
               </div>
               <h3 className="text-xl font-bold text-navy-blue mb-4">ROI Focus</h3>
@@ -204,7 +204,7 @@ export default function Marketing() {
               </p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-warm-orange rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-navy-blue rounded-full flex items-center justify-center mx-auto mb-4">
                 <i className="fas fa-brain text-white text-2xl"></i>
               </div>
               <h3 className="text-xl font-bold text-navy-blue mb-4">AI-Powered Insights</h3>
@@ -226,7 +226,7 @@ export default function Marketing() {
             Let's discuss how our marketing technology solutions can enhance your campaign performance and drive growth.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-warm-orange text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
+            <button className="bg-navy-blue text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
               Contact Us Today
             </button>
             <button className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium">

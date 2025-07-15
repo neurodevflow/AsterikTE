@@ -109,7 +109,7 @@ export default function Industries() {
 
                 <a 
                   href={industry.href}
-                  className="inline-block bg-warm-orange text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition-colors duration-200 font-medium w-full text-center"
+                  className="inline-block bg-navy-blue text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition-colors duration-200 font-medium w-full text-center"
                 >
                   Learn More
                 </a>
