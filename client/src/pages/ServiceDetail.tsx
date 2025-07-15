@@ -1,5 +1,16 @@
 import { useRoute } from "wouter";
 
+// Import specialized service pages
+import QualityEngineering from "./ServicePages/QualityEngineering";
+import BusinessAnalysis from "./ServicePages/BusinessAnalysis";
+import Cloud from "./ServicePages/Cloud";
+import DevOps from "./ServicePages/DevOps";
+import AIAndML from "./ServicePages/AIAndML";
+import GenAI from "./ServicePages/GenAI";
+import CybersecurityResilience from "./ServicePages/CybersecurityResilience";
+import OilGas from "./IndustryPages/OilGas";
+import HealthcareLifeScience from "./IndustryPages/HealthcareLifeScience";
+
 const serviceDetails = {
   "application-modernization": {
     title: "Application Modernization",
@@ -156,20 +167,120 @@ const serviceDetails = {
         description: "Production deployment and monitoring"
       }
     ]
+  },
+  "data-analytics": {
+    title: "Data and Analytics",
+    description: "Transform your data into actionable insights with our comprehensive analytics solutions",
+    heroText: "Unlock the power of your data with advanced analytics, business intelligence, and data visualization solutions that drive informed decision-making and business growth.",
+    services: [
+      {
+        title: "Data Engineering",
+        description: "Build robust data pipelines and infrastructure to support your analytics needs.",
+        features: ["ETL/ELT Pipelines", "Data Warehouse Design", "Real-time Processing", "Data Quality Management"]
+      },
+      {
+        title: "Business Intelligence",
+        description: "Transform raw data into meaningful insights with powerful BI solutions.",
+        features: ["Dashboard Development", "Report Automation", "KPI Tracking", "Self-Service Analytics"]
+      }
+    ],
+    benefits: [
+      "Data-driven decision making",
+      "Improved operational efficiency",
+      "Enhanced customer insights",
+      "Competitive advantage through analytics"
+    ],
+    process: [
+      {
+        step: "Data Assessment",
+        description: "Evaluate current data landscape and requirements"
+      },
+      {
+        step: "Solution Design",
+        description: "Design analytics architecture and implementation plan"
+      },
+      {
+        step: "Implementation",
+        description: "Build and deploy analytics solutions"
+      },
+      {
+        step: "Optimization",
+        description: "Continuous improvement and performance tuning"
+      }
+    ]
+  },
+  "financial-services": {
+    title: "Financial Services",
+    description: "Specialized technology solutions for the financial services industry",
+    heroText: "Drive digital transformation in financial services with secure, compliant, and innovative technology solutions that enhance customer experience and operational efficiency.",
+    services: [
+      {
+        title: "Digital Banking Solutions",
+        description: "Modern banking platforms that enhance customer experience and operational efficiency.",
+        features: ["Mobile Banking", "Online Platforms", "Payment Systems", "Customer Onboarding"]
+      },
+      {
+        title: "Risk Management Systems",
+        description: "Comprehensive risk assessment and management solutions for financial institutions.",
+        features: ["Risk Analytics", "Compliance Monitoring", "Fraud Detection", "Regulatory Reporting"]
+      }
+    ],
+    benefits: [
+      "Enhanced customer experience",
+      "Improved operational efficiency",
+      "Regulatory compliance",
+      "Reduced operational risk"
+    ],
+    process: [
+      {
+        step: "Requirements Analysis",
+        description: "Understand specific financial services requirements"
+      },
+      {
+        step: "Solution Design",
+        description: "Design secure and compliant financial solutions"
+      },
+      {
+        step: "Implementation",
+        description: "Deploy with minimal disruption to operations"
+      },
+      {
+        step: "Support",
+        description: "Ongoing support and maintenance"
+      }
+    ]
   }
 };
 
 export default function ServiceDetail() {
-  const [match, params] = useRoute("/services/:serviceId");
+  const [serviceMatch, serviceParams] = useRoute("/services/:serviceId");
+  const [industryMatch, industryParams] = useRoute("/industries/:industryId");
   
-  if (!match || !params?.serviceId) {
-    return <div>Service not found</div>;
+  const serviceId = serviceParams?.serviceId;
+  const industryId = industryParams?.industryId;
+
+  // Handle specialized service pages
+  if (serviceId === "quality-engineering") return <QualityEngineering />;
+  if (serviceId === "business-analysis") return <BusinessAnalysis />;
+  if (serviceId === "cloud") return <Cloud />;
+  if (serviceId === "devops") return <DevOps />;
+  if (serviceId === "ai-ml") return <AIAndML />;
+  if (serviceId === "genai") return <GenAI />;
+  if (serviceId === "cybersecurity-resilience") return <CybersecurityResilience />;
+  
+  // Handle industry pages
+  if (industryId === "oil-gas") return <OilGas />;
+  if (industryId === "healthcare-life-science") return <HealthcareLifeScience />;
+
+  const currentId = serviceId || industryId;
+  if (!currentId) {
+    return <div>Page not found</div>;
   }
 
-  const service = serviceDetails[params.serviceId as keyof typeof serviceDetails];
+  const service = serviceDetails[currentId as keyof typeof serviceDetails];
   
   if (!service) {
-    return <div>Service not found</div>;
+    return <div>Page not found</div>;
   }
 
   return (

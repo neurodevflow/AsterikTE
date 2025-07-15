@@ -24,7 +24,7 @@ function Router() {
           <Route path="/" component={Home} />
           <Route path="/services/:serviceId" component={ServiceDetail} />
           <Route path="/services" component={Services} />
-          <Route path="/industries/:industryId" component={() => <div className="pt-16 p-8">Industry page coming soon...</div>} />
+          <Route path="/industries/:industryId" component={ServiceDetail} />
           <Route path="/industries" component={Industries} />
           <Route path="/approach" component={Approach} />
           <Route path="/contact" component={Contact} />

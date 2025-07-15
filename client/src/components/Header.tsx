@@ -17,39 +17,38 @@ export default function Header() {
       hasDropdown: true,
       dropdownItems: [
         {
-          category: "Application & Software",
+          category: "Software Engineering",
           items: [
             { name: "Application Modernization", href: "/services/application-modernization" },
             { name: "Software Development", href: "/services/software-development" },
-            { name: "Software Engineering", href: "/services/software-engineering" },
-            { name: "Application Support", href: "/services/application-support" }
+            { name: "Quality Engineering", href: "/services/quality-engineering" },
+            { name: "Business Analysis", href: "/services/business-analysis" }
           ]
         },
         {
-          category: "Data & Analytics",
+          category: "DevOps and Cloud",
           items: [
-            { name: "Data Engineering", href: "/services/data-engineering" },
-            { name: "Data Infrastructure", href: "/services/data-infrastructure" },
-            { name: "BI and Data Visualization", href: "/services/bi-data-visualization" },
-            { name: "AI/ML Development", href: "/services/ai-ml-development" }
+            { name: "Cloud", href: "/services/cloud" },
+            { name: "DevOps", href: "/services/devops" },
+            { name: "DevSecOps", href: "/services/devsecops" }
           ]
         },
         {
-          category: "Cloud & DevOps",
+          category: "Data and Artificial Intelligence",
           items: [
-            { name: "Cloud Migration", href: "/services/cloud-migration" },
-            { name: "Cloud Infrastructure", href: "/services/cloud-infrastructure" },
-            { name: "DevSecOps", href: "/services/devsecops" },
-            { name: "Managed Support", href: "/services/managed-support" }
+            { name: "Data and Analytics", href: "/services/data-analytics" },
+            { name: "AI and ML", href: "/services/ai-ml" },
+            { name: "GenAI", href: "/services/genai" }
           ]
         },
         {
-          category: "Specialized Solutions",
+          category: "Digital Excellence",
           items: [
-            { name: "Cybersecurity", href: "/services/cybersecurity" },
             { name: "Product Design", href: "/services/product-design" },
+            { name: "Cybersecurity and Resilience", href: "/services/cybersecurity-resilience" },
+            { name: "Managed Support", href: "/services/managed-support" },
             { name: "Salesforce", href: "/services/salesforce" },
-            { name: "Tech Consulting", href: "/services/tech-consulting" }
+            { name: "All services", href: "/services" }
           ]
         }
       ]
@@ -62,12 +61,12 @@ export default function Header() {
         { name: "Financial Services", href: "/industries/financial-services" },
         { name: "Wealth Management", href: "/industries/wealth-management" },
         { name: "Energy", href: "/industries/energy" },
+        { name: "Oil and Gas", href: "/industries/oil-gas" },
+        { name: "Healthcare and Life Science", href: "/industries/healthcare-life-science" },
+        { name: "Retail and E-commerce", href: "/industries/retail-ecommerce" },
         { name: "Logistics", href: "/industries/logistics" },
-        { name: "Marketing", href: "/industries/marketing" },
-        { name: "Healthcare", href: "/industries/healthcare" },
         { name: "EdTech", href: "/industries/edtech" },
-        { name: "Retail & E-commerce", href: "/industries/retail-ecommerce" },
-        { name: "Manufacturing", href: "/industries/manufacturing" }
+        { name: "Marketing", href: "/industries/marketing" }
       ]
     },
     { name: "Approach", href: "/approach" },
@@ -135,12 +134,12 @@ export default function Header() {
                                     <h4 className="font-bold text-navy-blue text-sm uppercase tracking-wide border-b border-light-grey pb-3">
                                       {category.category}
                                     </h4>
-                                    <ul className="space-y-3">
+                                    <ul className="space-y-2">
                                       {category.items.map((subItem) => (
                                         <li key={subItem.name}>
                                           <Link
                                             href={subItem.href}
-                                            className="block py-1 text-sm text-charcoal hover:text-navy-blue transition-colors duration-200 leading-relaxed"
+                                            className="block py-2 text-sm text-charcoal hover:text-navy-blue transition-colors duration-200 leading-normal"
                                           >
                                             {subItem.name}
                                           </Link>
@@ -158,7 +157,7 @@ export default function Header() {
                                   <Link
                                     key={industry.name}
                                     href={industry.href}
-                                    className="block py-2 px-3 text-sm text-charcoal hover:text-navy-blue hover:bg-soft-beige rounded transition-colors duration-200 leading-relaxed"
+                                    className="block py-2 px-3 text-sm text-charcoal hover:text-navy-blue hover:bg-soft-beige rounded transition-colors duration-200 leading-normal"
                                   >
                                     {industry.name}
                                   </Link>
@@ -242,7 +241,7 @@ export default function Header() {
                                   key={subItem.name}
                                   href={subItem.href}
                                   onClick={() => setMobileMenuOpen(false)}
-                                  className="block py-1 text-sm text-charcoal hover:text-navy-blue leading-relaxed"
+                                  className="block py-2 text-sm text-charcoal hover:text-navy-blue leading-normal"
                                 >
                                   {subItem.name}
                                 </Link>
@@ -257,7 +256,7 @@ export default function Header() {
                               key={industry.name}
                               href={industry.href}
                               onClick={() => setMobileMenuOpen(false)}
-                              className="block py-2 px-3 text-sm text-charcoal hover:text-navy-blue hover:bg-white rounded transition-colors duration-200 leading-relaxed"
+                              className="block py-2 px-3 text-sm text-charcoal hover:text-navy-blue hover:bg-white rounded transition-colors duration-200 leading-normal"
                             >
                               {industry.name}
                             </Link>
