@@ -8,8 +8,22 @@ import DevOps from "./ServicePages/DevOps";
 import AIAndML from "./ServicePages/AIAndML";
 import GenAI from "./ServicePages/GenAI";
 import CybersecurityResilience from "./ServicePages/CybersecurityResilience";
+import PlatformEngineering from "./ServicePages/PlatformEngineering";
+import SiteReliabilityEngineering from "./ServicePages/SiteReliabilityEngineering";
+import ProductDesign from "./ServicePages/ProductDesign";
+import ManagedSupport from "./ServicePages/ManagedSupport";
+import Salesforce from "./ServicePages/Salesforce";
+
+// Import industry pages
 import OilGas from "./IndustryPages/OilGas";
 import HealthcareLifeScience from "./IndustryPages/HealthcareLifeScience";
+import FinancialServices from "./IndustryPages/FinancialServices";
+import WealthManagement from "./IndustryPages/WealthManagement";
+import Energy from "./IndustryPages/Energy";
+import RetailEcommerce from "./IndustryPages/RetailEcommerce";
+import Logistics from "./IndustryPages/Logistics";
+import EdTech from "./IndustryPages/EdTech";
+import Marketing from "./IndustryPages/Marketing";
 
 const serviceDetails = {
   "application-modernization": {
@@ -267,10 +281,22 @@ export default function ServiceDetail() {
   if (serviceId === "ai-ml") return <AIAndML />;
   if (serviceId === "genai") return <GenAI />;
   if (serviceId === "cybersecurity-resilience") return <CybersecurityResilience />;
+  if (serviceId === "platform-engineering") return <PlatformEngineering />;
+  if (serviceId === "site-reliability-engineering") return <SiteReliabilityEngineering />;
+  if (serviceId === "product-design") return <ProductDesign />;
+  if (serviceId === "managed-support") return <ManagedSupport />;
+  if (serviceId === "salesforce") return <Salesforce />;
   
   // Handle industry pages
   if (industryId === "oil-gas") return <OilGas />;
   if (industryId === "healthcare-life-science") return <HealthcareLifeScience />;
+  if (industryId === "financial-services") return <FinancialServices />;
+  if (industryId === "wealth-management") return <WealthManagement />;
+  if (industryId === "energy") return <Energy />;
+  if (industryId === "retail-ecommerce") return <RetailEcommerce />;
+  if (industryId === "logistics") return <Logistics />;
+  if (industryId === "edtech") return <EdTech />;
+  if (industryId === "marketing") return <Marketing />;
 
   const currentId = serviceId || industryId;
   if (!currentId) {

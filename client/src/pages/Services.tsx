@@ -1,26 +1,26 @@
 export default function Services() {
   const serviceCategories = [
     {
-      category: "Application & Software",
-      description: "Transform legacy systems into agile, scalable solutions with comprehensive modernization services.",
+      category: "Software Engineering",
+      description: "Expert software engineering services optimized for performance, security, and scalability with modern development practices.",
       services: [
+        {
+          title: "Quality Engineering",
+          description: "Comprehensive quality assurance and testing services to ensure your software meets the highest standards.",
+          features: ["Test Automation", "Performance Testing", "Security Testing", "Quality Assurance"],
+          href: "/services/quality-engineering"
+        },
+        {
+          title: "Business Analysis",
+          description: "Strategic business analysis services to bridge the gap between business needs and technical solutions.",
+          features: ["Requirements Analysis", "Process Optimization", "Stakeholder Management", "Business Strategy"],
+          href: "/services/business-analysis"
+        },
         {
           title: "Application Modernization",
           description: "Transform legacy systems into agile, scalable solutions. Our modernization services help you stay competitive by enhancing performance, security, and integration across your tech stack.",
-          features: ["Cloud Infrastructure Migration", "Legacy System Modernization", "Technical Debt Reduction", "Performance Optimization", "UX/UI Design Enhancement"],
+          features: ["Cloud Infrastructure Migration", "Legacy System Modernization", "Technical Debt Reduction", "Performance Optimization"],
           href: "/services/application-modernization"
-        },
-        {
-          title: "Software Development",
-          description: "Power your business with robust, scalable software solutions. From initial architecture design and clean code to full-scale development and rigorous testing.",
-          features: ["Software Architecture", "End-to-End Development", "Software QA and Testing", "Application Modernization"],
-          href: "/services/software-development"
-        },
-        {
-          title: "Software Engineering",
-          description: "Expert software engineering services optimized for performance, security, and scalability with modern development practices.",
-          features: ["System Architecture Design", "Code Quality Assurance", "DevOps Integration", "Performance Optimization"],
-          href: "/services/software-engineering"
         },
         {
           title: "Application Support",
@@ -31,92 +31,86 @@ export default function Services() {
       ]
     },
     {
-      category: "Data & Analytics",
-      description: "Ensure your machine learning initiatives are built on a solid, reliable foundation with comprehensive data services.",
-      services: [
-        {
-          title: "Data Engineering",
-          description: "Build robust data pipelines and infrastructure to support your analytics and AI initiatives with scalable data solutions.",
-          features: ["Data Pipeline Development", "ETL/ELT Processes", "Data Warehouse Design", "Real-time Data Processing"],
-          href: "/services/data-engineering"
-        },
-        {
-          title: "Data Infrastructure",
-          description: "Design and implement scalable data infrastructure that grows with your business needs and supports advanced analytics.",
-          features: ["Cloud Data Architecture", "Data Lake Implementation", "Database Optimization", "Infrastructure Monitoring"],
-          href: "/services/data-infrastructure"
-        },
-        {
-          title: "BI and Data Visualization",
-          description: "Transform raw data into actionable insights with powerful business intelligence and visualization solutions.",
-          features: ["Dashboard Development", "Custom Analytics", "Report Automation", "Data Storytelling"],
-          href: "/services/bi-data-visualization"
-        },
-        {
-          title: "AI/ML Development",
-          description: "Leverage artificial intelligence and machine learning to unlock new business opportunities and optimize operations.",
-          features: ["Machine Learning Models", "Predictive Analytics", "Natural Language Processing", "Computer Vision"],
-          href: "/services/ai-ml-development"
-        }
-      ]
-    },
-    {
-      category: "Cloud & DevOps",
+      category: "DevOps and Cloud",
       description: "Stay ahead of evolving requirements with proactive cloud and DevOps solutions that enhance agility and reliability.",
       services: [
         {
-          title: "Cloud Migration",
-          description: "Seamlessly migrate your applications and infrastructure to the cloud with minimal downtime and maximum efficiency.",
-          features: ["Migration Strategy", "Cloud Assessment", "Application Refactoring", "Cost Optimization"],
-          href: "/services/cloud-migration"
+          title: "Cloud",
+          description: "Comprehensive cloud solutions for migration, infrastructure, and optimization to scale your business efficiently.",
+          features: ["Cloud Migration", "Infrastructure Management", "Cost Optimization", "Security & Compliance"],
+          href: "/services/cloud"
         },
         {
-          title: "Cloud Infrastructure",
-          description: "Design, implement, and manage robust cloud infrastructure that scales with your business growth.",
-          features: ["Infrastructure as Code", "Auto-scaling Solutions", "Multi-cloud Management", "Security Implementation"],
-          href: "/services/cloud-infrastructure"
+          title: "DevOps",
+          description: "Streamline your development pipeline with modern DevOps practices that enhance collaboration and deployment efficiency.",
+          features: ["CI/CD Implementation", "Infrastructure as Code", "Monitoring & Alerting", "Automated Testing"],
+          href: "/services/devops"
         },
         {
-          title: "DevSecOps",
-          description: "Integrate security into your development lifecycle with comprehensive DevSecOps practices and tools.",
-          features: ["CI/CD Pipeline Security", "Automated Testing", "Security Monitoring", "Compliance Management"],
-          href: "/services/devsecops"
+          title: "Platform Engineering",
+          description: "Build robust platforms that enable teams to deliver software faster and more reliably.",
+          features: ["Platform Design", "Developer Tools", "Self-Service Infrastructure", "Platform Operations"],
+          href: "/services/platform-engineering"
         },
         {
-          title: "Managed Support",
-          description: "24/7 managed support services that minimize downtime and maximize productivity with proactive monitoring.",
-          features: ["24/7 Monitoring", "Incident Response", "Performance Optimization", "Capacity Planning"],
-          href: "/services/managed-support"
+          title: "Site Reliability Engineering",
+          description: "Ensure high availability and performance of your systems with SRE best practices.",
+          features: ["System Reliability", "Performance Monitoring", "Incident Response", "Capacity Planning"],
+          href: "/services/site-reliability-engineering"
         }
       ]
     },
     {
-      category: "Specialized Solutions",
-      description: "Expert specialized consulting and development services tailored to specific business needs and technologies.",
+      category: "Data and Artificial Intelligence",
+      description: "Unlock the power of your data with advanced analytics, AI, and machine learning solutions.",
       services: [
         {
-          title: "Cybersecurity",
-          description: "Stay ahead of evolving threats with proactive security solutions. We protect your digital assets and maintain compliance.",
-          features: ["Application Security", "Penetration Testing", "Security Consulting", "Threat Detection", "Vulnerability Management"],
-          href: "/services/cybersecurity"
+          title: "Data and Analytics",
+          description: "Transform your data into actionable insights with comprehensive analytics solutions.",
+          features: ["Data Engineering", "Business Intelligence", "Data Visualization", "Analytics Platforms"],
+          href: "/services/data-analytics"
         },
         {
+          title: "AI and ML",
+          description: "Leverage artificial intelligence and machine learning to unlock new business opportunities and optimize operations.",
+          features: ["Machine Learning Models", "Predictive Analytics", "Natural Language Processing", "Computer Vision"],
+          href: "/services/ai-ml"
+        },
+        {
+          title: "GenAI",
+          description: "Harness the power of generative AI to create innovative solutions and enhance business processes.",
+          features: ["Large Language Models", "Generative Content", "AI-Powered Automation", "Custom AI Solutions"],
+          href: "/services/genai"
+        }
+      ]
+    },
+    {
+      category: "Digital Excellence",
+      description: "Comprehensive digital transformation services to enhance your business capabilities and customer experience.",
+      services: [
+        {
           title: "Product Design",
-          description: "Elevate your product's impact by delivering user-centered experiences that enhance customer satisfaction.",
-          features: ["User Research", "Experience Design", "Product Discovery", "Business Analysis"],
+          description: "User-centered design solutions that create exceptional digital experiences and drive business value.",
+          features: ["UX/UI Design", "User Research", "Prototyping", "Design Systems"],
           href: "/services/product-design"
         },
         {
-          title: "Salesforce",
-          description: "From implementation to optimization, our Salesforce services streamline workflows and improve user adoption.",
-          features: ["End-to-end Implementation", "Scalable Automation", "Third-party Integration", "QA-backed Development"],
-          href: "/services/salesforce"
+          title: "Cybersecurity and Resilience",
+          description: "Protect your digital assets with comprehensive cybersecurity solutions and resilience strategies.",
+          features: ["Security Assessment", "Threat Detection", "Incident Response", "Security Architecture"],
+          href: "/services/cybersecurity-resilience"
         },
         {
-          title: "Tech Consulting",
-          description: "Strategic technology consulting to guide your digital transformation journey with expert insights.",
-          features: ["Technology Strategy", "Digital Transformation", "Architecture Review", "Technical Due Diligence"],
-          href: "/services/tech-consulting"
+          title: "Managed Support",
+          description: "Comprehensive managed services to keep your systems running smoothly and efficiently.",
+          features: ["24/7 Support", "System Monitoring", "Maintenance Services", "Technical Assistance"],
+          href: "/services/managed-support"
+        },
+        {
+          title: "Salesforce",
+          description: "Salesforce implementation, customization, and optimization services to maximize your CRM investment.",
+          features: ["Salesforce Implementation", "Custom Development", "Integration Services", "Training & Support"],
+          href: "/services/salesforce"
         }
       ]
     }

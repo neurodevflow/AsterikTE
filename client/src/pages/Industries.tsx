@@ -22,25 +22,32 @@ export default function Industries() {
       href: "/industries/energy"
     },
     {
+      title: "Oil and Gas",
+      description: "Specialized technology solutions for the oil and gas industry to optimize operations, enhance safety, and improve efficiency.",
+      features: ["Asset Management", "Production Optimization", "Safety Systems", "Environmental Monitoring"],
+      caseStudy: "Major Oil Company Digital Transformation reduced operational costs by 25% through predictive maintenance.",
+      href: "/industries/oil-gas"
+    },
+    {
+      title: "Healthcare and Life Science",
+      description: "Patient-centric applications, secure data management systems, and AI-enhanced diagnostics that improve care delivery, compliance, and operational efficiency.",
+      features: ["Patient-centric Apps", "Secure Data Management", "AI-enhanced Diagnostics", "Compliance Solutions"],
+      caseStudy: "eClinical Company Data Engineering Solution Cuts Costs by 4x & Enables Real-Time Reporting.",
+      href: "/industries/healthcare-life-science"
+    },
+    {
+      title: "Retail and E-commerce",
+      description: "Custom e-commerce platforms, mobile apps, and data-powered personalization engines to enhance user experience, boost conversions, and streamline logistics.",
+      features: ["E-commerce Platforms", "Mobile Applications", "Personalization Engines", "Conversion Optimization"],
+      caseStudy: "US Flooring Firm Custom Software Development initiative to Go Paperless improved business efficiency.",
+      href: "/industries/retail-ecommerce"
+    },
+    {
       title: "Logistics",
       description: "End-to-end software, cloud platforms, and data visualization tools to streamline fleet management, optimize routes, and improve delivery accuracy.",
       features: ["Fleet Management", "Route Optimization", "Delivery Tracking", "Supply Chain Analytics"],
       caseStudy: "Leading Logistics Provider 30% SLA Increase for enhanced operational efficiency.",
       href: "/industries/logistics"
-    },
-    {
-      title: "Marketing",
-      description: "Intent-based targeting, data-driven insights, and analytics to enhance campaign efficiency and maximize the ROI of your marketing investments.",
-      features: ["Intent-based Targeting", "Campaign Analytics", "ROI Optimization", "Data-driven Insights"],
-      caseStudy: "Marketing Solution Provider 2x Cut Reporting Time: A Custom Solution for Marketing Success",
-      href: "/industries/marketing"
-    },
-    {
-      title: "Healthcare",
-      description: "Patient-centric applications, secure data management systems, and AI-enhanced diagnostics that improve care delivery, compliance, and operational efficiency.",
-      features: ["Patient-centric Apps", "Secure Data Management", "AI-enhanced Diagnostics", "Compliance Solutions"],
-      caseStudy: "eClinical Company Data Engineering Solution Cuts Costs by 4x & Enables Real-Time Reporting.",
-      href: "/industries/healthcare"
     },
     {
       title: "EdTech",
@@ -50,18 +57,11 @@ export default function Industries() {
       href: "/industries/edtech"
     },
     {
-      title: "Retail & E-commerce",
-      description: "Custom e-commerce platforms, mobile apps, and data-powered personalization engines to enhance user experience, boost conversions, and streamline logistics.",
-      features: ["E-commerce Platforms", "Mobile Applications", "Personalization Engines", "Conversion Optimization"],
-      caseStudy: "US Flooring Firm Custom Software Development initiative to Go Paperless improved business efficiency.",
-      href: "/industries/retail-ecommerce"
-    },
-    {
-      title: "Manufacturing",
-      description: "Smart manufacturing solutions, IoT integration, and predictive maintenance systems to optimize production efficiency and reduce operational costs.",
-      features: ["Smart Manufacturing", "IoT Integration", "Predictive Maintenance", "Production Optimization"],
-      caseStudy: "Global Manufacturing Company implemented Industry 4.0 solutions reducing downtime by 40%.",
-      href: "/industries/manufacturing"
+      title: "Marketing",
+      description: "Intent-based targeting, data-driven insights, and analytics to enhance campaign efficiency and maximize the ROI of your marketing investments.",
+      features: ["Intent-based Targeting", "Campaign Analytics", "ROI Optimization", "Data-driven Insights"],
+      caseStudy: "Marketing Solution Provider 2x Cut Reporting Time: A Custom Solution for Marketing Success",
+      href: "/industries/marketing"
     }
   ];
 
