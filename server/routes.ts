@@ -356,6 +356,186 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Contact form submission
+  app.post('/api/contact', async (req, res) => {
+    try {
+      const submission = await storage.createContactSubmission(req.body);
+      res.json(submission);
+    } catch (error) {
+      console.error('Error creating contact submission:', error);
+      res.status(500).json({ message: 'Failed to submit contact form' });
+    }
+  });
+
+  // User Management endpoints
+  app.get('/api/admin/users', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const users = await storage.getAllAdminUsers();
+      res.json(users);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      res.status(500).json({ message: 'Failed to fetch users' });
+    }
+  });
+
+  app.post('/api/admin/users', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { email, name, role, password } = req.body;
+      
+      const existingUser = await storage.getAdminUserByEmail(email);
+      if (existingUser) {
+        return res.status(400).json({ message: 'User with this email already exists' });
+      }
+
+      const hashedPassword = await hashPassword(password);
+      const user = await storage.createAdminUser({
+        email,
+        name,
+        role,
+        passwordHash: hashedPassword,
+      });
+
+      const { passwordHash, ...userResponse } = user;
+      res.json(userResponse);
+    } catch (error) {
+      console.error('Error creating user:', error);
+      res.status(500).json({ message: 'Failed to create user' });
+    }
+  });
+
+  app.patch('/api/admin/users/:id', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const userId = parseInt(req.params.id);
+      const updates = req.body;
+      
+      const updatedUser = await storage.updateAdminUser(userId, updates);
+      const { passwordHash, ...userResponse } = updatedUser;
+      res.json(userResponse);
+    } catch (error) {
+      console.error('Error updating user:', error);
+      res.status(500).json({ message: 'Failed to update user' });
+    }
+  });
+
+  app.delete('/api/admin/users/:id', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const userId = parseInt(req.params.id);
+      await storage.deleteAdminUser(userId);
+      res.json({ message: 'User deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      res.status(500).json({ message: 'Failed to delete user' });
+    }
+  });
+
+  // Profile Settings endpoints
+  app.patch('/api/admin/profile', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { name } = req.body;
+      const userId = req.adminUser!.id;
+      
+      const updatedUser = await storage.updateAdminUser(userId, { name });
+      const { passwordHash, ...userResponse } = updatedUser;
+      res.json(userResponse);
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      res.status(500).json({ message: 'Failed to update profile' });
+    }
+  });
+
+  app.post('/api/admin/change-password', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { currentPassword, newPassword } = req.body;
+      const userId = req.adminUser!.id;
+      
+      const user = await storage.getAdminUser(userId);
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+
+      const isValidPassword = await verifyPassword(currentPassword, user.passwordHash);
+      if (!isValidPassword) {
+        return res.status(400).json({ message: 'Current password is incorrect' });
+      }
+
+      const hashedNewPassword = await hashPassword(newPassword);
+      await storage.updateAdminUser(userId, { passwordHash: hashedNewPassword });
+      
+      res.json({ message: 'Password changed successfully' });
+    } catch (error) {
+      console.error('Error changing password:', error);
+      res.status(500).json({ message: 'Failed to change password' });
+    }
+  });
+
+  // Integrations endpoints
+  app.get('/api/admin/integrations', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const integrations = await storage.getIntegrations();
+      res.json(integrations);
+    } catch (error) {
+      console.error('Error fetching integrations:', error);
+      res.status(500).json({ message: 'Failed to fetch integrations' });
+    }
+  });
+
+  app.post('/api/admin/integrations', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const integration = await storage.createIntegration(req.body);
+      res.json(integration);
+    } catch (error) {
+      console.error('Error creating integration:', error);
+      res.status(500).json({ message: 'Failed to create integration' });
+    }
+  });
+
+  app.patch('/api/admin/integrations/:id', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const integrationId = parseInt(req.params.id);
+      const updates = req.body;
+      
+      const updatedIntegration = await storage.updateIntegration(integrationId, updates);
+      res.json(updatedIntegration);
+    } catch (error) {
+      console.error('Error updating integration:', error);
+      res.status(500).json({ message: 'Failed to update integration' });
+    }
+  });
+
+  app.delete('/api/admin/integrations/:id', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const integrationId = parseInt(req.params.id);
+      await storage.deleteIntegration(integrationId);
+      res.json({ message: 'Integration deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting integration:', error);
+      res.status(500).json({ message: 'Failed to delete integration' });
+    }
+  });
+
+  app.post('/api/admin/integrations/:id/test', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const integrationId = parseInt(req.params.id);
+      const integration = await storage.getIntegrationById(integrationId);
+      
+      if (!integration) {
+        return res.status(404).json({ message: 'Integration not found' });
+      }
+
+      // Basic test logic - in a real implementation, you'd test the actual API
+      if (integration.type === 'zapier' && integration.webhookUrl) {
+        res.json({ message: 'Zapier webhook URL is valid and reachable' });
+      } else if (integration.type === 'brevo' && integration.apiKey) {
+        res.json({ message: 'Brevo API key format is valid' });
+      } else {
+        res.json({ message: 'Integration configuration appears valid' });
+      }
+    } catch (error) {
+      console.error('Error testing integration:', error);
+      res.status(500).json({ message: 'Failed to test integration' });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

@@ -8,6 +8,8 @@ import {
   userSessions,
   aiInteractions,
   systemLogs,
+  integrations,
+  userActivities,
   type User, 
   type InsertUser,
   type AdminUser,
@@ -22,7 +24,11 @@ import {
   type InsertContentBlock,
   type UserSession,
   type AiInteraction,
-  type SystemLog
+  type SystemLog,
+  type Integration,
+  type InsertIntegration,
+  type UserActivity,
+  type InsertUserActivity
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, count, and, gte, sql } from "drizzle-orm";
@@ -75,6 +81,22 @@ export interface IStorage {
   // System logs
   createSystemLog(log: Partial<SystemLog>): Promise<SystemLog>;
   getSystemLogs(level?: string, limit?: number): Promise<SystemLog[]>;
+
+  // Integrations
+  createIntegration(integration: InsertIntegration): Promise<Integration>;
+  getIntegrations(): Promise<Integration[]>;
+  updateIntegration(id: number, updates: Partial<Integration>): Promise<Integration>;
+  deleteIntegration(id: number): Promise<void>;
+  getIntegrationById(id: number): Promise<Integration | undefined>;
+
+  // User activities
+  createUserActivity(activity: InsertUserActivity): Promise<UserActivity>;
+  getUserActivities(adminUserId?: number, limit?: number): Promise<UserActivity[]>;
+
+  // Admin user management
+  getAllAdminUsers(): Promise<AdminUser[]>;
+  updateAdminUser(id: number, updates: Partial<AdminUser>): Promise<AdminUser>;
+  deleteAdminUser(id: number): Promise<void>;
 
   // Dashboard analytics
   getDashboardStats(): Promise<{
@@ -300,6 +322,66 @@ export class DatabaseStorage implements IStorage {
     }
     
     return await query.orderBy(desc(systemLogs.timestamp)).limit(limit);
+  }
+
+  // Integrations
+  async createIntegration(integration: InsertIntegration): Promise<Integration> {
+    const [newIntegration] = await db.insert(integrations).values(integration).returning();
+    return newIntegration;
+  }
+
+  async getIntegrations(): Promise<Integration[]> {
+    return await db.select().from(integrations).orderBy(desc(integrations.createdAt));
+  }
+
+  async updateIntegration(id: number, updates: Partial<Integration>): Promise<Integration> {
+    const [updated] = await db.update(integrations)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(integrations.id, id))
+      .returning();
+    return updated;
+  }
+
+  async deleteIntegration(id: number): Promise<void> {
+    await db.delete(integrations).where(eq(integrations.id, id));
+  }
+
+  async getIntegrationById(id: number): Promise<Integration | undefined> {
+    const [integration] = await db.select().from(integrations).where(eq(integrations.id, id));
+    return integration || undefined;
+  }
+
+  // User activities
+  async createUserActivity(activity: InsertUserActivity): Promise<UserActivity> {
+    const [newActivity] = await db.insert(userActivities).values(activity).returning();
+    return newActivity;
+  }
+
+  async getUserActivities(adminUserId?: number, limit = 100): Promise<UserActivity[]> {
+    let query = db.select().from(userActivities);
+    
+    if (adminUserId) {
+      query = query.where(eq(userActivities.adminUserId, adminUserId));
+    }
+    
+    return await query.orderBy(desc(userActivities.createdAt)).limit(limit);
+  }
+
+  // Admin user management
+  async getAllAdminUsers(): Promise<AdminUser[]> {
+    return await db.select().from(adminUsers).orderBy(asc(adminUsers.name));
+  }
+
+  async updateAdminUser(id: number, updates: Partial<AdminUser>): Promise<AdminUser> {
+    const [updated] = await db.update(adminUsers)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(adminUsers.id, id))
+      .returning();
+    return updated;
+  }
+
+  async deleteAdminUser(id: number): Promise<void> {
+    await db.delete(adminUsers).where(eq(adminUsers.id, id));
   }
 
   // Dashboard analytics
