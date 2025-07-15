@@ -53,9 +53,10 @@ interface WidgetInstance {
 
 interface DashboardCustomizerProps {
   onDashboardChange?: (dashboardId: number) => void;
+  token?: string | null;
 }
 
-export default function DashboardCustomizer({ onDashboardChange }: DashboardCustomizerProps) {
+export default function DashboardCustomizer({ onDashboardChange, token }: DashboardCustomizerProps) {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [selectedDashboard, setSelectedDashboard] = useState<number | null>(null);
@@ -67,19 +68,51 @@ export default function DashboardCustomizer({ onDashboardChange }: DashboardCust
   // Fetch user dashboards
   const { data: dashboards = [], refetch: refetchDashboards } = useQuery({
     queryKey: ['/api/admin/user-dashboards'],
+    queryFn: async () => {
+      const response = await fetch('/api/admin/user-dashboards', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      if (!response.ok) throw new Error('Failed to fetch dashboards');
+      return response.json();
+    },
+    enabled: !!token,
     retry: false,
   });
 
   // Fetch available widgets
   const { data: availableWidgets = [] } = useQuery({
     queryKey: ['/api/admin/dashboard/widgets', selectedCategory === 'all' ? undefined : selectedCategory],
+    queryFn: async () => {
+      const url = selectedCategory === 'all' 
+        ? '/api/admin/dashboard/widgets'
+        : `/api/admin/dashboard/widgets?category=${selectedCategory}`;
+      const response = await fetch(url, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      if (!response.ok) throw new Error('Failed to fetch widgets');
+      return response.json();
+    },
+    enabled: !!token,
     retry: false,
   });
 
   // Fetch widget instances for selected dashboard
   const { data: widgetInstances = [], refetch: refetchWidgetInstances } = useQuery({
     queryKey: ['/api/admin/dashboards', selectedDashboard, 'widgets'],
-    enabled: !!selectedDashboard,
+    queryFn: async () => {
+      const response = await fetch(`/api/admin/dashboards/${selectedDashboard}/widgets`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      if (!response.ok) throw new Error('Failed to fetch widget instances');
+      return response.json();
+    },
+    enabled: !!selectedDashboard && !!token,
     retry: false,
   });
 
@@ -94,10 +127,16 @@ export default function DashboardCustomizer({ onDashboardChange }: DashboardCust
   // Create dashboard mutation
   const createDashboardMutation = useMutation({
     mutationFn: async (name: string) => {
-      return await apiRequest('/api/admin/user-dashboards', {
+      const response = await fetch('/api/admin/user-dashboards', {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
         body: JSON.stringify({ name }),
       });
+      if (!response.ok) throw new Error('Failed to create dashboard');
+      return response.json();
     },
     onSuccess: () => {
       refetchDashboards();
@@ -120,9 +159,14 @@ export default function DashboardCustomizer({ onDashboardChange }: DashboardCust
   // Set default dashboard mutation
   const setDefaultMutation = useMutation({
     mutationFn: async (dashboardId: number) => {
-      return await apiRequest(`/api/admin/user-dashboards/${dashboardId}/set-default`, {
+      const response = await fetch(`/api/admin/user-dashboards/${dashboardId}/set-default`, {
         method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
       });
+      if (!response.ok) throw new Error('Failed to set default dashboard');
+      return response.json();
     },
     onSuccess: () => {
       refetchDashboards();
@@ -144,8 +188,12 @@ export default function DashboardCustomizer({ onDashboardChange }: DashboardCust
   const addWidgetMutation = useMutation({
     mutationFn: async ({ widgetId, position }: { widgetId: number; position: any }) => {
       const widget = availableWidgets.find((w: DashboardWidget) => w.id === widgetId);
-      return await apiRequest(`/api/admin/dashboards/${selectedDashboard}/widgets`, {
+      const response = await fetch(`/api/admin/dashboards/${selectedDashboard}/widgets`, {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
         body: JSON.stringify({
           widgetId,
           title: widget?.name,
@@ -153,6 +201,8 @@ export default function DashboardCustomizer({ onDashboardChange }: DashboardCust
           position,
         }),
       });
+      if (!response.ok) throw new Error('Failed to add widget');
+      return response.json();
     },
     onSuccess: () => {
       refetchWidgetInstances();
@@ -174,9 +224,14 @@ export default function DashboardCustomizer({ onDashboardChange }: DashboardCust
   // Remove widget mutation
   const removeWidgetMutation = useMutation({
     mutationFn: async (instanceId: number) => {
-      return await apiRequest(`/api/admin/widget-instances/${instanceId}`, {
+      const response = await fetch(`/api/admin/widget-instances/${instanceId}`, {
         method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
       });
+      if (!response.ok) throw new Error('Failed to remove widget');
+      return response.json();
     },
     onSuccess: () => {
       refetchWidgetInstances();
