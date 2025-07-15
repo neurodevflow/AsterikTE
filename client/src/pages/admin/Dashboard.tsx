@@ -302,7 +302,7 @@ export default function Dashboard() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <DashboardCustomizer />
+                <DashboardCustomizer token={token} />
               </CardContent>
             </Card>
           </TabsContent>
