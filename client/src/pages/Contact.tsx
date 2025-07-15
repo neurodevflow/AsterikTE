@@ -89,16 +89,22 @@ export default function Contact() {
 
   return (
     <div className="pt-16">
-      <section className="py-20 bg-white">
+      {/* Hero Section */}
+      <section className="py-20 bg-gradient-to-r from-navy-blue to-charcoal text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h1 className="font-bold text-4xl md:text-5xl mb-8 text-navy-blue">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Contact Us
             </h1>
-            <p className="text-xl text-charcoal max-w-3xl mx-auto">
-              Ready to transform your enterprise technology capabilities? Let's discuss your strategic requirements.
+            <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto">
+              Ready to transform your enterprise technology capabilities? Let's discuss your strategic requirements and compliance needs.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
@@ -220,6 +226,21 @@ export default function Contact() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-navy-blue">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Ready to Start Your Project?
+          </h2>
+          <p className="text-xl text-white mb-8 max-w-3xl mx-auto">
+            Our enterprise technology specialists are ready to discuss your transformation requirements and compliance needs.
+          </p>
+          <button className="bg-white text-navy-blue px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition-all">
+            Schedule Consultation
+          </button>
         </div>
       </section>
     </div>
