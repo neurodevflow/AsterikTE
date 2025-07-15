@@ -3,10 +3,13 @@ import { useToast } from "@/hooks/use-toast";
 
 export default function Contact() {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     company: "",
+    phone: "",
+    subject: "",
     message: ""
   });
 
@@ -18,11 +21,11 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
       toast({
         title: "Error",
         description: "Please fill in all required fields.",
@@ -42,18 +45,46 @@ export default function Contact() {
       return;
     }
     
-    // Success message (in real implementation, this would submit to backend)
-    toast({
-      title: "Success",
-      description: "Thank you for your message. We will get back to you soon!"
-    });
+    setIsSubmitting(true);
     
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      message: ""
-    });
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          source: 'contact_form',
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Success",
+          description: "Thank you for your message. We will get back to you within 24 hours!"
+        });
+        
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          phone: "",
+          subject: "",
+          message: ""
+        });
+      } else {
+        throw new Error('Failed to submit form');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
