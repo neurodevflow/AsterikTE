@@ -61,23 +61,23 @@ export default function Contact() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h1 className="font-bold text-4xl md:text-5xl mb-8" style={{ color: "var(--asterik-dark)" }}>
+            <h1 className="font-bold text-4xl md:text-5xl mb-8 text-navy-blue">
               Contact Us
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-charcoal max-w-3xl mx-auto">
               Ready to transform your enterprise technology capabilities? Let's discuss your strategic requirements.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <div className="p-8 rounded-2xl" style={{ backgroundColor: "var(--asterik-light)" }}>
-              <h2 className="font-bold text-2xl mb-6" style={{ color: "var(--asterik-dark)" }}>
+            <div className="bg-soft-beige p-8 rounded-2xl">
+              <h2 className="font-bold text-2xl mb-6 text-navy-blue">
                 Get in Touch
               </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-semibold mb-2" style={{ color: "var(--asterik-dark)" }}>
+                  <label htmlFor="name" className="block text-sm font-semibold mb-2 text-navy-blue">
                     Full Name *
                   </label>
                   <input
@@ -87,12 +87,11 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
-                    style={{ "--tw-ring-color": "var(--asterik-red)" } as React.CSSProperties}
+                    className="w-full px-4 py-3 border border-light-grey rounded-lg focus:ring-2 focus:ring-navy-blue focus:border-transparent"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-semibold mb-2" style={{ color: "var(--asterik-dark)" }}>
+                  <label htmlFor="email" className="block text-sm font-semibold mb-2 text-navy-blue">
                     Email Address *
                   </label>
                   <input
@@ -102,12 +101,11 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
-                    style={{ "--tw-ring-color": "var(--asterik-red)" } as React.CSSProperties}
+                    className="w-full px-4 py-3 border border-light-grey rounded-lg focus:ring-2 focus:ring-navy-blue focus:border-transparent"
                   />
                 </div>
                 <div>
-                  <label htmlFor="company" className="block text-sm font-semibold mb-2" style={{ color: "var(--asterik-dark)" }}>
+                  <label htmlFor="company" className="block text-sm font-semibold mb-2 text-navy-blue">
                     Company/Organization
                   </label>
                   <input
@@ -116,12 +114,11 @@ export default function Contact() {
                     name="company"
                     value={formData.company}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
-                    style={{ "--tw-ring-color": "var(--asterik-red)" } as React.CSSProperties}
+                    className="w-full px-4 py-3 border border-light-grey rounded-lg focus:ring-2 focus:ring-navy-blue focus:border-transparent"
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-semibold mb-2" style={{ color: "var(--asterik-dark)" }}>
+                  <label htmlFor="message" className="block text-sm font-semibold mb-2 text-navy-blue">
                     Message *
                   </label>
                   <textarea
@@ -131,14 +128,12 @@ export default function Contact() {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
-                    style={{ "--tw-ring-color": "var(--asterik-red)" } as React.CSSProperties}
+                    className="w-full px-4 py-3 border border-light-grey rounded-lg focus:ring-2 focus:ring-navy-blue focus:border-transparent"
                   ></textarea>
                 </div>
                 <button
                   type="submit"
-                  className="w-full text-white py-3 px-6 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200"
-                  style={{ backgroundColor: "var(--asterik-red)" }}
+                  className="w-full bg-navy-blue text-white py-3 px-6 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200"
                 >
                   Send Message
                 </button>
@@ -148,50 +143,44 @@ export default function Contact() {
             {/* Contact Information & Map */}
             <div className="space-y-8">
               {/* Map Placeholder */}
-              <div className="bg-gray-200 h-64 rounded-2xl flex items-center justify-center">
+              <div className="bg-soft-beige h-64 rounded-2xl flex items-center justify-center">
                 <div className="text-center">
-                  <i className="fas fa-map-marker-alt text-4xl mb-4" style={{ color: "var(--asterik-red)" }}></i>
-                  <p className="text-gray-600 font-semibold">Dubai, UAE Office Location</p>
-                  <p className="text-sm text-gray-500">Interactive map integration</p>
+                  <i className="fas fa-map-marker-alt text-4xl mb-4 text-navy-blue"></i>
+                  <p className="text-charcoal font-semibold">Dubai, UAE Office Location</p>
+                  <p className="text-sm text-light-grey">Interactive map integration</p>
                 </div>
               </div>
 
               {/* Contact Details */}
-              <div className="text-white p-8 rounded-2xl" style={{ backgroundColor: "var(--asterik-dark)" }}>
+              <div className="bg-navy-blue text-white p-8 rounded-2xl">
                 <h3 className="font-bold text-xl mb-6">Direct Contact</h3>
                 <div className="space-y-4">
                   <div className="flex items-center">
-                    <i className="fas fa-envelope mr-4" style={{ color: "var(--asterik-orange)" }}></i>
+                    <i className="fas fa-envelope mr-4 text-warm-orange"></i>
                     <span>hello@asterik.com</span>
                   </div>
                   <div className="flex items-center">
-                    <i className="fas fa-phone mr-4" style={{ color: "var(--asterik-orange)" }}></i>
+                    <i className="fas fa-phone mr-4 text-warm-orange"></i>
                     <span>+971 X XXX XXXX</span>
                   </div>
                   <div className="flex items-center">
-                    <i className="fas fa-clock mr-4" style={{ color: "var(--asterik-orange)" }}></i>
+                    <i className="fas fa-clock mr-4 text-warm-orange"></i>
                     <span>Sunday-Thursday: 8AM-6PM GST</span>
                   </div>
                 </div>
                 
-                <div className="mt-8 pt-6 border-t border-gray-600">
+                <div className="mt-8 pt-6 border-t border-light-grey">
                   <h4 className="font-bold text-lg mb-4">Follow Us</h4>
                   <div className="flex space-x-4">
                     <a
                       href="#"
-                      className="transition-colors duration-200"
-                      style={{ color: "var(--asterik-orange)" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--asterik-orange)")}
+                      className="text-warm-orange hover:text-white transition-colors duration-200"
                     >
                       <i className="fab fa-linkedin text-2xl"></i>
                     </a>
                     <a
                       href="#"
-                      className="transition-colors duration-200"
-                      style={{ color: "var(--asterik-orange)" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "white")}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = "var(--asterik-orange)")}
+                      className="text-warm-orange hover:text-white transition-colors duration-200"
                     >
                       <i className="fab fa-twitter text-2xl"></i>
                     </a>

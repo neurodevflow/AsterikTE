@@ -81,10 +81,10 @@
 
 @layer components {
   .hero-pattern {
-    background-image: linear-gradient(135deg, var(--asterik-dark) 25%, transparent 25%), 
-                      linear-gradient(225deg, var(--asterik-dark) 25%, transparent 25%), 
-                      linear-gradient(45deg, var(--asterik-dark) 25%, transparent 25%), 
-                      linear-gradient(315deg, var(--asterik-dark) 25%, var(--asterik-light) 25%);
+    background-image: linear-gradient(135deg, var(--navy-blue) 25%, transparent 25%), 
+                      linear-gradient(225deg, var(--navy-blue) 25%, transparent 25%), 
+                      linear-gradient(45deg, var(--navy-blue) 25%, transparent 25%), 
+                      linear-gradient(315deg, var(--navy-blue) 25%, var(--soft-beige) 25%);
     background-size: 60px 60px;
     background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
   }
