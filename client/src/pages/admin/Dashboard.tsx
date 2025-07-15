@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
+import DashboardCustomizer from '@/components/DashboardCustomizer';
 import { 
   BarChart3, 
   Users, 
@@ -160,6 +162,10 @@ export default function Dashboard() {
               <FileText className="h-4 w-4" />
               Content
             </TabsTrigger>
+            <TabsTrigger value="customize" className="flex items-center gap-2 text-xs">
+              <Settings className="h-4 w-4" />
+              Customize
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-6">
@@ -282,6 +288,23 @@ export default function Dashboard() {
 
           <TabsContent value="content">
             <ContentManager token={token} />
+          </TabsContent>
+
+          <TabsContent value="customize" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Settings className="h-5 w-5" />
+                  Dashboard Customization
+                </CardTitle>
+                <CardDescription>
+                  Personalize your dashboard layout by adding, removing, and arranging widgets to fit your workflow.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <DashboardCustomizer />
+              </CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
       </div>
