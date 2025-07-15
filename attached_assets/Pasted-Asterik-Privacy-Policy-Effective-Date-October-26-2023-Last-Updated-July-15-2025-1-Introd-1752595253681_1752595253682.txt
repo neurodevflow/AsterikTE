@@ -1,0 +1,81 @@
+Asterik Privacy Policy
+Effective Date: [October 26, 2023]
+Last Updated: [July 15, 2025]
+1. Introduction
+Asterik ("we," "us," "our") is committed to protecting the privacy and security of your Personal Data. This Privacy Policy explains how we collect, use, disclose, store, and protect your Personal Data in compliance with United Arab Emirates Federal Decree-Law No. 45 of 2021 regarding the Protection of Personal Data Protection (PDPL) and its implementing regulations, alongside other relevant UAE laws.
+2. Controller of Your Data
+Asterik
+[Dubai, UAE]
+[privacy@asterik.ae]
+[+971 XX XXXXXXX]
+
+3. What Personal Data We Collect
+We collect information that identifies you or relates to you ("Personal Data"), including:
+•	Identifiers: Name, title, contact details (email, phone, address), Emirates ID number (or passport number where required/provided), company name.
+•	Commercial Information: Purchase history, transaction details, payment information (processed securely via third-party gateways; we do not store full card numbers), customer service records, preferences.
+•	Online Identifiers: IP address, device ID, browser type, operating system, location data (approx.), cookies and similar tracking technologies (see Section 7).
+•	Professional/Employment Data: (For job applicants, vendors, B2B contacts) CV/resume, qualifications, work history, references.
+•	Other Information: Information you voluntarily provide via forms, surveys, inquiries, or communications with us.
+4. How We Collect Your Personal Data
+We collect data when you:
+•	Use our website, mobile app, or online services.
+•	Register for an account.
+•	Purchase our products or services.
+•	Contact our customer service.
+•	Subscribe to newsletters or marketing communications.
+•	Participate in surveys, promotions, or events.
+•	Apply for a job or become a vendor/supplier.
+•	Provide it to us directly in any other context.
+5. Purposes & Legal Basis for Processing (PDPL Article 5)
+We process your Personal Data only for specified, explicit, and legitimate purposes based on a valid legal basis under the PDPL:
+•	Contractual Necessity: To fulfill orders, provide requested services, manage your account, process payments, and communicate about your transactions.
+•	Legitimate Interests: To improve our products/services, website functionality, prevent fraud, ensure security, conduct direct marketing (where permissible and with opt-out rights), manage B2B relationships, and for internal administrative purposes. We balance our interests against your rights and freedoms.
+•	Consent: For specific purposes like sending certain marketing communications (email/SMS), using non-essential cookies, or processing sensitive data (if applicable). You can withdraw consent anytime.
+•	Compliance with Legal Obligations: To meet record-keeping, tax, regulatory, or law enforcement requirements under UAE law.
+6. Disclosure of Personal Data
+We may share your data only with trusted third parties as necessary and lawful under the PDPL:
+•	Service Providers: Payment processors, IT/cloud hosting providers, logistics/delivery companies, marketing agencies, customer support platforms (under strict data processing agreements).
+•	Group Companies: Affiliated entities within the Asterik group for internal administrative purposes and consistent service delivery.
+•	Legal & Regulatory Authorities: When required by UAE law, regulation, legal process, or government request.
+•	Business Transfers: Potential buyers, sellers, or advisors in connection with mergers, acquisitions, or asset sales (under confidentiality agreements).
+•	With Your Consent: For specific third parties or purposes you explicitly agree to.
+7. Cookies & Tracking Technologies
+Our website uses cookies and similar technologies to:
+•	Ensure website functionality.
+•	Analyze traffic and user behavior (anonymized/aggregated where possible).
+•	Personalize content/ads (with consent where required).
+•	Manage sessions.
+You can manage your cookie preferences via our Cookie Banner or browser settings. See our separate [Link to Cookie Policy] for details.
+8. Data Security (PDPL Article 14)
+We implement appropriate technical and organizational measures (e.g., encryption, access controls, security protocols, staff training) to protect your Personal Data against unauthorized access, disclosure, alteration, loss, or destruction, considering the risks involved. We require the same from our processors.
+9. Data Retention (PDPL Article 9)
+We retain your Personal Data only as long as necessary to fulfill the purposes outlined in this policy, comply with legal obligations (e.g., UAE commercial/financial laws), resolve disputes, and enforce agreements. Retention periods vary based on data type and purpose. We securely delete or anonymize data thereafter.
+10. International Data Transfers (PDPL Article 19)
+Your data may be stored or processed outside the UAE. We only transfer data internationally if:
+•	The recipient country has an adequate level of protection as determined by the UAE Data Office; or
+•	Appropriate safeguards are implemented (e.g., UAE Data Office-approved Standard Contractual Clauses, Binding Corporate Rules); or
+•	A specific PDPL exception applies (e.g., your explicit consent, necessity for contract performance).
+We will inform you about significant transfers and safeguards used.
+11. Your Rights Under the PDPL (Articles 13-18)
+Subject to legal limitations, you have the right to:
+•	Access: Request a copy of your Personal Data we hold.
+•	Correction: Request correction of inaccurate or incomplete data.
+•	Deletion: Request deletion of your data under certain circumstances.
+•	Restriction: Request restriction of processing under certain conditions.
+•	Objection: Object to processing based on legitimate interests.
+•	Data Portability: Request a structured, machine-readable copy of data you provided based on consent/contract.
+•	Withdraw Consent: Withdraw consent for processing based on consent at any time.
+To exercise these rights: Please contact us using the details in Section 2. We may need to verify your identity before responding. We aim to respond within a reasonable timeframe as required by the PDPL.
+12. Marketing Communications
+If you receive marketing emails/SMS from us, you can opt-out anytime using the "unsubscribe" link in the message or by contacting us directly. We will process your request promptly.
+13. Links to Third-Party Sites
+Our website may contain links to other sites. This Privacy Policy does not apply to those sites. Review their privacy policies before providing any data.
+14. Children's Data
+Our services are not directed at children under 18. We do not knowingly collect Personal Data from individuals under 18 without verified parental consent as required by UAE law. Contact us if you believe we hold such data.
+15. Changes to This Policy
+We may update this policy periodically to reflect legal changes or our practices. The "Last Updated" date will be revised. We will notify you of material changes via prominent notice on our website or direct communication.
+16. Contact Us & Complaints
+For questions, requests, or concerns about this policy or your data:
+Email: [privacy@asterik.ae]
+Address: [Dubai, UAE]
+If you are unsatisfied with our response, you have the right to lodge a complaint with the UAE Data Office.

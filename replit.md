@@ -191,6 +191,10 @@ This is a full-stack web application for ASTERIK, a professional technology cons
   - Updated footer to properly link Privacy Policy to the new page
   - Included sections for Information Collection, Usage, Sharing, Security, User Rights, Cookies, and Contact Information
   - Maintains consistent navy-blue and soft-beige color scheme throughout
+  - Updated with official Asterik Privacy Policy content (Effective Date: October 26, 2023)
+  - Includes full compliance with UAE Federal Decree-Law No. 45 of 2021 (PDPL)
+  - Contains all 16 sections of official legal content with proper PDPL article references
+  - Official contact information: privacy@asterik.ae, Dubai, UAE
 
 ## User Preferences
 
