@@ -3,17 +3,22 @@ import leadershipImage from "@assets/leadership Image_1751810042614.jpg";
 export default function About() {
   return (
     <div className="pt-16">
-      <section className="py-20 bg-white">
+      {/* Hero Section */}
+      <section className="py-20 bg-gradient-to-r from-navy-blue to-charcoal text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Mission Statement */}
-          <div className="text-center mb-20">
-            <h1 className="font-bold text-4xl md:text-5xl mb-8 text-navy-blue">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
               About ASTERIK
             </h1>
-            <p className="text-xl md:text-2xl text-charcoal max-w-4xl mx-auto leading-relaxed">
-              To redefine enterprise technology capabilities through strategic talent solutions
+            <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto">
+              Redefining enterprise technology capabilities through strategic talent solutions and regulatory-first transformations
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Founder Section */}
           <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
@@ -80,6 +85,21 @@ export default function About() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-navy-blue">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Partner with Enterprise Technology Leaders
+          </h2>
+          <p className="text-xl text-white mb-8 max-w-3xl mx-auto">
+            Leverage our proven expertise and regulatory-first approach for your next technology transformation initiative.
+          </p>
+          <button className="bg-white text-navy-blue px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition-all">
+            Explore Partnership Opportunities
+          </button>
         </div>
       </section>
     </div>

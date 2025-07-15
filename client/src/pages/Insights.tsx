@@ -1,16 +1,22 @@
 export default function Insights() {
   return (
     <div className="pt-16">
-      <section className="bg-soft-beige py-20">
+      {/* Hero Section */}
+      <section className="py-20 bg-gradient-to-r from-navy-blue to-charcoal text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h1 className="font-bold text-4xl md:text-5xl mb-8 text-navy-blue">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Industry Insights
             </h1>
-            <p className="text-xl text-charcoal max-w-3xl mx-auto">
-              Expert perspectives on enterprise technology trends and regulatory compliance
+            <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto">
+              Expert perspectives on enterprise technology trends, regulatory compliance, and digital transformation strategies
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="bg-soft-beige py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Featured Post */}
           <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-12">
@@ -119,6 +125,21 @@ export default function Insights() {
               View All Articles
             </button>
           </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-navy-blue">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Stay Updated on Industry Trends
+          </h2>
+          <p className="text-xl text-white mb-8 max-w-3xl mx-auto">
+            Subscribe to our insights newsletter for the latest updates on enterprise technology, regulatory compliance, and digital transformation.
+          </p>
+          <button className="bg-white text-navy-blue px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition-all">
+            Subscribe to Newsletter
+          </button>
         </div>
       </section>
     </div>

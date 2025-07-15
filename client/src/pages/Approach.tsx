@@ -1,16 +1,22 @@
 export default function Approach() {
   return (
     <div className="pt-16">
-      <section className="bg-soft-beige py-20">
+      {/* Hero Section */}
+      <section className="py-20 bg-gradient-to-r from-navy-blue to-charcoal text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h1 className="font-bold text-4xl md:text-5xl mb-8 text-navy-blue">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Our Approach
             </h1>
-            <p className="text-xl text-charcoal max-w-3xl mx-auto">
-              A proven framework for enterprise technology transformation
+            <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto">
+              A proven framework for enterprise technology transformation that delivers measurable results and regulatory compliance
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="bg-soft-beige py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Framework Visualization */}
           <div className="bg-white rounded-2xl p-8 md:p-12 mb-16 shadow-lg">
@@ -121,6 +127,21 @@ export default function Approach() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-navy-blue">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Ready to Transform Your Enterprise?
+          </h2>
+          <p className="text-xl text-white mb-8 max-w-3xl mx-auto">
+            Let our proven approach guide your organization through successful technology transformation with regulatory compliance at its core.
+          </p>
+          <button className="bg-white text-navy-blue px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition-all">
+            Start Your Transformation
+          </button>
         </div>
       </section>
     </div>
