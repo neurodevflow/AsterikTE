@@ -127,11 +127,11 @@ export default function Header() {
                         (item.name === "Industries" && industriesDropdownOpen)) && (
                         <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-lg border border-light-grey z-50">
                           {item.name === "Services" ? (
-                            <div className="p-8 w-[800px]">
-                              <div className="grid grid-cols-4 gap-8">
+                            <div className="p-8 w-[1000px]">
+                              <div className="grid grid-cols-4 gap-10">
                                 {item.dropdownItems.map((category) => (
                                   <div key={category.category} className="space-y-4">
-                                    <h4 className="font-bold text-navy-blue text-sm uppercase tracking-wide border-b border-light-grey pb-3">
+                                    <h4 className="font-bold text-navy-blue text-xs uppercase tracking-wide border-b border-light-grey pb-3">
                                       {category.category}
                                     </h4>
                                     <ul className="space-y-2">
@@ -139,7 +139,7 @@ export default function Header() {
                                         <li key={subItem.name}>
                                           <Link
                                             href={subItem.href}
-                                            className="block py-2 text-sm text-charcoal hover:text-navy-blue transition-colors duration-200 leading-normal"
+                                            className="block py-2 text-xs text-charcoal hover:text-navy-blue transition-colors duration-200 leading-normal whitespace-nowrap"
                                           >
                                             {subItem.name}
                                           </Link>
@@ -151,13 +151,13 @@ export default function Header() {
                               </div>
                             </div>
                           ) : (
-                            <div className="p-8 w-96">
-                              <div className="grid grid-cols-2 gap-6">
+                            <div className="p-8 w-[480px]">
+                              <div className="grid grid-cols-2 gap-8">
                                 {item.dropdownItems.map((industry, index) => (
                                   <Link
                                     key={industry.name}
                                     href={industry.href}
-                                    className="block py-2 px-3 text-sm text-charcoal hover:text-navy-blue hover:bg-soft-beige rounded transition-colors duration-200 leading-normal"
+                                    className="block py-2 px-3 text-xs text-charcoal hover:text-navy-blue hover:bg-soft-beige rounded transition-colors duration-200 leading-normal whitespace-nowrap"
                                   >
                                     {industry.name}
                                   </Link>
