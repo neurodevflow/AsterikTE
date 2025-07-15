@@ -109,6 +109,16 @@ This is a full-stack web application for ASTERIK, a professional technology cons
   - Added comprehensive about section with authentic leadership image
   - Implemented full responsive design with ASTERIK brand colors
 - July 06, 2025: Finalized multi-page website with complete navigation structure
+- July 15, 2025: Major update with Sombra-inspired Services and Industries sections
+  - Copied and adapted comprehensive Services and Industries structure from sombrainc.com
+  - Replaced all "Sombra" references with "Asterik" throughout the codebase
+  - Moved About button to end of navigation menu (before Insights)
+  - Implemented new color scheme: Navy Blue, Soft Beige, Warm Orange, Teal Green
+  - Added dropdown navigation menus for Services (4 categories) and Industries (9 sectors)
+  - Created detailed service pages with comprehensive feature descriptions
+  - Enhanced mobile navigation with collapsible dropdown support
+  - Updated Tailwind CSS configuration with custom brand colors
+  - Maintained full responsive design and professional enterprise appearance
 
 ## User Preferences
 
