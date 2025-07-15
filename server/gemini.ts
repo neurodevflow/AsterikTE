@@ -21,6 +21,11 @@ export async function generateContentRecommendations(
   currentPath: string
 ): Promise<ContentRecommendation[]> {
   try {
+    console.log("Gemini API Key present:", !!process.env.GEMINI_API_KEY);
+    
+    if (!process.env.GEMINI_API_KEY) {
+      throw new Error("GEMINI_API_KEY not found");
+    }
     const systemPrompt = `You are an AI assistant for ASTERIK, a strategic technology consulting company. 
     Based on the current page content and path, generate 3-4 relevant content recommendations.
     

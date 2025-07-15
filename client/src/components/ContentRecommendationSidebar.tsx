@@ -45,15 +45,14 @@ export default function ContentRecommendationSidebar({
 
   const { data: recommendations, isLoading, error } = useQuery({
     queryKey: ['/api/recommendations', location, pageContent],
-    queryFn: () => apiRequest(`/api/recommendations`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
+    queryFn: async () => {
+      const response = await apiRequest('POST', '/api/recommendations', {
         currentPath: location,
         pageContent: pageContent
-      })
-    }),
-    enabled: isOpen && pageContent.length > 50,
+      });
+      return await response.json();
+    },
+    enabled: isOpen && pageContent.length > 10,
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
