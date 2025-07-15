@@ -53,7 +53,17 @@ export default function PageBuilder() {
   const [selectedPage, setSelectedPage] = useState<Page | null>(null);
   const [showCreateDialog, setShowCreateDialog] = useState(false);
   const [showAiDialog, setShowAiDialog] = useState(false);
+  const [showImportDialog, setShowImportDialog] = useState(false);
   const [activeTab, setActiveTab] = useState("pages");
+  const [existingPages] = useState([
+    { title: "Home", slug: "home", description: "Main landing page" },
+    { title: "About", slug: "about", description: "About us page" },
+    { title: "Services", slug: "services", description: "Services overview" },
+    { title: "Industries", slug: "industries", description: "Industries we serve" },
+    { title: "Contact", slug: "contact", description: "Contact page" },
+    { title: "Insights", slug: "insights", description: "Blog and insights" },
+    { title: "Approach", slug: "approach", description: "Our methodology" }
+  ]);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -66,6 +76,61 @@ export default function PageBuilder() {
   const { data: pageComponents = [], isLoading: componentsLoading } = useQuery({
     queryKey: ["/api/admin/pages", selectedPage?.id, "components"],
     enabled: !!selectedPage?.id,
+  });
+
+  // Import existing pages mutation
+  const importPagesMutation = useMutation({
+    mutationFn: async () => {
+      return await apiRequest("/api/admin/import-pages", "POST", {});
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/pages"] });
+      setShowImportDialog(false);
+      toast({
+        title: "Success",
+        description: "Existing pages imported successfully",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to import existing pages",
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Load existing page for editing
+  const loadExistingPageMutation = useMutation({
+    mutationFn: async (slug: string) => {
+      return await apiRequest(`/api/admin/pages/${slug}/edit`, "GET");
+    },
+    onSuccess: (data) => {
+      if (data.page) {
+        setSelectedPage(data.page);
+        queryClient.setQueryData(["/api/admin/pages", data.page.id, "components"], data.components || []);
+        setActiveTab("editor");
+        toast({
+          title: "Success",
+          description: `Loaded ${data.page.title} for editing`,
+        });
+      }
+    },
+    onError: (error: any) => {
+      if (error.message.includes('404')) {
+        toast({
+          title: "Page Not Found",
+          description: "This page hasn't been imported yet. Import existing pages first.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to load page for editing",
+          variant: "destructive",
+        });
+      }
+    },
   });
 
   // Create page mutation
@@ -188,6 +253,47 @@ export default function PageBuilder() {
           <p className="text-charcoal">Create and manage dynamic pages with AI-powered content generation</p>
         </div>
         <div className="flex gap-3">
+          <Dialog open={showImportDialog} onOpenChange={setShowImportDialog}>
+            <DialogTrigger asChild>
+              <Button variant="outline">
+                <Copy className="h-4 w-4 mr-2" />
+                Import Existing Pages
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Import Existing Website Pages</DialogTitle>
+                <DialogDescription>
+                  Import your current website pages (Home, About, Services, etc.) into the page builder for editing. This will create editable versions of your existing pages.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4">
+                <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                  <h4 className="font-medium text-blue-900 mb-2">Pages to be imported:</h4>
+                  <ul className="text-sm text-blue-800 space-y-1">
+                    {existingPages.map((page) => (
+                      <li key={page.slug} className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                        {page.title} - {page.description}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="flex justify-end gap-2">
+                  <Button variant="outline" onClick={() => setShowImportDialog(false)}>
+                    Cancel
+                  </Button>
+                  <Button 
+                    onClick={() => importPagesMutation.mutate()}
+                    disabled={importPagesMutation.isPending}
+                  >
+                    {importPagesMutation.isPending ? "Importing..." : "Import Pages"}
+                  </Button>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
+
           <Dialog open={showAiDialog} onOpenChange={setShowAiDialog}>
             <DialogTrigger asChild>
               <Button variant="outline" className="border-navy-blue text-navy-blue hover:bg-navy-blue hover:text-white">
@@ -451,9 +557,72 @@ export default function PageBuilder() {
           <TabsTrigger value="editor" disabled={!selectedPage}>Page Editor</TabsTrigger>
         </TabsList>
         
-        <TabsContent value="pages" className="space-y-4">
-          <div className="grid gap-4">
-            {pages.map((page: Page) => (
+        <TabsContent value="pages" className="space-y-6">
+          {/* Existing Website Pages Section */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Copy className="h-5 w-5" />
+                Existing Website Pages
+              </CardTitle>
+              <CardDescription>
+                Load existing website pages into the editor for customization. Import pages first if they haven't been loaded yet.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {existingPages.map((page) => (
+                  <Card key={page.slug} className="hover:shadow-md transition-shadow">
+                    <CardContent className="p-4">
+                      <div className="space-y-3">
+                        <div>
+                          <h4 className="font-medium text-navy-blue">{page.title}</h4>
+                          <p className="text-sm text-charcoal">/{page.slug}</p>
+                          <p className="text-xs text-muted-foreground mt-1">{page.description}</p>
+                        </div>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => loadExistingPageMutation.mutate(page.slug)}
+                          disabled={loadExistingPageMutation.isPending}
+                          className="w-full"
+                        >
+                          {loadExistingPageMutation.isPending ? (
+                            <>Loading...</>
+                          ) : (
+                            <>
+                              <Edit className="h-4 w-4 mr-2" />
+                              Edit Page
+                            </>
+                          )}
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Custom Pages Section */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Plus className="h-5 w-5" />
+                Custom Pages
+              </CardTitle>
+              <CardDescription>
+                Pages created through the page builder with custom content and components.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              {pages.length === 0 ? (
+                <div className="text-center py-8 text-muted-foreground">
+                  <p>No custom pages created yet. Create your first page using the "New Page" button above.</p>
+                </div>
+              ) : (
+                <div className="grid gap-4">
+                  {pages.map((page: Page) => (
               <Card key={page.id} className="hover:shadow-md transition-shadow">
                 <CardHeader>
                   <div className="flex items-center justify-between">
@@ -493,21 +662,11 @@ export default function PageBuilder() {
                   </CardContent>
                 )}
               </Card>
-            ))}
-            
-            {pages.length === 0 && (
-              <div className="text-center py-12">
-                <div className="text-charcoal mb-4">No pages created yet</div>
-                <Button
-                  onClick={() => setShowCreateDialog(true)}
-                  className="bg-navy-blue hover:bg-navy-blue/90"
-                >
-                  <Plus className="w-4 h-4 mr-2" />
-                  Create Your First Page
-                </Button>
-              </div>
-            )}
-          </div>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
         </TabsContent>
         
         <TabsContent value="editor" className="space-y-4">
