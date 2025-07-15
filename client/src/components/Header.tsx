@@ -134,12 +134,12 @@ export default function Header() {
                                     <h4 className="font-bold text-navy-blue text-xs uppercase tracking-wide border-b border-light-grey pb-3">
                                       {category.category}
                                     </h4>
-                                    <ul className="space-y-2">
+                                    <ul className="space-y-1">
                                       {category.items.map((subItem) => (
                                         <li key={subItem.name}>
                                           <Link
                                             href={subItem.href}
-                                            className="block py-2 text-xs text-charcoal hover:text-navy-blue transition-colors duration-200 leading-normal whitespace-nowrap"
+                                            className="block py-1 text-xs text-charcoal hover:text-navy-blue transition-colors duration-200 leading-tight whitespace-nowrap"
                                           >
                                             {subItem.name}
                                           </Link>
@@ -157,7 +157,7 @@ export default function Header() {
                                   <Link
                                     key={industry.name}
                                     href={industry.href}
-                                    className="block py-2 px-3 text-xs text-charcoal hover:text-navy-blue hover:bg-soft-beige rounded transition-colors duration-200 leading-normal whitespace-nowrap"
+                                    className="block py-1 px-3 text-xs text-charcoal hover:text-navy-blue hover:bg-soft-beige rounded transition-colors duration-200 leading-tight whitespace-nowrap"
                                   >
                                     {industry.name}
                                   </Link>
