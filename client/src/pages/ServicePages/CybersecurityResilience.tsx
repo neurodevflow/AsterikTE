@@ -3,36 +3,36 @@ export default function CybersecurityResilience() {
     <div className="pt-16 bg-white min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-navy-blue mb-4">Cybersecurity and Resilience</h1>
+          <h1 className="text-4xl font-bold text-navy-blue mb-4">Cybersecurity and Pen Testing</h1>
           <p className="text-lg text-charcoal max-w-3xl mx-auto">
-            Protect your digital assets and ensure business continuity with our comprehensive cybersecurity and resilience services.
+            Secure your digital infrastructure with advanced cybersecurity and penetration testing services that identify vulnerabilities before attackers do.
           </p>
         </div>
         
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
           <div>
-            <h2 className="text-3xl font-bold text-navy-blue mb-6">Comprehensive Security Solutions</h2>
+            <h2 className="text-3xl font-bold text-navy-blue mb-6">Advanced Penetration Testing & Security</h2>
             <p className="text-charcoal mb-6">
-              Our cybersecurity and resilience services provide end-to-end protection for your organization, 
-              from threat detection and prevention to incident response and recovery. We help you build 
-              a robust security posture that evolves with emerging threats.
+              Our cybersecurity and penetration testing services simulate real-world attacks to identify 
+              vulnerabilities before malicious actors can exploit them. We provide comprehensive security 
+              assessments that strengthen your organization's defense posture.
             </p>
             <ul className="space-y-3 text-charcoal">
               <li className="flex items-start">
                 <span className="text-teal-green mr-2">•</span>
-                Security Assessment & Penetration Testing
+                Network & Web Application Penetration Testing
               </li>
               <li className="flex items-start">
                 <span className="text-teal-green mr-2">•</span>
-                Threat Detection & Response
+                Red Team Operations & Adversarial Simulation
               </li>
               <li className="flex items-start">
                 <span className="text-teal-green mr-2">•</span>
-                Compliance & Risk Management
+                Vulnerability Assessment & Ethical Hacking
               </li>
               <li className="flex items-start">
                 <span className="text-teal-green mr-2">•</span>
-                Disaster Recovery & Business Continuity
+                Security Control Testing & Validation
               </li>
             </ul>
           </div>
