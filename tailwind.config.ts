@@ -61,6 +61,14 @@ export default {
           border: "var(--sidebar-border)",
           ring: "var(--sidebar-ring)",
         },
+        // Custom Asterik brand colors
+        "navy-blue": "var(--navy-blue)",
+        "soft-beige": "var(--soft-beige)",
+        "warm-orange": "var(--warm-orange)",
+        "teal-green": "var(--teal-green)",
+        "light-grey": "var(--light-grey)",
+        "border-grey": "var(--border-grey)",
+        "charcoal": "var(--charcoal)",
       },
       keyframes: {
         "accordion-down": {

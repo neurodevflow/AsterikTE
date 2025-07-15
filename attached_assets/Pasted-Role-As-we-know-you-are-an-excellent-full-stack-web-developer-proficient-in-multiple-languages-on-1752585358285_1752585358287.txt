@@ -1,0 +1,30 @@
+Role:
+As we know, you are an excellent full-stack web developer proficient in multiple languages on Replit.com, handling my project “ProfessionalCredibility” with expertise.
+Action:
+Copy the "Services" and "Industries" sections (including all dropdown menus and their full content sections) from the website https://sombrainc.com and add these sections to the current project “ProfessionalCredibility”. Also, move the About button to the end of the main menu, placing it just before the Insights button.
+Steps:
+1.	Extract the complete HTML, CSS, JavaScript, and any interactive elements for the two specified sections including the dropdown menus and all associated content from the source website https://sombrainc.com.
+2.	Replace every instance of the word “Sombra” with “Asterik” in all retrieved data.
+3.	Create and set up the menu structure and pages from the source into the ProfessionalCredibility project. Make sure to replicate all subcategories: for example, the Services menu has 4 subcategories, each with 3–4 further subcategories, and Industries has 9 subcategories.
+4.	Integrate and link these sections properly into the existing React multipage structure, maintaining original design, layout, responsiveness, and interactive functionality.
+5.	Change the global color scheme throughout the project to the new palette below, updating CSS variables or styles accordingly:
+•	Dark Navy Blue (#0C2D48) for navigation, call-to-action buttons, headers
+•	White (#FFFFFF) for backgrounds and content areas
+•	Soft Beige/Cream (#FDF6EC) for CTA backgrounds and banners
+•	Warm Orange (#F47C2F) for offers and highlights
+•	Teal/Sea Green (#2BAE66) for status indicators
+•	Light Grey (#F3F4F6 and #D1D5DB) for borders and secondary text
+•	Black/Charcoal (#1F2937) for primary text and icons
+6.	Thoroughly test responsiveness and visual consistency on desktop, tablet, and mobile screen sizes.
+7.	Ensure any dynamic or JavaScript-driven content within the copied sections retains expected behavior.
+Context:
+The current project “ProfessionalCredibility” is a React-based multipage website hosted on Replit. The source site is https://sombrainc.com. You should maintain the original site's structure and functionality for the copied Services and Industries menus and their content, replacing brand names and applying the new color scheme for branding consistency.
+Examples:
+•	If the source Services menu contains 4 subcategories, each with 3–4 sub-items, replicate this nested structure exactly within ProfessionalCredibility. 
+•	Replace all mentions of “Sombra” with “Asterik” everywhere in both content and code.
+•	Swap color hex codes consistently as per the palette above, e.g., replace #007BFF with #0C2D48.
+Format:
+Please provide:
+•	Updated React component code for each copied section individually.
+•	Modified CSS or CSS module files reflecting the new color scheme.
+•	A summary table mapping old colors (Hex codes) to the new palette hex codes for verification.

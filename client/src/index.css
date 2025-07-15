@@ -4,31 +4,41 @@
 
 :root {
   --background: hsl(0, 0%, 100%);
-  --foreground: hsl(116, 11%, 11%);
-  --muted: hsl(60, 4.8%, 95.9%);
-  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --foreground: hsl(220, 13%, 18%);
+  --muted: hsl(45, 38%, 96%);
+  --muted-foreground: hsl(0, 0%, 82%);
   --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(116, 11%, 11%);
+  --popover-foreground: hsl(220, 13%, 18%);
   --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(116, 11%, 11%);
-  --border: hsl(20, 5.9%, 90%);
-  --input: hsl(20, 5.9%, 90%);
-  --primary: hsl(348, 91%, 43%);
+  --card-foreground: hsl(220, 13%, 18%);
+  --border: hsl(0, 0%, 95%);
+  --input: hsl(0, 0%, 95%);
+  --primary: hsl(206, 84%, 17%);
   --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(60, 4.8%, 95.9%);
-  --secondary-foreground: hsl(24, 9.8%, 10%);
-  --accent: hsl(22, 78%, 54%);
+  --secondary: hsl(45, 38%, 96%);
+  --secondary-foreground: hsl(220, 13%, 18%);
+  --accent: hsl(25, 86%, 58%);
   --accent-foreground: hsl(0, 0%, 100%);
   --destructive: hsl(0, 84.2%, 60.2%);
   --destructive-foreground: hsl(60, 9.1%, 97.8%);
-  --ring: hsl(116, 11%, 11%);
+  --ring: hsl(206, 84%, 17%);
   --radius: 0.5rem;
   
-  /* Asterik brand colors */
-  --asterik-dark: hsl(0, 0%, 11%);
-  --asterik-red: hsl(348, 91%, 43%);
-  --asterik-orange: hsl(22, 78%, 54%);
-  --asterik-light: hsl(0, 0%, 96%);
+  /* Updated Asterik brand colors */
+  --navy-blue: hsl(206, 84%, 17%); /* #0C2D48 */
+  --white: hsl(0, 0%, 100%); /* #FFFFFF */
+  --soft-beige: hsl(45, 38%, 96%); /* #FDF6EC */
+  --warm-orange: hsl(25, 86%, 58%); /* #F47C2F */
+  --teal-green: hsl(142, 76%, 45%); /* #2BAE66 */
+  --light-grey: hsl(0, 0%, 95%); /* #F3F4F6 */
+  --border-grey: hsl(0, 0%, 82%); /* #D1D5DB */
+  --charcoal: hsl(220, 13%, 18%); /* #1F2937 */
+  
+  /* Legacy support */
+  --asterik-dark: hsl(206, 84%, 17%);
+  --asterik-red: hsl(206, 84%, 17%);
+  --asterik-orange: hsl(25, 86%, 58%);
+  --asterik-light: hsl(45, 38%, 96%);
 }
 
 .dark {
