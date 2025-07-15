@@ -113,6 +113,32 @@ export const systemLogs = pgTable("system_logs", {
   timestamp: timestamp("timestamp").notNull().defaultNow(),
 });
 
+// Third-party integrations (Zapier, Brevo, etc.)
+export const integrations = pgTable("integrations", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  type: text("type").notNull(), // 'zapier', 'brevo', etc.
+  apiKey: text("api_key"),
+  apiSecret: text("api_secret"),
+  webhookUrl: text("webhook_url"),
+  isActive: boolean("is_active").notNull().default(false),
+  settings: jsonb("settings"),
+  lastSyncAt: timestamp("last_sync_at"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+// User activity tracking for audit logs
+export const userActivities = pgTable("user_activities", {
+  id: serial("id").primaryKey(),
+  adminUserId: integer("admin_user_id").references(() => adminUsers.id),
+  activity: text("activity").notNull(),
+  details: jsonb("details"),
+  ipAddress: text("ip_address"),
+  userAgent: text("user_agent"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
 // Insert schemas for form validation
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
@@ -161,6 +187,23 @@ export const insertPageViewSchema = createInsertSchema(pageViews).pick({
   device: true,
 });
 
+export const insertIntegrationSchema = createInsertSchema(integrations).pick({
+  name: true,
+  type: true,
+  apiKey: true,
+  apiSecret: true,
+  webhookUrl: true,
+  settings: true,
+});
+
+export const insertUserActivitySchema = createInsertSchema(userActivities).pick({
+  adminUserId: true,
+  activity: true,
+  details: true,
+  ipAddress: true,
+  userAgent: true,
+});
+
 // Type exports
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
@@ -177,3 +220,7 @@ export type PageView = typeof pageViews.$inferSelect;
 export type UserSession = typeof userSessions.$inferSelect;
 export type AiInteraction = typeof aiInteractions.$inferSelect;
 export type SystemLog = typeof systemLogs.$inferSelect;
+export type Integration = typeof integrations.$inferSelect;
+export type InsertIntegration = z.infer<typeof insertIntegrationSchema>;
+export type UserActivity = typeof userActivities.$inferSelect;
+export type InsertUserActivity = z.infer<typeof insertUserActivitySchema>;

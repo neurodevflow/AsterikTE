@@ -14,12 +14,18 @@ import {
   TrendingUp,
   Globe,
   Smartphone,
-  Target
+  Target,
+  Zap,
+  UserCog
 } from 'lucide-react';
 import ContactsManager from '@/components/admin/ContactsManager';
 import EmailCampaigns from '@/components/admin/EmailCampaigns';
 import ContentManager from '@/components/admin/ContentManager';
 import AnalyticsDashboard from '@/components/admin/AnalyticsDashboard';
+import EnhancedAnalytics from '@/components/admin/EnhancedAnalytics';
+import UserManagement from '@/components/admin/UserManagement';
+import ProfileSettings from '@/components/admin/ProfileSettings';
+import IntegrationsManager from '@/components/admin/IntegrationsManager';
 
 interface DashboardStats {
   totalPageViews: number;
@@ -116,24 +122,36 @@ export default function Dashboard() {
       {/* Main Content */}
       <div className="p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5">
-            <TabsTrigger value="overview" className="flex items-center gap-2">
+          <TabsList className="grid w-full grid-cols-8 h-auto">
+            <TabsTrigger value="overview" className="flex items-center gap-2 text-xs">
               <BarChart3 className="h-4 w-4" />
               Overview
             </TabsTrigger>
-            <TabsTrigger value="analytics" className="flex items-center gap-2">
+            <TabsTrigger value="analytics" className="flex items-center gap-2 text-xs">
               <TrendingUp className="h-4 w-4" />
-              Analytics
+              Enhanced Analytics
             </TabsTrigger>
-            <TabsTrigger value="contacts" className="flex items-center gap-2">
+            <TabsTrigger value="users" className="flex items-center gap-2 text-xs">
+              <UserCog className="h-4 w-4" />
+              User Management
+            </TabsTrigger>
+            <TabsTrigger value="profile" className="flex items-center gap-2 text-xs">
+              <Settings className="h-4 w-4" />
+              Profile Settings
+            </TabsTrigger>
+            <TabsTrigger value="integrations" className="flex items-center gap-2 text-xs">
+              <Zap className="h-4 w-4" />
+              Integrations
+            </TabsTrigger>
+            <TabsTrigger value="contacts" className="flex items-center gap-2 text-xs">
               <Users className="h-4 w-4" />
               Contacts
             </TabsTrigger>
-            <TabsTrigger value="emails" className="flex items-center gap-2">
+            <TabsTrigger value="emails" className="flex items-center gap-2 text-xs">
               <Mail className="h-4 w-4" />
               Email Campaigns
             </TabsTrigger>
-            <TabsTrigger value="content" className="flex items-center gap-2">
+            <TabsTrigger value="content" className="flex items-center gap-2 text-xs">
               <FileText className="h-4 w-4" />
               Content
             </TabsTrigger>
@@ -230,7 +248,19 @@ export default function Dashboard() {
           </TabsContent>
 
           <TabsContent value="analytics">
-            <AnalyticsDashboard stats={stats} token={token} />
+            <EnhancedAnalytics stats={stats} token={token} />
+          </TabsContent>
+
+          <TabsContent value="users">
+            <UserManagement token={token} />
+          </TabsContent>
+
+          <TabsContent value="profile">
+            <ProfileSettings token={token} />
+          </TabsContent>
+
+          <TabsContent value="integrations">
+            <IntegrationsManager token={token} />
           </TabsContent>
 
           <TabsContent value="contacts">
