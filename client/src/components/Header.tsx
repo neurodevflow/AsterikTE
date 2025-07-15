@@ -126,43 +126,44 @@ export default function Header() {
                       {/* Dropdown Menu */}
                       {((item.name === "Services" && servicesDropdownOpen) || 
                         (item.name === "Industries" && industriesDropdownOpen)) && (
-                        <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-lg border border-light-grey z-50">
+                        <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-lg border border-light-grey z-50">
                           {item.name === "Services" ? (
-                            <div className="p-4">
-                              {item.dropdownItems.map((category) => (
-                                <div key={category.category} className="mb-4">
-                                  <h4 className="font-semibold text-navy-blue text-sm mb-2">
-                                    {category.category}
-                                  </h4>
-                                  <ul className="space-y-1">
-                                    {category.items.map((subItem) => (
-                                      <li key={subItem.name}>
-                                        <Link
-                                          href={subItem.href}
-                                          className="block py-1 px-2 text-sm text-charcoal hover:text-navy-blue hover:bg-soft-beige rounded transition-colors duration-200"
-                                        >
-                                          {subItem.name}
-                                        </Link>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                              ))}
+                            <div className="p-6 w-96">
+                              <div className="grid grid-cols-2 gap-6">
+                                {item.dropdownItems.map((category) => (
+                                  <div key={category.category} className="space-y-3">
+                                    <h4 className="font-bold text-navy-blue text-sm uppercase tracking-wide border-b border-light-grey pb-2">
+                                      {category.category}
+                                    </h4>
+                                    <ul className="space-y-2">
+                                      {category.items.map((subItem) => (
+                                        <li key={subItem.name}>
+                                          <Link
+                                            href={subItem.href}
+                                            className="block py-1 text-sm text-charcoal hover:text-navy-blue transition-colors duration-200"
+                                          >
+                                            {subItem.name}
+                                          </Link>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                ))}
+                              </div>
                             </div>
                           ) : (
-                            <div className="p-4">
-                              <ul className="space-y-1">
-                                {item.dropdownItems.map((industry) => (
-                                  <li key={industry.name}>
-                                    <Link
-                                      href={industry.href}
-                                      className="block py-2 px-3 text-sm text-charcoal hover:text-navy-blue hover:bg-soft-beige rounded transition-colors duration-200"
-                                    >
-                                      {industry.name}
-                                    </Link>
-                                  </li>
+                            <div className="p-6 w-80">
+                              <div className="grid grid-cols-2 gap-4">
+                                {item.dropdownItems.map((industry, index) => (
+                                  <Link
+                                    key={industry.name}
+                                    href={industry.href}
+                                    className="block py-2 px-3 text-sm text-charcoal hover:text-navy-blue hover:bg-soft-beige rounded transition-colors duration-200"
+                                  >
+                                    {industry.name}
+                                  </Link>
                                 ))}
-                              </ul>
+                              </div>
                             </div>
                           )}
                         </div>
@@ -228,36 +229,40 @@ export default function Header() {
                   
                   {/* Mobile Dropdown Items */}
                   {item.hasDropdown && (
-                    <div className="ml-4 mt-1 space-y-1">
+                    <div className="ml-4 mt-2 bg-soft-beige rounded-lg p-3">
                       {item.name === "Services" ? (
-                        item.dropdownItems.map((category) => (
-                          <div key={category.category}>
-                            <div className="font-semibold text-navy-blue text-xs uppercase tracking-wide px-3 py-1">
-                              {category.category}
+                        <div className="grid grid-cols-2 gap-4">
+                          {item.dropdownItems.map((category) => (
+                            <div key={category.category} className="space-y-2">
+                              <div className="font-bold text-navy-blue text-xs uppercase tracking-wide border-b border-border-grey pb-1">
+                                {category.category}
+                              </div>
+                              {category.items.map((subItem) => (
+                                <Link
+                                  key={subItem.name}
+                                  href={subItem.href}
+                                  onClick={() => setMobileMenuOpen(false)}
+                                  className="block py-1 text-sm text-charcoal hover:text-navy-blue"
+                                >
+                                  {subItem.name}
+                                </Link>
+                              ))}
                             </div>
-                            {category.items.map((subItem) => (
-                              <Link
-                                key={subItem.name}
-                                href={subItem.href}
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="block px-6 py-1 text-sm text-charcoal hover:text-navy-blue hover:bg-soft-beige"
-                              >
-                                {subItem.name}
-                              </Link>
-                            ))}
-                          </div>
-                        ))
+                          ))}
+                        </div>
                       ) : (
-                        item.dropdownItems.map((industry) => (
-                          <Link
-                            key={industry.name}
-                            href={industry.href}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="block px-6 py-1 text-sm text-charcoal hover:text-navy-blue hover:bg-soft-beige"
-                          >
-                            {industry.name}
-                          </Link>
-                        ))
+                        <div className="grid grid-cols-2 gap-2">
+                          {item.dropdownItems.map((industry) => (
+                            <Link
+                              key={industry.name}
+                              href={industry.href}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className="block py-2 px-3 text-sm text-charcoal hover:text-navy-blue hover:bg-white rounded transition-colors duration-200"
+                            >
+                              {industry.name}
+                            </Link>
+                          ))}
+                        </div>
                       )}
                     </div>
                   )}
