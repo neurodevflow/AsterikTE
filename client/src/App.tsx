@@ -13,6 +13,7 @@ import ServiceDetail from "./pages/ServiceDetail";
 import Approach from "./pages/Approach";
 import Contact from "./pages/Contact";
 import Insights from "./pages/Insights";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -30,6 +31,7 @@ function Router() {
           <Route path="/contact" component={Contact} />
           <Route path="/about" component={About} />
           <Route path="/insights" component={Insights} />
+          <Route path="/privacy-policy" component={PrivacyPolicy} />
           <Route component={NotFound} />
         </Switch>
       </main>
