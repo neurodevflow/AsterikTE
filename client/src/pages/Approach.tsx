@@ -19,7 +19,7 @@ export default function Approach() {
                 <div 
                   className="bg-navy-blue text-white w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto"
                 >
-                  <span className="font-bold text-xl">1</span>
+                  <i className="fas fa-search text-2xl"></i>
                 </div>
                 <h3 className="font-bold text-lg mb-3 text-navy-blue">
                   Discover
@@ -30,7 +30,7 @@ export default function Approach() {
                 <div 
                   className="bg-navy-blue text-white w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto"
                 >
-                  <span className="font-bold text-xl">2</span>
+                  <i className="fas fa-drafting-compass text-2xl"></i>
                 </div>
                 <h3 className="font-bold text-lg mb-3 text-navy-blue">
                   Design
@@ -41,7 +41,7 @@ export default function Approach() {
                 <div 
                   className="bg-navy-blue text-white w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto"
                 >
-                  <span className="font-bold text-xl">3</span>
+                  <i className="fas fa-rocket text-2xl"></i>
                 </div>
                 <h3 className="font-bold text-lg mb-3 text-navy-blue">
                   Deploy
@@ -52,7 +52,7 @@ export default function Approach() {
                 <div 
                   className="bg-navy-blue text-white w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto"
                 >
-                  <span className="font-bold text-xl">4</span>
+                  <i className="fas fa-chart-line text-2xl"></i>
                 </div>
                 <h3 className="font-bold text-lg mb-3 text-navy-blue">
                   Optimize

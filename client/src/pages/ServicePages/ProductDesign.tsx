@@ -158,8 +158,8 @@ export default function ProductDesign() {
               <h3 className="text-2xl font-bold text-navy-blue mb-6">Our Process</h3>
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-8 h-8 bg-navy-blue text-white rounded-full flex items-center justify-center font-bold mr-4">
-                    1
+                  <div className="flex-shrink-0 w-8 h-8 bg-navy-blue text-white rounded-full flex items-center justify-center mr-4">
+                    <i className="fas fa-search text-sm"></i>
                   </div>
                   <div>
                     <h4 className="font-semibold text-navy-blue">Discovery</h4>
@@ -167,8 +167,8 @@ export default function ProductDesign() {
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-8 h-8 bg-navy-blue text-white rounded-full flex items-center justify-center font-bold mr-4">
-                    2
+                  <div className="flex-shrink-0 w-8 h-8 bg-navy-blue text-white rounded-full flex items-center justify-center mr-4">
+                    <i className="fas fa-palette text-sm"></i>
                   </div>
                   <div>
                     <h4 className="font-semibold text-navy-blue">Design</h4>
@@ -176,8 +176,8 @@ export default function ProductDesign() {
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-8 h-8 bg-navy-blue text-white rounded-full flex items-center justify-center font-bold mr-4">
-                    3
+                  <div className="flex-shrink-0 w-8 h-8 bg-navy-blue text-white rounded-full flex items-center justify-center mr-4">
+                    <i className="fas fa-check-circle text-sm"></i>
                   </div>
                   <div>
                     <h4 className="font-semibold text-navy-blue">Validation</h4>
@@ -185,8 +185,8 @@ export default function ProductDesign() {
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-8 h-8 bg-navy-blue text-white rounded-full flex items-center justify-center font-bold mr-4">
-                    4
+                  <div className="flex-shrink-0 w-8 h-8 bg-navy-blue text-white rounded-full flex items-center justify-center mr-4">
+                    <i className="fas fa-tools text-sm"></i>
                   </div>
                   <div>
                     <h4 className="font-semibold text-navy-blue">Implementation</h4>
