@@ -13,6 +13,7 @@ import SiteReliabilityEngineering from "./ServicePages/SiteReliabilityEngineerin
 import ProductDesign from "./ServicePages/ProductDesign";
 import ManagedSupport from "./ServicePages/ManagedSupport";
 import Salesforce from "./ServicePages/Salesforce";
+import DevSecOps from "./ServicePages/DevSecOps";
 
 // Import industry pages
 import OilGas from "./IndustryPages/OilGas";
@@ -286,6 +287,7 @@ export default function ServiceDetail() {
   if (serviceId === "product-design") return <ProductDesign />;
   if (serviceId === "managed-support") return <ManagedSupport />;
   if (serviceId === "salesforce") return <Salesforce />;
+  if (serviceId === "devsecops") return <DevSecOps />;
   
   // Handle industry pages
   if (industryId === "oil-gas") return <OilGas />;

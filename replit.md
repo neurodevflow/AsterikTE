@@ -133,6 +133,13 @@ This is a full-stack web application for ASTERIK, a professional technology cons
   - Updated ServiceDetail.tsx to handle routing for all services and industries
   - Fixed all data inconsistencies between dropdown menus and corresponding pages
   - All navigation links now functional with proper page routing
+- July 15, 2025: DevOps and Cloud Section Fix
+  - Fixed Services.tsx DevOps and Cloud section to match dropdown menu exactly
+  - Removed Platform Engineering and Site Reliability Engineering from DevOps section
+  - Added DevSecOps service with comprehensive security integration features
+  - Created DevSecOps.tsx service page with detailed security automation content
+  - Updated ServiceDetail.tsx routing to handle DevSecOps page
+  - Complete alignment between dropdown menu (Cloud, DevOps, DevSecOps) and Services page
 
 ## User Preferences
 

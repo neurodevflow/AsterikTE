@@ -47,16 +47,10 @@ export default function Services() {
           href: "/services/devops"
         },
         {
-          title: "Platform Engineering",
-          description: "Build robust platforms that enable teams to deliver software faster and more reliably.",
-          features: ["Platform Design", "Developer Tools", "Self-Service Infrastructure", "Platform Operations"],
-          href: "/services/platform-engineering"
-        },
-        {
-          title: "Site Reliability Engineering",
-          description: "Ensure high availability and performance of your systems with SRE best practices.",
-          features: ["System Reliability", "Performance Monitoring", "Incident Response", "Capacity Planning"],
-          href: "/services/site-reliability-engineering"
+          title: "DevSecOps",
+          description: "Integrate security into your development lifecycle with comprehensive DevSecOps practices and automated security testing.",
+          features: ["CI/CD Pipeline Security", "Automated Security Testing", "Vulnerability Management", "Compliance Automation"],
+          href: "/services/devsecops"
         }
       ]
     },
