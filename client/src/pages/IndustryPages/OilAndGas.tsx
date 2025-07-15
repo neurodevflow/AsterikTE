@@ -284,6 +284,169 @@ export default function OilAndGas() {
         </div>
       </section>
 
+      {/* Digital Transformation Journey */}
+      <section className="py-20 bg-soft-beige">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-navy-blue mb-4">
+              Digital Oil & Gas Transformation
+            </h2>
+            <p className="text-xl text-charcoal max-w-3xl mx-auto">
+              Comprehensive digitization approach for modern energy operations
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white rounded-lg p-8 shadow-lg">
+              <div className="w-12 h-12 bg-navy-blue rounded-lg flex items-center justify-center mb-6">
+                <i className="fas fa-robot text-white text-xl"></i>
+              </div>
+              <h3 className="text-xl font-bold text-navy-blue mb-4">Automation & Robotics</h3>
+              <ul className="text-charcoal space-y-2">
+                <li>• Autonomous drilling systems</li>
+                <li>• Robotic pipeline inspection</li>
+                <li>• Automated tank gauging</li>
+                <li>• Intelligent well completion</li>
+                <li>• Remote operated vehicles (ROVs)</li>
+              </ul>
+            </div>
+
+            <div className="bg-white rounded-lg p-8 shadow-lg">
+              <div className="w-12 h-12 bg-navy-blue rounded-lg flex items-center justify-center mb-6">
+                <i className="fas fa-brain text-white text-xl"></i>
+              </div>
+              <h3 className="text-xl font-bold text-navy-blue mb-4">AI & Machine Learning</h3>
+              <ul className="text-charcoal space-y-2">
+                <li>• Predictive equipment maintenance</li>
+                <li>• Reservoir optimization models</li>
+                <li>• Production forecasting</li>
+                <li>• Anomaly detection systems</li>
+                <li>• Intelligent drilling optimization</li>
+              </ul>
+            </div>
+
+            <div className="bg-white rounded-lg p-8 shadow-lg">
+              <div className="w-12 h-12 bg-navy-blue rounded-lg flex items-center justify-center mb-6">
+                <i className="fas fa-satellite text-white text-xl"></i>
+              </div>
+              <h3 className="text-xl font-bold text-navy-blue mb-4">IoT & Remote Monitoring</h3>
+              <ul className="text-charcoal space-y-2">
+                <li>• Wireless sensor networks</li>
+                <li>• Satellite communication systems</li>
+                <li>• Edge computing platforms</li>
+                <li>• Real-time telemetry</li>
+                <li>• Predictive analytics dashboards</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Success Metrics */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-navy-blue mb-4">
+              Energy Sector Digital Transformation Results
+            </h2>
+            <p className="text-xl text-charcoal max-w-3xl mx-auto">
+              Measurable outcomes from our energy technology implementations
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-soft-beige rounded-lg p-8">
+              <h3 className="text-xl font-bold text-navy-blue mb-6">Upstream Operations</h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-charcoal">Drilling efficiency improvement</span>
+                  <span className="text-2xl font-bold text-navy-blue">25%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-charcoal">Well completion time reduction</span>
+                  <span className="text-2xl font-bold text-navy-blue">30%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-charcoal">Reservoir recovery optimization</span>
+                  <span className="text-2xl font-bold text-navy-blue">18%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-charcoal">HSE incident reduction</span>
+                  <span className="text-2xl font-bold text-navy-blue">45%</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-soft-beige rounded-lg p-8">
+              <h3 className="text-xl font-bold text-navy-blue mb-6">Downstream Operations</h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-charcoal">Refinery throughput increase</span>
+                  <span className="text-2xl font-bold text-navy-blue">12%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-charcoal">Energy efficiency improvement</span>
+                  <span className="text-2xl font-bold text-navy-blue">20%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-charcoal">Maintenance cost reduction</span>
+                  <span className="text-2xl font-bold text-navy-blue">35%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-charcoal">Environmental compliance rate</span>
+                  <span className="text-2xl font-bold text-navy-blue">99.8%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Implementation Approach */}
+      <section className="py-20 bg-soft-beige">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-navy-blue mb-4">
+              Energy Technology Implementation Process
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-navy-blue rounded-full flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-search text-white text-2xl"></i>
+              </div>
+              <h3 className="text-xl font-bold text-navy-blue mb-4">Assessment</h3>
+              <p className="text-charcoal">Comprehensive evaluation of current operations, safety protocols, and regulatory requirements</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-navy-blue rounded-full flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-drafting-compass text-white text-2xl"></i>
+              </div>
+              <h3 className="text-xl font-bold text-navy-blue mb-4">Design</h3>
+              <p className="text-charcoal">Custom solution architecture with safety-first approach and industry compliance standards</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-navy-blue rounded-full flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-tools text-white text-2xl"></i>
+              </div>
+              <h3 className="text-xl font-bold text-navy-blue mb-4">Implementation</h3>
+              <p className="text-charcoal">Phased deployment with zero downtime approach and comprehensive safety protocols</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-navy-blue rounded-full flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-chart-line text-white text-2xl"></i>
+              </div>
+              <h3 className="text-xl font-bold text-navy-blue mb-4">Optimization</h3>
+              <p className="text-charcoal">Continuous monitoring, performance tuning, and safety enhancement for operational excellence</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-navy-blue text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

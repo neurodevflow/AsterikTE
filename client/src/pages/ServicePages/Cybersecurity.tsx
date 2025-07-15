@@ -6,10 +6,10 @@ export default function Cybersecurity() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Cybersecurity & Resilience
+              Cybersecurity & Pen Testing
             </h1>
             <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto">
-              Protect your digital assets with comprehensive cybersecurity solutions. From threat detection to incident response, we build resilient security frameworks that safeguard your organization.
+              Secure your digital infrastructure with advanced cybersecurity and penetration testing services. From vulnerability assessments to red team exercises, we identify and eliminate security risks before threats can exploit them.
             </p>
           </div>
         </div>
@@ -20,10 +20,10 @@ export default function Cybersecurity() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-navy-blue mb-4">
-              Our Cybersecurity Services
+              Cybersecurity & Penetration Testing Services
             </h2>
             <p className="text-xl text-charcoal max-w-3xl mx-auto">
-              Comprehensive security solutions that protect, detect, and respond to evolving cyber threats
+              Advanced security testing and assessment services that identify vulnerabilities and strengthen your defense posture
             </p>
           </div>
 
@@ -33,15 +33,17 @@ export default function Cybersecurity() {
               <div className="w-12 h-12 bg-navy-blue rounded-lg flex items-center justify-center mb-6">
                 <i className="fas fa-search text-white text-xl"></i>
               </div>
-              <h3 className="text-xl font-bold text-navy-blue mb-4">Security Assessment</h3>
+              <h3 className="text-xl font-bold text-navy-blue mb-4">Penetration Testing</h3>
               <p className="text-charcoal mb-6">
-                Comprehensive security audits and vulnerability assessments to identify risks and strengthen your security posture.
+                Comprehensive penetration testing and ethical hacking services that simulate real-world attacks to identify vulnerabilities before malicious actors can exploit them.
               </p>
               <ul className="text-charcoal space-y-2">
-                <li>• Vulnerability scanning and penetration testing</li>
-                <li>• Risk assessment and compliance audits</li>
-                <li>• Security architecture review</li>
-                <li>• Gap analysis and remediation planning</li>
+                <li>• Network penetration testing</li>
+                <li>• Web application security testing</li>
+                <li>• Mobile application penetration testing</li>
+                <li>• Wireless network security assessment</li>
+                <li>• Social engineering testing</li>
+                <li>• Physical security testing</li>
               </ul>
             </div>
 
@@ -113,20 +115,22 @@ export default function Cybersecurity() {
               </ul>
             </div>
 
-            {/* Security Training */}
+            {/* Red Team Operations */}
             <div className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow">
               <div className="w-12 h-12 bg-navy-blue rounded-lg flex items-center justify-center mb-6">
-                <i className="fas fa-graduation-cap text-white text-xl"></i>
+                <i className="fas fa-user-ninja text-white text-xl"></i>
               </div>
-              <h3 className="text-xl font-bold text-navy-blue mb-4">Security Awareness Training</h3>
+              <h3 className="text-xl font-bold text-navy-blue mb-4">Red Team Operations</h3>
               <p className="text-charcoal mb-6">
-                Comprehensive security awareness programs that educate employees and reduce human-related security risks.
+                Advanced adversarial simulations that test your organization's detection and response capabilities through realistic attack scenarios.
               </p>
               <ul className="text-charcoal space-y-2">
-                <li>• Phishing simulation and training</li>
-                <li>• Security awareness campaigns</li>
-                <li>• Role-based security training</li>
-                <li>• Security culture development</li>
+                <li>• Full-scope red team engagements</li>
+                <li>• Advanced persistent threat simulation</li>
+                <li>• Purple team exercises (collaborative)</li>
+                <li>• Assume breach scenarios</li>
+                <li>• Custom attack scenario development</li>
+                <li>• Security control effectiveness testing</li>
               </ul>
             </div>
           </div>
@@ -285,16 +289,16 @@ export default function Cybersecurity() {
       <section className="py-20 bg-navy-blue text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Strengthen Your Cybersecurity?
+            Ready to Test Your Security Defenses?
           </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Protect your organization with Asterik's comprehensive cybersecurity solutions that provide robust defense against evolving threats.
+            Secure your organization with Asterik's advanced cybersecurity and penetration testing services that identify vulnerabilities before attackers do.
           </p>
           <a 
             href="/contact" 
             className="inline-flex items-center bg-warm-orange text-white px-8 py-4 rounded-lg font-medium hover:bg-opacity-90 transition-colors"
           >
-            Secure Your Business <i className="fas fa-arrow-right ml-2"></i>
+            Test Your Security <i className="fas fa-arrow-right ml-2"></i>
           </a>
         </div>
       </section>
