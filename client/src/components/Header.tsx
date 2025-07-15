@@ -6,6 +6,8 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [industriesDropdownOpen, setIndustriesDropdownOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false);
   const [location] = useLocation();
   const isMobile = useIsMobile();
 
@@ -199,79 +201,139 @@ export default function Header() {
           <div className="md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-charcoal hover:text-navy-blue focus:outline-none"
+              className="text-charcoal hover:text-navy-blue focus:outline-none p-2 touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Toggle mobile menu"
+              style={{ touchAction: 'manipulation' }}
             >
-              <i className="fas fa-bars text-xl"></i>
+              <i className={`fas fa-${mobileMenuOpen ? 'times' : 'bars'} text-xl transition-transform duration-200`}></i>
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-light-grey">
+          <div 
+            className="md:hidden fixed inset-x-0 top-16 bg-white shadow-lg border-t border-light-grey z-40"
+            onClick={(e) => {
+              // Close menu when clicking outside but not on menu items
+              if (e.target === e.currentTarget) {
+                setMobileMenuOpen(false);
+                setMobileServicesOpen(false);
+                setMobileIndustriesOpen(false);
+              }
+            }}
+          >
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white max-h-screen overflow-y-auto">
               {navigation.map((item) => (
                 <div key={item.name}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`block px-3 py-2 transition-colors ${
-                      isActive(item.href)
-                        ? "text-navy-blue"
-                        : "text-charcoal hover:text-navy-blue"
-                    }`}
-                  >
-                    {item.name}
-                    {item.hasDropdown && <i className="fas fa-chevron-down ml-1 text-xs"></i>}
-                  </Link>
-                  
-                  {/* Mobile Dropdown Items */}
-                  {item.hasDropdown && (
-                    <div className="ml-4 mt-3 bg-soft-beige rounded-lg p-4">
-                      {item.name === "Services" ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                          {item.dropdownItems.map((category) => (
-                            <div key={category.category} className="space-y-3">
-                              <div className="font-bold text-navy-blue text-xs uppercase tracking-wide border-b border-border-grey pb-3">
-                                {category.category}
-                              </div>
-                              {category.items.map((subItem) => (
+                  {item.hasDropdown ? (
+                    <div>
+                      <button
+                        onClick={() => {
+                          if (item.name === "Services") {
+                            setMobileServicesOpen(!mobileServicesOpen);
+                            setMobileIndustriesOpen(false);
+                          }
+                          if (item.name === "Industries") {
+                            setMobileIndustriesOpen(!mobileIndustriesOpen);
+                            setMobileServicesOpen(false);
+                          }
+                        }}
+                        className={`flex items-center justify-between w-full px-3 py-3 text-left transition-colors touch-manipulation min-h-[44px] ${
+                          isActive(item.href)
+                            ? "text-navy-blue"
+                            : "text-charcoal hover:text-navy-blue"
+                        }`}
+                        style={{ touchAction: 'manipulation' }}
+                      >
+                        <span className="font-medium">{item.name}</span>
+                        <i className={`fas fa-chevron-${
+                          (item.name === "Services" && mobileServicesOpen) || 
+                          (item.name === "Industries" && mobileIndustriesOpen) 
+                            ? 'up' : 'down'
+                        } text-xs transition-transform duration-200`}></i>
+                      </button>
+                      
+                      {/* Mobile Dropdown Items */}
+                      {((item.name === "Services" && mobileServicesOpen) || 
+                        (item.name === "Industries" && mobileIndustriesOpen)) && (
+                        <div className="ml-4 mt-2 mb-3 bg-soft-beige rounded-lg p-4 border-l-4 border-navy-blue">
+                          {item.name === "Services" ? (
+                            <div className="space-y-4">
+                              {item.dropdownItems.map((category) => (
+                                <div key={category.category} className="space-y-2">
+                                  <div className="font-bold text-navy-blue text-xs uppercase tracking-wide border-b border-light-grey pb-2">
+                                    {category.category}
+                                  </div>
+                                  <div className="space-y-1">
+                                    {category.items.map((subItem) => (
+                                      <Link
+                                        key={subItem.name}
+                                        href={subItem.href}
+                                        onClick={() => {
+                                          setMobileMenuOpen(false);
+                                          setMobileServicesOpen(false);
+                                        }}
+                                        className="block py-3 px-2 text-sm text-charcoal hover:text-navy-blue hover:bg-white rounded transition-colors touch-manipulation min-h-[44px] leading-normal"
+                                        style={{ touchAction: 'manipulation' }}
+                                      >
+                                        {subItem.name}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          ) : (
+                            <div className="space-y-1">
+                              {item.dropdownItems.map((subItem) => (
                                 <Link
                                   key={subItem.name}
                                   href={subItem.href}
-                                  onClick={() => setMobileMenuOpen(false)}
-                                  className="block py-2 text-sm text-charcoal hover:text-navy-blue leading-normal"
+                                  onClick={() => {
+                                    setMobileMenuOpen(false);
+                                    setMobileIndustriesOpen(false);
+                                  }}
+                                  className="block py-3 px-2 text-sm text-charcoal hover:text-navy-blue hover:bg-white rounded transition-colors touch-manipulation min-h-[44px] leading-normal"
+                                  style={{ touchAction: 'manipulation' }}
                                 >
                                   {subItem.name}
                                 </Link>
                               ))}
                             </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <div className="grid grid-cols-2 gap-4">
-                          {item.dropdownItems.map((industry) => (
-                            <Link
-                              key={industry.name}
-                              href={industry.href}
-                              onClick={() => setMobileMenuOpen(false)}
-                              className="block py-2 px-3 text-sm text-charcoal hover:text-navy-blue hover:bg-white rounded transition-colors duration-200 leading-normal"
-                            >
-                              {industry.name}
-                            </Link>
-                          ))}
+                          )}
                         </div>
                       )}
                     </div>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`block px-3 py-3 transition-colors touch-manipulation font-medium min-h-[44px] ${
+                        isActive(item.href)
+                          ? "text-navy-blue"
+                          : "text-charcoal hover:text-navy-blue"
+                      }`}
+                      style={{ touchAction: 'manipulation' }}
+                    >
+                      {item.name}
+                    </Link>
                   )}
                 </div>
               ))}
-              <div className="border-t border-light-grey pt-2">
-                <button className="block px-3 py-2 text-charcoal hover:text-navy-blue w-full text-left">
+              
+              {/* Mobile Login Buttons */}
+              <div className="pt-4 border-t border-light-grey mt-4 space-y-2">
+                <button 
+                  className="block w-full text-left px-3 py-3 text-charcoal hover:text-navy-blue transition-colors touch-manipulation font-medium min-h-[44px]"
+                  style={{ touchAction: 'manipulation' }}
+                >
                   Staff Login
                 </button>
-                <button className="block px-3 py-2 bg-navy-blue text-white rounded-md mx-3 mt-2 text-center">
+                <button 
+                  className="block w-full text-center px-3 py-3 bg-navy-blue text-white rounded-md hover:bg-opacity-90 transition-all touch-manipulation font-medium min-h-[44px]"
+                  style={{ touchAction: 'manipulation' }}
+                >
                   Customer Login
                 </button>
               </div>
