@@ -52,6 +52,16 @@ export default function Footer() {
                 <h5 className="font-semibold text-gray-200 mb-2">Software Engineering</h5>
                 <ul className="space-y-1 text-sm">
                   <li>
+                    <Link href="/services/application-modernization" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                      Application Modernization
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/services/software-development" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                      Software Development
+                    </Link>
+                  </li>
+                  <li>
                     <Link href="/services/quality-engineering" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
                       Quality Engineering
                     </Link>
@@ -87,6 +97,11 @@ export default function Footer() {
                 <h5 className="font-semibold text-gray-200 mb-2">Data & AI</h5>
                 <ul className="space-y-1 text-sm">
                   <li>
+                    <Link href="/services/data-analytics" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                      Data and Analytics
+                    </Link>
+                  </li>
+                  <li>
                     <Link href="/services/ai-ml" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
                       AI and ML
                     </Link>
@@ -94,6 +109,31 @@ export default function Footer() {
                   <li>
                     <Link href="/services/genai" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
                       GenAI
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h5 className="font-semibold text-gray-200 mb-2">Digital Excellence</h5>
+                <ul className="space-y-1 text-sm">
+                  <li>
+                    <Link href="/services/product-design" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                      Product Design
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/services/cybersecurity-resilience" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                      Cybersecurity and Resilience
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/services/managed-support" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                      Managed Support
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/services/salesforce" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                      Salesforce
                     </Link>
                   </li>
                 </ul>
