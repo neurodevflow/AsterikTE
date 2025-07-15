@@ -146,6 +146,13 @@ This is a full-stack web application for ASTERIK, a professional technology cons
   - Added new Industries menu structure with all 9 industries
   - All footer links now match dropdown menu structures and provide functional navigation
   - Enhanced footer navigation with comprehensive service and industry access
+- July 15, 2025: Dropdown Menu Styling Improvements
+  - Increased Services dropdown width from 800px to 1000px for better spacing
+  - Increased Industries dropdown width from 384px to 480px for better spacing
+  - Reduced text size from text-sm to text-xs for more compact layout
+  - Reduced line spacing from space-y-2 to space-y-1 and py-2 to py-1
+  - Added whitespace-nowrap to prevent text wrapping
+  - Changed line height from leading-normal to leading-tight for tighter spacing
 
 ## User Preferences
 
