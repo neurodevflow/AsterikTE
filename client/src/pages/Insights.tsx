@@ -49,16 +49,16 @@ export default function Insights() {
                 className="w-full h-48 object-cover" 
               />
               <div className="p-6">
-                <span className="text-sm font-semibold" style={{ color: "var(--asterik-orange)" }}>
+                <span className="text-sm font-semibold text-warm-orange">
                   Technology Trends
                 </span>
-                <h3 className="font-bold text-lg mt-2 mb-3" style={{ color: "var(--asterik-dark)" }}>
+                <h3 className="font-bold text-lg mt-2 mb-3 text-navy-blue">
                   Digital Transformation Trends 2024
                 </h3>
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-charcoal text-sm mb-4">
                   Key technology trends shaping enterprise digital strategies in regulated industries.
                 </p>
-                <button className="text-sm font-semibold hover:text-gray-900 transition-colors duration-200" style={{ color: "var(--asterik-red)" }}>
+                <button className="text-sm font-semibold text-navy-blue hover:text-warm-orange transition-colors duration-200">
                   Read More <i className="fas fa-arrow-right ml-1"></i>
                 </button>
               </div>
@@ -72,16 +72,16 @@ export default function Insights() {
                 className="w-full h-48 object-cover" 
               />
               <div className="p-6">
-                <span className="text-sm font-semibold" style={{ color: "var(--asterik-orange)" }}>
+                <span className="text-sm font-semibold text-warm-orange">
                   Talent Management
                 </span>
-                <h3 className="font-bold text-lg mt-2 mb-3" style={{ color: "var(--asterik-dark)" }}>
+                <h3 className="font-bold text-lg mt-2 mb-3 text-navy-blue">
                   Building RegTech Teams
                 </h3>
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-charcoal text-sm mb-4">
                   Strategies for assembling high-performing regulatory technology teams.
                 </p>
-                <button className="text-sm font-semibold hover:text-gray-900 transition-colors duration-200" style={{ color: "var(--asterik-red)" }}>
+                <button className="text-sm font-semibold text-navy-blue hover:text-warm-orange transition-colors duration-200">
                   Read More <i className="fas fa-arrow-right ml-1"></i>
                 </button>
               </div>
@@ -95,16 +95,16 @@ export default function Insights() {
                 className="w-full h-48 object-cover" 
               />
               <div className="p-6">
-                <span className="text-sm font-semibold" style={{ color: "var(--asterik-orange)" }}>
+                <span className="text-sm font-semibold text-warm-orange">
                   HR Strategy
                 </span>
-                <h3 className="font-bold text-lg mt-2 mb-3" style={{ color: "var(--asterik-dark)" }}>
+                <h3 className="font-bold text-lg mt-2 mb-3 text-navy-blue">
                   Talent Retention Strategies
                 </h3>
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-charcoal text-sm mb-4">
                   Best practices for retaining top IT talent in competitive markets.
                 </p>
-                <button className="text-sm font-semibold hover:text-gray-900 transition-colors duration-200" style={{ color: "var(--asterik-red)" }}>
+                <button className="text-sm font-semibold text-navy-blue hover:text-warm-orange transition-colors duration-200">
                   Read More <i className="fas fa-arrow-right ml-1"></i>
                 </button>
               </div>
@@ -114,8 +114,7 @@ export default function Insights() {
           {/* View All CTA */}
           <div className="text-center">
             <button 
-              className="text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200"
-              style={{ backgroundColor: "var(--asterik-red)" }}
+              className="bg-navy-blue text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200"
             >
               View All Articles
             </button>

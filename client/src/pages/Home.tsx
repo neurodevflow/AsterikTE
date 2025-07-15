@@ -136,13 +136,13 @@ export default function Home() {
       </div>
 
       {/* Industry Focus Section */}
-      <div className="py-20" style={{ backgroundColor: "var(--asterik-light)" }}>
+      <div className="bg-soft-beige py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="font-bold text-3xl md:text-4xl mb-4" style={{ color: "var(--asterik-dark)" }}>
+            <h2 className="font-bold text-3xl md:text-4xl mb-4 text-navy-blue">
               Transforming the GCC Region
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-charcoal max-w-3xl mx-auto">
               Leading digital transformation initiatives across key industries with regulatory compliance at the forefront
             </p>
           </div>
@@ -150,14 +150,13 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
               <div 
-                className="text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
-                style={{ backgroundColor: "var(--asterik-red)" }}
+                className="bg-navy-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
               >
                 <i className="fas fa-university text-2xl"></i>
               </div>
               <h3 className="font-bold text-xl mb-4">Government & Public Sector</h3>
-              <p className="text-gray-600 mb-4">Digital government initiatives, regulatory compliance, and citizen service enhancement programs.</p>
-              <ul className="text-sm text-gray-500 space-y-1">
+              <p className="text-charcoal mb-4">Digital government initiatives, regulatory compliance, and citizen service enhancement programs.</p>
+              <ul className="text-sm text-light-grey space-y-1">
                 <li>• ADGM regulatory frameworks</li>
                 <li>• Smart city implementations</li>
                 <li>• Public service digitization</li>
@@ -166,14 +165,13 @@ export default function Home() {
             
             <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
               <div 
-                className="text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
-                style={{ backgroundColor: "var(--asterik-orange)" }}
+                className="bg-warm-orange text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
               >
                 <i className="fas fa-chart-line text-2xl"></i>
               </div>
               <h3 className="font-bold text-xl mb-4">Financial Services</h3>
-              <p className="text-gray-600 mb-4">Banking modernization, fintech innovation, and regulatory technology implementations.</p>
-              <ul className="text-sm text-gray-500 space-y-1">
+              <p className="text-charcoal mb-4">Banking modernization, fintech innovation, and regulatory technology implementations.</p>
+              <ul className="text-sm text-light-grey space-y-1">
                 <li>• Core banking transformations</li>
                 <li>• RegTech compliance solutions</li>
                 <li>• Digital payment platforms</li>
@@ -182,14 +180,13 @@ export default function Home() {
             
             <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
               <div 
-                className="text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
-                style={{ backgroundColor: "var(--asterik-red)" }}
+                className="bg-navy-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
               >
                 <i className="fas fa-building text-2xl"></i>
               </div>
               <h3 className="font-bold text-xl mb-4">Enterprise Organizations</h3>
-              <p className="text-gray-600 mb-4">Large-scale digital transformation and enterprise technology modernization projects.</p>
-              <ul className="text-sm text-gray-500 space-y-1">
+              <p className="text-charcoal mb-4">Large-scale digital transformation and enterprise technology modernization projects.</p>
+              <ul className="text-sm text-light-grey space-y-1">
                 <li>• ERP implementations</li>
                 <li>• Cloud migration strategies</li>
                 <li>• Cybersecurity frameworks</li>
@@ -204,39 +201,36 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="text-sm font-semibold uppercase tracking-wide" style={{ color: "var(--asterik-red)" }}>
+              <span className="text-sm font-semibold uppercase tracking-wide text-navy-blue">
                 Industry Insights
               </span>
-              <h2 className="font-bold text-3xl md:text-4xl mt-2 mb-6" style={{ color: "var(--asterik-dark)" }}>
+              <h2 className="font-bold text-3xl md:text-4xl mt-2 mb-6 text-navy-blue">
                 The Future of Enterprise Technology in the GCC
               </h2>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+              <p className="text-lg text-charcoal mb-6 leading-relaxed">
                 Our latest research reveals key trends shaping digital transformation across government and financial sectors in the Middle East region.
               </p>
               <div className="space-y-4 mb-8">
                 <div className="flex items-start">
                   <div 
-                    className="w-2 h-2 rounded-full mt-2 mr-3"
-                    style={{ backgroundColor: "var(--asterik-red)" }}
+                    className="w-2 h-2 rounded-full mt-2 mr-3 bg-navy-blue"
                   ></div>
-                  <p className="text-gray-600">Regulatory compliance driving 85% of technology investments</p>
+                  <p className="text-charcoal">Regulatory compliance driving 85% of technology investments</p>
                 </div>
                 <div className="flex items-start">
                   <div 
-                    className="w-2 h-2 rounded-full mt-2 mr-3"
-                    style={{ backgroundColor: "var(--asterik-red)" }}
+                    className="w-2 h-2 rounded-full mt-2 mr-3 bg-navy-blue"
                   ></div>
-                  <p className="text-gray-600">Cloud adoption accelerating in government sector</p>
+                  <p className="text-charcoal">Cloud adoption accelerating in government sector</p>
                 </div>
                 <div className="flex items-start">
                   <div 
-                    className="w-2 h-2 rounded-full mt-2 mr-3"
-                    style={{ backgroundColor: "var(--asterik-red)" }}
+                    className="w-2 h-2 rounded-full mt-2 mr-3 bg-navy-blue"
                   ></div>
-                  <p className="text-gray-600">Skills gap widening in cybersecurity and AI domains</p>
+                  <p className="text-charcoal">Skills gap widening in cybersecurity and AI domains</p>
                 </div>
               </div>
-              <button className="font-semibold hover:text-gray-900 transition-colors duration-200" style={{ color: "var(--asterik-red)" }}>
+              <button className="font-semibold text-navy-blue hover:text-warm-orange transition-colors duration-200">
                 Read Full Report <i className="fas fa-arrow-right ml-2"></i>
               </button>
             </div>
@@ -252,13 +246,13 @@ export default function Home() {
       </div>
 
       {/* Client Success Story */}
-      <div className="py-20" style={{ backgroundColor: "var(--asterik-dark)" }}>
+      <div className="bg-navy-blue py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-bold text-3xl md:text-4xl text-white mb-4">
               Client Success Stories
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-light-grey max-w-3xl mx-auto">
               Transforming enterprises through strategic technology partnerships
             </p>
           </div>
@@ -273,33 +267,33 @@ export default function Home() {
                 />
               </div>
               <div>
-                <span className="text-sm font-semibold uppercase tracking-wide" style={{ color: "var(--asterik-red)" }}>
+                <span className="text-sm font-semibold uppercase tracking-wide text-navy-blue">
                   Case Study
                 </span>
-                <h3 className="font-bold text-2xl md:text-3xl mt-2 mb-4" style={{ color: "var(--asterik-dark)" }}>
+                <h3 className="font-bold text-2xl md:text-3xl mt-2 mb-4 text-navy-blue">
                   Leading GCC Bank Digital Transformation
                 </h3>
-                <p className="text-lg text-gray-600 mb-6">
+                <p className="text-lg text-charcoal mb-6">
                   "ASTERIK's compliance-first approach enabled us to modernize our core banking systems while maintaining full regulatory adherence. Their team delivered exceptional results."
                 </p>
                 <div className="mb-6">
-                  <p className="font-semibold" style={{ color: "var(--asterik-dark)" }}>Key Results:</p>
+                  <p className="font-semibold text-navy-blue">Key Results:</p>
                   <ul className="mt-2 space-y-2">
                     <li className="flex items-center">
-                      <i className="fas fa-check-circle mr-3" style={{ color: "var(--asterik-orange)" }}></i>
+                      <i className="fas fa-check-circle mr-3 text-warm-orange"></i>
                       <span>40% reduction in processing time</span>
                     </li>
                     <li className="flex items-center">
-                      <i className="fas fa-check-circle mr-3" style={{ color: "var(--asterik-orange)" }}></i>
+                      <i className="fas fa-check-circle mr-3 text-warm-orange"></i>
                       <span>99.9% system uptime achieved</span>
                     </li>
                     <li className="flex items-center">
-                      <i className="fas fa-check-circle mr-3" style={{ color: "var(--asterik-orange)" }}></i>
+                      <i className="fas fa-check-circle mr-3 text-warm-orange"></i>
                       <span>Full regulatory compliance maintained</span>
                     </li>
                   </ul>
                 </div>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-light-grey">
                   <p className="font-semibold">Chief Technology Officer</p>
                   <p>Major GCC Financial Institution</p>
                 </div>
@@ -312,89 +306,84 @@ export default function Home() {
       {/* Trust Badges */}
       <div className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h3 className="font-bold text-2xl mb-8" style={{ color: "var(--asterik-dark)" }}>Trusted by Industry Leaders</h3>
+          <h3 className="font-bold text-2xl mb-8 text-navy-blue">Trusted by Industry Leaders</h3>
           <div className="flex flex-wrap justify-center items-center space-x-8 md:space-x-16">
-            <span className="text-gray-700 text-lg font-semibold mb-4">Serving Government Entities</span>
-            <span className="text-2xl" style={{ color: "var(--asterik-orange)" }}>|</span>
-            <span className="text-gray-700 text-lg font-semibold mb-4">Financial Institutions</span>
-            <span className="text-2xl" style={{ color: "var(--asterik-orange)" }}>|</span>
-            <span className="text-gray-700 text-lg font-semibold mb-4">Enterprise Organizations</span>
+            <span className="text-charcoal text-lg font-semibold mb-4">Serving Government Entities</span>
+            <span className="text-2xl text-warm-orange">|</span>
+            <span className="text-charcoal text-lg font-semibold mb-4">Financial Institutions</span>
+            <span className="text-2xl text-warm-orange">|</span>
+            <span className="text-charcoal text-lg font-semibold mb-4">Enterprise Organizations</span>
           </div>
         </div>
       </div>
 
       {/* About Section */}
-      <div className="py-20" style={{ backgroundColor: "var(--asterik-light)" }}>
+      <div className="bg-soft-beige py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="text-sm font-semibold uppercase tracking-wide" style={{ color: "var(--asterik-red)" }}>
+              <span className="text-sm font-semibold uppercase tracking-wide text-navy-blue">
                 About ASTERIK
               </span>
-              <h2 className="font-bold text-3xl md:text-4xl mt-2 mb-6" style={{ color: "var(--asterik-dark)" }}>
+              <h2 className="font-bold text-3xl md:text-4xl mt-2 mb-6 text-navy-blue">
                 Redefining Enterprise Technology Capabilities
               </h2>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+              <p className="text-lg text-charcoal mb-6 leading-relaxed">
                 Led by former PwC Middle East CX/DX leadership with 15+ years of experience driving transformations for ADGM, MetLife Gulf, and Fortune 500 enterprises. We bring deep expertise in regulatory compliance, digital transformation, and enterprise technology implementation across the GCC region.
               </p>
               <div className="grid md:grid-cols-2 gap-6 mb-8">
                 <div className="flex items-start">
                   <div 
-                    className="text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
-                    style={{ backgroundColor: "var(--asterik-red)" }}
+                    className="bg-navy-blue text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
                   >
                     <i className="fas fa-handshake text-sm"></i>
                   </div>
                   <div>
                     <h4 className="font-bold text-lg mb-2">Strategic Partnership</h4>
-                    <p className="text-gray-600 text-sm">Long-term collaborative relationships with enterprise clients</p>
+                    <p className="text-charcoal text-sm">Long-term collaborative relationships with enterprise clients</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <div 
-                    className="text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
-                    style={{ backgroundColor: "var(--asterik-orange)" }}
+                    className="bg-warm-orange text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
                   >
                     <i className="fas fa-shield-alt text-sm"></i>
                   </div>
                   <div>
                     <h4 className="font-bold text-lg mb-2">Compliance First</h4>
-                    <p className="text-gray-600 text-sm">Regulatory requirements integrated from project inception</p>
+                    <p className="text-charcoal text-sm">Regulatory requirements integrated from project inception</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <div 
-                    className="text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
-                    style={{ backgroundColor: "var(--asterik-red)" }}
+                    className="bg-navy-blue text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
                   >
                     <i className="fas fa-award text-sm"></i>
                   </div>
                   <div>
                     <h4 className="font-bold text-lg mb-2">Technology Excellence</h4>
-                    <p className="text-gray-600 text-sm">Best-in-class technical expertise and innovation</p>
+                    <p className="text-charcoal text-sm">Best-in-class technical expertise and innovation</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <div 
-                    className="text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
-                    style={{ backgroundColor: "var(--asterik-orange)" }}
+                    className="bg-warm-orange text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
                   >
                     <i className="fas fa-chart-bar text-sm"></i>
                   </div>
                   <div>
                     <h4 className="font-bold text-lg mb-2">ROI-Driven</h4>
-                    <p className="text-gray-600 text-sm">Measurable business outcomes and performance metrics</p>
+                    <p className="text-charcoal text-sm">Measurable business outcomes and performance metrics</p>
                   </div>
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button 
-                  className="text-white px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200"
-                  style={{ backgroundColor: "var(--asterik-red)" }}
+                  className="bg-navy-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200"
                 >
                   Learn More About Us
                 </button>
-                <button className="font-semibold hover:text-gray-900 transition-colors duration-200 px-6 py-3" style={{ color: "var(--asterik-red)" }}>
+                <button className="font-semibold text-navy-blue hover:text-warm-orange transition-colors duration-200 px-6 py-3">
                   Our Leadership Team <i className="fas fa-arrow-right ml-2"></i>
                 </button>
               </div>

@@ -73,7 +73,7 @@ export default function About() {
                     <i className="fas fa-chart-bar text-xl"></i>
                   </div>
                   <h3 className="font-bold text-lg mb-3">ROI-Driven</h3>
-                  <p className="text-gray-600">Measurable business outcomes</p>
+                  <p className="text-charcoal">Measurable business outcomes</p>
                 </div>
               </div>
             </div>
