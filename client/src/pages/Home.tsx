@@ -212,21 +212,21 @@ export default function Home() {
               </p>
               <div className="space-y-4 mb-8">
                 <div className="flex items-start">
-                  <div 
-                    className="w-2 h-2 rounded-full mt-2 mr-3 bg-navy-blue"
-                  ></div>
+                  <div className="bg-navy-blue text-white w-6 h-6 rounded-full flex items-center justify-center mt-1 mr-3">
+                    <i className="fas fa-balance-scale text-xs"></i>
+                  </div>
                   <p className="text-charcoal">Regulatory compliance driving 85% of technology investments</p>
                 </div>
                 <div className="flex items-start">
-                  <div 
-                    className="w-2 h-2 rounded-full mt-2 mr-3 bg-navy-blue"
-                  ></div>
+                  <div className="bg-navy-blue text-white w-6 h-6 rounded-full flex items-center justify-center mt-1 mr-3">
+                    <i className="fas fa-cloud text-xs"></i>
+                  </div>
                   <p className="text-charcoal">Cloud adoption accelerating in government sector</p>
                 </div>
                 <div className="flex items-start">
-                  <div 
-                    className="w-2 h-2 rounded-full mt-2 mr-3 bg-navy-blue"
-                  ></div>
+                  <div className="bg-navy-blue text-white w-6 h-6 rounded-full flex items-center justify-center mt-1 mr-3">
+                    <i className="fas fa-shield-alt text-xs"></i>
+                  </div>
                   <p className="text-charcoal">Skills gap widening in cybersecurity and AI domains</p>
                 </div>
               </div>
