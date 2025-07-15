@@ -10,6 +10,9 @@ import {
   systemLogs,
   integrations,
   userActivities,
+  pages,
+  pageComponents,
+  pageTemplates,
   type User, 
   type InsertUser,
   type AdminUser,
@@ -28,10 +31,16 @@ import {
   type Integration,
   type InsertIntegration,
   type UserActivity,
-  type InsertUserActivity
+  type InsertUserActivity,
+  type Page,
+  type InsertPage,
+  type PageComponent,
+  type InsertPageComponent,
+  type PageTemplate,
+  type InsertPageTemplate
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, desc, count, and, gte, sql } from "drizzle-orm";
+import { eq, desc, count, and, gte, sql, asc } from "drizzle-orm";
 
 export interface IStorage {
   // Basic user operations
@@ -105,6 +114,28 @@ export interface IStorage {
     totalSessions: number;
     aiInteractions: number;
   }>;
+
+  // Page builder operations
+  createPage(page: InsertPage): Promise<Page>;
+  getPages(status?: string): Promise<Page[]>;
+  getPageById(id: number): Promise<Page | undefined>;
+  getPageBySlug(slug: string): Promise<Page | undefined>;
+  updatePage(id: number, updates: Partial<Page>): Promise<Page>;
+  deletePage(id: number): Promise<void>;
+
+  // Page components operations
+  createPageComponent(component: InsertPageComponent): Promise<PageComponent>;
+  getPageComponents(pageId: number): Promise<PageComponent[]>;
+  updatePageComponent(id: number, updates: Partial<PageComponent>): Promise<PageComponent>;
+  deletePageComponent(id: number): Promise<void>;
+  reorderPageComponents(pageId: number, componentIds: number[]): Promise<void>;
+
+  // Page templates operations
+  createPageTemplate(template: InsertPageTemplate): Promise<PageTemplate>;
+  getPageTemplates(): Promise<PageTemplate[]>;
+  getPageTemplateById(id: number): Promise<PageTemplate | undefined>;
+  updatePageTemplate(id: number, updates: Partial<PageTemplate>): Promise<PageTemplate>;
+  deletePageTemplate(id: number): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -402,6 +433,115 @@ export class DatabaseStorage implements IStorage {
       totalSessions: sessionCount.count,
       aiInteractions: aiCount.count
     };
+  }
+
+  // Page builder operations
+  async createPage(insertPage: InsertPage): Promise<Page> {
+    const [page] = await db
+      .insert(pages)
+      .values(insertPage)
+      .returning();
+    return page;
+  }
+
+  async getPages(status?: string): Promise<Page[]> {
+    if (status) {
+      return await db.select().from(pages).where(eq(pages.status, status)).orderBy(desc(pages.updatedAt));
+    }
+    return await db.select().from(pages).orderBy(desc(pages.updatedAt));
+  }
+
+  async getPageById(id: number): Promise<Page | undefined> {
+    const [page] = await db.select().from(pages).where(eq(pages.id, id));
+    return page;
+  }
+
+  async getPageBySlug(slug: string): Promise<Page | undefined> {
+    const [page] = await db.select().from(pages).where(eq(pages.slug, slug));
+    return page;
+  }
+
+  async updatePage(id: number, updates: Partial<Page>): Promise<Page> {
+    const [page] = await db
+      .update(pages)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(pages.id, id))
+      .returning();
+    return page;
+  }
+
+  async deletePage(id: number): Promise<void> {
+    await db.delete(pages).where(eq(pages.id, id));
+  }
+
+  // Page components operations
+  async createPageComponent(component: InsertPageComponent): Promise<PageComponent> {
+    const [pageComponent] = await db
+      .insert(pageComponents)
+      .values(component)
+      .returning();
+    return pageComponent;
+  }
+
+  async getPageComponents(pageId: number): Promise<PageComponent[]> {
+    return await db
+      .select()
+      .from(pageComponents)
+      .where(eq(pageComponents.pageId, pageId))
+      .orderBy(pageComponents.sortOrder);
+  }
+
+  async updatePageComponent(id: number, updates: Partial<PageComponent>): Promise<PageComponent> {
+    const [component] = await db
+      .update(pageComponents)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(pageComponents.id, id))
+      .returning();
+    return component;
+  }
+
+  async deletePageComponent(id: number): Promise<void> {
+    await db.delete(pageComponents).where(eq(pageComponents.id, id));
+  }
+
+  async reorderPageComponents(pageId: number, componentIds: number[]): Promise<void> {
+    for (let i = 0; i < componentIds.length; i++) {
+      await db
+        .update(pageComponents)
+        .set({ sortOrder: i, updatedAt: new Date() })
+        .where(and(eq(pageComponents.id, componentIds[i]), eq(pageComponents.pageId, pageId)));
+    }
+  }
+
+  // Page templates operations
+  async createPageTemplate(template: InsertPageTemplate): Promise<PageTemplate> {
+    const [pageTemplate] = await db
+      .insert(pageTemplates)
+      .values(template)
+      .returning();
+    return pageTemplate;
+  }
+
+  async getPageTemplates(): Promise<PageTemplate[]> {
+    return await db.select().from(pageTemplates).where(eq(pageTemplates.isActive, true));
+  }
+
+  async getPageTemplateById(id: number): Promise<PageTemplate | undefined> {
+    const [template] = await db.select().from(pageTemplates).where(eq(pageTemplates.id, id));
+    return template;
+  }
+
+  async updatePageTemplate(id: number, updates: Partial<PageTemplate>): Promise<PageTemplate> {
+    const [template] = await db
+      .update(pageTemplates)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(pageTemplates.id, id))
+      .returning();
+    return template;
+  }
+
+  async deletePageTemplate(id: number): Promise<void> {
+    await db.delete(pageTemplates).where(eq(pageTemplates.id, id));
   }
 }
 
