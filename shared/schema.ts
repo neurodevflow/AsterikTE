@@ -277,6 +277,77 @@ export const insertPageTemplateSchema = createInsertSchema(pageTemplates).pick({
   isActive: true,
 });
 
+// Dashboard widget customization tables
+export const dashboardWidgets = pgTable("dashboard_widgets", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  type: varchar("type", { length: 100 }).notNull(), // 'chart', 'metric', 'list', 'custom'
+  category: varchar("category", { length: 100 }).notNull(), // 'analytics', 'content', 'users', 'system'
+  description: text("description"),
+  defaultConfig: jsonb("default_config").notNull().default({}),
+  isActive: boolean("is_active").notNull().default(true),
+  minWidth: integer("min_width").default(1),
+  minHeight: integer("min_height").default(1),
+  maxWidth: integer("max_width").default(12),
+  maxHeight: integer("max_height").default(12),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const userDashboards = pgTable("user_dashboards", {
+  id: serial("id").primaryKey(),
+  adminUserId: integer("admin_user_id").references(() => adminUsers.id).notNull(),
+  name: varchar("name", { length: 255 }).notNull().default("My Dashboard"),
+  layout: jsonb("layout").notNull().default([]), // Grid layout configuration
+  isDefault: boolean("is_default").notNull().default(false),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const dashboardWidgetInstances = pgTable("dashboard_widget_instances", {
+  id: serial("id").primaryKey(),
+  dashboardId: integer("dashboard_id").references(() => userDashboards.id, { onDelete: "cascade" }).notNull(),
+  widgetId: integer("widget_id").references(() => dashboardWidgets.id).notNull(),
+  title: varchar("title", { length: 255 }),
+  config: jsonb("config").notNull().default({}),
+  position: jsonb("position").notNull().default({}), // {x, y, w, h}
+  isVisible: boolean("is_visible").notNull().default(true),
+  refreshInterval: integer("refresh_interval").default(300), // seconds
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// Dashboard widget schemas
+export const insertDashboardWidgetSchema = createInsertSchema(dashboardWidgets).pick({
+  name: true,
+  type: true,
+  category: true,
+  description: true,
+  defaultConfig: true,
+  isActive: true,
+  minWidth: true,
+  minHeight: true,
+  maxWidth: true,
+  maxHeight: true,
+});
+
+export const insertUserDashboardSchema = createInsertSchema(userDashboards).pick({
+  adminUserId: true,
+  name: true,
+  layout: true,
+  isDefault: true,
+});
+
+export const insertDashboardWidgetInstanceSchema = createInsertSchema(dashboardWidgetInstances).pick({
+  dashboardId: true,
+  widgetId: true,
+  title: true,
+  config: true,
+  position: true,
+  isVisible: true,
+  refreshInterval: true,
+});
+
 // Type exports
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
@@ -303,3 +374,9 @@ export type PageComponent = typeof pageComponents.$inferSelect;
 export type InsertPageComponent = z.infer<typeof insertPageComponentSchema>;
 export type PageTemplate = typeof pageTemplates.$inferSelect;
 export type InsertPageTemplate = z.infer<typeof insertPageTemplateSchema>;
+export type DashboardWidget = typeof dashboardWidgets.$inferSelect;
+export type InsertDashboardWidget = z.infer<typeof insertDashboardWidgetSchema>;
+export type UserDashboard = typeof userDashboards.$inferSelect;
+export type InsertUserDashboard = z.infer<typeof insertUserDashboardSchema>;
+export type DashboardWidgetInstance = typeof dashboardWidgetInstances.$inferSelect;
+export type InsertDashboardWidgetInstance = z.infer<typeof insertDashboardWidgetInstanceSchema>;

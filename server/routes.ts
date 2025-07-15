@@ -17,7 +17,10 @@ import {
   insertAdminUserSchema,
   insertPageSchema,
   insertPageComponentSchema,
-  insertPageTemplateSchema
+  insertPageTemplateSchema,
+  insertDashboardWidgetSchema,
+  insertUserDashboardSchema,
+  insertDashboardWidgetInstanceSchema
 } from "@shared/schema";
 import { generatePageComponent, generateFullPage } from "./pageBuilder";
 
@@ -814,6 +817,229 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Error creating template:', error);
       res.status(500).json({ message: 'Failed to create template' });
+    }
+  });
+
+  // ========== DASHBOARD WIDGET CUSTOMIZATION API ROUTES ==========
+
+  // Get available dashboard widgets
+  app.get('/api/admin/dashboard/widgets', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { category } = req.query;
+      const widgets = await storage.getDashboardWidgets(category as string);
+      res.json(widgets);
+    } catch (error) {
+      console.error('Error fetching dashboard widgets:', error);
+      res.status(500).json({ message: 'Failed to fetch dashboard widgets' });
+    }
+  });
+
+  // Create new dashboard widget
+  app.post('/api/admin/dashboard/widgets', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const widgetData = insertDashboardWidgetSchema.parse(req.body);
+      const newWidget = await storage.createDashboardWidget(widgetData);
+      
+      // Log user activity
+      await storage.createUserActivity({
+        adminUserId: req.adminUser?.id,
+        activity: 'Created dashboard widget',
+        details: { widgetId: newWidget.id, name: newWidget.name },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+      
+      res.status(201).json(newWidget);
+    } catch (error) {
+      console.error('Error creating dashboard widget:', error);
+      res.status(500).json({ message: 'Failed to create dashboard widget' });
+    }
+  });
+
+  // Get user dashboards
+  app.get('/api/admin/user-dashboards', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const dashboards = await storage.getUserDashboards(req.adminUser!.id);
+      res.json(dashboards);
+    } catch (error) {
+      console.error('Error fetching user dashboards:', error);
+      res.status(500).json({ message: 'Failed to fetch user dashboards' });
+    }
+  });
+
+  // Create new user dashboard
+  app.post('/api/admin/user-dashboards', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const dashboardData = insertUserDashboardSchema.parse({ 
+        ...req.body, 
+        adminUserId: req.adminUser!.id 
+      });
+      const newDashboard = await storage.createUserDashboard(dashboardData);
+      
+      // Log user activity
+      await storage.createUserActivity({
+        adminUserId: req.adminUser?.id,
+        activity: 'Created user dashboard',
+        details: { dashboardId: newDashboard.id, name: newDashboard.name },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+      
+      res.status(201).json(newDashboard);
+    } catch (error) {
+      console.error('Error creating user dashboard:', error);
+      res.status(500).json({ message: 'Failed to create user dashboard' });
+    }
+  });
+
+  // Update user dashboard
+  app.put('/api/admin/user-dashboards/:id', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const dashboardId = parseInt(req.params.id);
+      const updates = req.body;
+      const updatedDashboard = await storage.updateUserDashboard(dashboardId, updates);
+      
+      // Log user activity
+      await storage.createUserActivity({
+        adminUserId: req.adminUser?.id,
+        activity: 'Updated user dashboard',
+        details: { dashboardId, changes: Object.keys(updates) },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+      
+      res.json(updatedDashboard);
+    } catch (error) {
+      console.error('Error updating user dashboard:', error);
+      res.status(500).json({ message: 'Failed to update user dashboard' });
+    }
+  });
+
+  // Set default dashboard
+  app.post('/api/admin/user-dashboards/:id/set-default', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const dashboardId = parseInt(req.params.id);
+      await storage.setDefaultDashboard(dashboardId, req.adminUser!.id);
+      
+      // Log user activity
+      await storage.createUserActivity({
+        adminUserId: req.adminUser?.id,
+        activity: 'Set default dashboard',
+        details: { dashboardId },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+      
+      res.json({ message: 'Default dashboard set successfully' });
+    } catch (error) {
+      console.error('Error setting default dashboard:', error);
+      res.status(500).json({ message: 'Failed to set default dashboard' });
+    }
+  });
+
+  // Get dashboard widget instances
+  app.get('/api/admin/dashboards/:id/widgets', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const dashboardId = parseInt(req.params.id);
+      const widgets = await storage.getDashboardWidgetInstances(dashboardId);
+      res.json(widgets);
+    } catch (error) {
+      console.error('Error fetching dashboard widget instances:', error);
+      res.status(500).json({ message: 'Failed to fetch dashboard widget instances' });
+    }
+  });
+
+  // Add widget to dashboard
+  app.post('/api/admin/dashboards/:id/widgets', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const dashboardId = parseInt(req.params.id);
+      const instanceData = insertDashboardWidgetInstanceSchema.parse({ 
+        ...req.body, 
+        dashboardId 
+      });
+      const newInstance = await storage.createDashboardWidgetInstance(instanceData);
+      
+      // Log user activity
+      await storage.createUserActivity({
+        adminUserId: req.adminUser?.id,
+        activity: 'Added widget to dashboard',
+        details: { dashboardId, widgetInstanceId: newInstance.id },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+      
+      res.status(201).json(newInstance);
+    } catch (error) {
+      console.error('Error adding widget to dashboard:', error);
+      res.status(500).json({ message: 'Failed to add widget to dashboard' });
+    }
+  });
+
+  // Update widget instance
+  app.put('/api/admin/widget-instances/:id', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const instanceId = parseInt(req.params.id);
+      const updates = req.body;
+      const updatedInstance = await storage.updateDashboardWidgetInstance(instanceId, updates);
+      
+      // Log user activity
+      await storage.createUserActivity({
+        adminUserId: req.adminUser?.id,
+        activity: 'Updated widget instance',
+        details: { instanceId, changes: Object.keys(updates) },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+      
+      res.json(updatedInstance);
+    } catch (error) {
+      console.error('Error updating widget instance:', error);
+      res.status(500).json({ message: 'Failed to update widget instance' });
+    }
+  });
+
+  // Delete widget instance
+  app.delete('/api/admin/widget-instances/:id', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const instanceId = parseInt(req.params.id);
+      await storage.deleteDashboardWidgetInstance(instanceId);
+      
+      // Log user activity
+      await storage.createUserActivity({
+        adminUserId: req.adminUser?.id,
+        activity: 'Deleted widget instance',
+        details: { instanceId },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+      
+      res.json({ message: 'Widget instance deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting widget instance:', error);
+      res.status(500).json({ message: 'Failed to delete widget instance' });
+    }
+  });
+
+  // Update widget positions (for drag and drop)
+  app.put('/api/admin/dashboards/:id/widgets/positions', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const dashboardId = parseInt(req.params.id);
+      const { positions } = req.body;
+      await storage.updateWidgetPositions(dashboardId, positions);
+      
+      // Log user activity
+      await storage.createUserActivity({
+        adminUserId: req.adminUser?.id,
+        activity: 'Updated widget positions',
+        details: { dashboardId, widgetCount: positions.length },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+      
+      res.json({ message: 'Widget positions updated successfully' });
+    } catch (error) {
+      console.error('Error updating widget positions:', error);
+      res.status(500).json({ message: 'Failed to update widget positions' });
     }
   });
 

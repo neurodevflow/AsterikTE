@@ -13,6 +13,9 @@ import {
   pages,
   pageComponents,
   pageTemplates,
+  dashboardWidgets,
+  userDashboards,
+  dashboardWidgetInstances,
   type User, 
   type InsertUser,
   type AdminUser,
@@ -37,7 +40,13 @@ import {
   type PageComponent,
   type InsertPageComponent,
   type PageTemplate,
-  type InsertPageTemplate
+  type InsertPageTemplate,
+  type DashboardWidget,
+  type InsertDashboardWidget,
+  type UserDashboard,
+  type InsertUserDashboard,
+  type DashboardWidgetInstance,
+  type InsertDashboardWidgetInstance
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, count, and, gte, sql, asc } from "drizzle-orm";
@@ -136,6 +145,28 @@ export interface IStorage {
   getPageTemplateById(id: number): Promise<PageTemplate | undefined>;
   updatePageTemplate(id: number, updates: Partial<PageTemplate>): Promise<PageTemplate>;
   deletePageTemplate(id: number): Promise<void>;
+
+  // Dashboard widget operations
+  createDashboardWidget(widget: InsertDashboardWidget): Promise<DashboardWidget>;
+  getDashboardWidgets(category?: string): Promise<DashboardWidget[]>;
+  getDashboardWidgetById(id: number): Promise<DashboardWidget | undefined>;
+  updateDashboardWidget(id: number, updates: Partial<DashboardWidget>): Promise<DashboardWidget>;
+  deleteDashboardWidget(id: number): Promise<void>;
+
+  // User dashboard operations
+  createUserDashboard(dashboard: InsertUserDashboard): Promise<UserDashboard>;
+  getUserDashboards(adminUserId: number): Promise<UserDashboard[]>;
+  getUserDashboardById(id: number): Promise<UserDashboard | undefined>;
+  updateUserDashboard(id: number, updates: Partial<UserDashboard>): Promise<UserDashboard>;
+  deleteUserDashboard(id: number): Promise<void>;
+  setDefaultDashboard(dashboardId: number, adminUserId: number): Promise<void>;
+
+  // Dashboard widget instances operations
+  createDashboardWidgetInstance(instance: InsertDashboardWidgetInstance): Promise<DashboardWidgetInstance>;
+  getDashboardWidgetInstances(dashboardId: number): Promise<DashboardWidgetInstance[]>;
+  updateDashboardWidgetInstance(id: number, updates: Partial<DashboardWidgetInstance>): Promise<DashboardWidgetInstance>;
+  deleteDashboardWidgetInstance(id: number): Promise<void>;
+  updateWidgetPositions(dashboardId: number, positions: Array<{id: number, position: any}>): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -542,6 +573,136 @@ export class DatabaseStorage implements IStorage {
 
   async deletePageTemplate(id: number): Promise<void> {
     await db.delete(pageTemplates).where(eq(pageTemplates.id, id));
+  }
+
+  // Dashboard widget operations
+  async createDashboardWidget(widget: InsertDashboardWidget): Promise<DashboardWidget> {
+    const [dashboardWidget] = await db
+      .insert(dashboardWidgets)
+      .values(widget)
+      .returning();
+    return dashboardWidget;
+  }
+
+  async getDashboardWidgets(category?: string): Promise<DashboardWidget[]> {
+    if (category) {
+      return await db
+        .select()
+        .from(dashboardWidgets)
+        .where(and(eq(dashboardWidgets.category, category), eq(dashboardWidgets.isActive, true)))
+        .orderBy(dashboardWidgets.name);
+    }
+    return await db
+      .select()
+      .from(dashboardWidgets)
+      .where(eq(dashboardWidgets.isActive, true))
+      .orderBy(dashboardWidgets.category, dashboardWidgets.name);
+  }
+
+  async getDashboardWidgetById(id: number): Promise<DashboardWidget | undefined> {
+    const [widget] = await db.select().from(dashboardWidgets).where(eq(dashboardWidgets.id, id));
+    return widget;
+  }
+
+  async updateDashboardWidget(id: number, updates: Partial<DashboardWidget>): Promise<DashboardWidget> {
+    const [widget] = await db
+      .update(dashboardWidgets)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(dashboardWidgets.id, id))
+      .returning();
+    return widget;
+  }
+
+  async deleteDashboardWidget(id: number): Promise<void> {
+    await db.delete(dashboardWidgets).where(eq(dashboardWidgets.id, id));
+  }
+
+  // User dashboard operations
+  async createUserDashboard(dashboard: InsertUserDashboard): Promise<UserDashboard> {
+    const [userDashboard] = await db
+      .insert(userDashboards)
+      .values(dashboard)
+      .returning();
+    return userDashboard;
+  }
+
+  async getUserDashboards(adminUserId: number): Promise<UserDashboard[]> {
+    return await db
+      .select()
+      .from(userDashboards)
+      .where(eq(userDashboards.adminUserId, adminUserId))
+      .orderBy(desc(userDashboards.isDefault), userDashboards.name);
+  }
+
+  async getUserDashboardById(id: number): Promise<UserDashboard | undefined> {
+    const [dashboard] = await db.select().from(userDashboards).where(eq(userDashboards.id, id));
+    return dashboard;
+  }
+
+  async updateUserDashboard(id: number, updates: Partial<UserDashboard>): Promise<UserDashboard> {
+    const [dashboard] = await db
+      .update(userDashboards)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(userDashboards.id, id))
+      .returning();
+    return dashboard;
+  }
+
+  async deleteUserDashboard(id: number): Promise<void> {
+    await db.delete(userDashboards).where(eq(userDashboards.id, id));
+  }
+
+  async setDefaultDashboard(dashboardId: number, adminUserId: number): Promise<void> {
+    // First, unset all default dashboards for this user
+    await db
+      .update(userDashboards)
+      .set({ isDefault: false, updatedAt: new Date() })
+      .where(eq(userDashboards.adminUserId, adminUserId));
+    
+    // Then set the specified dashboard as default
+    await db
+      .update(userDashboards)
+      .set({ isDefault: true, updatedAt: new Date() })
+      .where(and(eq(userDashboards.id, dashboardId), eq(userDashboards.adminUserId, adminUserId)));
+  }
+
+  // Dashboard widget instances operations
+  async createDashboardWidgetInstance(instance: InsertDashboardWidgetInstance): Promise<DashboardWidgetInstance> {
+    const [widgetInstance] = await db
+      .insert(dashboardWidgetInstances)
+      .values(instance)
+      .returning();
+    return widgetInstance;
+  }
+
+  async getDashboardWidgetInstances(dashboardId: number): Promise<DashboardWidgetInstance[]> {
+    return await db
+      .select()
+      .from(dashboardWidgetInstances)
+      .where(eq(dashboardWidgetInstances.dashboardId, dashboardId))
+      .orderBy(sql`(${dashboardWidgetInstances.position}->>'x')::int, (${dashboardWidgetInstances.position}->>'y')::int`);
+  }
+
+  async updateDashboardWidgetInstance(id: number, updates: Partial<DashboardWidgetInstance>): Promise<DashboardWidgetInstance> {
+    const [instance] = await db
+      .update(dashboardWidgetInstances)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(dashboardWidgetInstances.id, id))
+      .returning();
+    return instance;
+  }
+
+  async deleteDashboardWidgetInstance(id: number): Promise<void> {
+    await db.delete(dashboardWidgetInstances).where(eq(dashboardWidgetInstances.id, id));
+  }
+
+  async updateWidgetPositions(dashboardId: number, positions: Array<{id: number, position: any}>): Promise<void> {
+    for (const pos of positions) {
+      await db
+        .update(dashboardWidgetInstances)
+        .set({ position: pos.position, updatedAt: new Date() })
+        .where(and(eq(dashboardWidgetInstances.id, pos.id), eq(dashboardWidgetInstances.dashboardId, dashboardId)));
+    }
   }
 }
 
