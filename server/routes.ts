@@ -14,8 +14,12 @@ import {
   insertContactSubmissionSchema,
   insertEmailCampaignSchema,
   insertContentBlockSchema,
-  insertAdminUserSchema
+  insertAdminUserSchema,
+  insertPageSchema,
+  insertPageComponentSchema,
+  insertPageTemplateSchema
 } from "@shared/schema";
+import { generatePageComponent, generateFullPage } from "./pageBuilder";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Content recommendations endpoint
@@ -533,6 +537,283 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Error testing integration:', error);
       res.status(500).json({ message: 'Failed to test integration' });
+    }
+  });
+
+  // ========== PAGE BUILDER API ROUTES ==========
+
+  // Get all pages
+  app.get('/api/admin/pages', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { status } = req.query;
+      const pages = await storage.getPages(status as string);
+      res.json(pages);
+    } catch (error) {
+      console.error('Error fetching pages:', error);
+      res.status(500).json({ message: 'Failed to fetch pages' });
+    }
+  });
+
+  // Create new page
+  app.post('/api/admin/pages', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const pageData = insertPageSchema.parse(req.body);
+      const newPage = await storage.createPage(pageData);
+      
+      // Log user activity
+      await storage.createUserActivity({
+        adminUserId: req.adminUser?.id,
+        activity: 'Created page',
+        details: { pageId: newPage.id, title: newPage.title },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+      
+      res.status(201).json(newPage);
+    } catch (error) {
+      console.error('Error creating page:', error);
+      res.status(500).json({ message: 'Failed to create page' });
+    }
+  });
+
+  // Get page by ID
+  app.get('/api/admin/pages/:id', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const pageId = parseInt(req.params.id);
+      const page = await storage.getPageById(pageId);
+      
+      if (!page) {
+        return res.status(404).json({ message: 'Page not found' });
+      }
+      
+      res.json(page);
+    } catch (error) {
+      console.error('Error fetching page:', error);
+      res.status(500).json({ message: 'Failed to fetch page' });
+    }
+  });
+
+  // Update page
+  app.put('/api/admin/pages/:id', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const pageId = parseInt(req.params.id);
+      const updates = req.body;
+      const updatedPage = await storage.updatePage(pageId, { ...updates, updatedBy: req.adminUser?.id });
+      
+      // Log user activity
+      await storage.createUserActivity({
+        adminUserId: req.adminUser?.id,
+        activity: 'Updated page',
+        details: { pageId, changes: Object.keys(updates) },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+      
+      res.json(updatedPage);
+    } catch (error) {
+      console.error('Error updating page:', error);
+      res.status(500).json({ message: 'Failed to update page' });
+    }
+  });
+
+  // Delete page
+  app.delete('/api/admin/pages/:id', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const pageId = parseInt(req.params.id);
+      await storage.deletePage(pageId);
+      
+      // Log user activity
+      await storage.createUserActivity({
+        adminUserId: req.adminUser?.id,
+        activity: 'Deleted page',
+        details: { pageId },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+      
+      res.json({ message: 'Page deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting page:', error);
+      res.status(500).json({ message: 'Failed to delete page' });
+    }
+  });
+
+  // Get page components
+  app.get('/api/admin/pages/:id/components', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const pageId = parseInt(req.params.id);
+      const components = await storage.getPageComponents(pageId);
+      res.json(components);
+    } catch (error) {
+      console.error('Error fetching page components:', error);
+      res.status(500).json({ message: 'Failed to fetch page components' });
+    }
+  });
+
+  // Create page component
+  app.post('/api/admin/pages/:id/components', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const pageId = parseInt(req.params.id);
+      const componentData = insertPageComponentSchema.parse({ ...req.body, pageId });
+      const newComponent = await storage.createPageComponent(componentData);
+      
+      // Log user activity
+      await storage.createUserActivity({
+        adminUserId: req.adminUser?.id,
+        activity: 'Added page component',
+        details: { pageId, componentType: newComponent.type, componentId: newComponent.id },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+      
+      res.status(201).json(newComponent);
+    } catch (error) {
+      console.error('Error creating page component:', error);
+      res.status(500).json({ message: 'Failed to create page component' });
+    }
+  });
+
+  // Update page component
+  app.put('/api/admin/components/:id', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const componentId = parseInt(req.params.id);
+      const updates = req.body;
+      const updatedComponent = await storage.updatePageComponent(componentId, updates);
+      
+      // Log user activity
+      await storage.createUserActivity({
+        adminUserId: req.adminUser?.id,
+        activity: 'Updated page component',
+        details: { componentId, changes: Object.keys(updates) },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+      
+      res.json(updatedComponent);
+    } catch (error) {
+      console.error('Error updating page component:', error);
+      res.status(500).json({ message: 'Failed to update page component' });
+    }
+  });
+
+  // Delete page component
+  app.delete('/api/admin/components/:id', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const componentId = parseInt(req.params.id);
+      await storage.deletePageComponent(componentId);
+      
+      // Log user activity
+      await storage.createUserActivity({
+        adminUserId: req.adminUser?.id,
+        activity: 'Deleted page component',
+        details: { componentId },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+      
+      res.json({ message: 'Page component deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting page component:', error);
+      res.status(500).json({ message: 'Failed to delete page component' });
+    }
+  });
+
+  // Reorder page components
+  app.put('/api/admin/pages/:id/components/reorder', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const pageId = parseInt(req.params.id);
+      const { componentIds } = req.body;
+      await storage.reorderPageComponents(pageId, componentIds);
+      
+      // Log user activity
+      await storage.createUserActivity({
+        adminUserId: req.adminUser?.id,
+        activity: 'Reordered page components',
+        details: { pageId, componentOrder: componentIds },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+      
+      res.json({ message: 'Components reordered successfully' });
+    } catch (error) {
+      console.error('Error reordering components:', error);
+      res.status(500).json({ message: 'Failed to reorder components' });
+    }
+  });
+
+  // AI-powered content generation
+  app.post('/api/admin/generate/component', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const request = req.body;
+      const generatedComponent = await generatePageComponent(request);
+      
+      // Log user activity
+      await storage.createUserActivity({
+        adminUserId: req.adminUser?.id,
+        activity: 'Generated AI component',
+        details: { componentType: request.componentType, industry: request.industry },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+      
+      res.json(generatedComponent);
+    } catch (error) {
+      console.error('Error generating component:', error);
+      res.status(500).json({ message: 'Failed to generate component' });
+    }
+  });
+
+  // Generate full page with AI
+  app.post('/api/admin/generate/page', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const request = req.body;
+      const generatedComponents = await generateFullPage(request);
+      
+      // Log user activity
+      await storage.createUserActivity({
+        adminUserId: req.adminUser?.id,
+        activity: 'Generated AI page',
+        details: { pageType: request.pageType, title: request.title },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+      
+      res.json(generatedComponents);
+    } catch (error) {
+      console.error('Error generating page:', error);
+      res.status(500).json({ message: 'Failed to generate page' });
+    }
+  });
+
+  // Page templates
+  app.get('/api/admin/templates', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const templates = await storage.getPageTemplates();
+      res.json(templates);
+    } catch (error) {
+      console.error('Error fetching templates:', error);
+      res.status(500).json({ message: 'Failed to fetch templates' });
+    }
+  });
+
+  app.post('/api/admin/templates', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const templateData = insertPageTemplateSchema.parse({ ...req.body, createdBy: req.adminUser?.id });
+      const newTemplate = await storage.createPageTemplate(templateData);
+      
+      // Log user activity
+      await storage.createUserActivity({
+        adminUserId: req.adminUser?.id,
+        activity: 'Created page template',
+        details: { templateId: newTemplate.id, name: newTemplate.name },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+      
+      res.status(201).json(newTemplate);
+    } catch (error) {
+      console.error('Error creating template:', error);
+      res.status(500).json({ message: 'Failed to create template' });
     }
   });
 

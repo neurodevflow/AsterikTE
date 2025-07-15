@@ -139,6 +139,49 @@ export const userActivities = pgTable("user_activities", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
+// Page builder tables
+export const pages = pgTable("pages", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  slug: text("slug").notNull().unique(),
+  description: text("description"),
+  status: text("status").notNull().default("draft"), // draft, published, archived
+  template: text("template").default("default"),
+  seoTitle: text("seo_title"),
+  seoDescription: text("seo_description"),
+  seoKeywords: text("seo_keywords"),
+  featuredImage: text("featured_image"),
+  publishedAt: timestamp("published_at"),
+  createdBy: integer("created_by").references(() => adminUsers.id),
+  updatedBy: integer("updated_by").references(() => adminUsers.id),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+export const pageComponents = pgTable("page_components", {
+  id: serial("id").primaryKey(),
+  pageId: integer("page_id").references(() => pages.id, { onDelete: "cascade" }),
+  type: text("type").notNull(), // hero, content, gallery, cta, etc.
+  name: text("name"),
+  content: jsonb("content").notNull(), // Stores component data
+  settings: jsonb("settings"), // Stores component settings
+  sortOrder: integer("sort_order").default(0),
+  isVisible: boolean("is_visible").default(true),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+export const pageTemplates = pgTable("page_templates", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  description: text("description"),
+  structure: jsonb("structure").notNull(), // Template structure definition
+  isActive: boolean("is_active").default(true),
+  createdBy: integer("created_by").references(() => adminUsers.id),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
 // Insert schemas for form validation
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
@@ -204,6 +247,36 @@ export const insertUserActivitySchema = createInsertSchema(userActivities).pick(
   userAgent: true,
 });
 
+export const insertPageSchema = createInsertSchema(pages).pick({
+  title: true,
+  slug: true,
+  description: true,
+  status: true,
+  template: true,
+  seoTitle: true,
+  seoDescription: true,
+  seoKeywords: true,
+  featuredImage: true,
+  publishedAt: true,
+});
+
+export const insertPageComponentSchema = createInsertSchema(pageComponents).pick({
+  pageId: true,
+  type: true,
+  name: true,
+  content: true,
+  settings: true,
+  sortOrder: true,
+  isVisible: true,
+});
+
+export const insertPageTemplateSchema = createInsertSchema(pageTemplates).pick({
+  name: true,
+  description: true,
+  structure: true,
+  isActive: true,
+});
+
 // Type exports
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
@@ -224,3 +297,9 @@ export type Integration = typeof integrations.$inferSelect;
 export type InsertIntegration = z.infer<typeof insertIntegrationSchema>;
 export type UserActivity = typeof userActivities.$inferSelect;
 export type InsertUserActivity = z.infer<typeof insertUserActivitySchema>;
+export type Page = typeof pages.$inferSelect;
+export type InsertPage = z.infer<typeof insertPageSchema>;
+export type PageComponent = typeof pageComponents.$inferSelect;
+export type InsertPageComponent = z.infer<typeof insertPageComponentSchema>;
+export type PageTemplate = typeof pageTemplates.$inferSelect;
+export type InsertPageTemplate = z.infer<typeof insertPageTemplateSchema>;

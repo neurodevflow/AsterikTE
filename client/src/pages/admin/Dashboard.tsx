@@ -26,6 +26,7 @@ import EnhancedAnalytics from '@/components/admin/EnhancedAnalytics';
 import UserManagement from '@/components/admin/UserManagement';
 import ProfileSettings from '@/components/admin/ProfileSettings';
 import IntegrationsManager from '@/components/admin/IntegrationsManager';
+import PageBuilder from './PageBuilder';
 
 interface DashboardStats {
   totalPageViews: number;
@@ -122,22 +123,26 @@ export default function Dashboard() {
       {/* Main Content */}
       <div className="p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-8 h-auto">
+          <TabsList className="grid w-full grid-cols-9 h-auto">
             <TabsTrigger value="overview" className="flex items-center gap-2 text-xs">
               <BarChart3 className="h-4 w-4" />
               Overview
             </TabsTrigger>
             <TabsTrigger value="analytics" className="flex items-center gap-2 text-xs">
               <TrendingUp className="h-4 w-4" />
-              Enhanced Analytics
+              Analytics
+            </TabsTrigger>
+            <TabsTrigger value="pagebuilder" className="flex items-center gap-2 text-xs">
+              <FileText className="h-4 w-4" />
+              Page Builder
             </TabsTrigger>
             <TabsTrigger value="users" className="flex items-center gap-2 text-xs">
               <UserCog className="h-4 w-4" />
-              User Management
+              Users
             </TabsTrigger>
             <TabsTrigger value="profile" className="flex items-center gap-2 text-xs">
               <Settings className="h-4 w-4" />
-              Profile Settings
+              Profile
             </TabsTrigger>
             <TabsTrigger value="integrations" className="flex items-center gap-2 text-xs">
               <Zap className="h-4 w-4" />
@@ -149,7 +154,7 @@ export default function Dashboard() {
             </TabsTrigger>
             <TabsTrigger value="emails" className="flex items-center gap-2 text-xs">
               <Mail className="h-4 w-4" />
-              Email Campaigns
+              Emails
             </TabsTrigger>
             <TabsTrigger value="content" className="flex items-center gap-2 text-xs">
               <FileText className="h-4 w-4" />
@@ -249,6 +254,10 @@ export default function Dashboard() {
 
           <TabsContent value="analytics">
             <EnhancedAnalytics stats={stats} token={token} />
+          </TabsContent>
+
+          <TabsContent value="pagebuilder">
+            <PageBuilder />
           </TabsContent>
 
           <TabsContent value="users">
