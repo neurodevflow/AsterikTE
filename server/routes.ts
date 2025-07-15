@@ -820,6 +820,59 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Import existing pages endpoint
+  app.post('/api/admin/import-pages', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      // Import existing website pages into the page builder
+      const { importExistingPages } = await import('../scripts/import-existing-pages');
+      await importExistingPages();
+      
+      // Log user activity
+      await storage.createUserActivity({
+        adminUserId: req.adminUser?.id,
+        activity: 'Imported existing pages',
+        details: { action: 'bulk_import' },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+      
+      res.json({ message: 'Successfully imported existing pages' });
+    } catch (error) {
+      console.error('Error importing pages:', error);
+      res.status(500).json({ message: 'Failed to import pages' });
+    }
+  });
+
+  // Get page content for editing
+  app.get('/api/admin/pages/:slugOrId/edit', authenticateAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { slugOrId } = req.params;
+      let page;
+      
+      // Check if it's a numeric ID or slug
+      if (!isNaN(Number(slugOrId))) {
+        page = await storage.getPageById(Number(slugOrId));
+      } else {
+        page = await storage.getPageBySlug(slugOrId);
+      }
+      
+      if (!page) {
+        return res.status(404).json({ message: 'Page not found' });
+      }
+      
+      // Get page components
+      const components = await storage.getPageComponents(page.id);
+      
+      res.json({
+        page,
+        components: components.sort((a, b) => a.sortOrder - b.sortOrder)
+      });
+    } catch (error) {
+      console.error('Error fetching page for editing:', error);
+      res.status(500).json({ message: 'Failed to fetch page' });
+    }
+  });
+
   // ========== DASHBOARD WIDGET CUSTOMIZATION API ROUTES ==========
 
   // Get available dashboard widgets
