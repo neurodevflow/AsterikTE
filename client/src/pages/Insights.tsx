@@ -1,13 +1,13 @@
 export default function Insights() {
   return (
     <div className="pt-16">
-      <section className="py-20" style={{ backgroundColor: "var(--asterik-light)" }}>
+      <section className="bg-soft-beige py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h1 className="font-bold text-4xl md:text-5xl mb-8" style={{ color: "var(--asterik-dark)" }}>
+            <h1 className="font-bold text-4xl md:text-5xl mb-8 text-navy-blue">
               Industry Insights
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-charcoal max-w-3xl mx-auto">
               Expert perspectives on enterprise technology trends and regulatory compliance
             </p>
           </div>
@@ -23,16 +23,16 @@ export default function Insights() {
                 />
               </div>
               <div className="md:w-1/2 p-8">
-                <span className="text-sm font-semibold uppercase tracking-wide" style={{ color: "var(--asterik-red)" }}>
+                <span className="text-sm font-semibold uppercase tracking-wide text-navy-blue">
                   Featured Article
                 </span>
-                <h2 className="font-bold text-2xl md:text-3xl mt-2 mb-4" style={{ color: "var(--asterik-dark)" }}>
+                <h2 className="font-bold text-2xl md:text-3xl mt-2 mb-4 text-navy-blue">
                   The Future of RegTech: Compliance-First Digital Transformation
                 </h2>
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <p className="text-charcoal mb-6 leading-relaxed">
                   Exploring how regulatory technology is reshaping enterprise transformation strategies in the GCC region, with insights from recent implementations across financial services and government sectors.
                 </p>
-                <button className="font-semibold hover:text-gray-900 transition-colors duration-200" style={{ color: "var(--asterik-red)" }}>
+                <button className="font-semibold text-navy-blue hover:text-warm-orange transition-colors duration-200">
                   Read Full Article <i className="fas fa-arrow-right ml-2"></i>
                 </button>
               </div>
