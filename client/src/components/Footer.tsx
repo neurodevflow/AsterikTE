@@ -44,55 +44,110 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-bold text-lg mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="/approach" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
-                  Our Approach
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Service Offerings */}
+          {/* Services */}
           <div>
             <h4 className="font-bold text-lg mb-4">Services</h4>
-            <ul className="space-y-2">
+            <div className="space-y-3">
+              <div>
+                <h5 className="font-semibold text-gray-200 mb-2">Software Engineering</h5>
+                <ul className="space-y-1 text-sm">
+                  <li>
+                    <Link href="/services/quality-engineering" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                      Quality Engineering
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/services/business-analysis" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                      Business Analysis
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h5 className="font-semibold text-gray-200 mb-2">DevOps and Cloud</h5>
+                <ul className="space-y-1 text-sm">
+                  <li>
+                    <Link href="/services/cloud" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                      Cloud
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/services/devops" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                      DevOps
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/services/devsecops" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                      DevSecOps
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h5 className="font-semibold text-gray-200 mb-2">Data & AI</h5>
+                <ul className="space-y-1 text-sm">
+                  <li>
+                    <Link href="/services/ai-ml" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                      AI and ML
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/services/genai" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                      GenAI
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Industries */}
+          <div>
+            <h4 className="font-bold text-lg mb-4">Industries</h4>
+            <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/services" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
-                  Manpower Supply
+                <Link href="/industries/oil-gas" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                  Oil and Gas
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
-                  IT Consulting
+                <Link href="/industries/healthcare-life-science" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                  Healthcare and Life Science
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
-                  Talent Acquisition
+                <Link href="/industries/financial-services" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                  Financial Services
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
-                  Project Implementation
+                <Link href="/industries/wealth-management" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                  Wealth Management
+                </Link>
+              </li>
+              <li>
+                <Link href="/industries/energy" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                  Energy
+                </Link>
+              </li>
+              <li>
+                <Link href="/industries/retail-ecommerce" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                  Retail E-commerce
+                </Link>
+              </li>
+              <li>
+                <Link href="/industries/logistics" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                  Logistics
+                </Link>
+              </li>
+              <li>
+                <Link href="/industries/edtech" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                  EdTech
+                </Link>
+              </li>
+              <li>
+                <Link href="/industries/marketing" className="text-gray-300 hover:text-orange-400 transition-colors duration-200">
+                  Marketing
                 </Link>
               </li>
             </ul>
