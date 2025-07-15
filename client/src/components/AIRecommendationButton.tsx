@@ -26,7 +26,7 @@ export default function AIRecommendationButton({ onClick, isActive }: AIRecommen
       aria-label="AI Content Recommendations"
     >
       <div className="relative">
-        <i className={`fas fa-robot text-lg transition-transform duration-200 ${isHovered ? 'scale-110' : 'scale-100'}`}></i>
+        <i className={`fas fa-gem text-lg transition-transform duration-200 ${isHovered ? 'scale-110' : 'scale-100'}`}></i>
         
         {/* Animated pulse effect */}
         <div className={`
@@ -52,7 +52,7 @@ export default function AIRecommendationButton({ onClick, isActive }: AIRecommen
         transition-all duration-200
         ${isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-2'}
       `}>
-        {isActive ? 'Close AI Recommendations' : 'Get AI Recommendations'}
+        {isActive ? 'Close Gemini Recommendations' : 'Get Gemini Recommendations'}
         <div className="absolute left-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-l-navy-blue"></div>
       </div>
     </button>
