@@ -195,6 +195,10 @@ This is a full-stack web application for ASTERIK, a professional technology cons
   - Includes full compliance with UAE Federal Decree-Law No. 45 of 2021 (PDPL)
   - Contains all 16 sections of official legal content with proper PDPL article references
   - Official contact information: privacy@asterik.ae, Dubai, UAE
+- July 15, 2025: Leadership Image Consistency Update
+  - Replaced About page Leadership Excellence image with same authentic leadership image used on Home page
+  - Updated image import to use leadershipImage from @assets/leadership Image_1751810042614.jpg
+  - Maintained consistent professional leadership representation across both pages
 
 ## User Preferences
 
