@@ -324,7 +324,7 @@ export default function ServiceDetail() {
               {service.heroText}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-warm-orange text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
+              <button className="bg-navy-blue text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
                 Get Started
               </button>
               <button className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium">
@@ -388,7 +388,7 @@ export default function ServiceDetail() {
               <div className="space-y-4">
                 {service.process.map((step, index) => (
                   <div key={index} className="flex items-start">
-                    <div className="flex-shrink-0 w-8 h-8 bg-warm-orange text-white rounded-full flex items-center justify-center font-bold mr-4">
+                    <div className="flex-shrink-0 w-8 h-8 bg-navy-blue text-white rounded-full flex items-center justify-center font-bold mr-4">
                       {index + 1}
                     </div>
                     <div>
@@ -413,7 +413,7 @@ export default function ServiceDetail() {
             Let's discuss how our {service.title.toLowerCase()} services can help transform your business and drive growth.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-warm-orange text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
+            <button className="bg-navy-blue text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
               Contact Us Today
             </button>
             <button className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium">

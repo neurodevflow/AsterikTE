@@ -92,7 +92,7 @@ export default function Home() {
               className="bg-soft-beige p-8 rounded-xl hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
             >
               <div 
-                className="bg-warm-orange text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto"
+                className="bg-navy-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto"
               >
                 <i className="fas fa-chart-line text-2xl"></i>
               </div>
@@ -122,7 +122,7 @@ export default function Home() {
               className="bg-soft-beige p-8 rounded-xl hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
             >
               <div 
-                className="bg-warm-orange text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto"
+                className="bg-navy-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto"
               >
                 <i className="fas fa-cogs text-2xl"></i>
               </div>
@@ -165,7 +165,7 @@ export default function Home() {
             
             <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
               <div 
-                className="bg-warm-orange text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
+                className="bg-navy-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
               >
                 <i className="fas fa-chart-line text-2xl"></i>
               </div>
@@ -345,7 +345,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-start">
                   <div 
-                    className="bg-warm-orange text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
+                    className="bg-navy-blue text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
                   >
                     <i className="fas fa-shield-alt text-sm"></i>
                   </div>
@@ -367,7 +367,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-start">
                   <div 
-                    className="bg-warm-orange text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
+                    className="bg-navy-blue text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
                   >
                     <i className="fas fa-chart-bar text-sm"></i>
                   </div>

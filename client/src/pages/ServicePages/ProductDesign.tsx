@@ -12,7 +12,7 @@ export default function ProductDesign() {
               Create exceptional digital experiences that drive business value through user-centered design, comprehensive research, and innovative solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-warm-orange text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
+              <button className="bg-navy-blue text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
                 Get Started
               </button>
               <button className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium">
@@ -158,7 +158,7 @@ export default function ProductDesign() {
               <h3 className="text-2xl font-bold text-navy-blue mb-6">Our Process</h3>
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-8 h-8 bg-warm-orange text-white rounded-full flex items-center justify-center font-bold mr-4">
+                  <div className="flex-shrink-0 w-8 h-8 bg-navy-blue text-white rounded-full flex items-center justify-center font-bold mr-4">
                     1
                   </div>
                   <div>
@@ -167,7 +167,7 @@ export default function ProductDesign() {
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-8 h-8 bg-warm-orange text-white rounded-full flex items-center justify-center font-bold mr-4">
+                  <div className="flex-shrink-0 w-8 h-8 bg-navy-blue text-white rounded-full flex items-center justify-center font-bold mr-4">
                     2
                   </div>
                   <div>
@@ -176,7 +176,7 @@ export default function ProductDesign() {
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-8 h-8 bg-warm-orange text-white rounded-full flex items-center justify-center font-bold mr-4">
+                  <div className="flex-shrink-0 w-8 h-8 bg-navy-blue text-white rounded-full flex items-center justify-center font-bold mr-4">
                     3
                   </div>
                   <div>
@@ -185,7 +185,7 @@ export default function ProductDesign() {
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-8 h-8 bg-warm-orange text-white rounded-full flex items-center justify-center font-bold mr-4">
+                  <div className="flex-shrink-0 w-8 h-8 bg-navy-blue text-white rounded-full flex items-center justify-center font-bold mr-4">
                     4
                   </div>
                   <div>
@@ -209,7 +209,7 @@ export default function ProductDesign() {
             Let's discuss how our product design services can create exceptional experiences for your users.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-warm-orange text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
+            <button className="bg-navy-blue text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
               Contact Us Today
             </button>
             <button className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium">
