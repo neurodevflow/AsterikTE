@@ -119,6 +119,12 @@ This is a full-stack web application for ASTERIK, a professional technology cons
   - Enhanced mobile navigation with collapsible dropdown support
   - Updated Tailwind CSS configuration with custom brand colors
   - Maintained full responsive design and professional enterprise appearance
+- July 15, 2025: Navigation and Footer Improvements
+  - Updated Services dropdown to use 4 equal-width columns in single row layout (800px width)
+  - Standardized line spacing and alignment across all dropdown menu items
+  - Improved typography with consistent spacing (py-1, space-y-3, leading-relaxed)
+  - Enhanced mobile dropdown layout with proper responsive design
+  - Removed Terms of Service link from footer, keeping only Privacy Policy
 
 ## User Preferences
 
