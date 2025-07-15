@@ -3,8 +3,11 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ContentRecommendationSidebar from "./components/ContentRecommendationSidebar";
+import AIRecommendationButton from "./components/AIRecommendationButton";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -17,24 +20,40 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "@/pages/not-found";
 
 function Router() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1">
-        <Switch>
-          <Route path="/" component={Home} />
-          <Route path="/services/:serviceId" component={ServiceDetail} />
-          <Route path="/services" component={Services} />
-          <Route path="/industries/:industryId" component={ServiceDetail} />
-          <Route path="/industries" component={Industries} />
-          <Route path="/approach" component={Approach} />
-          <Route path="/contact" component={Contact} />
-          <Route path="/about" component={About} />
-          <Route path="/insights" component={Insights} />
-          <Route path="/privacy-policy" component={PrivacyPolicy} />
-          <Route component={NotFound} />
-        </Switch>
-      </main>
+      <div className="flex-1 relative">
+        <main className="flex-1">
+          <Switch>
+            <Route path="/" component={Home} />
+            <Route path="/services/:serviceId" component={ServiceDetail} />
+            <Route path="/services" component={Services} />
+            <Route path="/industries/:industryId" component={ServiceDetail} />
+            <Route path="/industries" component={Industries} />
+            <Route path="/approach" component={Approach} />
+            <Route path="/contact" component={Contact} />
+            <Route path="/about" component={About} />
+            <Route path="/insights" component={Insights} />
+            <Route path="/privacy-policy" component={PrivacyPolicy} />
+            <Route component={NotFound} />
+          </Switch>
+        </main>
+        
+        {/* AI Recommendation Button */}
+        <AIRecommendationButton 
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          isActive={sidebarOpen}
+        />
+        
+        {/* AI Content Recommendation Sidebar */}
+        <ContentRecommendationSidebar 
+          isOpen={sidebarOpen}
+          onClose={() => setSidebarOpen(false)}
+        />
+      </div>
       <Footer />
     </div>
   );
