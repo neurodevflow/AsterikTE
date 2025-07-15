@@ -103,9 +103,9 @@ export default function ContentRecommendationSidebar({
           <div className="flex items-center justify-between p-6 border-b border-light-grey">
             <div className="flex items-center">
               <div className="bg-navy-blue text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">
-                <i className="fas fa-robot text-sm"></i>
+                <i className="fas fa-gem text-sm"></i>
               </div>
-              <h3 className="font-bold text-lg text-navy-blue">Smart Recommendations</h3>
+              <h3 className="font-bold text-lg text-navy-blue">Gemini Recommendations</h3>
             </div>
             <button 
               onClick={onClose}
@@ -196,8 +196,8 @@ export default function ContentRecommendationSidebar({
           {/* Footer */}
           <div className="border-t border-light-grey p-4">
             <div className="flex items-center text-xs text-light-grey">
-              <i className="fas fa-magic mr-2"></i>
-              <span>Powered by AI</span>
+              <i className="fas fa-gem mr-2"></i>
+              <span>Powered by Gemini AI</span>
             </div>
           </div>
         </div>
