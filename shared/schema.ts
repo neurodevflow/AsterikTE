@@ -323,6 +323,8 @@ export const insertPageSchema = createInsertSchema(pages).pick({
   seoKeywords: true,
   featuredImage: true,
   publishedAt: true,
+  createdBy: true,
+  updatedBy: true,
 });
 
 export const insertPageComponentSchema = createInsertSchema(pageComponents).pick({
@@ -339,15 +341,15 @@ export const insertPageTemplateSchema = createInsertSchema(pageTemplates).pick({
   name: true,
   description: true,
   structure: true,
-  isActive: true,
+  createdBy: true,
 });
 
 // Dashboard widget customization tables
 export const dashboardWidgets = pgTable("dashboard_widgets", {
   id: serial("id").primaryKey(),
-  name: varchar("name", { length: 255 }).notNull(),
-  type: varchar("type", { length: 100 }).notNull(), // 'chart', 'metric', 'list', 'custom'
-  category: varchar("category", { length: 100 }).notNull(), // 'analytics', 'content', 'users', 'system'
+  name: text("name").notNull(),
+  type: text("type").notNull(), // 'chart', 'metric', 'list', 'custom'
+  category: text("category").notNull(), // 'analytics', 'content', 'users', 'system'
   description: text("description"),
   defaultConfig: jsonb("default_config").notNull().default({}),
   isActive: boolean("is_active").notNull().default(true),
@@ -355,31 +357,31 @@ export const dashboardWidgets = pgTable("dashboard_widgets", {
   minHeight: integer("min_height").default(1),
   maxWidth: integer("max_width").default(12),
   maxHeight: integer("max_height").default(12),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
 export const userDashboards = pgTable("user_dashboards", {
   id: serial("id").primaryKey(),
   adminUserId: integer("admin_user_id").references(() => adminUsers.id).notNull(),
-  name: varchar("name", { length: 255 }).notNull().default("My Dashboard"),
+  name: text("name").notNull().default("My Dashboard"),
   layout: jsonb("layout").notNull().default([]), // Grid layout configuration
   isDefault: boolean("is_default").notNull().default(false),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
 export const dashboardWidgetInstances = pgTable("dashboard_widget_instances", {
   id: serial("id").primaryKey(),
   dashboardId: integer("dashboard_id").references(() => userDashboards.id, { onDelete: "cascade" }).notNull(),
   widgetId: integer("widget_id").references(() => dashboardWidgets.id).notNull(),
-  title: varchar("title", { length: 255 }),
+  title: text("title"),
   config: jsonb("config").notNull().default({}),
   position: jsonb("position").notNull().default({}), // {x, y, w, h}
   isVisible: boolean("is_visible").notNull().default(true),
   refreshInterval: integer("refresh_interval").default(300), // seconds
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
 // Dashboard widget schemas
