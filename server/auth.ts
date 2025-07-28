@@ -38,8 +38,13 @@ export function generateToken(adminUser: { id: number; email: string; name: stri
 
 export function verifyToken(token: string): any {
   try {
-    return jwt.verify(token, JWT_SECRET);
+    console.log('Verifying token:', token.substring(0, 50) + '...');
+    console.log('JWT_SECRET:', JWT_SECRET);
+    const decoded = jwt.verify(token, JWT_SECRET);
+    console.log('Token verified successfully:', decoded);
+    return decoded;
   } catch (error) {
+    console.log('Token verification failed:', error);
     return null;
   }
 }

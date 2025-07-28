@@ -103,9 +103,10 @@ export default function PageBuilder() {
   // Load existing page for editing
   const loadExistingPageMutation = useMutation({
     mutationFn: async (slug: string) => {
-      return await apiRequest(`/api/admin/pages/${slug}/edit`, "GET");
+      const response = await apiRequest(`/api/admin/pages/${slug}/edit`, "GET");
+      return response;
     },
-    onSuccess: (data) => {
+    onSuccess: (data: any) => {
       if (data.page) {
         setSelectedPage(data.page);
         queryClient.setQueryData(["/api/admin/pages", data.page.id, "components"], data.components || []);
@@ -166,7 +167,8 @@ export default function PageBuilder() {
   // Generate AI component mutation
   const generateComponentMutation = useMutation({
     mutationFn: async (request: any) => {
-      return await apiRequest("/api/admin/generate/component", "POST", request);
+      const response = await apiRequest("/api/admin/generate/component", "POST", request);
+      return response as GeneratedComponent;
     },
     onSuccess: (data: GeneratedComponent) => {
       toast({ title: "Success", description: `AI ${data.type} component generated successfully` });
@@ -179,7 +181,8 @@ export default function PageBuilder() {
   // Generate full page mutation
   const generatePageMutation = useMutation({
     mutationFn: async (request: any) => {
-      return await apiRequest("/api/admin/generate/page", "POST", request);
+      const response = await apiRequest("/api/admin/generate/page", "POST", request);
+      return response as GeneratedComponent[];
     },
     onSuccess: (data: GeneratedComponent[]) => {
       toast({ title: "Success", description: `AI page with ${data.length} components generated successfully` });

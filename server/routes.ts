@@ -865,7 +865,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       res.json({
         page,
-        components: components.sort((a, b) => a.sortOrder - b.sortOrder)
+        components: components.sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0))
       });
     } catch (error) {
       console.error('Error fetching page for editing:', error);
