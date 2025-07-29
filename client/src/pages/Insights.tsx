@@ -119,11 +119,12 @@ export default function Insights() {
 
           {/* View All CTA */}
           <div className="text-center">
-            <button 
-              className="bg-navy-blue text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200"
+            <a 
+              href="/insights" 
+              className="inline-block bg-navy-blue text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200"
             >
               View All Articles
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -137,9 +138,12 @@ export default function Insights() {
           <p className="text-xl text-white mb-8 max-w-3xl mx-auto">
             Subscribe to our insights newsletter for the latest updates on enterprise technology, regulatory compliance, and digital transformation.
           </p>
-          <button className="bg-white text-navy-blue px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition-all">
+          <a 
+            href="/contact" 
+            className="inline-block bg-white text-navy-blue px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition-all"
+          >
             Subscribe to Newsletter
-          </button>
+          </a>
         </div>
       </section>
     </div>

@@ -139,9 +139,12 @@ export default function Approach() {
           <p className="text-xl text-white mb-8 max-w-3xl mx-auto">
             Let our proven approach guide your organization through successful technology transformation with regulatory compliance at its core.
           </p>
-          <button className="bg-white text-navy-blue px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition-all">
+          <a 
+            href="/contact" 
+            className="inline-block bg-white text-navy-blue px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition-all"
+          >
             Start Your Transformation
-          </button>
+          </a>
         </div>
       </section>
     </div>

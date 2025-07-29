@@ -4,63 +4,68 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { format } from 'date-fns';
-import { Plus, Edit, FileText, Image, Code } from 'lucide-react';
+import { Plus, FileText, Edit, Trash2, Eye } from 'lucide-react';
 
 interface ContentBlock {
   id: number;
-  key: string;
   title: string;
   content: string;
-  type: string;
-  page?: string;
+  type: 'hero' | 'section' | 'cta' | 'testimonial' | 'faq';
+  page: string;
+  position: number;
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
 }
 
 interface ContentManagerProps {
-  token: string | null;
+  token: string;
 }
 
 export default function ContentManager({ token }: ContentManagerProps) {
-  const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([]);
+  const [contents, setContents] = useState<ContentBlock[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [editingContent, setEditingContent] = useState<ContentBlock | null>(null);
   const [selectedPage, setSelectedPage] = useState<string>('all');
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
-    key: '',
     title: '',
     content: '',
-    type: 'text',
-    page: '',
+    type: 'section' as const,
+    page: 'home',
+    position: 1,
+    isActive: true,
   });
 
+  const pages = [
+    { value: 'home', label: 'Home' },
+    { value: 'about', label: 'About' },
+    { value: 'services', label: 'Services' },
+    { value: 'industries', label: 'Industries' },
+    { value: 'approach', label: 'Approach' },
+    { value: 'contact', label: 'Contact' },
+    { value: 'insights', label: 'Insights' },
+  ];
+
+  const contentTypes = [
+    { value: 'hero', label: 'Hero Section' },
+    { value: 'section', label: 'Content Section' },
+    { value: 'cta', label: 'Call to Action' },
+    { value: 'testimonial', label: 'Testimonial' },
+    { value: 'faq', label: 'FAQ' },
+  ];
+
   useEffect(() => {
-    fetchContentBlocks();
+    fetchContents();
   }, [selectedPage]);
 
-  const fetchContentBlocks = async () => {
+  const fetchContents = async () => {
     try {
       const url = selectedPage === 'all' 
         ? '/api/admin/dashboard/content'
@@ -74,7 +79,7 @@ export default function ContentManager({ token }: ContentManagerProps) {
 
       if (response.ok) {
         const data = await response.json();
-        setContentBlocks(data);
+        setContents(data || []);
       } else {
         toast({
           title: 'Error',
@@ -85,7 +90,7 @@ export default function ContentManager({ token }: ContentManagerProps) {
     } catch (error) {
       toast({
         title: 'Error',
-        description: 'An error occurred while fetching content',
+        description: 'Failed to fetch content blocks',
         variant: 'destructive',
       });
     } finally {
@@ -113,10 +118,17 @@ export default function ContentManager({ token }: ContentManagerProps) {
       });
 
       if (response.ok) {
-        await fetchContentBlocks();
-        setIsDialogOpen(false);
+        await fetchContents();
+        setIsCreateOpen(false);
         setEditingContent(null);
-        setFormData({ key: '', title: '', content: '', type: 'text', page: '' });
+        setFormData({
+          title: '',
+          content: '',
+          type: 'section',
+          page: 'home',
+          position: 1,
+          isActive: true,
+        });
         toast({
           title: 'Success',
           description: `Content ${editingContent ? 'updated' : 'created'} successfully`,
@@ -131,7 +143,40 @@ export default function ContentManager({ token }: ContentManagerProps) {
     } catch (error) {
       toast({
         title: 'Error',
-        description: 'An error occurred while saving content',
+        description: `Failed to ${editingContent ? 'update' : 'create'} content`,
+        variant: 'destructive',
+      });
+    }
+  };
+
+  const deleteContent = async (id: number) => {
+    if (!confirm('Are you sure you want to delete this content block?')) return;
+
+    try {
+      const response = await fetch(`/api/admin/dashboard/content/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        setContents(contents.filter(content => content.id !== id));
+        toast({
+          title: 'Success',
+          description: 'Content block deleted successfully',
+        });
+      } else {
+        toast({
+          title: 'Error',
+          description: 'Failed to delete content block',
+          variant: 'destructive',
+        });
+      }
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: 'Failed to delete content block',
         variant: 'destructive',
       });
     }
@@ -140,235 +185,251 @@ export default function ContentManager({ token }: ContentManagerProps) {
   const openEditDialog = (content: ContentBlock) => {
     setEditingContent(content);
     setFormData({
-      key: content.key,
       title: content.title,
       content: content.content,
       type: content.type,
-      page: content.page || '',
+      page: content.page,
+      position: content.position,
+      isActive: content.isActive,
     });
-    setIsDialogOpen(true);
-  };
-
-  const openCreateDialog = () => {
-    setEditingContent(null);
-    setFormData({ key: '', title: '', content: '', type: 'text', page: '' });
-    setIsDialogOpen(true);
-  };
-
-  const getTypeIcon = (type: string) => {
-    switch (type) {
-      case 'html': return <Code className="h-4 w-4" />;
-      case 'image': return <Image className="h-4 w-4" />;
-      case 'json': return <Code className="h-4 w-4" />;
-      default: return <FileText className="h-4 w-4" />;
-    }
+    setIsCreateOpen(true);
   };
 
   const getTypeBadgeVariant = (type: string) => {
     switch (type) {
-      case 'text': return 'default';
-      case 'html': return 'secondary';
-      case 'image': return 'outline';
-      case 'json': return 'default';
+      case 'hero': return 'default';
+      case 'section': return 'secondary';
+      case 'cta': return 'default';
+      case 'testimonial': return 'outline';
+      case 'faq': return 'secondary';
       default: return 'default';
     }
   };
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center p-8">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-navy-blue"></div>
+      <div className="space-y-4">
+        <div className="animate-pulse space-y-4">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="h-24 bg-gray-700 rounded"></div>
+          ))}
+        </div>
       </div>
     );
   }
 
   return (
     <div className="space-y-6">
-      <Card>
-        <CardHeader>
-          <div className="flex justify-between items-center">
-            <div>
-              <CardTitle>Content Management</CardTitle>
-              <CardDescription>
-                Manage dynamic content blocks across your website
-              </CardDescription>
-            </div>
-            <div className="flex items-center gap-3">
-              <Select value={selectedPage} onValueChange={setSelectedPage}>
-                <SelectTrigger className="w-40">
-                  <SelectValue placeholder="Filter by page" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Pages</SelectItem>
-                  <SelectItem value="home">Home</SelectItem>
-                  <SelectItem value="about">About</SelectItem>
-                  <SelectItem value="services">Services</SelectItem>
-                  <SelectItem value="contact">Contact</SelectItem>
-                  <SelectItem value="insights">Insights</SelectItem>
-                </SelectContent>
-              </Select>
-              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button onClick={openCreateDialog} className="bg-navy-blue hover:bg-navy-blue/90">
-                    <Plus className="h-4 w-4 mr-2" />
-                    New Content Block
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-2xl">
-                  <DialogHeader>
-                    <DialogTitle>
-                      {editingContent ? 'Edit Content Block' : 'Create New Content Block'}
-                    </DialogTitle>
-                    <DialogDescription>
-                      {editingContent ? 'Update content block details' : 'Create a new dynamic content block'}
-                    </DialogDescription>
-                  </DialogHeader>
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="key">Unique Key</Label>
-                        <Input
-                          id="key"
-                          value={formData.key}
-                          onChange={(e) => setFormData({...formData, key: e.target.value})}
-                          placeholder="e.g., hero_title, about_text"
-                          required
-                          disabled={!!editingContent}
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="page">Page</Label>
-                        <Select
-                          value={formData.page}
-                          onValueChange={(value) => setFormData({...formData, page: value})}
-                        >
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select page" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="">All Pages</SelectItem>
-                            <SelectItem value="home">Home</SelectItem>
-                            <SelectItem value="about">About</SelectItem>
-                            <SelectItem value="services">Services</SelectItem>
-                            <SelectItem value="contact">Contact</SelectItem>
-                            <SelectItem value="insights">Insights</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="title">Title</Label>
-                        <Input
-                          id="title"
-                          value={formData.title}
-                          onChange={(e) => setFormData({...formData, title: e.target.value})}
-                          placeholder="Enter content title"
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="type">Content Type</Label>
-                        <Select
-                          value={formData.type}
-                          onValueChange={(value) => setFormData({...formData, type: value})}
-                        >
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="text">Text</SelectItem>
-                            <SelectItem value="html">HTML</SelectItem>
-                            <SelectItem value="image">Image URL</SelectItem>
-                            <SelectItem value="json">JSON Data</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="content">Content</Label>
-                      <Textarea
-                        id="content"
-                        value={formData.content}
-                        onChange={(e) => setFormData({...formData, content: e.target.value})}
-                        placeholder={
-                          formData.type === 'html' ? 'Enter HTML content...' :
-                          formData.type === 'json' ? 'Enter JSON data...' :
-                          formData.type === 'image' ? 'Enter image URL...' :
-                          'Enter text content...'
-                        }
-                        rows={8}
-                        required
-                      />
-                    </div>
-                    <div className="flex justify-end gap-2">
-                      <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
-                        Cancel
-                      </Button>
-                      <Button type="submit" className="bg-navy-blue hover:bg-navy-blue/90">
-                        {editingContent ? 'Update' : 'Create'} Content Block
-                      </Button>
-                    </div>
-                  </form>
-                </DialogContent>
-              </Dialog>
-            </div>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {contentBlocks.length === 0 ? (
-              <div className="text-center py-8 text-charcoal">
-                No content blocks found. Create your first content block to get started.
-              </div>
-            ) : (
-              contentBlocks.map((content) => (
-                <div key={content.id} className="border rounded-lg p-4 space-y-3">
-                  <div className="flex justify-between items-start">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="flex items-center gap-2">
-                          {getTypeIcon(content.type)}
-                          <h3 className="font-semibold text-navy-blue">{content.title}</h3>
-                        </div>
-                        <Badge variant={getTypeBadgeVariant(content.type)}>
-                          {content.type}
-                        </Badge>
-                        {!content.isActive && (
-                          <Badge variant="destructive">Inactive</Badge>
-                        )}
-                      </div>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-sm text-charcoal mb-3">
-                        <div><strong>Key:</strong> {content.key}</div>
-                        <div><strong>Page:</strong> {content.page || 'All'}</div>
-                        <div><strong>Updated:</strong> {format(new Date(content.updatedAt), 'MMM dd, yyyy')}</div>
-                      </div>
-                      <div className="text-sm text-charcoal">
-                        <strong>Content Preview:</strong>
-                        <div className="mt-1 p-2 bg-gray-50 rounded text-xs font-mono">
-                          {content.content.length > 200 
-                            ? `${content.content.substring(0, 200)}...`
-                            : content.content
-                          }
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => openEditDialog(content)}
-                      >
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                    </div>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h2 className="text-2xl font-bold text-white">Content Management</h2>
+          <p className="text-gray-400">Manage website content blocks and sections</p>
+        </div>
+        
+        <div className="flex gap-4">
+          <Select value={selectedPage} onValueChange={setSelectedPage}>
+            <SelectTrigger className="w-48 bg-gray-800 border-gray-600">
+              <SelectValue placeholder="Filter by page" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Pages</SelectItem>
+              {pages.map(page => (
+                <SelectItem key={page.value} value={page.value}>
+                  {page.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          
+          <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
+            <DialogTrigger asChild>
+              <Button className="bg-blue-600 hover:bg-blue-700">
+                <Plus className="h-4 w-4 mr-2" />
+                New Content
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="bg-gray-800 border-gray-700 max-w-2xl">
+              <DialogHeader>
+                <DialogTitle className="text-white">
+                  {editingContent ? 'Edit Content Block' : 'Create New Content Block'}
+                </DialogTitle>
+                <DialogDescription>
+                  {editingContent ? 'Update the content block details.' : 'Add a new content block to your website.'}
+                </DialogDescription>
+              </DialogHeader>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="title" className="text-white">Title</Label>
+                    <Input
+                      id="title"
+                      value={formData.title}
+                      onChange={(e) => setFormData({...formData, title: e.target.value})}
+                      className="bg-gray-700 border-gray-600 text-white"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="type" className="text-white">Content Type</Label>
+                    <Select value={formData.type} onValueChange={(value: any) => setFormData({...formData, type: value})}>
+                      <SelectTrigger className="bg-gray-700 border-gray-600">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {contentTypes.map(type => (
+                          <SelectItem key={type.value} value={type.value}>
+                            {type.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
-              ))
-            )}
-          </div>
-        </CardContent>
-      </Card>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="page" className="text-white">Page</Label>
+                    <Select value={formData.page} onValueChange={(value) => setFormData({...formData, page: value})}>
+                      <SelectTrigger className="bg-gray-700 border-gray-600">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {pages.map(page => (
+                          <SelectItem key={page.value} value={page.value}>
+                            {page.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor="position" className="text-white">Position</Label>
+                    <Input
+                      id="position"
+                      type="number"
+                      min="1"
+                      value={formData.position}
+                      onChange={(e) => setFormData({...formData, position: parseInt(e.target.value)})}
+                      className="bg-gray-700 border-gray-600 text-white"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <Label htmlFor="content" className="text-white">Content</Label>
+                  <Textarea
+                    id="content"
+                    value={formData.content}
+                    onChange={(e) => setFormData({...formData, content: e.target.value})}
+                    className="bg-gray-700 border-gray-600 text-white min-h-32"
+                    rows={6}
+                    required
+                  />
+                </div>
+                
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    id="isActive"
+                    checked={formData.isActive}
+                    onChange={(e) => setFormData({...formData, isActive: e.target.checked})}
+                    className="rounded bg-gray-700 border-gray-600"
+                  />
+                  <Label htmlFor="isActive" className="text-white">Active</Label>
+                </div>
+                
+                <div className="flex justify-end gap-2">
+                  <Button 
+                    type="button" 
+                    variant="outline" 
+                    onClick={() => {
+                      setIsCreateOpen(false);
+                      setEditingContent(null);
+                      setFormData({
+                        title: '',
+                        content: '',
+                        type: 'section',
+                        page: 'home',
+                        position: 1,
+                        isActive: true,
+                      });
+                    }}
+                    className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                  >
+                    Cancel
+                  </Button>
+                  <Button type="submit" className="bg-blue-600 hover:bg-blue-700">
+                    {editingContent ? 'Update' : 'Create'} Content
+                  </Button>
+                </div>
+              </form>
+            </DialogContent>
+          </Dialog>
+        </div>
+      </div>
+
+      <div className="grid gap-4">
+        {contents.length === 0 ? (
+          <Card className="bg-gray-800 border-gray-700">
+            <CardContent className="text-center py-8">
+              <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-400">No content blocks found</p>
+              <p className="text-sm text-gray-500 mt-2">Create your first content block to get started</p>
+            </CardContent>
+          </Card>
+        ) : (
+          contents.map((content) => (
+            <Card key={content.id} className="bg-gray-800 border-gray-700">
+              <CardContent className="p-6">
+                <div className="flex justify-between items-start mb-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <h3 className="text-lg font-semibold text-white">{content.title}</h3>
+                      <Badge variant={getTypeBadgeVariant(content.type)}>
+                        {content.type}
+                      </Badge>
+                      {content.isActive ? (
+                        <Badge variant="default" className="bg-green-600">Active</Badge>
+                      ) : (
+                        <Badge variant="secondary">Inactive</Badge>
+                      )}
+                    </div>
+                    <div className="text-sm text-gray-400 mb-3">
+                      <span className="capitalize">{content.page}</span> • Position {content.position}
+                    </div>
+                    <p className="text-sm text-gray-300 line-clamp-2">{content.content}</p>
+                  </div>
+                  
+                  <div className="flex gap-2 ml-4">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => openEditDialog(content)}
+                      className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                    >
+                      <Edit className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => deleteContent(content.id)}
+                      className="border-red-600 text-red-400 hover:bg-red-600 hover:text-white"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+                
+                <div className="text-xs text-gray-500">
+                  Created: {new Date(content.createdAt).toLocaleDateString()} • 
+                  Updated: {new Date(content.updatedAt).toLocaleDateString()}
+                </div>
+              </CardContent>
+            </Card>
+          ))
+        )}
+      </div>
     </div>
   );
 }

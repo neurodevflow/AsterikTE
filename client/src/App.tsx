@@ -21,6 +21,7 @@ import Insights from "./pages/Insights";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import AdminLogin from "./pages/admin/AdminLogin";
 import Dashboard from "./pages/admin/Dashboard";
+import CustomerLogin from "./pages/CustomerLogin";
 import NotFound from "@/pages/not-found";
 
 function AdminRoute({ component: Component }: { component: React.ComponentType }) {
@@ -70,6 +71,7 @@ function PublicRouter() {
             <Route path="/about" component={About} />
             <Route path="/insights" component={Insights} />
             <Route path="/privacy-policy" component={PrivacyPolicy} />
+            <Route path="/customer-login" component={CustomerLogin} />
             <Route component={NotFound} />
           </Switch>
         </main>

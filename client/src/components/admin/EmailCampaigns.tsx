@@ -5,56 +5,43 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { format } from 'date-fns';
-import { Plus, Send, Edit, Trash2 } from 'lucide-react';
+import { Plus, Mail, Calendar, Users, Trash2, Edit, Send } from 'lucide-react';
 
-interface EmailCampaign {
+interface Campaign {
   id: number;
   name: string;
   subject: string;
   content: string;
-  status: string;
+  targetAudience: string;
+  status: 'draft' | 'scheduled' | 'sent';
+  scheduledDate?: string;
+  sentDate?: string;
   recipientCount: number;
-  openCount: number;
-  clickCount: number;
-  scheduledAt?: string;
-  sentAt?: string;
+  openRate?: number;
+  clickRate?: number;
   createdAt: string;
-  updatedAt: string;
 }
 
 interface EmailCampaignsProps {
-  token: string | null;
+  token: string;
 }
 
 export default function EmailCampaigns({ token }: EmailCampaignsProps) {
-  const [campaigns, setCampaigns] = useState<EmailCampaign[]>([]);
+  const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [editingCampaign, setEditingCampaign] = useState<EmailCampaign | null>(null);
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [editingCampaign, setEditingCampaign] = useState<Campaign | null>(null);
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
     name: '',
     subject: '',
     content: '',
-    scheduledAt: '',
+    targetAudience: 'all',
+    scheduledDate: '',
   });
 
   useEffect(() => {
@@ -71,18 +58,18 @@ export default function EmailCampaigns({ token }: EmailCampaignsProps) {
 
       if (response.ok) {
         const data = await response.json();
-        setCampaigns(data);
+        setCampaigns(data || []);
       } else {
         toast({
           title: 'Error',
-          description: 'Failed to fetch email campaigns',
+          description: 'Failed to fetch campaigns',
           variant: 'destructive',
         });
       }
     } catch (error) {
       toast({
         title: 'Error',
-        description: 'An error occurred while fetching campaigns',
+        description: 'Failed to fetch campaigns',
         variant: 'destructive',
       });
     } finally {
@@ -108,15 +95,22 @@ export default function EmailCampaigns({ token }: EmailCampaignsProps) {
         },
         body: JSON.stringify({
           ...formData,
-          scheduledAt: formData.scheduledAt ? new Date(formData.scheduledAt).toISOString() : null,
+          status: 'draft',
+          recipientCount: formData.targetAudience === 'all' ? 100 : 50, // Mock counts
         }),
       });
 
       if (response.ok) {
         await fetchCampaigns();
-        setIsDialogOpen(false);
+        setIsCreateOpen(false);
         setEditingCampaign(null);
-        setFormData({ name: '', subject: '', content: '', scheduledAt: '' });
+        setFormData({
+          name: '',
+          subject: '',
+          content: '',
+          targetAudience: 'all',
+          scheduledDate: '',
+        });
         toast({
           title: 'Success',
           description: `Campaign ${editingCampaign ? 'updated' : 'created'} successfully`,
@@ -131,19 +125,17 @@ export default function EmailCampaigns({ token }: EmailCampaignsProps) {
     } catch (error) {
       toast({
         title: 'Error',
-        description: 'An error occurred while saving campaign',
+        description: `Failed to ${editingCampaign ? 'update' : 'create'} campaign`,
         variant: 'destructive',
       });
     }
   };
 
-  const deleteCampaign = async (campaignId: number) => {
-    if (!confirm('Are you sure you want to delete this campaign?')) {
-      return;
-    }
+  const deleteCampaign = async (id: number) => {
+    if (!confirm('Are you sure you want to delete this campaign?')) return;
 
     try {
-      const response = await fetch(`/api/admin/dashboard/campaigns/${campaignId}`, {
+      const response = await fetch(`/api/admin/dashboard/campaigns/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -151,7 +143,7 @@ export default function EmailCampaigns({ token }: EmailCampaignsProps) {
       });
 
       if (response.ok) {
-        setCampaigns(campaigns.filter(c => c.id !== campaignId));
+        setCampaigns(campaigns.filter(campaign => campaign.id !== id));
         toast({
           title: 'Success',
           description: 'Campaign deleted successfully',
@@ -166,27 +158,10 @@ export default function EmailCampaigns({ token }: EmailCampaignsProps) {
     } catch (error) {
       toast({
         title: 'Error',
-        description: 'An error occurred while deleting campaign',
+        description: 'Failed to delete campaign',
         variant: 'destructive',
       });
     }
-  };
-
-  const openEditDialog = (campaign: EmailCampaign) => {
-    setEditingCampaign(campaign);
-    setFormData({
-      name: campaign.name,
-      subject: campaign.subject,
-      content: campaign.content,
-      scheduledAt: campaign.scheduledAt ? campaign.scheduledAt.split('T')[0] : '',
-    });
-    setIsDialogOpen(true);
-  };
-
-  const openCreateDialog = () => {
-    setEditingCampaign(null);
-    setFormData({ name: '', subject: '', content: '', scheduledAt: '' });
-    setIsDialogOpen(true);
   };
 
   const getStatusBadgeVariant = (status: string) => {
@@ -194,159 +169,214 @@ export default function EmailCampaigns({ token }: EmailCampaignsProps) {
       case 'draft': return 'secondary';
       case 'scheduled': return 'default';
       case 'sent': return 'outline';
-      case 'cancelled': return 'destructive';
-      default: return 'secondary';
+      default: return 'default';
     }
+  };
+
+  const openEditDialog = (campaign: Campaign) => {
+    setEditingCampaign(campaign);
+    setFormData({
+      name: campaign.name,
+      subject: campaign.subject,
+      content: campaign.content,
+      targetAudience: campaign.targetAudience,
+      scheduledDate: campaign.scheduledDate || '',
+    });
+    setIsCreateOpen(true);
   };
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center p-8">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-navy-blue"></div>
+      <div className="space-y-4">
+        <div className="animate-pulse space-y-4">
+          {[...Array(3)].map((_, i) => (
+            <div key={i} className="h-32 bg-gray-700 rounded"></div>
+          ))}
+        </div>
       </div>
     );
   }
 
   return (
     <div className="space-y-6">
-      <Card>
-        <CardHeader>
-          <div className="flex justify-between items-center">
-            <div>
-              <CardTitle>Email Campaigns</CardTitle>
-              <CardDescription>
-                Create and manage email marketing campaigns
-              </CardDescription>
-            </div>
-            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-              <DialogTrigger asChild>
-                <Button onClick={openCreateDialog} className="bg-navy-blue hover:bg-navy-blue/90">
-                  <Plus className="h-4 w-4 mr-2" />
-                  New Campaign
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="max-w-2xl">
-                <DialogHeader>
-                  <DialogTitle>
-                    {editingCampaign ? 'Edit Campaign' : 'Create New Campaign'}
-                  </DialogTitle>
-                  <DialogDescription>
-                    {editingCampaign ? 'Update campaign details' : 'Create a new email marketing campaign'}
-                  </DialogDescription>
-                </DialogHeader>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Campaign Name</Label>
-                      <Input
-                        id="name"
-                        value={formData.name}
-                        onChange={(e) => setFormData({...formData, name: e.target.value})}
-                        placeholder="Enter campaign name"
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="scheduledAt">Schedule Date (Optional)</Label>
-                      <Input
-                        id="scheduledAt"
-                        type="datetime-local"
-                        value={formData.scheduledAt}
-                        onChange={(e) => setFormData({...formData, scheduledAt: e.target.value})}
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="subject">Email Subject</Label>
-                    <Input
-                      id="subject"
-                      value={formData.subject}
-                      onChange={(e) => setFormData({...formData, subject: e.target.value})}
-                      placeholder="Enter email subject"
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="content">Email Content</Label>
-                    <Textarea
-                      id="content"
-                      value={formData.content}
-                      onChange={(e) => setFormData({...formData, content: e.target.value})}
-                      placeholder="Enter email content (HTML supported)"
-                      rows={10}
-                      required
-                    />
-                  </div>
-                  <div className="flex justify-end gap-2">
-                    <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
-                      Cancel
-                    </Button>
-                    <Button type="submit" className="bg-navy-blue hover:bg-navy-blue/90">
-                      {editingCampaign ? 'Update' : 'Create'} Campaign
-                    </Button>
-                  </div>
-                </form>
-              </DialogContent>
-            </Dialog>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {campaigns.length === 0 ? (
-              <div className="text-center py-8 text-charcoal">
-                No email campaigns found. Create your first campaign to get started.
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold text-white">Email Campaigns</h2>
+        <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
+          <DialogTrigger asChild>
+            <Button className="bg-blue-600 hover:bg-blue-700">
+              <Plus className="h-4 w-4 mr-2" />
+              New Campaign
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="bg-gray-800 border-gray-700 max-w-2xl">
+            <DialogHeader>
+              <DialogTitle className="text-white">
+                {editingCampaign ? 'Edit Campaign' : 'Create New Campaign'}
+              </DialogTitle>
+              <DialogDescription>
+                {editingCampaign ? 'Update your email campaign.' : 'Create a new email campaign to engage with your audience.'}
+              </DialogDescription>
+            </DialogHeader>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="name" className="text-white">Campaign Name</Label>
+                  <Input
+                    id="name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    className="bg-gray-700 border-gray-600 text-white"
+                    required
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="targetAudience" className="text-white">Target Audience</Label>
+                  <Select value={formData.targetAudience} onValueChange={(value) => setFormData({...formData, targetAudience: value})}>
+                    <SelectTrigger className="bg-gray-700 border-gray-600">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Contacts</SelectItem>
+                      <SelectItem value="new">New Leads</SelectItem>
+                      <SelectItem value="qualified">Qualified Prospects</SelectItem>
+                      <SelectItem value="customers">Existing Customers</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
-            ) : (
-              campaigns.map((campaign) => (
-                <div key={campaign.id} className="border rounded-lg p-4 space-y-3">
-                  <div className="flex justify-between items-start">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <h3 className="font-semibold text-navy-blue">{campaign.name}</h3>
-                        <Badge variant={getStatusBadgeVariant(campaign.status)}>
-                          {campaign.status}
-                        </Badge>
-                      </div>
-                      <p className="text-sm text-charcoal mb-2">
-                        <strong>Subject:</strong> {campaign.subject}
-                      </p>
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-charcoal">
-                        <div>Recipients: {campaign.recipientCount}</div>
-                        <div>Opens: {campaign.openCount}</div>
-                        <div>Clicks: {campaign.clickCount}</div>
-                        <div>
-                          Created: {format(new Date(campaign.createdAt), 'MMM dd, yyyy')}
-                        </div>
-                      </div>
-                      {campaign.scheduledAt && (
-                        <p className="text-sm text-charcoal mt-2">
-                          <strong>Scheduled:</strong> {format(new Date(campaign.scheduledAt), 'MMM dd, yyyy HH:mm')}
-                        </p>
-                      )}
+              
+              <div>
+                <Label htmlFor="subject" className="text-white">Email Subject</Label>
+                <Input
+                  id="subject"
+                  value={formData.subject}
+                  onChange={(e) => setFormData({...formData, subject: e.target.value})}
+                  className="bg-gray-700 border-gray-600 text-white"
+                  required
+                />
+              </div>
+              
+              <div>
+                <Label htmlFor="content" className="text-white">Email Content</Label>
+                <Textarea
+                  id="content"
+                  value={formData.content}
+                  onChange={(e) => setFormData({...formData, content: e.target.value})}
+                  className="bg-gray-700 border-gray-600 text-white min-h-32"
+                  rows={6}
+                  required
+                />
+              </div>
+              
+              <div>
+                <Label htmlFor="scheduledDate" className="text-white">Schedule Date (Optional)</Label>
+                <Input
+                  id="scheduledDate"
+                  type="datetime-local"
+                  value={formData.scheduledDate}
+                  onChange={(e) => setFormData({...formData, scheduledDate: e.target.value})}
+                  className="bg-gray-700 border-gray-600 text-white"
+                />
+              </div>
+              
+              <div className="flex justify-end gap-2">
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  onClick={() => {
+                    setIsCreateOpen(false);
+                    setEditingCampaign(null);
+                    setFormData({
+                      name: '',
+                      subject: '',
+                      content: '',
+                      targetAudience: 'all',
+                      scheduledDate: '',
+                    });
+                  }}
+                  className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                >
+                  Cancel
+                </Button>
+                <Button type="submit" className="bg-blue-600 hover:bg-blue-700">
+                  {editingCampaign ? 'Update' : 'Create'} Campaign
+                </Button>
+              </div>
+            </form>
+          </DialogContent>
+        </Dialog>
+      </div>
+
+      <div className="grid gap-4">
+        {campaigns.length === 0 ? (
+          <Card className="bg-gray-800 border-gray-700">
+            <CardContent className="text-center py-8">
+              <Mail className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-400">No email campaigns yet</p>
+              <p className="text-sm text-gray-500 mt-2">Create your first campaign to get started</p>
+            </CardContent>
+          </Card>
+        ) : (
+          campaigns.map((campaign) => (
+            <Card key={campaign.id} className="bg-gray-800 border-gray-700">
+              <CardContent className="p-6">
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <div className="flex items-center gap-3 mb-2">
+                      <h3 className="text-lg font-semibold text-white">{campaign.name}</h3>
+                      <Badge variant={getStatusBadgeVariant(campaign.status)}>
+                        {campaign.status}
+                      </Badge>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => openEditDialog(campaign)}
-                      >
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="destructive"
-                        onClick={() => deleteCampaign(campaign.id)}
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
+                    <p className="text-sm text-gray-400 mb-2">Subject: {campaign.subject}</p>
+                    <p className="text-sm text-gray-400">Target: {campaign.targetAudience}</p>
+                  </div>
+                  
+                  <div className="flex gap-2">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => openEditDialog(campaign)}
+                      className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                    >
+                      <Edit className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => deleteCampaign(campaign.id)}
+                      className="border-red-600 text-red-400 hover:bg-red-600 hover:text-white"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
                   </div>
                 </div>
-              ))
-            )}
-          </div>
-        </CardContent>
-      </Card>
+                
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+                  <div className="flex items-center gap-2 text-gray-400">
+                    <Users className="h-4 w-4" />
+                    {campaign.recipientCount} recipients
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-400">
+                    <Calendar className="h-4 w-4" />
+                    Created {new Date(campaign.createdAt).toLocaleDateString()}
+                  </div>
+                  {campaign.openRate && (
+                    <div className="text-gray-400">
+                      Open Rate: {campaign.openRate}%
+                    </div>
+                  )}
+                  {campaign.clickRate && (
+                    <div className="text-gray-400">
+                      Click Rate: {campaign.clickRate}%
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          ))
+        )}
+      </div>
     </div>
   );
 }

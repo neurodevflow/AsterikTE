@@ -131,13 +131,13 @@ export default function Header() {
                           {item.name === "Services" ? (
                             <div className="p-8 w-[1000px]">
                               <div className="grid grid-cols-4 gap-10">
-                                {item.dropdownItems.map((category) => (
+                                {item.dropdownItems.map((category: any) => (
                                   <div key={category.category} className="space-y-4">
                                     <h4 className="font-bold text-navy-blue text-xs uppercase tracking-wide border-b border-light-grey pb-3">
                                       {category.category}
                                     </h4>
                                     <ul className="space-y-1">
-                                      {category.items.map((subItem) => (
+                                      {category.items.map((subItem: any) => (
                                         <li key={subItem.name}>
                                           <Link
                                             href={subItem.href}
@@ -155,7 +155,7 @@ export default function Header() {
                           ) : (
                             <div className="p-8 w-[480px]">
                               <div className="grid grid-cols-2 gap-8">
-                                {item.dropdownItems.map((industry, index) => (
+                                {item.dropdownItems.map((industry: any, index) => (
                                   <Link
                                     key={industry.name}
                                     href={industry.href}
@@ -189,12 +189,20 @@ export default function Header() {
 
           {/* Login Buttons */}
           <div className="hidden md:flex space-x-4">
-            <button className="text-charcoal hover:text-navy-blue transition-colors duration-200 font-medium">
+            <a 
+              href="https://webmail.asterik.ae" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-charcoal hover:text-navy-blue transition-colors duration-200 font-medium"
+            >
               Staff Login
-            </button>
-            <button className="bg-navy-blue text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
+            </a>
+            <Link 
+              href="/customer-login"
+              className="bg-navy-blue text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium"
+            >
               Customer Login
-            </button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -260,13 +268,13 @@ export default function Header() {
                         <div className="ml-4 mt-2 mb-3 bg-soft-beige rounded-lg p-4 border-l-4 border-navy-blue">
                           {item.name === "Services" ? (
                             <div className="space-y-4">
-                              {item.dropdownItems.map((category) => (
+                              {item.dropdownItems.map((category: any) => (
                                 <div key={category.category} className="space-y-2">
                                   <div className="font-bold text-navy-blue text-xs uppercase tracking-wide border-b border-light-grey pb-2">
                                     {category.category}
                                   </div>
                                   <div className="space-y-1">
-                                    {category.items.map((subItem) => (
+                                    {category.items.map((subItem: any) => (
                                       <Link
                                         key={subItem.name}
                                         href={subItem.href}
@@ -286,7 +294,7 @@ export default function Header() {
                             </div>
                           ) : (
                             <div className="space-y-1">
-                              {item.dropdownItems.map((subItem) => (
+                              {item.dropdownItems.map((subItem: any) => (
                                 <Link
                                   key={subItem.name}
                                   href={subItem.href}
@@ -324,18 +332,23 @@ export default function Header() {
               
               {/* Mobile Login Buttons */}
               <div className="pt-4 border-t border-light-grey mt-4 space-y-2">
-                <button 
+                <a 
+                  href="https://webmail.asterik.ae" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
                   className="block w-full text-left px-3 py-3 text-charcoal hover:text-navy-blue transition-colors touch-manipulation font-medium min-h-[44px]"
                   style={{ touchAction: 'manipulation' }}
                 >
                   Staff Login
-                </button>
-                <button 
+                </a>
+                <Link 
+                  href="/customer-login"
+                  onClick={() => setMobileMenuOpen(false)}
                   className="block w-full text-center px-3 py-3 bg-navy-blue text-white rounded-md hover:bg-opacity-90 transition-all touch-manipulation font-medium min-h-[44px]"
                   style={{ touchAction: 'manipulation' }}
                 >
                   Customer Login
-                </button>
+                </Link>
               </div>
             </div>
           </div>

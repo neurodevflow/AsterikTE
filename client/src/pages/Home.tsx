@@ -21,16 +21,18 @@ export default function Home() {
             Delivering elite IT talent, digital transformation expertise, and end-to-end implementation for government entities and financial institutions
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button 
-              className="bg-navy-blue text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transform hover:scale-105 transition-all duration-200 shadow-lg"
+            <a 
+              href="/contact"
+              className="bg-navy-blue text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transform hover:scale-105 transition-all duration-200 shadow-lg text-center"
             >
               Schedule Consultation
-            </button>
-            <button 
-              className="text-white border-2 border-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-charcoal transition-all duration-200"
+            </a>
+            <a 
+              href="/approach"
+              className="text-white border-2 border-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-charcoal transition-all duration-200 text-center"
             >
               View Our Approach
-            </button>
+            </a>
           </div>
         </div>
       </div>
