@@ -233,6 +233,13 @@ This is a full-stack web application for ASTERIK, a professional technology cons
   - Successfully tested all admin endpoints: /api/admin/dashboard/stats, /contacts, /campaigns, /content
   - Admin login working with credentials: admin@asterik.ae / admin123
   - All admin dashboard components now fully functional and accessible
+- July 29, 2025: Contact Form and Gemini AI Recommendations Fix
+  - RESOLVED contact form validation error by making subject field optional in database schema
+  - FIXED Gemini AI recommendations endpoint - restored missing /api/recommendations route
+  - Updated contact form to work without subject field requirement (name, email, message only)
+  - Successfully tested both contact form submission and AI recommendations generation
+  - All admin dashboard URLs now accessible: /admin, /admin/login, /admin/dashboard
+  - Both frontend AI features and backend admin system fully operational
 - July 29, 2025: Page Builder Import Functionality Fix
   - RESOLVED page import breaking admin dashboard issue
   - Added missing API endpoints: GET /api/admin/pages, POST /api/admin/pages, DELETE /api/admin/pages/:id

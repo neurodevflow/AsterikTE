@@ -111,6 +111,9 @@ function Router() {
     return (
       <AdminAuthProvider>
         <Switch>
+          <Route path="/admin">
+            <AdminRoute component={Dashboard} />
+          </Route>
           <Route path="/admin/dashboard">
             <AdminRoute component={Dashboard} />
           </Route>
