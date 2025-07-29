@@ -275,6 +275,8 @@ export const insertEmailCampaignSchema = createInsertSchema(emailCampaigns).pick
   subject: true,
   content: true,
   scheduledAt: true,
+}).extend({
+  scheduledAt: z.string().optional().transform((val) => val ? new Date(val) : undefined),
 });
 
 export const insertContentBlockSchema = createInsertSchema(contentBlocks).pick({
