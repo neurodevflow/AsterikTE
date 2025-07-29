@@ -12,11 +12,12 @@ export default function Services() {
               Take advantage of Asterik's more than 10 years of technical knowledge and experience in providing top-notch software development services to help your business grow and stay competitive on the market.
             </p>
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 max-w-4xl mx-auto">
-              <img 
-                src="/api/placeholder/600/350" 
-                alt="Software Developer Services Done right and with confidence!" 
-                className="w-full rounded-lg shadow-lg"
-              />
+              <div className="w-full h-64 bg-gradient-to-br from-navy-blue/20 to-warm-orange/20 rounded-lg shadow-lg flex items-center justify-center">
+                <div className="text-center">
+                  <i className="fas fa-code text-6xl text-white mb-4"></i>
+                  <h3 className="text-xl font-semibold text-white">Software Development Excellence</h3>
+                </div>
+              </div>
             </div>
           </div>
         </div>

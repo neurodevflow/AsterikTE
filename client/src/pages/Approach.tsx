@@ -99,11 +99,11 @@ export default function Approach() {
             </div>
           </div>
 
-          {/* Sample Case Study */}
+          {/* Implementation Methodology */}
           <div className="bg-navy-blue text-white rounded-2xl p-8 md:p-12">
-            <h3 className="font-bold text-2xl md:text-3xl mb-8 text-center">Featured Case Study</h3>
+            <h3 className="font-bold text-2xl md:text-3xl mb-8 text-center">Our Step-by-Step Process</h3>
             <h4 className="font-bold text-xl mb-6 text-warm-orange">
-              Digital Transformation for GCC Financial Institution
+              How We Deliver Enterprise Transformation
             </h4>
             
             <div className="grid md:grid-cols-3 gap-8">
