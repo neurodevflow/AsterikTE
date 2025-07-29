@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Admin Login</title>
+</head>
+<body>
+    <h1>Admin Login Test</h1>
+    <form id="loginForm">
+        <input type="email" id="email" value="admin@asterik.ae" placeholder="Email">
+        <input type="password" id="password" value="admin123" placeholder="Password">
+        <button type="submit">Login</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const result = document.getElementById('result');
+            
+            try {
+                const response = await fetch('/api/admin/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+                
+                const data = await response.json();
+                if (response.ok) {
+                    localStorage.setItem('adminToken', data.token);
+                    localStorage.setItem('adminUser', JSON.stringify(data.user));
+                    result.innerHTML = `<p style="color: green;">Login successful! Token: ${data.token.substring(0, 20)}...</p>`;
+                    setTimeout(() => {
+                        window.location.href = '/admin/dashboard';
+                    }, 1000);
+                } else {
+                    result.innerHTML = `<p style="color: red;">Login failed: ${data.message}</p>`;
+                }
+            } catch (error) {
+                result.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>

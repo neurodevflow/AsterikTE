@@ -23,14 +23,22 @@ export default function AdminLogin() {
     setIsLoading(true);
 
     try {
+      console.log('Attempting login with:', email);
       const success = await login(email, password);
+      console.log('Login result:', success);
+      
       if (success) {
-        setLocation('/admin/dashboard');
+        console.log('Login successful, redirecting to dashboard...');
         toast({
           title: 'Login Successful',
           description: 'Welcome to the admin dashboard!',
         });
+        // Use a small delay to ensure the toast is shown
+        setTimeout(() => {
+          setLocation('/admin/dashboard');
+        }, 500);
       } else {
+        console.log('Login failed');
         toast({
           title: 'Login Failed',
           description: 'Invalid email or password. Please try again.',
@@ -38,6 +46,7 @@ export default function AdminLogin() {
         });
       }
     } catch (error) {
+      console.error('Login error:', error);
       toast({
         title: 'Error',
         description: 'An error occurred during login. Please try again.',

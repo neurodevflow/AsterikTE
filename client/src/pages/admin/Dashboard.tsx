@@ -292,15 +292,15 @@ export default function Dashboard() {
           </TabsContent>
 
           <TabsContent value="contacts">
-            <ContactsManager token={token} />
+            <ContactsManager token={token || ''} />
           </TabsContent>
 
           <TabsContent value="emails">
-            <EmailCampaigns token={token} />
+            <EmailCampaigns token={token || ''} />
           </TabsContent>
 
           <TabsContent value="content">
-            <ContentManager token={token} />
+            <ContentManager token={token || ''} />
           </TabsContent>
 
           <TabsContent value="customize" className="space-y-6">
