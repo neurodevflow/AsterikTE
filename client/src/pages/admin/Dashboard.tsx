@@ -68,8 +68,12 @@ export default function Dashboard() {
   const fetchStats = async (authToken?: string) => {
     try {
       const currentToken = authToken || token;
-      if (!currentToken) return;
+      if (!currentToken) {
+        console.log('No token available for stats fetch');
+        return;
+      }
 
+      console.log('Fetching stats with token:', currentToken.substring(0, 20) + '...');
       const response = await fetch('/api/admin/dashboard/stats', {
         headers: {
           'Authorization': `Bearer ${currentToken}`,
@@ -78,8 +82,10 @@ export default function Dashboard() {
 
       if (response.ok) {
         const data = await response.json();
+        console.log('Stats data received:', data);
         setStats(data);
       } else {
+        console.log('Stats fetch failed with status:', response.status);
         toast({
           title: 'Error',
           description: 'Failed to fetch dashboard statistics',
