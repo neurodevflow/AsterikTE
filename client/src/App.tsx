@@ -72,8 +72,16 @@ function PublicRouter() {
             <Route path="/insights" component={Insights} />
             <Route path="/privacy-policy" component={PrivacyPolicy} />
             <Route path="/customer-login" component={CustomerLogin} />
-            <Route path="/admin-login" component={AdminLogin} />
-            <Route path="/admin/login" component={AdminLogin} />
+            <Route path="/admin-login">
+              <AdminAuthProvider>
+                <AdminLogin />
+              </AdminAuthProvider>
+            </Route>
+            <Route path="/admin/login">
+              <AdminAuthProvider>
+                <AdminLogin />
+              </AdminAuthProvider>
+            </Route>
             <Route component={NotFound} />
           </Switch>
         </main>
@@ -98,13 +106,11 @@ function PublicRouter() {
 function Router() {
   const [location] = useLocation();
 
-  // Check if this is an admin route (including /admin-login)
-  if (location.startsWith('/admin')) {
+  // Check if this is an admin dashboard route (but not login routes)
+  if (location.startsWith('/admin/dashboard') || location === '/admin') {
     return (
       <AdminAuthProvider>
         <Switch>
-          <Route path="/admin-login" component={AdminLogin} />
-          <Route path="/admin/login" component={AdminLogin} />
           <Route path="/admin/dashboard">
             <AdminRoute component={Dashboard} />
           </Route>
@@ -114,7 +120,7 @@ function Router() {
     );
   }
 
-  // Public routes
+  // All other routes (public + admin login)
   return <PublicRouter />;
 }
 
