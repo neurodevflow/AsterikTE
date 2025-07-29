@@ -42,16 +42,16 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="font-bold text-4xl mb-2 text-navy-blue">15+</div>
-              <p className="text-charcoal font-semibold">Years Experience</p>
+              <div className="font-bold text-4xl mb-2 text-navy-blue">30+</div>
+              <p className="text-charcoal font-semibold">Cumulative Years Leadership Experience</p>
             </div>
             <div>
-              <div className="font-bold text-4xl mb-2 text-navy-blue">100+</div>
-              <p className="text-charcoal font-semibold">Enterprise Clients</p>
+              <div className="font-bold text-4xl mb-2 text-navy-blue">48hr</div>
+              <p className="text-charcoal font-semibold">CV Turnaround Time</p>
             </div>
             <div>
-              <div className="font-bold text-4xl mb-2 text-navy-blue">99%</div>
-              <p className="text-charcoal font-semibold">Compliance Rate</p>
+              <div className="font-bold text-4xl mb-2 text-navy-blue">100%</div>
+              <p className="text-charcoal font-semibold">GCC Compliance-Ready Profiles</p>
             </div>
             <div>
               <div className="font-bold text-4xl mb-2 text-navy-blue">24/7</div>
@@ -142,10 +142,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-bold text-3xl md:text-4xl mb-4 text-navy-blue">
-              Transforming the GCC Region
+              Empowering GCC Digital Leaders
             </h2>
             <p className="text-lg text-charcoal max-w-3xl mx-auto">
-              Leading digital transformation initiatives across key industries with regulatory compliance at the forefront
+              Providing scalable, regulation-ready solutions to drive the next generation of digital transformation initiatives
             </p>
           </div>
           
