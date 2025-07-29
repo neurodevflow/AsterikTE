@@ -5,6 +5,7 @@ import { insertContactSubmissionSchema, insertEmailCampaignSchema } from "@share
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import type { Request, Response, NextFunction } from "express";
+import path from "path";
 
 // Auth utilities
 const JWT_SECRET = process.env.JWT_SECRET || "asterik-admin-secret-key";
@@ -48,6 +49,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
         userAgent: req.get('user-agent')
       }
     });
+  });
+
+  // Debug page route
+  app.get("/debug-react", (req, res) => {
+    res.sendFile(path.resolve(import.meta.dirname, "..", "debug-react.html"));
+  });
+
+  // Minimal test route
+  app.get("/minimal-test", (req, res) => {
+    res.sendFile(path.resolve(import.meta.dirname, "..", "minimal-test.html"));
   });
 
   // Contact form submission
@@ -270,7 +281,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const campaign = await storage.createCampaign(validatedData);
       res.json(campaign);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error creating campaign:", error);
       if (error.issues) {
         console.error("Zod validation errors:", error.issues);
@@ -298,7 +309,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const updates = req.body;
       const campaign = await storage.updateCampaign(id, updates);
       res.json(campaign);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error updating campaign:", error);
       res.status(500).json({ error: "Failed to update campaign" });
     }
@@ -322,7 +333,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const id = parseInt(req.params.id);
       await storage.deleteCampaign(id);
       res.json({ success: true });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error deleting campaign:", error);
       res.status(500).json({ error: "Failed to delete campaign" });
     }

@@ -1,4 +1,5 @@
 
+console.log("Loading Home component with 'Focused on What Matters Most' section");
 
 export default function Home() {
   return (
