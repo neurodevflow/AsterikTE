@@ -107,7 +107,7 @@ export const contactSubmissions = pgTable("contact_submissions", {
   email: text("email").notNull(),
   company: text("company"),
   phone: text("phone"),
-  subject: text("subject").notNull(),
+  subject: text("subject"),
   message: text("message").notNull(),
   source: text("source").default("contact_form"), // contact_form, ai_recommendation, etc.
   status: text("status").notNull().default("new"), // new, contacted, qualified, closed
@@ -268,6 +268,8 @@ export const insertContactSubmissionSchema = createInsertSchema(contactSubmissio
   subject: true,
   message: true,
   source: true,
+}).extend({
+  subject: z.string().optional(),
 });
 
 export const insertEmailCampaignSchema = createInsertSchema(emailCampaigns).pick({
