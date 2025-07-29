@@ -291,6 +291,26 @@ export class DatabaseStorage implements IStorage {
     await db.delete(emailCampaigns).where(eq(emailCampaigns.id, id));
   }
 
+  // Page management methods
+  async getPages(status?: string): Promise<Page[]> {
+    try {
+      if (status) {
+        return await db
+          .select()
+          .from(pages)
+          .where(eq(pages.status, status))
+          .orderBy(desc(pages.createdAt));
+      }
+      return await db
+        .select()
+        .from(pages)
+        .orderBy(desc(pages.createdAt));
+    } catch (error) {
+      console.error("Error fetching pages:", error);
+      return [];
+    }
+  }
+
   async getContentBlocks(page?: string): Promise<ContentBlock[]> {
     if (page) {
       return await db

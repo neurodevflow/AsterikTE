@@ -237,19 +237,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Map frontend data to backend schema
       const { name, subject, content, scheduledDate } = req.body;
+      console.log('Received campaign data:', { name, subject, content, scheduledDate });
+      
       const campaignData = {
         name,
         subject,
         content,
-        scheduledAt: scheduledDate ? scheduledDate : undefined
+        scheduledAt: scheduledDate && scheduledDate !== '' ? scheduledDate : undefined
       };
 
+      console.log('Mapped campaign data:', campaignData);
       const validatedData = insertEmailCampaignSchema.parse(campaignData);
+      console.log('Validated campaign data:', validatedData);
+      
       const campaign = await storage.createCampaign(validatedData);
       res.json(campaign);
     } catch (error) {
       console.error("Error creating campaign:", error);
-      res.status(400).json({ error: "Invalid campaign data" });
+      if (error.issues) {
+        console.error("Zod validation errors:", error.issues);
+      }
+      res.status(400).json({ error: "Invalid campaign data", details: error.message });
     }
   });
 
@@ -299,6 +307,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error deleting campaign:", error);
       res.status(500).json({ error: "Failed to delete campaign" });
+    }
+  });
+
+  // Page builder - Get all pages - INLINE AUTH CHECK
+  app.get("/api/admin/pages", async (req: AuthenticatedRequest, res) => {
+    try {
+      // Inline authentication check
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: "No token provided" });
+      }
+      const token = authHeader.substring(7);
+      try {
+        jwt.verify(token, JWT_SECRET);
+      } catch {
+        return res.status(401).json({ message: "Invalid token" });
+      }
+
+      const { status } = req.query;
+      const pages = await storage.getPages(status as string);
+      res.json(pages || []);
+    } catch (error) {
+      console.error("Error fetching pages:", error);
+      res.status(500).json({ error: "Failed to fetch pages" });
     }
   });
 
