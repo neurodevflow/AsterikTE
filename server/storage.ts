@@ -79,6 +79,23 @@ export interface IStorage {
   createAdminUser(user: InsertAdminUser): Promise<AdminUser>;
   getAdminUserByEmail(email: string): Promise<AdminUser | undefined>;
   updateAdminUserLastLogin(id: number): Promise<void>;
+  getAdminUsers(): Promise<AdminUser[]>;
+  updateAdminUser(id: number, updates: any): Promise<AdminUser>;
+  deleteAdminUser(id: number): Promise<void>;
+
+  // Integrations
+  getIntegrations(): Promise<any[]>;
+  createIntegration(integration: any): Promise<any>;
+  updateIntegration(id: number, updates: any): Promise<any>;
+  deleteIntegration(id: number): Promise<void>;
+
+  // Dashboard widgets
+  getDashboardWidgets(): Promise<DashboardWidget[]>;
+  getUserDashboards(adminUserId: number): Promise<UserDashboard[]>;
+  createUserDashboard(dashboard: InsertUserDashboard): Promise<UserDashboard>;
+
+  // Pages
+  getPages(status?: string): Promise<Page[]>;
 
   // Content management
   getContacts(page: number, limit: number): Promise<ContactSubmission[]>;
@@ -344,6 +361,116 @@ export class DatabaseStorage implements IStorage {
 
   async deleteContentBlock(id: number): Promise<void> {
     await db.delete(contentBlocks).where(eq(contentBlocks.id, id));
+  }
+
+  // Admin users implementation
+  async getAdminUsers(): Promise<AdminUser[]> {
+    try {
+      console.log('Attempting to fetch admin users...');
+      const result = await db
+        .select()
+        .from(adminUsers)
+        .orderBy(desc(adminUsers.createdAt));
+      console.log('Successfully fetched admin users:', result.length);
+      return result;
+    } catch (error) {
+      console.error('Error in getAdminUsers:', error);
+      throw error;
+    }
+  }
+
+  async updateAdminUser(id: number, updates: any): Promise<AdminUser> {
+    const [user] = await db
+      .update(adminUsers)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(adminUsers.id, id))
+      .returning();
+    return user;
+  }
+
+  async deleteAdminUser(id: number): Promise<void> {
+    await db.delete(adminUsers).where(eq(adminUsers.id, id));
+  }
+
+  // Integrations implementation (simple mock data for now)
+  async getIntegrations(): Promise<any[]> {
+    // Return mock integration data since we don't have an integrations table
+    return [
+      {
+        id: 1,
+        name: "Zapier Integration",
+        type: "zapier",
+        isActive: false,
+        webhookUrl: "",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      },
+      {
+        id: 2,
+        name: "Brevo Email Integration",
+        type: "brevo",
+        isActive: false,
+        apiKey: "",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      }
+    ];
+  }
+
+  async createIntegration(integration: any): Promise<any> {
+    // Mock implementation - in real app would save to database
+    return {
+      id: Date.now(),
+      ...integration,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+  }
+
+  async updateIntegration(id: number, updates: any): Promise<any> {
+    // Mock implementation
+    return {
+      id,
+      ...updates,
+      updatedAt: new Date().toISOString()
+    };
+  }
+
+  async deleteIntegration(id: number): Promise<void> {
+    // Mock implementation
+    console.log(`Integration ${id} deleted`);
+  }
+
+  // Dashboard widgets implementation
+  async getDashboardWidgets(): Promise<DashboardWidget[]> {
+    try {
+      console.log('Attempting to fetch dashboard widgets...');
+      const result = await db
+        .select()
+        .from(dashboardWidgets)
+        .orderBy(dashboardWidgets.name);
+      console.log('Successfully fetched dashboard widgets:', result.length);
+      return result;
+    } catch (error) {
+      console.error('Error in getDashboardWidgets:', error);
+      throw error;
+    }
+  }
+
+  async getUserDashboards(adminUserId: number): Promise<UserDashboard[]> {
+    return await db
+      .select()
+      .from(userDashboards)
+      .where(eq(userDashboards.adminUserId, adminUserId))
+      .orderBy(desc(userDashboards.isDefault), userDashboards.name);
+  }
+
+  async createUserDashboard(dashboard: InsertUserDashboard): Promise<UserDashboard> {
+    const [newDashboard] = await db
+      .insert(userDashboards)
+      .values(dashboard)
+      .returning();
+    return newDashboard;
   }
 }
 

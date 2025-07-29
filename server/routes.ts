@@ -379,6 +379,161 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // User Management - INLINE AUTH CHECK
+  app.get("/api/admin/users", async (req: AuthenticatedRequest, res) => {
+    try {
+      // Inline authentication check
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: "No token provided" });
+      }
+      const token = authHeader.substring(7);
+      try {
+        jwt.verify(token, JWT_SECRET);
+      } catch {
+        return res.status(401).json({ message: "Invalid token" });
+      }
+
+      const users = await storage.getAdminUsers();
+      // Remove password hashes from response
+      const sanitizedUsers = users.map(user => {
+        const { passwordHash, ...userWithoutPassword } = user;
+        return userWithoutPassword;
+      });
+      res.json(sanitizedUsers);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+      res.status(500).json({ error: "Failed to fetch users" });
+    }
+  });
+
+  app.post("/api/admin/users", async (req: AuthenticatedRequest, res) => {
+    try {
+      // Inline authentication check
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: "No token provided" });
+      }
+      const token = authHeader.substring(7);
+      try {
+        jwt.verify(token, JWT_SECRET);
+      } catch {
+        return res.status(401).json({ message: "Invalid token" });
+      }
+
+      const { email, name, role, password } = req.body;
+      const hashedPassword = await bcrypt.hash(password, 10);
+      
+      const newUser = await storage.createAdminUser({
+        email,
+        name,
+        role,
+        passwordHash: hashedPassword,
+        isActive: true
+      });
+
+      const { passwordHash, ...userResponse } = newUser;
+      res.json(userResponse);
+    } catch (error) {
+      console.error("Error creating user:", error);
+      res.status(500).json({ error: "Failed to create user" });
+    }
+  });
+
+  // Integrations Management - INLINE AUTH CHECK
+  app.get("/api/admin/integrations", async (req: AuthenticatedRequest, res) => {
+    try {
+      // Inline authentication check
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: "No token provided" });
+      }
+      const token = authHeader.substring(7);
+      try {
+        jwt.verify(token, JWT_SECRET);
+      } catch {
+        return res.status(401).json({ message: "Invalid token" });
+      }
+
+      const integrations = await storage.getIntegrations();
+      res.json(integrations);
+    } catch (error) {
+      console.error("Error fetching integrations:", error);
+      res.status(500).json({ error: "Failed to fetch integrations" });
+    }
+  });
+
+  // Dashboard Widgets and Customization - INLINE AUTH CHECK
+  app.get("/api/admin/dashboard/widgets", async (req: AuthenticatedRequest, res) => {
+    try {
+      // Inline authentication check
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: "No token provided" });
+      }
+      const token = authHeader.substring(7);
+      try {
+        jwt.verify(token, JWT_SECRET);
+      } catch {
+        return res.status(401).json({ message: "Invalid token" });
+      }
+
+      const widgets = await storage.getDashboardWidgets();
+      res.json(widgets);
+    } catch (error) {
+      console.error("Error fetching dashboard widgets:", error);
+      res.status(500).json({ error: "Failed to fetch dashboard widgets" });
+    }
+  });
+
+  app.get("/api/admin/user-dashboards", async (req: AuthenticatedRequest, res) => {
+    try {
+      // Inline authentication check
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: "No token provided" });
+      }
+      const token = authHeader.substring(7);
+      try {
+        const decoded = jwt.verify(token, JWT_SECRET) as any;
+        const dashboards = await storage.getUserDashboards(decoded.id);
+        res.json(dashboards);
+      } catch {
+        return res.status(401).json({ message: "Invalid token" });
+      }
+    } catch (error) {
+      console.error("Error fetching user dashboards:", error);
+      res.status(500).json({ error: "Failed to fetch user dashboards" });
+    }
+  });
+
+  app.post("/api/admin/user-dashboards", async (req: AuthenticatedRequest, res) => {
+    try {
+      // Inline authentication check
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: "No token provided" });
+      }
+      const token = authHeader.substring(7);
+      try {
+        const decoded = jwt.verify(token, JWT_SECRET) as any;
+        const { name, layout } = req.body;
+        const dashboard = await storage.createUserDashboard({
+          adminUserId: decoded.id,
+          name,
+          layout: layout || [],
+          isDefault: false
+        });
+        res.json(dashboard);
+      } catch {
+        return res.status(401).json({ message: "Invalid token" });
+      }
+    } catch (error) {
+      console.error("Error creating user dashboard:", error);
+      res.status(500).json({ error: "Failed to create user dashboard" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
