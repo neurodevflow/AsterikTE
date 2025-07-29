@@ -533,6 +533,104 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Pages management endpoints
+  app.get('/api/admin/pages', async (req: AuthenticatedRequest, res) => {
+    try {
+      // Inline authentication check
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: "No token provided" });
+      }
+      const token = authHeader.substring(7);
+      try {
+        jwt.verify(token, JWT_SECRET);
+      } catch {
+        return res.status(401).json({ message: "Invalid token" });
+      }
+
+      const status = req.query.status as string;
+      const pages = await storage.getPages(status);
+      res.json(pages);
+    } catch (error) {
+      console.error('Error fetching pages:', error);
+      res.status(500).json({ message: 'Failed to fetch pages' });
+    }
+  });
+
+  app.get('/api/admin/pages/:slug/edit', async (req: AuthenticatedRequest, res) => {
+    try {
+      // Inline authentication check
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: "No token provided" });
+      }
+      const token = authHeader.substring(7);
+      try {
+        jwt.verify(token, JWT_SECRET);
+      } catch {
+        return res.status(401).json({ message: "Invalid token" });
+      }
+
+      const slug = req.params.slug;
+      const page = await storage.getPageBySlug(slug);
+      if (!page) {
+        return res.status(404).json({ message: 'Page not found' });
+      }
+
+      const components = await storage.getPageComponents(page.id);
+      res.json({ page, components });
+    } catch (error) {
+      console.error('Error fetching page for editing:', error);
+      res.status(500).json({ message: 'Failed to fetch page' });
+    }
+  });
+
+  app.post('/api/admin/pages', async (req: AuthenticatedRequest, res) => {
+    try {
+      // Inline authentication check
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: "No token provided" });
+      }
+      const token = authHeader.substring(7);
+      try {
+        jwt.verify(token, JWT_SECRET);
+      } catch {
+        return res.status(401).json({ message: "Invalid token" });
+      }
+
+      const pageData = req.body;
+      const newPage = await storage.createPage(pageData);
+      res.status(201).json(newPage);
+    } catch (error) {
+      console.error('Error creating page:', error);
+      res.status(500).json({ message: 'Failed to create page' });
+    }
+  });
+
+  app.delete('/api/admin/pages/:id', async (req: AuthenticatedRequest, res) => {
+    try {
+      // Inline authentication check
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: "No token provided" });
+      }
+      const token = authHeader.substring(7);
+      try {
+        jwt.verify(token, JWT_SECRET);
+      } catch {
+        return res.status(401).json({ message: "Invalid token" });
+      }
+
+      const pageId = parseInt(req.params.id);
+      await storage.deletePage(pageId);
+      res.json({ message: 'Page deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting page:', error);
+      res.status(500).json({ message: 'Failed to delete page' });
+    }
+  });
+
   // Import existing pages endpoint
   app.post('/api/admin/import-pages', async (req: AuthenticatedRequest, res) => {
     try {

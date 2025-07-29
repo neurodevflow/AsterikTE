@@ -93,6 +93,11 @@ export interface IStorage {
 
   // Pages
   getPages(status?: string): Promise<Page[]>;
+  getPageBySlug(slug: string): Promise<Page | undefined>;
+  createPage(pageData: InsertPage): Promise<Page>;
+  updatePage(id: number, updates: any): Promise<Page>;
+  deletePage(id: number): Promise<void>;
+  createPageComponent(componentData: InsertPageComponent): Promise<PageComponent>;
 
   // Content management
   getContacts(page: number, limit: number): Promise<ContactSubmission[]>;
@@ -305,25 +310,7 @@ export class DatabaseStorage implements IStorage {
     await db.delete(emailCampaigns).where(eq(emailCampaigns.id, id));
   }
 
-  // Page management methods
-  async getPages(status?: string): Promise<Page[]> {
-    try {
-      if (status) {
-        return await db
-          .select()
-          .from(pages)
-          .where(eq(pages.status, status))
-          .orderBy(desc(pages.createdAt));
-      }
-      return await db
-        .select()
-        .from(pages)
-        .orderBy(desc(pages.createdAt));
-    } catch (error) {
-      console.error("Error fetching pages:", error);
-      return [];
-    }
-  }
+  // Page management methods (consolidated with Pages implementation section)
 
   async getContentBlocks(page?: string): Promise<ContentBlock[]> {
     if (page) {
@@ -488,6 +475,72 @@ export class DatabaseStorage implements IStorage {
       console.error("Error fetching page components:", error);
       return [];
     }
+  }
+
+  // Pages implementation
+  async getPages(status?: string): Promise<Page[]> {
+    try {
+      if (status) {
+        return await db
+          .select()
+          .from(pages)
+          .where(eq(pages.status, status))
+          .orderBy(desc(pages.createdAt));
+      }
+      return await db
+        .select()
+        .from(pages)
+        .orderBy(desc(pages.createdAt));
+    } catch (error) {
+      console.error("Error fetching pages:", error);
+      return [];
+    }
+  }
+
+  async getPageBySlug(slug: string): Promise<Page | undefined> {
+    try {
+      const [page] = await db
+        .select()
+        .from(pages)
+        .where(eq(pages.slug, slug))
+        .limit(1);
+      return page;
+    } catch (error) {
+      console.error("Error fetching page by slug:", error);
+      return undefined;
+    }
+  }
+
+  async createPage(pageData: InsertPage): Promise<Page> {
+    const [newPage] = await db
+      .insert(pages)
+      .values(pageData)
+      .returning();
+    return newPage;
+  }
+
+  async updatePage(id: number, updates: any): Promise<Page> {
+    const [updatedPage] = await db
+      .update(pages)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(pages.id, id))
+      .returning();
+    return updatedPage;
+  }
+
+  async deletePage(id: number): Promise<void> {
+    // First delete associated components
+    await db.delete(pageComponents).where(eq(pageComponents.pageId, id));
+    // Then delete the page
+    await db.delete(pages).where(eq(pages.id, id));
+  }
+
+  async createPageComponent(componentData: InsertPageComponent): Promise<PageComponent> {
+    const [newComponent] = await db
+      .insert(pageComponents)
+      .values(componentData)
+      .returning();
+    return newComponent;
   }
 
   // Dashboard widget instances methods
