@@ -413,12 +413,18 @@ export default function ServiceDetail() {
             Let's discuss how our {service.title.toLowerCase()} services can help transform your business and drive growth.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-navy-blue text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
+            <a 
+              href="/contact" 
+              className="inline-block bg-navy-blue text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium"
+            >
               Contact Us Today
-            </button>
-            <button className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium">
+            </a>
+            <a 
+              href="/insights" 
+              className="inline-block border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium"
+            >
               View Case Studies
-            </button>
+            </a>
           </div>
         </div>
       </section>

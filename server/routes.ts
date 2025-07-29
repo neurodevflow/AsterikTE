@@ -204,7 +204,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Protected Admin Routes
-  app.use("/api/admin/dashboard", authenticateAdmin);
+  app.use("/api/admin", authenticateAdmin);
 
   // Dashboard analytics
   app.get("/api/admin/dashboard/stats", async (req: AuthenticatedRequest, res) => {

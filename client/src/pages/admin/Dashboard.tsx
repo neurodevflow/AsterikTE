@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { useAuth } from '@/hooks/useAuth';
+
 import { useToast } from '@/hooks/use-toast';
 import DashboardCustomizer from '@/components/DashboardCustomizer';
 import { 
@@ -46,18 +46,33 @@ export default function Dashboard() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('overview');
-  const { user, logout, token } = useAuth();
+  const [user, setUser] = useState<any>(null);
+  const [token, setToken] = useState<string>("");
   const { toast } = useToast();
 
   useEffect(() => {
-    fetchStats();
+    // Get token and user from localStorage
+    const adminToken = localStorage.getItem('adminToken');
+    const adminUser = localStorage.getItem('adminUser');
+    
+    if (adminToken && adminUser) {
+      setToken(adminToken);
+      setUser(JSON.parse(adminUser));
+      fetchStats(adminToken);
+    } else {
+      // Redirect to login if no token
+      window.location.href = '/admin/login';
+    }
   }, []);
 
-  const fetchStats = async () => {
+  const fetchStats = async (authToken?: string) => {
     try {
+      const currentToken = authToken || token;
+      if (!currentToken) return;
+
       const response = await fetch('/api/admin/dashboard/stats', {
         headers: {
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${currentToken}`,
         },
       });
 
@@ -83,7 +98,8 @@ export default function Dashboard() {
   };
 
   const handleLogout = () => {
-    logout();
+    localStorage.removeItem('adminToken');
+    localStorage.removeItem('adminUser');
     window.location.href = '/admin/login';
   };
 
