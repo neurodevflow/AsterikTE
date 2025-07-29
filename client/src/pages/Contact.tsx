@@ -9,7 +9,6 @@ export default function Contact() {
     email: "",
     company: "",
     phone: "",
-    subject: "",
     message: ""
   });
 
@@ -25,9 +24,9 @@ export default function Contact() {
     e.preventDefault();
     
     // Basic validation
-    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+    if (!formData.name || !formData.email || !formData.message) {
       toast({
-        title: "Error",
+        title: "Error", 
         description: "Please fill in all required fields.",
         variant: "destructive"
       });
@@ -70,7 +69,6 @@ export default function Contact() {
           email: "",
           company: "",
           phone: "",
-          subject: "",
           message: ""
         });
       } else {
