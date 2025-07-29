@@ -160,7 +160,7 @@ export default function Home() {
               <p className="text-charcoal mb-4">Powering the digital evolution of public institutions through compliant, future-ready technology solutions. From smart cities to regulatory platforms, we support initiatives that put citizens and governance at the center.</p>
               <div className="mb-4">
                 <p className="text-sm font-semibold text-navy-blue mb-2">Expertise includes:</p>
-                <ul className="text-sm text-light-grey space-y-1">
+                <ul className="text-sm text-charcoal space-y-1">
                   <li>• Compliance-driven public sector systems</li>
                   <li>• Smart city infrastructure & platforms</li>
                   <li>• Digital public service transformation</li>
@@ -178,7 +178,7 @@ export default function Home() {
               <p className="text-charcoal mb-4">Accelerating digital innovation in finance with agile tech teams and deep domain know-how. Whether you're building next-gen payment systems or scaling a regulated fintech platform, we deliver the talent to move fast and stay compliant.</p>
               <div className="mb-4">
                 <p className="text-sm font-semibold text-navy-blue mb-2">Expertise includes:</p>
-                <ul className="text-sm text-light-grey space-y-1">
+                <ul className="text-sm text-charcoal space-y-1">
                   <li>• Core banking modernization for scaleups</li>
                   <li>• RegTech & embedded compliance frameworks</li>
                   <li>• Mobile-first digital payments & wallets</li>
@@ -196,7 +196,7 @@ export default function Home() {
               <p className="text-charcoal mb-4">Supporting large-scale transformation through flexible IT staffing, agile delivery teams, and technology solutions tailored to complex operational environments. From ERP to cloud to security, we help enterprises move with speed and stability.</p>
               <div className="mb-4">
                 <p className="text-sm font-semibold text-navy-blue mb-2">Expertise includes:</p>
-                <ul className="text-sm text-light-grey space-y-1">
+                <ul className="text-sm text-charcoal space-y-1">
                   <li>• ERP implementation & rollout support</li>
                   <li>• Cloud migration strategy & execution</li>
                   <li>• Cybersecurity frameworks & governance models</li>
