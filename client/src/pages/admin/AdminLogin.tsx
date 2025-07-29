@@ -7,30 +7,29 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useToast } from '@/hooks/use-toast';
 import { Link } from 'wouter';
 
+import { useAuth } from '@/hooks/useAuth';
+import { useLocation } from 'wouter';
+
 export default function AdminLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const { login } = useAuth();
+  const [, setLocation] = useLocation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/admin/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem('adminToken', data.token);
-        localStorage.setItem('adminUser', JSON.stringify(data.user));
-        window.location.href = '/admin/dashboard';
+      const success = await login(email, password);
+      if (success) {
+        setLocation('/admin/dashboard');
+        toast({
+          title: 'Login Successful',
+          description: 'Welcome to the admin dashboard!',
+        });
       } else {
         toast({
           title: 'Login Failed',

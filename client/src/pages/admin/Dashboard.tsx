@@ -42,41 +42,32 @@ interface DashboardStats {
   countryStats: Array<{ country: string; count: number }>;
 }
 
+import { useAuth } from '@/hooks/useAuth';
+
 export default function Dashboard() {
+  const { user, token, logout } = useAuth();
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('overview');
-  const [user, setUser] = useState<any>(null);
-  const [token, setToken] = useState<string>("");
   const { toast } = useToast();
 
   useEffect(() => {
-    // Get token and user from localStorage
-    const adminToken = localStorage.getItem('adminToken');
-    const adminUser = localStorage.getItem('adminUser');
-    
-    if (adminToken && adminUser) {
-      setToken(adminToken);
-      setUser(JSON.parse(adminUser));
-      fetchStats(adminToken);
-    } else {
-      // Redirect to login if no token
-      window.location.href = '/admin/login';
+    if (token) {
+      fetchStats();
     }
-  }, []);
+  }, [token]);
 
-  const fetchStats = async (authToken?: string) => {
+  const fetchStats = async () => {
     try {
-      const currentToken = authToken || token;
-      if (!currentToken) {
+      if (!token) {
         console.log('No token available for stats fetch');
         return;
       }
 
-      console.log('Fetching stats with token:', currentToken.substring(0, 20) + '...');
+      console.log('Fetching stats with token:', token.substring(0, 20) + '...');
       const response = await fetch('/api/admin/dashboard/stats', {
         headers: {
-          'Authorization': `Bearer ${currentToken}`,
+          'Authorization': `Bearer ${token}`,
         },
       });
 
