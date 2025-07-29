@@ -32,6 +32,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ message: "Server is working", timestamp: new Date().toISOString() });
   });
 
+  // Debug endpoint for domain issues
+  app.get("/api/debug", (req, res) => {
+    res.json({
+      message: "Debug info",
+      timestamp: new Date().toISOString(),
+      host: req.get('host'),
+      hostname: req.hostname,
+      protocol: req.protocol,
+      url: req.url,
+      originalUrl: req.originalUrl,
+      headers: {
+        origin: req.get('origin'),
+        referer: req.get('referer'),
+        userAgent: req.get('user-agent')
+      }
+    });
+  });
+
   // Contact form submission
   app.post("/api/contact", async (req, res) => {
     try {
