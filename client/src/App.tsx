@@ -98,11 +98,12 @@ function PublicRouter() {
 function Router() {
   const [location] = useLocation();
 
-  // Check if this is an admin route
+  // Check if this is an admin route (including /admin-login)
   if (location.startsWith('/admin')) {
     return (
       <AdminAuthProvider>
         <Switch>
+          <Route path="/admin-login" component={AdminLogin} />
           <Route path="/admin/login" component={AdminLogin} />
           <Route path="/admin/dashboard">
             <AdminRoute component={Dashboard} />
