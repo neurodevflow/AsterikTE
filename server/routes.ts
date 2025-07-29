@@ -27,7 +27,7 @@ interface AuthenticatedRequest extends Request {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  
+
   // Test endpoint for debugging
   app.get("/api/test", (req, res) => {
     res.json({ message: "Server is working", timestamp: new Date().toISOString() });
@@ -70,7 +70,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       console.log("Recommendations API called");
       const { currentPath, pageContent } = req.body;
-      
+
       if (!currentPath || !pageContent) {
         console.log("Missing fields:", { currentPath: !!currentPath, pageContent: !!pageContent });
         return res.status(400).json({ error: "Missing required fields" });
@@ -115,7 +115,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/admin/auth/login", async (req, res) => {
     try {
       const { email, password } = req.body;
-      
+
       if (!email || !password) {
         return res.status(400).json({ error: "Email and password required" });
       }
@@ -161,7 +161,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Inline authentication check
       const authHeader = req.headers.authorization;
       console.log('Stats endpoint - Auth header:', authHeader?.substring(0, 30) + '...');
-      
+
       if (!authHeader || !authHeader.startsWith('Bearer ')) {
         console.log('Stats endpoint - No Bearer token');
         return res.status(401).json({ message: "No token provided" });
@@ -305,7 +305,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Map frontend data to backend schema
       const { name, subject, content, scheduledDate } = req.body;
       console.log('Received campaign data:', { name, subject, content, scheduledDate });
-      
+
       const campaignData = {
         name,
         subject,
@@ -316,7 +316,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.log('Mapped campaign data:', campaignData);
       const validatedData = insertEmailCampaignSchema.parse(campaignData);
       console.log('Validated campaign data:', validatedData);
-      
+
       const campaign = await storage.createCampaign(validatedData);
       res.json(campaign);
     } catch (error: any) {
@@ -469,7 +469,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const { email, name, role, password } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
-      
+
       const newUser = await storage.createAdminUser({
         email,
         name,
@@ -718,7 +718,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Import existing website pages into the page builder
       const { importExistingPages } = await import('../scripts/import-existing-pages');
       await importExistingPages();
-      
+
       res.json({ message: 'Successfully imported existing pages' });
     } catch (error) {
       console.error('Error importing pages:', error);
@@ -791,7 +791,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const dashboardId = parseInt(req.params.id);
       const { widgetId, title, position, config } = req.body;
-      
+
       const widgetInstance = await storage.createDashboardWidgetInstance({
         dashboardId,
         widgetId,
@@ -801,11 +801,57 @@ export async function registerRoutes(app: Express): Promise<Server> {
         isVisible: true,
         refreshInterval: 300
       });
-      
+
       res.json(widgetInstance);
     } catch (error) {
       console.error("Error adding widget to dashboard:", error);
       res.status(500).json({ error: "Failed to add widget" });
+    }
+  });
+
+  // Health check endpoint
+  app.get('/health', (req, res) => {
+    res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  });
+
+  // Contact form submission
+  app.post('/api/contact', async (req, res) => {
+    try {
+      const { name, email, company, phone, message, source } = req.body;
+
+      if (!name || !email || !message) {
+        return res.status(400).json({ 
+          message: 'Name, email, and message are required fields' 
+        });
+      }
+
+      const contactSubmission = await storage.createContactSubmission({
+        name,
+        email,
+        company: company || null,
+        phone: phone || null,
+        message,
+        source: source || 'contact_form',
+        status: 'new'
+      });
+
+      // Track analytics
+      await storage.createUserActivity({
+        activity: 'Contact form submission',
+        details: { contactId: contactSubmission.id, source },
+        ipAddress: req.ip,
+        userAgent: req.get('User-Agent')
+      });
+
+      res.status(201).json({ 
+        message: 'Contact submission received successfully',
+        id: contactSubmission.id 
+      });
+    } catch (error) {
+      console.error('Error processing contact submission:', error);
+      res.status(500).json({ 
+        message: 'Failed to process contact submission' 
+      });
     }
   });
 
