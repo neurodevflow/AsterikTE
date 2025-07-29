@@ -49,7 +49,11 @@ interface GeneratedComponent {
   settings: any;
 }
 
-export default function PageBuilder() {
+interface PageBuilderProps {
+  token?: string;
+}
+
+export default function PageBuilder({ token }: PageBuilderProps) {
   const [selectedPage, setSelectedPage] = useState<Page | null>(null);
   const [showCreateDialog, setShowCreateDialog] = useState(false);
   const [showAiDialog, setShowAiDialog] = useState(false);
@@ -70,18 +74,45 @@ export default function PageBuilder() {
   // Fetch pages
   const { data: pages = [], isLoading: pagesLoading } = useQuery({
     queryKey: ["/api/admin/pages"],
+    queryFn: async () => {
+      const response = await fetch('/api/admin/pages', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      if (!response.ok) throw new Error('Failed to fetch pages');
+      return response.json();
+    },
+    enabled: !!token,
   });
 
   // Fetch components for selected page
   const { data: pageComponents = [], isLoading: componentsLoading } = useQuery({
     queryKey: ["/api/admin/pages", selectedPage?.id, "components"],
-    enabled: !!selectedPage?.id,
+    queryFn: async () => {
+      const response = await fetch(`/api/admin/pages/${selectedPage?.id}/components`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      if (!response.ok) throw new Error('Failed to fetch components');
+      return response.json();
+    },
+    enabled: !!selectedPage?.id && !!token,
   });
 
   // Import existing pages mutation
   const importPagesMutation = useMutation({
     mutationFn: async () => {
-      return await apiRequest("/api/admin/import-pages", "POST", {});
+      const response = await fetch('/api/admin/import-pages', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      if (!response.ok) throw new Error('Failed to import pages');
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/pages"] });
@@ -103,8 +134,13 @@ export default function PageBuilder() {
   // Load existing page for editing
   const loadExistingPageMutation = useMutation({
     mutationFn: async (slug: string) => {
-      const response = await apiRequest(`/api/admin/pages/${slug}/edit`, "GET");
-      return response;
+      const response = await fetch(`/api/admin/pages/${slug}/edit`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      if (!response.ok) throw new Error('Failed to load page');
+      return response.json();
     },
     onSuccess: (data: any) => {
       if (data.page) {
@@ -137,7 +173,16 @@ export default function PageBuilder() {
   // Create page mutation
   const createPageMutation = useMutation({
     mutationFn: async (pageData: any) => {
-      return await apiRequest("/api/admin/pages", "POST", pageData);
+      const response = await fetch('/api/admin/pages', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(pageData),
+      });
+      if (!response.ok) throw new Error('Failed to create page');
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/pages"] });
@@ -152,7 +197,14 @@ export default function PageBuilder() {
   // Delete page mutation
   const deletePageMutation = useMutation({
     mutationFn: async (pageId: number) => {
-      return await apiRequest(`/api/admin/pages/${pageId}`, "DELETE");
+      const response = await fetch(`/api/admin/pages/${pageId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      if (!response.ok) throw new Error('Failed to delete page');
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/pages"] });
@@ -167,8 +219,16 @@ export default function PageBuilder() {
   // Generate AI component mutation
   const generateComponentMutation = useMutation({
     mutationFn: async (request: any) => {
-      const response = await apiRequest("/api/admin/generate/component", "POST", request);
-      return response as GeneratedComponent;
+      const response = await fetch('/api/admin/generate/component', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(request),
+      });
+      if (!response.ok) throw new Error('Failed to generate component');
+      return response.json() as GeneratedComponent;
     },
     onSuccess: (data: GeneratedComponent) => {
       toast({ title: "Success", description: `AI ${data.type} component generated successfully` });
@@ -181,8 +241,16 @@ export default function PageBuilder() {
   // Generate full page mutation
   const generatePageMutation = useMutation({
     mutationFn: async (request: any) => {
-      const response = await apiRequest("/api/admin/generate/page", "POST", request);
-      return response as GeneratedComponent[];
+      const response = await fetch('/api/admin/generate/page', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(request),
+      });
+      if (!response.ok) throw new Error('Failed to generate page');
+      return response.json() as GeneratedComponent[];
     },
     onSuccess: (data: GeneratedComponent[]) => {
       toast({ title: "Success", description: `AI page with ${data.length} components generated successfully` });
