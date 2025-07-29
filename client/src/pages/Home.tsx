@@ -137,15 +137,15 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Industry Focus Section */}
+      {/* Focus Areas Section */}
       <div className="bg-soft-beige py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-bold text-3xl md:text-4xl mb-4 text-navy-blue">
-              Empowering Innovation with Enterprise-Grade IT Talent
+              Focused on What Matters Most
             </h2>
             <p className="text-lg text-charcoal max-w-4xl mx-auto">
-              Built for high-impact organizations in government, finance, and enterprise — with delivery models optimized for growth, scale, and compliance.
+              We partner with organizations operating in complex, regulated, and fast-moving environments — from public sector programs to fintech innovation to enterprise modernization.
             </p>
           </div>
           
@@ -157,12 +157,15 @@ export default function Home() {
                 <i className="fas fa-university text-2xl"></i>
               </div>
               <h3 className="font-bold text-xl mb-4">Government & Public Sector</h3>
-              <p className="text-charcoal mb-4">Powering the digital evolution of public institutions through compliant, future-ready technology solutions. From smart cities to regulatory platforms, we deliver initiatives that put citizens and governance at the center.</p>
-              <ul className="text-sm text-light-grey space-y-1">
-                <li>• Compliance-driven public sector systems</li>
-                <li>• Smart city infrastructure & platforms</li>
-                <li>• Digital public service transformation</li>
-              </ul>
+              <p className="text-charcoal mb-4">Powering the digital evolution of public institutions through compliant, future-ready technology solutions. From smart cities to regulatory platforms, we support initiatives that put citizens and governance at the center.</p>
+              <div className="mb-4">
+                <p className="text-sm font-semibold text-navy-blue mb-2">Expertise includes:</p>
+                <ul className="text-sm text-light-grey space-y-1">
+                  <li>• Compliance-driven public sector systems</li>
+                  <li>• Smart city infrastructure & platforms</li>
+                  <li>• Digital public service transformation</li>
+                </ul>
+              </div>
             </div>
             
             <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
@@ -171,13 +174,16 @@ export default function Home() {
               >
                 <i className="fas fa-chart-line text-2xl"></i>
               </div>
-              <h3 className="font-bold text-xl mb-4">Financial Services</h3>
-              <p className="text-charcoal mb-4">Enabling financial institutions to scale securely and innovate faster with expert teams and agile delivery models.</p>
-              <ul className="text-sm text-light-grey space-y-1">
-                <li>• Core banking modernization for scaleups</li>
-                <li>• RegTech & embedded compliance frameworks</li>
-                <li>• Mobile-first digital payments & wallets</li>
-              </ul>
+              <h3 className="font-bold text-xl mb-4">Financial Services & Fintech</h3>
+              <p className="text-charcoal mb-4">Accelerating digital innovation in finance with agile tech teams and deep domain know-how. Whether you're building next-gen payment systems or scaling a regulated fintech platform, we deliver the talent to move fast and stay compliant.</p>
+              <div className="mb-4">
+                <p className="text-sm font-semibold text-navy-blue mb-2">Expertise includes:</p>
+                <ul className="text-sm text-light-grey space-y-1">
+                  <li>• Core banking modernization for scaleups</li>
+                  <li>• RegTech & embedded compliance frameworks</li>
+                  <li>• Mobile-first digital payments & wallets</li>
+                </ul>
+              </div>
             </div>
             
             <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
@@ -187,12 +193,15 @@ export default function Home() {
                 <i className="fas fa-building text-2xl"></i>
               </div>
               <h3 className="font-bold text-xl mb-4">Enterprise Organizations</h3>
-              <p className="text-charcoal mb-4">Empowering enterprises to modernize legacy systems and adopt future-ready technologies with the right people and agile execution frameworks.</p>
-              <ul className="text-sm text-light-grey space-y-1">
-                <li>• End-to-end ERP delivery teams</li>
-                <li>• Scalable cloud & infrastructure transitions</li>
-                <li>• Security-first architecture planning</li>
-              </ul>
+              <p className="text-charcoal mb-4">Supporting large-scale transformation through flexible IT staffing, agile delivery teams, and technology solutions tailored to complex operational environments. From ERP to cloud to security, we help enterprises move with speed and stability.</p>
+              <div className="mb-4">
+                <p className="text-sm font-semibold text-navy-blue mb-2">Expertise includes:</p>
+                <ul className="text-sm text-light-grey space-y-1">
+                  <li>• ERP implementation & rollout support</li>
+                  <li>• Cloud migration strategy & execution</li>
+                  <li>• Cybersecurity frameworks & governance models</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
