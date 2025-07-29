@@ -1,0 +1,172 @@
+Time
+Deployment
+Source
+Log
+2025-07-29 04:10:15.85
+297fa570
+User
+Error creating campaign: ZodError: [
+2025-07-29 04:10:15.85
+297fa570
+User
+{
+2025-07-29 04:10:15.85
+297fa570
+User
+"code": "invalid_type",
+2025-07-29 04:10:15.85
+297fa570
+User
+"expected": "date",
+2025-07-29 04:10:15.85
+297fa570
+User
+"received": "string",
+2025-07-29 04:10:15.85
+297fa570
+User
+"path": [
+2025-07-29 04:10:15.85
+297fa570
+User
+"scheduledAt"
+2025-07-29 04:10:15.85
+297fa570
+User
+],
+2025-07-29 04:10:15.85
+297fa570
+User
+"message": "Expected date, received string"
+2025-07-29 04:10:15.85
+297fa570
+User
+}
+2025-07-29 04:10:15.85
+297fa570
+User
+]
+2025-07-29 04:10:15.85
+297fa570
+User
+at get error [as error] (file:///home/runner/workspace/node_modules/zod/lib/index.mjs:587:31)
+2025-07-29 04:10:15.85
+297fa570
+User
+at ZodObject.parse (file:///home/runner/workspace/node_modules/zod/lib/index.mjs:663:22)
+2025-07-29 04:10:15.85
+297fa570
+User
+at file:///home/runner/workspace/dist/index.js:1964:55
+2025-07-29 04:10:15.85
+297fa570
+User
+at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+2025-07-29 04:10:15.85
+297fa570
+User
+at next (/home/runner/workspace/node_modules/express/lib/router/route.js:149:13)
+2025-07-29 04:10:15.85
+297fa570
+User
+at Route.dispatch (/home/runner/workspace/node_modules/express/lib/router/route.js:119:3)
+2025-07-29 04:10:15.85
+297fa570
+User
+at Layer.handle [as handle_request] (/home/runner/workspace/node_modules/express/lib/router/layer.js:95:5)
+2025-07-29 04:10:15.85
+297fa570
+User
+at /home/runner/workspace/node_modules/express/lib/router/index.js:284:15
+2025-07-29 04:10:15.85
+297fa570
+User
+at Function.process_params (/home/runner/workspace/node_modules/express/lib/router/index.js:346:12)
+2025-07-29 04:10:15.85
+297fa570
+User
+at next (/home/runner/workspace/node_modules/express/lib/router/index.js:280:10) {
+2025-07-29 04:10:15.85
+297fa570
+User
+issues: [
+2025-07-29 04:10:15.85
+297fa570
+User
+{
+2025-07-29 04:10:15.85
+297fa570
+User
+code: 'invalid_type',
+2025-07-29 04:10:15.85
+297fa570
+User
+expected: 'date',
+2025-07-29 04:10:15.85
+297fa570
+User
+received: 'string',
+2025-07-29 04:10:15.85
+297fa570
+User
+path: [Array],
+2025-07-29 04:10:15.85
+297fa570
+User
+message: 'Expected date, received string'
+2025-07-29 04:10:15.85
+297fa570
+User
+}
+2025-07-29 04:10:15.85
+297fa570
+User
+],
+2025-07-29 04:10:15.85
+297fa570
+User
+addIssue: [Function (anonymous)],
+2025-07-29 04:10:15.85
+297fa570
+User
+addIssues: [Function (anonymous)],
+2025-07-29 04:10:15.85
+297fa570
+User
+errors: [
+2025-07-29 04:10:15.85
+297fa570
+User
+{
+2025-07-29 04:10:15.85
+297fa570
+User
+code: 'invalid_type',
+2025-07-29 04:10:15.85
+297fa570
+User
+expected: 'date',
+2025-07-29 04:10:15.85
+297fa570
+User
+received: 'string',
+2025-07-29 04:10:15.85
+297fa570
+User
+path: [Array],
+2025-07-29 04:10:15.85
+297fa570
+User
+message: 'Expected date, received string'
+2025-07-29 04:10:15.85
+297fa570
+User
+}
+2025-07-29 04:10:15.85
+297fa570
+User
+]
+2025-07-29 04:10:15.85
+297fa570
+User
+}
