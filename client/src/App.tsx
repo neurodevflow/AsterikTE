@@ -72,6 +72,8 @@ function PublicRouter() {
             <Route path="/insights" component={Insights} />
             <Route path="/privacy-policy" component={PrivacyPolicy} />
             <Route path="/customer-login" component={CustomerLogin} />
+            <Route path="/admin-login" component={AdminLogin} />
+            <Route path="/admin/login" component={AdminLogin} />
             <Route component={NotFound} />
           </Switch>
         </main>
