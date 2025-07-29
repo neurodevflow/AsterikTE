@@ -265,7 +265,7 @@ export default function DashboardCustomizer({ onDashboardChange, token }: Dashbo
     const findEmptyPosition = () => {
       for (let y = 0; y < 10; y++) {
         for (let x = 0; x < 12; x++) {
-          const conflicts = usedPositions.some(pos => 
+          const conflicts = usedPositions.some((pos: any) => 
             x < pos.x + pos.w && x + 2 > pos.x && y < pos.y + pos.h && y + 2 > pos.y
           );
           if (!conflicts) {
@@ -306,7 +306,7 @@ export default function DashboardCustomizer({ onDashboardChange, token }: Dashbo
     return colors[category] || 'bg-gray-100 text-gray-800';
   };
 
-  const categories = Array.from(new Set(availableWidgets.map((w: DashboardWidget) => w.category)));
+  const categories = Array.from(new Set(availableWidgets.map((w: DashboardWidget) => w.category))) as string[];
 
   return (
     <div className="space-y-6">
@@ -497,7 +497,7 @@ export default function DashboardCustomizer({ onDashboardChange, token }: Dashbo
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all">All Categories</SelectItem>
-                      {categories.map((category) => (
+                      {categories.map((category: string) => (
                         <SelectItem key={category} value={category}>
                           {category.charAt(0).toUpperCase() + category.slice(1)}
                         </SelectItem>

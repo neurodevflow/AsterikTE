@@ -12,11 +12,12 @@ export default function Industries() {
               Asterik delivers specialized technology solutions across diverse industries, understanding unique challenges and regulatory requirements to drive meaningful transformation.
             </p>
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 max-w-4xl mx-auto">
-              <img 
-                src="/api/placeholder/600/350" 
-                alt="Industry professionals collaborating on technology solutions" 
-                className="w-full rounded-lg shadow-lg"
-              />
+              <div className="w-full h-64 bg-gradient-to-br from-navy-blue/20 to-warm-orange/20 rounded-lg shadow-lg flex items-center justify-center">
+                <div className="text-center">
+                  <i className="fas fa-industry text-6xl text-white mb-4"></i>
+                  <h3 className="text-xl font-semibold text-white">Industry-Focused Solutions</h3>
+                </div>
+              </div>
             </div>
           </div>
         </div>
