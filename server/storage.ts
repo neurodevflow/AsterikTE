@@ -297,12 +297,12 @@ export class DatabaseStorage implements IStorage {
         .select()
         .from(contentBlocks)
         .where(eq(contentBlocks.page, page))
-        .orderBy(asc(contentBlocks.position));
+        .orderBy(contentBlocks.position);
     }
     return await db
       .select()
       .from(contentBlocks)
-      .orderBy(asc(contentBlocks.page), asc(contentBlocks.position));
+      .orderBy(contentBlocks.page, contentBlocks.position);
   }
 
   async createContentBlock(blockData: InsertContentBlock): Promise<ContentBlock> {
