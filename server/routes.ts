@@ -66,7 +66,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Admin Authentication Routes
-  app.post("/api/admin/login", async (req, res) => {
+  app.post("/api/admin/auth/login", async (req, res) => {
     try {
       const { email, password } = req.body;
       
@@ -582,6 +582,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Error fetching page for editing:', error);
       res.status(500).json({ message: 'Failed to fetch page' });
+    }
+  });
+
+  app.get('/api/admin/pages/:id/components', async (req: AuthenticatedRequest, res) => {
+    try {
+      // Inline authentication check
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: "No token provided" });
+      }
+      const token = authHeader.substring(7);
+      try {
+        jwt.verify(token, JWT_SECRET);
+      } catch {
+        return res.status(401).json({ message: "Invalid token" });
+      }
+
+      const pageId = parseInt(req.params.id);
+      const components = await storage.getPageComponents(pageId);
+      res.json(components);
+    } catch (error) {
+      console.error('Error fetching page components:', error);
+      res.status(500).json({ message: 'Failed to fetch page components' });
     }
   });
 
