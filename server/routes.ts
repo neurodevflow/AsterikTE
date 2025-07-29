@@ -51,15 +51,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   });
 
-  // Debug page route
-  app.get("/debug-react", (req, res) => {
-    res.sendFile(path.resolve(import.meta.dirname, "..", "debug-react.html"));
-  });
 
-  // Minimal test route
-  app.get("/minimal-test", (req, res) => {
-    res.sendFile(path.resolve(import.meta.dirname, "..", "minimal-test.html"));
-  });
 
   // Contact form submission
   app.post("/api/contact", async (req, res) => {
