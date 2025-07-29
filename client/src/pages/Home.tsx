@@ -142,10 +142,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-bold text-3xl md:text-4xl mb-4 text-navy-blue">
-              Empowering GCC Digital Leaders
+              Empowering Innovation with Enterprise-Grade IT Talent
             </h2>
-            <p className="text-lg text-charcoal max-w-3xl mx-auto">
-              Providing scalable, regulation-ready solutions to drive the next generation of digital transformation initiatives
+            <p className="text-lg text-charcoal max-w-4xl mx-auto">
+              Built for high-impact organizations in government, finance, and enterprise — with delivery models optimized for growth, scale, and compliance.
             </p>
           </div>
           
@@ -157,11 +157,11 @@ export default function Home() {
                 <i className="fas fa-university text-2xl"></i>
               </div>
               <h3 className="font-bold text-xl mb-4">Government & Public Sector</h3>
-              <p className="text-charcoal mb-4">Digital government initiatives, regulatory compliance, and citizen service enhancement programs.</p>
+              <p className="text-charcoal mb-4">Powering the digital evolution of public institutions through compliant, future-ready technology solutions. From smart cities to regulatory platforms, we deliver initiatives that put citizens and governance at the center.</p>
               <ul className="text-sm text-light-grey space-y-1">
-                <li>• ADGM regulatory frameworks</li>
-                <li>• Smart city implementations</li>
-                <li>• Public service digitization</li>
+                <li>• Compliance-driven public sector systems</li>
+                <li>• Smart city infrastructure & platforms</li>
+                <li>• Digital public service transformation</li>
               </ul>
             </div>
             
@@ -172,11 +172,11 @@ export default function Home() {
                 <i className="fas fa-chart-line text-2xl"></i>
               </div>
               <h3 className="font-bold text-xl mb-4">Financial Services</h3>
-              <p className="text-charcoal mb-4">Banking modernization, fintech innovation, and regulatory technology implementations.</p>
+              <p className="text-charcoal mb-4">Enabling financial institutions to scale securely and innovate faster with expert teams and agile delivery models.</p>
               <ul className="text-sm text-light-grey space-y-1">
-                <li>• Core banking transformations</li>
-                <li>• RegTech compliance solutions</li>
-                <li>• Digital payment platforms</li>
+                <li>• Core banking modernization for scaleups</li>
+                <li>• RegTech & embedded compliance frameworks</li>
+                <li>• Mobile-first digital payments & wallets</li>
               </ul>
             </div>
             
@@ -187,11 +187,11 @@ export default function Home() {
                 <i className="fas fa-building text-2xl"></i>
               </div>
               <h3 className="font-bold text-xl mb-4">Enterprise Organizations</h3>
-              <p className="text-charcoal mb-4">Large-scale digital transformation and enterprise technology modernization projects.</p>
+              <p className="text-charcoal mb-4">Empowering enterprises to modernize legacy systems and adopt future-ready technologies with the right people and agile execution frameworks.</p>
               <ul className="text-sm text-light-grey space-y-1">
-                <li>• ERP implementations</li>
-                <li>• Cloud migration strategies</li>
-                <li>• Cybersecurity frameworks</li>
+                <li>• End-to-end ERP delivery teams</li>
+                <li>• Scalable cloud & infrastructure transitions</li>
+                <li>• Security-first architecture planning</li>
               </ul>
             </div>
           </div>
@@ -247,15 +247,15 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Client Success Story */}
+      {/* Sample Engagement Models */}
       <div className="bg-navy-blue py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-bold text-3xl md:text-4xl text-white mb-4">
-              Client Success Stories
+              Example Engagement Models
             </h2>
             <p className="text-xl text-light-grey max-w-3xl mx-auto">
-              Transforming enterprises through strategic technology partnerships
+              Sample scenarios demonstrating our capability without exaggeration
             </p>
           </div>
           
@@ -270,34 +270,34 @@ export default function Home() {
               </div>
               <div>
                 <span className="text-sm font-semibold uppercase tracking-wide text-navy-blue">
-                  Case Study
+                  Sample Scenario
                 </span>
                 <h3 className="font-bold text-2xl md:text-3xl mt-2 mb-4 text-navy-blue">
-                  Leading GCC Bank Digital Transformation
+                  Staffing a Banking Cloud Migration Project Within 2 Weeks
                 </h3>
                 <p className="text-lg text-charcoal mb-6">
-                  "ASTERIK's compliance-first approach enabled us to modernize our core banking systems while maintaining full regulatory adherence. Their team delivered exceptional results."
+                  How We Solve Problems: When a major financial institution needed to migrate critical workloads to the cloud while maintaining compliance, we deployed pre-vetted teams with relevant GCC experience.
                 </p>
                 <div className="mb-6">
-                  <p className="font-semibold text-navy-blue">Key Results:</p>
+                  <p className="font-semibold text-navy-blue">What to Expect When You Work With Us:</p>
                   <ul className="mt-2 space-y-2">
                     <li className="flex items-center">
                       <i className="fas fa-check-circle mr-3 text-warm-orange"></i>
-                      <span>40% reduction in processing time</span>
+                      <span>48-hour CV turnaround with qualified candidates</span>
                     </li>
                     <li className="flex items-center">
                       <i className="fas fa-check-circle mr-3 text-warm-orange"></i>
-                      <span>99.9% system uptime achieved</span>
+                      <span>100% GCC compliance-ready profiles</span>
                     </li>
                     <li className="flex items-center">
                       <i className="fas fa-check-circle mr-3 text-warm-orange"></i>
-                      <span>Full regulatory compliance maintained</span>
+                      <span>Agile execution frameworks from day one</span>
                     </li>
                   </ul>
                 </div>
                 <div className="text-sm text-light-grey">
-                  <p className="font-semibold">Chief Technology Officer</p>
-                  <p>Major GCC Financial Institution</p>
+                  <p className="font-semibold">Sample engagement model</p>
+                  <p>These show capability without exaggeration</p>
                 </div>
               </div>
             </div>
@@ -305,14 +305,14 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Trust Badges */}
+      {/* Focus Areas */}
       <div className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h3 className="font-bold text-2xl mb-8 text-navy-blue">Trusted by Industry Leaders</h3>
+          <h3 className="font-bold text-2xl mb-8 text-navy-blue">Our Focus Areas Include</h3>
           <div className="flex flex-wrap justify-center items-center space-x-8 md:space-x-16">
-            <span className="text-charcoal text-lg font-semibold mb-4">Serving Government Entities</span>
+            <span className="text-charcoal text-lg font-semibold mb-4">Government & Public Sector</span>
             <span className="text-2xl text-warm-orange">|</span>
-            <span className="text-charcoal text-lg font-semibold mb-4">Financial Institutions</span>
+            <span className="text-charcoal text-lg font-semibold mb-4">Financial Services</span>
             <span className="text-2xl text-warm-orange">|</span>
             <span className="text-charcoal text-lg font-semibold mb-4">Enterprise Organizations</span>
           </div>
@@ -331,8 +331,17 @@ export default function Home() {
                 Redefining Enterprise Technology Capabilities
               </h2>
               <p className="text-lg text-charcoal mb-6 leading-relaxed">
-                Led by former PwC Middle East CX/DX leadership with 15+ years of experience driving transformations for ADGM, MetLife Gulf, and Fortune 500 enterprises. We bring deep expertise in regulatory compliance, digital transformation, and enterprise technology implementation across the GCC region.
+                Founded by former PwC Middle East CX/DX leadership with 15+ years of experience driving transformations for ADGM, MetLife Gulf, and Fortune 500 enterprises. Our team combines Big Four advisory expertise with hands-on technology implementation experience across the GCC region.
               </p>
+              <div className="mb-6 p-4 bg-white rounded-lg border-l-4 border-navy-blue">
+                <p className="text-sm text-charcoal mb-2"><strong>Founder Credentials:</strong></p>
+                <ul className="text-sm text-light-grey space-y-1">
+                  <li>• Former PwC Middle East Customer & Digital Experience Practice Lead</li>
+                  <li>• 15+ years driving digital transformations for Fortune 500 companies</li>
+                  <li>• Led technology implementations for ADGM and major GCC financial institutions</li>
+                  <li>• Deep expertise in regulatory compliance and enterprise-scale projects</li>
+                </ul>
+              </div>
               <div className="grid md:grid-cols-2 gap-6 mb-8">
                 <div className="flex items-start">
                   <div 
