@@ -256,63 +256,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Sample Engagement Models */}
-      <div className="bg-navy-blue py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="font-bold text-3xl md:text-4xl text-white mb-4">
-              Example Engagement Models
-            </h2>
-            <p className="text-xl text-light-grey max-w-3xl mx-auto">
-              Sample scenarios demonstrating our capability without exaggeration
-            </p>
-          </div>
-          
-          <div className="bg-white rounded-2xl p-8 md:p-12">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <img 
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=500" 
-                  alt="Modern financial institution digital transformation" 
-                  className="w-full h-auto rounded-xl" 
-                />
-              </div>
-              <div>
-                <span className="text-sm font-semibold uppercase tracking-wide text-navy-blue">
-                  Sample Scenario
-                </span>
-                <h3 className="font-bold text-2xl md:text-3xl mt-2 mb-4 text-navy-blue">
-                  Staffing a Banking Cloud Migration Project Within 2 Weeks
-                </h3>
-                <p className="text-lg text-charcoal mb-6">
-                  How We Solve Problems: When a major financial institution needed to migrate critical workloads to the cloud while maintaining compliance, we deployed pre-vetted teams with relevant GCC experience.
-                </p>
-                <div className="mb-6">
-                  <p className="font-semibold text-navy-blue">What to Expect When You Work With Us:</p>
-                  <ul className="mt-2 space-y-2">
-                    <li className="flex items-center">
-                      <i className="fas fa-check-circle mr-3 text-warm-orange"></i>
-                      <span>48-hour CV turnaround with qualified candidates</span>
-                    </li>
-                    <li className="flex items-center">
-                      <i className="fas fa-check-circle mr-3 text-warm-orange"></i>
-                      <span>100% GCC compliance-ready profiles</span>
-                    </li>
-                    <li className="flex items-center">
-                      <i className="fas fa-check-circle mr-3 text-warm-orange"></i>
-                      <span>Agile execution frameworks from day one</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="text-sm text-light-grey">
-                  <p className="font-semibold">Sample engagement model</p>
-                  <p>These show capability without exaggeration</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
 
       {/* Focus Areas */}
       <div className="py-16 bg-white">
