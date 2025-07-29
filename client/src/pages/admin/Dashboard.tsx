@@ -276,7 +276,7 @@ export default function Dashboard() {
           </TabsContent>
 
           <TabsContent value="pagebuilder">
-            <PageBuilder />
+            <PageBuilder token={token} />
           </TabsContent>
 
           <TabsContent value="users">
