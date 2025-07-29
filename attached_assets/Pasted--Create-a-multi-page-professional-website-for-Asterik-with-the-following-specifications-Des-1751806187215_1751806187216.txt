@@ -65,7 +65,7 @@
      Left: Google Maps placeholder (Dubai/GCC focus)
      Right: 
        * Contact Form (Name, Email, Company, Message)
-       * Direct Contacts: hello@asterik.com | +971 X XXX XXXX
+       * Direct Contacts: hello@asterik.ae | +971 X XXX XXXX
        * Social Icons: LinkedIn | Twitter
    - Office Hours: "Sunday-Thursday: 8AM-6PM GST"
 

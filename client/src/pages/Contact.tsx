@@ -9,76 +9,79 @@ export default function Contact() {
     email: "",
     company: "",
     phone: "",
-    message: ""
+    message: "",
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
       toast({
-        title: "Error", 
+        title: "Error",
         description: "Please fill in all required fields.",
-        variant: "destructive"
+        variant: "destructive",
       });
       return;
     }
-    
+
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       toast({
         title: "Error",
         description: "Please enter a valid email address.",
-        variant: "destructive"
+        variant: "destructive",
       });
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           ...formData,
-          source: 'contact_form',
+          source: "contact_form",
         }),
       });
 
       if (response.ok) {
         toast({
           title: "Success",
-          description: "Thank you for your message. We will get back to you within 24 hours!"
+          description:
+            "Thank you for your message. We will get back to you within 24 hours!",
         });
-        
+
         setFormData({
           name: "",
           email: "",
           company: "",
           phone: "",
-          message: ""
+          message: "",
         });
       } else {
-        throw new Error('Failed to submit form');
+        throw new Error("Failed to submit form");
       }
     } catch (error) {
       toast({
         title: "Error",
         description: "Failed to send message. Please try again.",
-        variant: "destructive"
+        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
@@ -91,11 +94,10 @@ export default function Contact() {
       <section className="py-20 bg-gradient-to-r from-navy-blue to-charcoal text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Contact Us
-            </h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
             <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto">
-              Ready to transform your enterprise technology capabilities? Let's discuss your strategic requirements and compliance needs.
+              Ready to transform your enterprise technology capabilities? Let's
+              discuss your strategic requirements and compliance needs.
             </p>
           </div>
         </div>
@@ -103,7 +105,6 @@ export default function Contact() {
 
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div className="bg-soft-beige p-8 rounded-2xl">
@@ -112,7 +113,10 @@ export default function Contact() {
               </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-semibold mb-2 text-navy-blue">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-semibold mb-2 text-navy-blue"
+                  >
                     Full Name *
                   </label>
                   <input
@@ -126,7 +130,10 @@ export default function Contact() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-semibold mb-2 text-navy-blue">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-semibold mb-2 text-navy-blue"
+                  >
                     Email Address *
                   </label>
                   <input
@@ -140,7 +147,10 @@ export default function Contact() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="company" className="block text-sm font-semibold mb-2 text-navy-blue">
+                  <label
+                    htmlFor="company"
+                    className="block text-sm font-semibold mb-2 text-navy-blue"
+                  >
                     Company/Organization
                   </label>
                   <input
@@ -153,7 +163,10 @@ export default function Contact() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-semibold mb-2 text-navy-blue">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-semibold mb-2 text-navy-blue"
+                  >
                     Message *
                   </label>
                   <textarea
@@ -181,8 +194,12 @@ export default function Contact() {
               <div className="bg-soft-beige h-64 rounded-2xl flex items-center justify-center">
                 <div className="text-center">
                   <i className="fas fa-map-marker-alt text-4xl mb-4 text-navy-blue"></i>
-                  <p className="text-charcoal font-semibold">Dubai, UAE Office Location</p>
-                  <p className="text-sm text-light-grey">Interactive map integration</p>
+                  <p className="text-charcoal font-semibold">
+                    UAE Office Location
+                  </p>
+                  <p className="text-sm text-light-grey">
+                    Interactive map integration
+                  </p>
                 </div>
               </div>
 
@@ -192,7 +209,7 @@ export default function Contact() {
                 <div className="space-y-4">
                   <div className="flex items-center">
                     <i className="fas fa-envelope mr-4 text-warm-orange"></i>
-                    <span>hello@asterik.com</span>
+                    <span>hello@asterik.ae</span>
                   </div>
                   <div className="flex items-center">
                     <i className="fas fa-phone mr-4 text-warm-orange"></i>
@@ -203,7 +220,7 @@ export default function Contact() {
                     <span>Sunday-Thursday: 8AM-6PM GST</span>
                   </div>
                 </div>
-                
+
                 <div className="mt-8 pt-6 border-t border-light-grey">
                   <h4 className="font-bold text-lg mb-4">Follow Us</h4>
                   <div className="flex space-x-4">
@@ -234,7 +251,8 @@ export default function Contact() {
             Ready to Start Your Project?
           </h2>
           <p className="text-xl text-white mb-8 max-w-3xl mx-auto">
-            Our enterprise technology specialists are ready to discuss your transformation requirements and compliance needs.
+            Our enterprise technology specialists are ready to discuss your
+            transformation requirements and compliance needs.
           </p>
           <button className="bg-white text-navy-blue px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition-all">
             Schedule Consultation
