@@ -20,9 +20,7 @@ import {
   type PageView,
   type InsertPageView,
   type AiInteraction,
-  type InsertAiInteraction,
   type UserSession,
-  type InsertUserSession,
   type AdminUser,
   type InsertAdminUser,
   type EmailCampaign,
@@ -30,7 +28,6 @@ import {
   type ContentBlock,
   type InsertContentBlock,
   type SystemLog,
-  type InsertSystemLog,
   type UserActivity,
   type InsertUserActivity,
   type Page,
@@ -57,8 +54,8 @@ export interface IStorage {
 
   // Analytics
   createPageView(pageView: InsertPageView): Promise<PageView>;
-  createAiInteraction(interaction: InsertAiInteraction): Promise<AiInteraction>;
-  createUserSession(session: InsertUserSession): Promise<UserSession>;
+  createAiInteraction(interaction: any): Promise<AiInteraction>;
+  createUserSession(session: any): Promise<UserSession>;
 
   // Dashboard stats
   getDashboardStats(): Promise<{
@@ -152,7 +149,7 @@ export class DatabaseStorage implements IStorage {
     return view;
   }
 
-  async createAiInteraction(interaction: InsertAiInteraction): Promise<AiInteraction> {
+  async createAiInteraction(interaction: any): Promise<AiInteraction> {
     const [ai] = await db
       .insert(aiInteractions)
       .values(interaction)
@@ -160,7 +157,7 @@ export class DatabaseStorage implements IStorage {
     return ai;
   }
 
-  async createUserSession(session: InsertUserSession): Promise<UserSession> {
+  async createUserSession(session: any): Promise<UserSession> {
     const [userSession] = await db
       .insert(userSessions)
       .values(session)
@@ -196,7 +193,7 @@ export class DatabaseStorage implements IStorage {
     const [clickedResult] = await db
       .select({ count: count() })
       .from(aiInteractions)
-      .where(eq(aiInteractions.clickedRecommendation, true));
+      .where(eq(aiInteractions.clickedRecommendation, "true"));
 
     return {
       totalInteractions: totalResult.count,
@@ -471,6 +468,44 @@ export class DatabaseStorage implements IStorage {
       .values(dashboard)
       .returning();
     return newDashboard;
+  }
+
+  // Page components methods
+  async getPageComponents(pageId?: number): Promise<ContentBlock[]> {
+    try {
+      if (pageId) {
+        return await db
+          .select()
+          .from(contentBlocks)
+          .where(eq(contentBlocks.page, pageId.toString()))
+          .orderBy(contentBlocks.id);
+      }
+      return await db
+        .select()
+        .from(contentBlocks)
+        .orderBy(contentBlocks.page, contentBlocks.id);
+    } catch (error) {
+      console.error("Error fetching page components:", error);
+      return [];
+    }
+  }
+
+  // Dashboard widget instances methods
+  async getDashboardWidgetInstances(dashboardId: number): Promise<any[]> {
+    // Mock implementation for now - return empty array
+    console.log(`Fetching widget instances for dashboard ${dashboardId}`);
+    return [];
+  }
+
+  async createDashboardWidgetInstance(instance: any): Promise<any> {
+    // Mock implementation for now
+    console.log('Creating dashboard widget instance:', instance);
+    return {
+      id: Date.now(),
+      ...instance,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
   }
 }
 

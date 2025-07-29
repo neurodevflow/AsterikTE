@@ -428,8 +428,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         email,
         name,
         role,
-        passwordHash: hashedPassword,
-        isActive: true
+        passwordHash: hashedPassword
       });
 
       const { passwordHash, ...userResponse } = newUser;
@@ -531,6 +530,115 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error creating user dashboard:", error);
       res.status(500).json({ error: "Failed to create user dashboard" });
+    }
+  });
+
+  // Import existing pages endpoint
+  app.post('/api/admin/import-pages', async (req: AuthenticatedRequest, res) => {
+    try {
+      // Inline authentication check
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: "No token provided" });
+      }
+      const token = authHeader.substring(7);
+      try {
+        jwt.verify(token, JWT_SECRET);
+      } catch {
+        return res.status(401).json({ message: "Invalid token" });
+      }
+
+      // Import existing website pages into the page builder
+      const { importExistingPages } = await import('../scripts/import-existing-pages');
+      await importExistingPages();
+      
+      res.json({ message: 'Successfully imported existing pages' });
+    } catch (error) {
+      console.error('Error importing pages:', error);
+      res.status(500).json({ message: 'Failed to import pages' });
+    }
+  });
+
+  // Get page components
+  app.get('/api/admin/pages/:id/components', async (req: AuthenticatedRequest, res) => {
+    try {
+      // Inline authentication check
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: "No token provided" });
+      }
+      const token = authHeader.substring(7);
+      try {
+        jwt.verify(token, JWT_SECRET);
+      } catch {
+        return res.status(401).json({ message: "Invalid token" });
+      }
+
+      const pageId = parseInt(req.params.id);
+      const components = await storage.getPageComponents(pageId);
+      res.json(components);
+    } catch (error) {
+      console.error('Error fetching page components:', error);
+      res.status(500).json({ message: 'Failed to fetch page components' });
+    }
+  });
+
+  // Dashboard customization endpoints - removed duplicate route
+
+  app.get("/api/admin/dashboards/:id/widgets", async (req: AuthenticatedRequest, res) => {
+    try {
+      // Inline authentication check
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: "No token provided" });
+      }
+      const token = authHeader.substring(7);
+      try {
+        jwt.verify(token, JWT_SECRET);
+      } catch {
+        return res.status(401).json({ message: "Invalid token" });
+      }
+
+      const dashboardId = parseInt(req.params.id);
+      const widgets = await storage.getDashboardWidgetInstances(dashboardId);
+      res.json(widgets);
+    } catch (error) {
+      console.error("Error fetching dashboard widgets:", error);
+      res.status(500).json({ error: "Failed to fetch dashboard widgets" });
+    }
+  });
+
+  app.post("/api/admin/dashboards/:id/widgets", async (req: AuthenticatedRequest, res) => {
+    try {
+      // Inline authentication check
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: "No token provided" });
+      }
+      const token = authHeader.substring(7);
+      try {
+        jwt.verify(token, JWT_SECRET);
+      } catch {
+        return res.status(401).json({ message: "Invalid token" });
+      }
+
+      const dashboardId = parseInt(req.params.id);
+      const { widgetId, title, position, config } = req.body;
+      
+      const widgetInstance = await storage.createDashboardWidgetInstance({
+        dashboardId,
+        widgetId,
+        title: title || null,
+        position: position || { x: 0, y: 0, w: 2, h: 2 },
+        config: config || {},
+        isVisible: true,
+        refreshInterval: 300
+      });
+      
+      res.json(widgetInstance);
+    } catch (error) {
+      console.error("Error adding widget to dashboard:", error);
+      res.status(500).json({ error: "Failed to add widget" });
     }
   });
 
