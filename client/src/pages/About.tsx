@@ -1,4 +1,4 @@
-import leadershipImage from "@assets/leadership Image_1751810042614.jpg";
+
 
 export default function About() {
   return (
@@ -20,22 +20,64 @@ export default function About() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* Founder Section */}
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
-            <div className="order-2 md:order-1">
-              <h2 className="font-bold text-3xl mb-6 text-navy-blue">
-                Leadership Excellence
+          {/* Expertise Section */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+            <div>
+              <h2 className="font-bold text-3xl md:text-4xl mb-6 text-navy-blue">
+                Expertise That Drives Innovation
               </h2>
-              <img 
-                src={leadershipImage} 
-                alt="ASTERIK Founder & CEO - Former PwC Middle East CX/DX Leader" 
-                className="w-64 h-64 rounded-full mx-auto md:mx-0 object-cover shadow-lg mb-6" 
-              />
-            </div>
-            <div className="order-1 md:order-2">
-              <p className="text-lg text-charcoal leading-relaxed">
-                Former CX/DX lead at PwC Middle East with 15+ years experience driving transformations for ADGM, MetLife Gulf, and Fortune 500 enterprises. Our founder brings deep expertise in regulatory compliance, digital transformation, and enterprise technology implementation across the GCC region.
+              <p className="text-lg text-charcoal mb-6 leading-relaxed">
+                At the core of Asterik is a founding team of seasoned professionals with a proven track record in delivering complex, high-impact technology projects across government, finance, and enterprise sectors. With deep experience in regulated environments, agile transformation, and cloud-first architecture, the team brings both strategic insight and hands-on execution capability.
               </p>
+              <div className="mb-6">
+                <h4 className="font-bold text-lg mb-4 text-navy-blue">What we bring to the table:</h4>
+                <ul className="space-y-3 text-charcoal">
+                  <li className="flex items-start">
+                    <i className="fas fa-check-circle mr-3 text-warm-orange mt-1"></i>
+                    <span>10+ years leading digital transformation across GCC and global organizations</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-check-circle mr-3 text-warm-orange mt-1"></i>
+                    <span>Expertise in enterprise platforms, cloud systems, and compliance-driven solutions</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-check-circle mr-3 text-warm-orange mt-1"></i>
+                    <span>A delivery-first mindset focused on scale, speed, and sustainability</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-check-circle mr-3 text-warm-orange mt-1"></i>
+                    <span>Ground-level understanding of public and private sector challenges in emerging markets</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="p-4 bg-soft-beige rounded-lg border-l-4 border-navy-blue">
+                <p className="text-charcoal italic">
+                  "We're not just building a company — we're building a way to deliver technology that works smarter, faster, and with greater purpose."
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-6">
+              <div className="text-center">
+                <div className="bg-navy-blue text-white w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <i className="fas fa-brain text-2xl"></i>
+                </div>
+                <h4 className="font-bold text-navy-blue mb-2">Strategic Insight</h4>
+                <p className="text-sm text-charcoal">Deep understanding of complex business environments</p>
+              </div>
+              <div className="text-center">
+                <div className="bg-navy-blue text-white w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <i className="fas fa-cogs text-2xl"></i>
+                </div>
+                <h4 className="font-bold text-navy-blue mb-2">Technical Excellence</h4>
+                <p className="text-sm text-charcoal">Hands-on execution with enterprise-grade solutions</p>
+              </div>
+              <div className="text-center">
+                <div className="bg-navy-blue text-white w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <i className="fas fa-compass text-2xl"></i>
+                </div>
+                <h4 className="font-bold text-navy-blue mb-2">Purposeful Direction</h4>
+                <p className="text-sm text-charcoal">Technology that delivers meaningful business impact</p>
+              </div>
             </div>
           </div>
 

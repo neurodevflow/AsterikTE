@@ -1,4 +1,4 @@
-import leadershipImage from "@assets/leadership Image_1751810042614.jpg";
+
 
 export default function Home() {
   return (
@@ -256,7 +256,63 @@ export default function Home() {
         </div>
       </div>
 
-
+      {/* How We Work - Example Solutions */}
+      <div className="bg-navy-blue py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="font-bold text-3xl md:text-4xl text-white mb-4">
+              How We Deliver Solutions
+            </h2>
+            <p className="text-xl text-light-grey max-w-3xl mx-auto">
+              Example approach: How we would staff and execute a complex banking cloud migration project
+            </p>
+          </div>
+          
+          <div className="bg-white rounded-2xl p-8 md:p-12">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <img 
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=500" 
+                  alt="Modern financial institution digital transformation" 
+                  className="w-full h-auto rounded-xl" 
+                />
+              </div>
+              <div>
+                <span className="text-sm font-semibold uppercase tracking-wide text-navy-blue">
+                  Example Approach
+                </span>
+                <h3 className="font-bold text-2xl md:text-3xl mt-2 mb-4 text-navy-blue">
+                  Banking Cloud Migration: Start to Finish in 2 Weeks
+                </h3>
+                <p className="text-lg text-charcoal mb-6">
+                  How We Would Approach This: When a financial institution needs to migrate critical workloads to the cloud while maintaining compliance, here's how we would deploy pre-vetted teams with relevant GCC experience.
+                </p>
+                <div className="mb-6">
+                  <p className="font-semibold text-navy-blue">Our Standard Process:</p>
+                  <ul className="mt-2 space-y-2">
+                    <li className="flex items-center">
+                      <i className="fas fa-check-circle mr-3 text-warm-orange"></i>
+                      <span>48-hour CV turnaround with qualified candidates</span>
+                    </li>
+                    <li className="flex items-center">
+                      <i className="fas fa-check-circle mr-3 text-warm-orange"></i>
+                      <span>100% GCC compliance-ready profiles</span>
+                    </li>
+                    <li className="flex items-center">
+                      <i className="fas fa-check-circle mr-3 text-warm-orange"></i>
+                      <span>Agile execution frameworks from day one</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="text-sm text-light-grey">
+                  <p className="font-semibold">Sample methodology</p>
+                  <p>This demonstrates our approach to complex projects</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Focus Areas */}
       <div className="py-16 bg-white">
@@ -272,7 +328,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* About Section */}
+      {/* Expertise Section */}
       <div className="bg-soft-beige py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -281,89 +337,73 @@ export default function Home() {
                 About ASTERIK
               </span>
               <h2 className="font-bold text-3xl md:text-4xl mt-2 mb-6 text-navy-blue">
-                Redefining Enterprise Technology Capabilities
+                Expertise That Drives Innovation
               </h2>
               <p className="text-lg text-charcoal mb-6 leading-relaxed">
-                Founded by former PwC Middle East CX/DX leadership with 15+ years of experience driving transformations for ADGM, MetLife Gulf, and Fortune 500 enterprises. Our team combines Big Four advisory expertise with hands-on technology implementation experience across the GCC region.
+                At the core of Asterik is a founding team of seasoned professionals with a proven track record in delivering complex, high-impact technology projects across government, finance, and enterprise sectors. With deep experience in regulated environments, agile transformation, and cloud-first architecture, the team brings both strategic insight and hands-on execution capability.
               </p>
-              <div className="mb-6 p-4 bg-white rounded-lg border-l-4 border-navy-blue">
-                <p className="text-sm text-charcoal mb-2"><strong>Founder Credentials:</strong></p>
-                <ul className="text-sm text-light-grey space-y-1">
-                  <li>• Former PwC Middle East Customer & Digital Experience Practice Lead</li>
-                  <li>• 15+ years driving digital transformations for Fortune 500 companies</li>
-                  <li>• Led technology implementations for ADGM and major GCC financial institutions</li>
-                  <li>• Deep expertise in regulatory compliance and enterprise-scale projects</li>
+              <div className="mb-6">
+                <h4 className="font-bold text-lg mb-4 text-navy-blue">What we bring to the table:</h4>
+                <ul className="space-y-3 text-charcoal">
+                  <li className="flex items-start">
+                    <i className="fas fa-check-circle mr-3 text-warm-orange mt-1"></i>
+                    <span>10+ years leading digital transformation across GCC and global organizations</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-check-circle mr-3 text-warm-orange mt-1"></i>
+                    <span>Expertise in enterprise platforms, cloud systems, and compliance-driven solutions</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-check-circle mr-3 text-warm-orange mt-1"></i>
+                    <span>A delivery-first mindset focused on scale, speed, and sustainability</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-check-circle mr-3 text-warm-orange mt-1"></i>
+                    <span>Ground-level understanding of public and private sector challenges in emerging markets</span>
+                  </li>
                 </ul>
               </div>
-              <div className="grid md:grid-cols-2 gap-6 mb-8">
-                <div className="flex items-start">
-                  <div 
-                    className="bg-navy-blue text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
-                  >
-                    <i className="fas fa-handshake text-sm"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-lg mb-2">Strategic Partnership</h4>
-                    <p className="text-charcoal text-sm">Long-term collaborative relationships with enterprise clients</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div 
-                    className="bg-navy-blue text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
-                  >
-                    <i className="fas fa-shield-alt text-sm"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-lg mb-2">Compliance First</h4>
-                    <p className="text-charcoal text-sm">Regulatory requirements integrated from project inception</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div 
-                    className="bg-navy-blue text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
-                  >
-                    <i className="fas fa-award text-sm"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-lg mb-2">Technology Excellence</h4>
-                    <p className="text-charcoal text-sm">Best-in-class technical expertise and innovation</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div 
-                    className="bg-navy-blue text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1"
-                  >
-                    <i className="fas fa-chart-bar text-sm"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-lg mb-2">ROI-Driven</h4>
-                    <p className="text-charcoal text-sm">Measurable business outcomes and performance metrics</p>
-                  </div>
-                </div>
+              <div className="p-4 bg-white rounded-lg border-l-4 border-navy-blue mb-6">
+                <p className="text-charcoal italic">
+                  "We're not just building a company — we're building a way to deliver technology that works smarter, faster, and with greater purpose."
+                </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button 
-                  className="bg-navy-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200"
+                <a 
+                  href="/about"
+                  className="bg-navy-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200 text-center"
                 >
                   Learn More About Us
-                </button>
-                <button className="font-semibold text-navy-blue hover:text-warm-orange transition-colors duration-200 px-6 py-3">
-                  Our Leadership Team <i className="fas fa-arrow-right ml-2"></i>
-                </button>
+                </a>
+                <a 
+                  href="/contact"
+                  className="font-semibold text-navy-blue hover:text-warm-orange transition-colors duration-200 px-6 py-3 text-center"
+                >
+                  Get in Touch <i className="fas fa-arrow-right ml-2"></i>
+                </a>
               </div>
             </div>
-            <div>
-              <div className="relative">
-                <img 
-                  src={leadershipImage} 
-                  alt="ASTERIK Founder & CEO - Former PwC Middle East CX/DX Leader" 
-                  className="w-80 h-80 rounded-full mx-auto object-cover shadow-lg border-4 border-white" 
-                />
+            <div className="grid grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="bg-navy-blue text-white w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <i className="fas fa-brain text-2xl"></i>
+                </div>
+                <h4 className="font-bold text-navy-blue mb-2">Strategic Insight</h4>
+                <p className="text-sm text-charcoal">Deep understanding of complex business environments</p>
               </div>
-              <div className="mt-6 text-center">
-                <h4 className="font-bold text-xl mb-2" style={{ color: "var(--asterik-dark)" }}>Leadership Excellence</h4>
-                <p className="text-gray-600 mb-3">Founder & Chief Executive Officer</p>
-                <p className="text-sm text-gray-500">Former PwC Middle East CX/DX Lead | 15+ Years Enterprise Transformation</p>
+              <div className="text-center">
+                <div className="bg-navy-blue text-white w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <i className="fas fa-cogs text-2xl"></i>
+                </div>
+                <h4 className="font-bold text-navy-blue mb-2">Technical Excellence</h4>
+                <p className="text-sm text-charcoal">Hands-on execution with enterprise-grade solutions</p>
+              </div>
+              <div className="text-center">
+                <div className="bg-navy-blue text-white w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <i className="fas fa-compass text-2xl"></i>
+                </div>
+                <h4 className="font-bold text-navy-blue mb-2">Purposeful Direction</h4>
+                <p className="text-sm text-charcoal">Technology that delivers meaningful business impact</p>
               </div>
             </div>
           </div>
