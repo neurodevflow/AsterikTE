@@ -228,7 +228,7 @@ export default function PageBuilder({ token }: PageBuilderProps) {
         body: JSON.stringify(request),
       });
       if (!response.ok) throw new Error('Failed to generate component');
-      return response.json() as GeneratedComponent;
+      return await response.json() as GeneratedComponent;
     },
     onSuccess: (data: GeneratedComponent) => {
       toast({ title: "Success", description: `AI ${data.type} component generated successfully` });
@@ -250,7 +250,7 @@ export default function PageBuilder({ token }: PageBuilderProps) {
         body: JSON.stringify(request),
       });
       if (!response.ok) throw new Error('Failed to generate page');
-      return response.json() as GeneratedComponent[];
+      return await response.json() as GeneratedComponent[];
     },
     onSuccess: (data: GeneratedComponent[]) => {
       toast({ title: "Success", description: `AI page with ${data.length} components generated successfully` });
