@@ -19,10 +19,19 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <h3 className="font-bold text-2xl mb-4">ASTERIK</h3>
+            <div className="mb-4">
+              <Link
+                href="/admin/login"
+                className="inline-block bg-teal-green hover:bg-warm-orange text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105"
+              >
+                <i className="fas fa-envelope mr-2"></i>
+                Webmail
+              </Link>
+            </div>
             <p className="text-light-grey mb-4">
               Strategic Technology Solutions for Enterprise Transformation
             </p>
-            <div className="flex space-x-4 items-center">
+            <div className="flex space-x-4">
               <a
                 href="#"
                 className="text-warm-orange hover:text-white transition-colors duration-200"
@@ -35,15 +44,6 @@ export default function Footer() {
               >
                 <i className="fab fa-twitter text-xl"></i>
               </a>
-              <Link
-                href="/admin/login"
-                className="text-light-grey hover:text-warm-orange transition-colors duration-200 text-sm ml-4"
-              >
-                Webmail
-              </Link>
-              <div className="text-warm-orange text-2xl font-bold ml-4">
-                ASTERIK
-              </div>
             </div>
           </div>
 
