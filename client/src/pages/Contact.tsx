@@ -226,19 +226,15 @@ export default function Contact() {
                 <div className="space-y-4">
                   <div className="flex items-center">
                     <i className="fas fa-envelope mr-4 text-warm-orange"></i>
-                    <span>hello@asterik.ae</span>
-                  </div>
-                  <div className="flex items-center">
-                    <i className="fas fa-phone mr-4 text-warm-orange"></i>
-                    <span>+971 X XXX XXXX</span>
-                  </div>
-                  <div className="flex items-center">
-                    <i className="fas fa-clock mr-4 text-warm-orange"></i>
-                    <span>Sunday-Thursday: 8AM-6PM GST</span>
+                    <span>info@asterik.ae</span>
                   </div>
                   <div className="flex items-center">
                     <i className="fas fa-map-marker-alt mr-4 text-warm-orange"></i>
                     <span>Dubai, UAE</span>
+                  </div>
+                  <div className="flex items-center">
+                    <i className="fas fa-clock mr-4 text-warm-orange"></i>
+                    <span>Sunday-Thursday: 8AM-6PM GST</span>
                   </div>
                 </div>
 

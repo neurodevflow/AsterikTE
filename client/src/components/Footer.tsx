@@ -22,7 +22,7 @@ export default function Footer() {
             <p className="text-light-grey mb-4">
               Strategic Technology Solutions for Enterprise Transformation
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 items-center">
               <a
                 href="#"
                 className="text-warm-orange hover:text-white transition-colors duration-200"
@@ -35,6 +35,15 @@ export default function Footer() {
               >
                 <i className="fab fa-twitter text-xl"></i>
               </a>
+              <Link
+                href="/admin/login"
+                className="text-light-grey hover:text-warm-orange transition-colors duration-200 text-sm ml-4"
+              >
+                Webmail
+              </Link>
+              <div className="text-warm-orange text-2xl font-bold ml-4">
+                ASTERIK
+              </div>
             </div>
           </div>
 
