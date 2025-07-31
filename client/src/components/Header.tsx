@@ -189,14 +189,6 @@ export default function Header() {
 
           {/* Login Buttons */}
           <div className="hidden md:flex space-x-4">
-            <a 
-              href="https://webmail.asterik.ae" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-charcoal hover:text-navy-blue transition-colors duration-200 font-medium"
-            >
-              Staff Login
-            </a>
             <Link 
               href="/customer-login"
               className="bg-navy-blue text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium"
@@ -332,15 +324,6 @@ export default function Header() {
               
               {/* Mobile Login Buttons */}
               <div className="pt-4 border-t border-light-grey mt-4 space-y-2">
-                <a 
-                  href="https://webmail.asterik.ae" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block w-full text-left px-3 py-3 text-charcoal hover:text-navy-blue transition-colors touch-manipulation font-medium min-h-[44px]"
-                  style={{ touchAction: 'manipulation' }}
-                >
-                  Staff Login
-                </a>
                 <Link 
                   href="/customer-login"
                   onClick={() => setMobileMenuOpen(false)}
