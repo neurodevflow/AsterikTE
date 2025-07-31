@@ -6,6 +6,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import type { Request, Response, NextFunction } from "express";
 import path from "path";
+import { emailService } from "./emailService";
 
 // Auth utilities
 const JWT_SECRET = process.env.JWT_SECRET || "asterik-admin-secret-key";
@@ -834,7 +835,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
         source: source || 'contact_form'
       });
 
-      // Track analytics - simplified logging for now
+      // Send email notifications
+      try {
+        await emailService.sendContactFormEmail({
+          name,
+          email,
+          company: company || undefined,
+          phone: phone || undefined,
+          message,
+          source: source || 'contact_form'
+        });
+
+        // Send auto-reply to the user
+        await emailService.sendAutoReply({
+          name,
+          email,
+          company: company || undefined,
+          phone: phone || undefined,
+          message,
+          source: source || 'contact_form'
+        });
+      } catch (emailError) {
+        console.error('Email sending failed:', emailError);
+        // Continue with success response even if email fails
+      }
+
+      // Track analytics
       console.log('Contact form submission:', {
         contactId: contactSubmission.id,
         source,
