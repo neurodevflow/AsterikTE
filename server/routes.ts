@@ -831,16 +831,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         company: company || null,
         phone: phone || null,
         message,
-        source: source || 'contact_form',
-        status: 'new'
+        source: source || 'contact_form'
       });
 
-      // Track analytics
-      await storage.createUserActivity({
-        activity: 'Contact form submission',
-        details: { contactId: contactSubmission.id, source },
-        ipAddress: req.ip,
-        userAgent: req.get('User-Agent')
+      // Track analytics - simplified logging for now
+      console.log('Contact form submission:', {
+        contactId: contactSubmission.id,
+        source,
+        timestamp: new Date().toISOString()
       });
 
       res.status(201).json({ 
