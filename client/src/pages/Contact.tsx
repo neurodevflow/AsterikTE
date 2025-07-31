@@ -236,6 +236,10 @@ export default function Contact() {
                     <i className="fas fa-clock mr-4 text-warm-orange"></i>
                     <span>Sunday-Thursday: 8AM-6PM GST</span>
                   </div>
+                  <div className="flex items-center">
+                    <i className="fas fa-map-marker-alt mr-4 text-warm-orange"></i>
+                    <span>Dubai, UAE</span>
+                  </div>
                 </div>
 
                 <div className="mt-8 pt-6 border-t border-light-grey">
