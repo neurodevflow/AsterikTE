@@ -20,13 +20,15 @@ export default function Footer() {
           <div>
             <h3 className="font-bold text-2xl mb-4">ASTERIK</h3>
             <div className="mb-4">
-              <Link
-                href="/admin/login"
+              <a
+                href="https://webmail.asterik.ae"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block bg-teal-green hover:bg-warm-orange text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105"
               >
                 <i className="fas fa-envelope mr-2"></i>
                 Webmail
-              </Link>
+              </a>
             </div>
             <p className="text-light-grey mb-4">
               Strategic Technology Solutions for Enterprise Transformation
