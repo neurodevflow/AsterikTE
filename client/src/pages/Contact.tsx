@@ -164,6 +164,22 @@ export default function Contact() {
                 </div>
                 <div>
                   <label
+                    htmlFor="phone"
+                    className="block text-sm font-semibold mb-2 text-navy-blue"
+                  >
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-light-grey rounded-lg focus:ring-2 focus:ring-navy-blue focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label
                     htmlFor="message"
                     className="block text-sm font-semibold mb-2 text-navy-blue"
                   >
@@ -181,9 +197,10 @@ export default function Contact() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-navy-blue text-white py-3 px-6 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200"
+                  disabled={isSubmitting}
+                  className="w-full bg-navy-blue text-white py-3 px-6 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>
@@ -218,6 +235,10 @@ export default function Contact() {
                   <div className="flex items-center">
                     <i className="fas fa-clock mr-4 text-warm-orange"></i>
                     <span>Sunday-Thursday: 8AM-6PM GST</span>
+                  </div>
+                  <div className="flex items-center">
+                    <i className="fas fa-map-marker-alt mr-4 text-warm-orange"></i>
+                    <span>Dubai, UAE</span>
                   </div>
                 </div>
 
