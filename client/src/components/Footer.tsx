@@ -1,6 +1,42 @@
+import { useState } from "react";
 import { Link } from "wouter";
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setIsSubmitting(true);
+    setMessage("");
+
+    try {
+      const response = await fetch("https://26a619dc.sibforms.com/serve/MUIFALANaSS80kD1wkCfojx-Wy_8_R7kayoeJzMAWYpyTGRIGTvNFh3y-rqyEbkiU5sMZI4yloAOIQvGQqOVJXL2MqXSvc6hLv5igsoNvG71OmKkHUXXyWlQyyjeFsX2N6Yo9g3KedMrcsdP9wlkoGpWyMgBhNTGGLdsYi0nE-9lVHmbJMZWoqkpVqfGiZQ6nyrE_CXhzUE2j8vV", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          EMAIL: email,
+          locale: "en"
+        }),
+      });
+
+      if (response.ok) {
+        setMessage("Thank you for subscribing to our newsletter!");
+        setEmail("");
+      } else {
+        setMessage("Subscription failed. Please try again.");
+      }
+    } catch (error) {
+      setMessage("Subscription failed. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <footer className="bg-navy-blue text-white py-16">
@@ -190,28 +226,35 @@ export default function Footer() {
 
           {/* Newsletter Signup */}
           <div>
-            <h4 className="font-bold text-lg mb-4">Stay Updated</h4>
+            <h4 className="font-bold text-lg mb-4 text-white">Stay Updated</h4>
             <p className="text-light-grey mb-4 text-sm">
               Subscribe for industry insights and updates
             </p>
-            <div className="w-full">
-              <iframe 
-                width="100%" 
-                height="305" 
-                src="https://26a619dc.sibforms.com/serve/MUIFAIYVWhhLQo6xrSE84W6aqGZxncGWz7n0Jp8pYmROAmy_3B2aZHd5D6OeiA91U_gp8xpe3eaiLMNC1iDQDGXF5i5QjZAHZzr8vSnCWrfWyqEcEFQ0GK8Mc9qfjqJXMWVR4DTXj9iy3ihH9WzfHDeQPJ6dyjcGRH-SbAJ5WxiyNfuHYlnDANCWVBocJZCbgG3LqdeWpuwG90cb" 
-                frameBorder="0" 
-                scrolling="auto" 
-                allowFullScreen 
-                style={{
-                  display: 'block',
-                  marginLeft: 'auto',
-                  marginRight: 'auto',
-                  maxWidth: '100%',
-                  borderRadius: '8px'
-                }}
-                title="Newsletter Subscription"
-              />
-            </div>
+            <form onSubmit={handleNewsletterSubmit} className="space-y-4">
+              <div>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email address"
+                  className="w-full px-4 py-3 bg-white text-charcoal rounded-lg border border-light-grey focus:ring-2 focus:ring-warm-orange focus:border-transparent placeholder-light-grey text-sm"
+                  required
+                  disabled={isSubmitting}
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={isSubmitting || !email}
+                className="w-full bg-warm-orange hover:bg-teal-green text-white py-3 px-6 rounded-lg font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+              >
+                {isSubmitting ? 'Subscribing...' : 'Subscribe to Newsletter'}
+              </button>
+              {message && (
+                <p className={`text-sm mt-2 ${message.includes('Thank you') ? 'text-teal-green' : 'text-red-400'}`}>
+                  {message}
+                </p>
+              )}
+            </form>
           </div>
         </div>
 
