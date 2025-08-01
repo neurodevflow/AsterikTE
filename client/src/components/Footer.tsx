@@ -14,13 +14,17 @@ export default function Footer() {
     setMessage("");
 
     try {
-      // For now, use a simple approach without CAPTCHA
-      // We'll use the iframe approach for better compatibility
+      // Use iframe approach for better Brevo compatibility
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.name = 'newsletter-frame';
+      document.body.appendChild(iframe);
+
       const form = document.createElement('form');
       form.method = 'POST';
-      form.action = 'https://26a619dc.sibforms.com/serve/MUIFALANaSS80kD1wkCfojx-Wy_8_R7kayoeJzMAWYpyTGRIGTvNFh3y-rqyEbkiU5sMZI4yloAOIQvGQqOVJXL2MqXSvc6hLv5igsoNvG71OmKkHUXXyWlQyyjeFsX2N6Yo9g3KedMrcsdP9wlkoGpWyMgBhNTGGLdsYi0nE-9lVHmbJMZWoqkpVqfGiZQ6nyrE_CXhzUE2j8vV';
-      form.target = '_blank';
-
+      form.action = 'https://26a619dc.sibforms.com/serve/MUIFAIYVWhhLQo6xrSE84W6aqGZxncGWz7n0Jp8pYmROAmy_3B2aZHd5D6OeiA91U_gp8xpe3eaiLMNC1iDQDGXF5i5QjZAHZzr8vSnCWrfWyqEcEFQ0GK8Mc9qfjqJXMWVR4DTXj9iy3ihH9WzfHDeQPJ6dyjcGRH-SbAJ5WxiyNfuHYlnDANCWVBocJZCbgG3LqdeWpuwG90cb';
+      form.target = 'newsletter-frame';
+      
       const emailInput = document.createElement('input');
       emailInput.type = 'hidden';
       emailInput.name = 'EMAIL';
@@ -41,9 +45,13 @@ export default function Footer() {
 
       document.body.appendChild(form);
       form.submit();
-      document.body.removeChild(form);
 
-      setMessage("Thank you! Please check the new window to complete your subscription.");
+      setTimeout(() => {
+        document.body.removeChild(form);
+        document.body.removeChild(iframe);
+      }, 2000);
+
+      setMessage("Thank you for subscribing to our newsletter!");
       setEmail("");
     } catch (error) {
       console.error('Newsletter subscription error:', error);
