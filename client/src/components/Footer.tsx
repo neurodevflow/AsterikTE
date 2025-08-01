@@ -258,14 +258,9 @@ export default function Footer() {
                 />
               </div>
               
-              {/* Captcha */}
-              <div className="flex justify-center">
-                <div ref={captchaRef} className="cf-turnstile"></div>
-              </div>
-              
               <button
                 type="submit"
-                disabled={isSubmitting || !email || !captchaToken}
+                disabled={isSubmitting || !email}
                 className="w-full bg-warm-orange hover:bg-teal-green text-white py-3 px-6 rounded-lg font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
               >
                 {isSubmitting ? 'Subscribing...' : 'Subscribe to Newsletter'}
