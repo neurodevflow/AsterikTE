@@ -1,16 +1,6 @@
-import { useState } from "react";
 import { Link } from "wouter";
 
 export default function Footer() {
-  const [email, setEmail] = useState("");
-
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      alert("Thank you for subscribing to our newsletter!");
-      setEmail("");
-    }
-  };
 
   return (
     <footer className="bg-navy-blue text-white py-16">
@@ -204,22 +194,24 @@ export default function Footer() {
             <p className="text-light-grey mb-4 text-sm">
               Subscribe for industry insights and updates
             </p>
-            <form onSubmit={handleNewsletterSubmit} className="flex flex-col space-y-2">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email address"
-                className="px-4 py-2 rounded-lg bg-charcoal text-white placeholder-light-grey focus:outline-none focus:ring-2 focus:ring-navy-blue"
-                required
+            <div className="w-full">
+              <iframe 
+                width="100%" 
+                height="305" 
+                src="https://26a619dc.sibforms.com/serve/MUIFAIYVWhhLQo6xrSE84W6aqGZxncGWz7n0Jp8pYmROAmy_3B2aZHd5D6OeiA91U_gp8xpe3eaiLMNC1iDQDGXF5i5QjZAHZzr8vSnCWrfWyqEcEFQ0GK8Mc9qfjqJXMWVR4DTXj9iy3ihH9WzfHDeQPJ6dyjcGRH-SbAJ5WxiyNfuHYlnDANCWVBocJZCbgG3LqdeWpuwG90cb" 
+                frameBorder="0" 
+                scrolling="auto" 
+                allowFullScreen 
+                style={{
+                  display: 'block',
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                  maxWidth: '100%',
+                  borderRadius: '8px'
+                }}
+                title="Newsletter Subscription"
               />
-              <button
-                type="submit"
-                className="bg-navy-blue text-white py-2 px-4 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200"
-              >
-                Subscribe
-              </button>
-            </form>
+            </div>
           </div>
         </div>
 
