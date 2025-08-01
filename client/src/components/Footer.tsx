@@ -14,43 +14,20 @@ export default function Footer() {
     setMessage("");
 
     try {
-      // Use iframe approach for better Brevo compatibility
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.name = 'newsletter-frame';
-      document.body.appendChild(iframe);
+      // Create form data for Brevo submission
+      const formData = new FormData();
+      formData.append('EMAIL', email);
+      formData.append('email_address_check', ''); // honeypot field
+      formData.append('locale', 'en');
 
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = 'https://26a619dc.sibforms.com/serve/MUIFAIYVWhhLQo6xrSE84W6aqGZxncGWz7n0Jp8pYmROAmy_3B2aZHd5D6OeiA91U_gp8xpe3eaiLMNC1iDQDGXF5i5QjZAHZzr8vSnCWrfWyqEcEFQ0GK8Mc9qfjqJXMWVR4DTXj9iy3ihH9WzfHDeQPJ6dyjcGRH-SbAJ5WxiyNfuHYlnDANCWVBocJZCbgG3LqdeWpuwG90cb';
-      form.target = 'newsletter-frame';
-      
-      const emailInput = document.createElement('input');
-      emailInput.type = 'hidden';
-      emailInput.name = 'EMAIL';
-      emailInput.value = email;
-      form.appendChild(emailInput);
+      // Submit to Brevo endpoint
+      const response = await fetch('https://26a619dc.sibforms.com/serve/MUIFALANaSS80kD1wkCfojx-Wy_8_R7kayoeJzMAWYpyTGRIGTvNFh3y-rqyEbkiU5sMZI4yloAOIQvGQqOVJXL2MqXSvc6hLv5igsoNvG71OmKkHUXXyWlQyyjeFsX2N6Yo9g3KedMrcsdP9wlkoGpWyMgBhNTGGLdsYi0nE-9lVHmbJMZWoqkpVqfGiZQ6nyrE_CXhzUE2j8vV', {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors' // Brevo doesn't support CORS
+      });
 
-      const honeypot = document.createElement('input');
-      honeypot.type = 'hidden';
-      honeypot.name = 'email_address_check';
-      honeypot.value = '';
-      form.appendChild(honeypot);
-
-      const localeInput = document.createElement('input');
-      localeInput.type = 'hidden';
-      localeInput.name = 'locale';
-      localeInput.value = 'en';
-      form.appendChild(localeInput);
-
-      document.body.appendChild(form);
-      form.submit();
-
-      setTimeout(() => {
-        document.body.removeChild(form);
-        document.body.removeChild(iframe);
-      }, 2000);
-
+      // Since we can't read the response due to no-cors, assume success
       setMessage("Thank you for subscribing to our newsletter!");
       setEmail("");
     } catch (error) {
