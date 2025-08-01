@@ -1,37 +1,88 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
+
+declare global {
+  interface Window {
+    turnstile: any;
+    handleCaptchaResponse: () => void;
+  }
+}
 
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState("");
+  const [captchaToken, setCaptchaToken] = useState("");
+  const captchaRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Load Cloudflare Turnstile script
+    const script = document.createElement('script');
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+
+    // Set up global callback function
+    window.handleCaptchaResponse = () => {
+      const token = window.turnstile?.getResponse?.();
+      if (token) {
+        setCaptchaToken(token);
+      }
+    };
+
+    script.onload = () => {
+      if (captchaRef.current && window.turnstile) {
+        window.turnstile.render(captchaRef.current, {
+          sitekey: '0x4AAAAAABnfri7Se-jpCjf6',
+          callback: 'handleCaptchaResponse',
+          language: 'en'
+        });
+      }
+    };
+
+    return () => {
+      if (document.head.contains(script)) {
+        document.head.removeChild(script);
+      }
+    };
+  }, []);
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
+    if (!email || !captchaToken) {
+      setMessage("Please complete the captcha verification.");
+      return;
+    }
 
     setIsSubmitting(true);
     setMessage("");
 
     try {
-      const response = await fetch("https://26a619dc.sibforms.com/serve/MUIFALANaSS80kD1wkCfojx-Wy_8_R7kayoeJzMAWYpyTGRIGTvNFh3y-rqyEbkiU5sMZI4yloAOIQvGQqOVJXL2MqXSvc6hLv5igsoNvG71OmKkHUXXyWlQyyjeFsX2N6Yo9g3KedMrcsdP9wlkoGpWyMgBhNTGGLdsYi0nE-9lVHmbJMZWoqkpVqfGiZQ6nyrE_CXhzUE2j8vV", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-          EMAIL: email,
-          locale: "en"
-        }),
+      // Create form data exactly like the original Brevo form
+      const formData = new FormData();
+      formData.append('EMAIL', email);
+      formData.append('email_address_check', ''); // honeypot field
+      formData.append('locale', 'en');
+      formData.append('cf-turnstile-response', captchaToken);
+
+      const response = await fetch('https://26a619dc.sibforms.com/serve/MUIFALANaSS80kD1wkCfojx-Wy_8_R7kayoeJzMAWYpyTGRIGTvNFh3y-rqyEbkiU5sMZI4yloAOIQvGQqOVJXL2MqXSvc6hLv5igsoNvG71OmKkHUXXyWlQyyjeFsX2N6Yo9g3KedMrcsdP9wlkoGpWyMgBhNTGGLdsYi0nE-9lVHmbJMZWoqkpVqfGiZQ6nyrE_CXhzUE2j8vV', {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors' // Brevo doesn't support CORS, so we can't read the response
       });
 
-      if (response.ok) {
-        setMessage("Thank you for subscribing to our newsletter!");
-        setEmail("");
-      } else {
-        setMessage("Subscription failed. Please try again.");
+      // Since we can't read the actual response due to CORS, assume success
+      setMessage("Thank you for subscribing to our newsletter!");
+      setEmail("");
+      setCaptchaToken("");
+      
+      // Reset captcha
+      if (window.turnstile && captchaRef.current) {
+        window.turnstile.reset(captchaRef.current);
       }
     } catch (error) {
+      console.error('Newsletter subscription error:', error);
       setMessage("Subscription failed. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -242,9 +293,15 @@ export default function Footer() {
                   disabled={isSubmitting}
                 />
               </div>
+              
+              {/* Captcha */}
+              <div className="flex justify-center">
+                <div ref={captchaRef} className="cf-turnstile"></div>
+              </div>
+              
               <button
                 type="submit"
-                disabled={isSubmitting || !email}
+                disabled={isSubmitting || !email || !captchaToken}
                 className="w-full bg-warm-orange hover:bg-teal-green text-white py-3 px-6 rounded-lg font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
               >
                 {isSubmitting ? 'Subscribing...' : 'Subscribe to Newsletter'}
