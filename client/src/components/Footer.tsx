@@ -1,86 +1,50 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { Link } from "wouter";
-
-declare global {
-  interface Window {
-    turnstile: any;
-    handleCaptchaResponse: () => void;
-  }
-}
 
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState("");
-  const [captchaToken, setCaptchaToken] = useState("");
-  const captchaRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Load Cloudflare Turnstile script
-    const script = document.createElement('script');
-    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
-
-    // Set up global callback function
-    window.handleCaptchaResponse = () => {
-      const token = window.turnstile?.getResponse?.();
-      if (token) {
-        setCaptchaToken(token);
-      }
-    };
-
-    script.onload = () => {
-      if (captchaRef.current && window.turnstile) {
-        window.turnstile.render(captchaRef.current, {
-          sitekey: '0x4AAAAAABnfri7Se-jpCjf6',
-          callback: 'handleCaptchaResponse',
-          language: 'en'
-        });
-      }
-    };
-
-    return () => {
-      if (document.head.contains(script)) {
-        document.head.removeChild(script);
-      }
-    };
-  }, []);
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !captchaToken) {
-      setMessage("Please complete the captcha verification.");
-      return;
-    }
+    if (!email) return;
 
     setIsSubmitting(true);
     setMessage("");
 
     try {
-      // Create form data exactly like the original Brevo form
-      const formData = new FormData();
-      formData.append('EMAIL', email);
-      formData.append('email_address_check', ''); // honeypot field
-      formData.append('locale', 'en');
-      formData.append('cf-turnstile-response', captchaToken);
+      // For now, use a simple approach without CAPTCHA
+      // We'll use the iframe approach for better compatibility
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = 'https://26a619dc.sibforms.com/serve/MUIFALANaSS80kD1wkCfojx-Wy_8_R7kayoeJzMAWYpyTGRIGTvNFh3y-rqyEbkiU5sMZI4yloAOIQvGQqOVJXL2MqXSvc6hLv5igsoNvG71OmKkHUXXyWlQyyjeFsX2N6Yo9g3KedMrcsdP9wlkoGpWyMgBhNTGGLdsYi0nE-9lVHmbJMZWoqkpVqfGiZQ6nyrE_CXhzUE2j8vV';
+      form.target = '_blank';
 
-      const response = await fetch('https://26a619dc.sibforms.com/serve/MUIFALANaSS80kD1wkCfojx-Wy_8_R7kayoeJzMAWYpyTGRIGTvNFh3y-rqyEbkiU5sMZI4yloAOIQvGQqOVJXL2MqXSvc6hLv5igsoNvG71OmKkHUXXyWlQyyjeFsX2N6Yo9g3KedMrcsdP9wlkoGpWyMgBhNTGGLdsYi0nE-9lVHmbJMZWoqkpVqfGiZQ6nyrE_CXhzUE2j8vV', {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors' // Brevo doesn't support CORS, so we can't read the response
-      });
+      const emailInput = document.createElement('input');
+      emailInput.type = 'hidden';
+      emailInput.name = 'EMAIL';
+      emailInput.value = email;
+      form.appendChild(emailInput);
 
-      // Since we can't read the actual response due to CORS, assume success
-      setMessage("Thank you for subscribing to our newsletter!");
+      const honeypot = document.createElement('input');
+      honeypot.type = 'hidden';
+      honeypot.name = 'email_address_check';
+      honeypot.value = '';
+      form.appendChild(honeypot);
+
+      const localeInput = document.createElement('input');
+      localeInput.type = 'hidden';
+      localeInput.name = 'locale';
+      localeInput.value = 'en';
+      form.appendChild(localeInput);
+
+      document.body.appendChild(form);
+      form.submit();
+      document.body.removeChild(form);
+
+      setMessage("Thank you! Please check the new window to complete your subscription.");
       setEmail("");
-      setCaptchaToken("");
-      
-      // Reset captcha
-      if (window.turnstile && captchaRef.current) {
-        window.turnstile.reset(captchaRef.current);
-      }
     } catch (error) {
       console.error('Newsletter subscription error:', error);
       setMessage("Subscription failed. Please try again.");
