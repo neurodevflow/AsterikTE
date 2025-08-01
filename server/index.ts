@@ -26,6 +26,9 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Serve static files from root directory for domain verification and Brevo files
+app.use(express.static('.'));
+
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
