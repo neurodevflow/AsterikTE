@@ -27,8 +27,18 @@
     />
     
 
-    <!-- Cloudflare Turnstile -->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <!-- Brevo SDK -->
+    <script src="https://cdn.brevo.com/js/sdk-loader.js" async></script>
+    <script>
+        // Version: 2.0
+        window.Brevo = window.Brevo || [];
+        Brevo.push([
+            "init",
+            {
+            client_key: "gq5j34op6hpsf9idkgjdn0qm"
+            }
+        ]);
+    </script>
     
     <!-- Open Graph tags -->
     <meta
