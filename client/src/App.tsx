@@ -54,6 +54,12 @@ function AdminRoute({ component: Component }: { component: React.ComponentType }
 
 function PublicRouter() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [location] = useLocation();
+
+  // Scroll to top when route changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -128,6 +134,11 @@ function Router() {
 }
 
 function App() {
+  // Scroll to top on page refresh
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
