@@ -10,6 +10,8 @@ export default function Home() {
           style={{ 
             backgroundImage: `linear-gradient(rgba(29, 29, 29, 0.7), rgba(29, 29, 29, 0.7)), url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2000&h=1200')`
           }}
+          role="img"
+          aria-label="Modern office building representing enterprise technology transformation"
         ></div>
         
         <div className="relative z-10 max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8 py-20">
@@ -79,8 +81,9 @@ export default function Home() {
             >
               <div 
                 className="bg-navy-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto"
+                aria-label="Manpower supply services"
               >
-                <i className="fas fa-users text-2xl"></i>
+                <i className="fas fa-users text-2xl" aria-hidden="true"></i>
               </div>
               <h3 className="font-bold text-xl mb-4 text-center">Manpower Supply</h3>
               <p className="text-charcoal text-center">
@@ -94,8 +97,9 @@ export default function Home() {
             >
               <div 
                 className="bg-navy-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto"
+                aria-label="IT consulting services"
               >
-                <i className="fas fa-chart-line text-2xl"></i>
+                <i className="fas fa-chart-line text-2xl" aria-hidden="true"></i>
               </div>
               <h3 className="font-bold text-xl mb-4 text-center">IT Consulting</h3>
               <p className="text-charcoal text-center">
@@ -109,8 +113,9 @@ export default function Home() {
             >
               <div 
                 className="bg-navy-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto"
+                aria-label="Talent acquisition services"
               >
-                <i className="fas fa-search text-2xl"></i>
+                <i className="fas fa-search text-2xl" aria-hidden="true"></i>
               </div>
               <h3 className="font-bold text-xl mb-4 text-center">Talent Acquisition</h3>
               <p className="text-charcoal text-center">
@@ -124,8 +129,9 @@ export default function Home() {
             >
               <div 
                 className="bg-navy-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto"
+                aria-label="Project implementation services"
               >
-                <i className="fas fa-cogs text-2xl"></i>
+                <i className="fas fa-cogs text-2xl" aria-hidden="true"></i>
               </div>
               <h3 className="font-bold text-xl mb-4 text-center">Project Implementation</h3>
               <p className="text-charcoal text-center">
@@ -152,8 +158,9 @@ export default function Home() {
             <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
               <div 
                 className="bg-navy-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
+                aria-label="Government and public sector solutions"
               >
-                <i className="fas fa-university text-2xl"></i>
+                <i className="fas fa-university text-2xl" aria-hidden="true"></i>
               </div>
               <h3 className="font-bold text-xl mb-4">Government & Public Sector</h3>
               <p className="text-charcoal mb-4">Powering the digital evolution of public institutions through compliant, future-ready technology solutions. From smart cities to regulatory platforms, we support initiatives that put citizens and governance at the center.</p>
@@ -170,8 +177,9 @@ export default function Home() {
             <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
               <div 
                 className="bg-navy-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
+                aria-label="Financial services and fintech solutions"
               >
-                <i className="fas fa-chart-line text-2xl"></i>
+                <i className="fas fa-chart-line text-2xl" aria-hidden="true"></i>
               </div>
               <h3 className="font-bold text-xl mb-4">Financial Services & Fintech</h3>
               <p className="text-charcoal mb-4">Accelerating digital innovation in finance with agile tech teams and deep domain know-how. Whether you're building next-gen payment systems or scaling a regulated fintech platform, we deliver the talent to move fast and stay compliant.</p>
@@ -188,8 +196,9 @@ export default function Home() {
             <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
               <div 
                 className="bg-navy-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-6"
+                aria-label="Enterprise organization solutions"
               >
-                <i className="fas fa-building text-2xl"></i>
+                <i className="fas fa-building text-2xl" aria-hidden="true"></i>
               </div>
               <h3 className="font-bold text-xl mb-4">Enterprise Organizations</h3>
               <p className="text-charcoal mb-4">Supporting large-scale transformation through flexible IT staffing, agile delivery teams, and technology solutions tailored to complex operational environments. From ERP to cloud to security, we help enterprises move with speed and stability.</p>
@@ -214,9 +223,9 @@ export default function Home() {
               <span className="text-sm font-semibold uppercase tracking-wide text-navy-blue">
                 Industry Insights
               </span>
-              <h2 className="font-bold text-3xl md:text-4xl mt-2 mb-6 text-navy-blue">
+              <h3 className="font-bold text-3xl md:text-4xl mt-2 mb-6 text-navy-blue">
                 The Future of Enterprise Technology in the GCC
-              </h2>
+              </h3>
               <p className="text-lg text-charcoal mb-6 leading-relaxed">
                 Our latest research reveals key trends shaping digital transformation across government and financial sectors in the Middle East region.
               </p>
