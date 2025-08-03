@@ -177,13 +177,8 @@ export default function Footer() {
             <h4 className="font-bold text-lg mb-4">Industries</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/industries/oil-gas" className="text-light-grey hover:text-warm-orange transition-colors duration-200">
-                  Oil and Gas
-                </Link>
-              </li>
-              <li>
-                <Link href="/industries/healthcare-life-science" className="text-light-grey hover:text-warm-orange transition-colors duration-200">
-                  Healthcare and Life Science
+                <Link href="/industries/government-regtech" className="text-light-grey hover:text-warm-orange transition-colors duration-200">
+                  Government (RegTech)
                 </Link>
               </li>
               <li>
@@ -192,13 +187,18 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/industries/wealth-management" className="text-light-grey hover:text-warm-orange transition-colors duration-200">
-                  Wealth Management
+                <Link href="/industries/energy" className="text-light-grey hover:text-warm-orange transition-colors duration-200">
+                  Energy
                 </Link>
               </li>
               <li>
-                <Link href="/industries/energy" className="text-light-grey hover:text-warm-orange transition-colors duration-200">
-                  Energy
+                <Link href="/industries/oil-gas" className="text-light-grey hover:text-warm-orange transition-colors duration-200">
+                  Oil and Gas
+                </Link>
+              </li>
+              <li>
+                <Link href="/industries/healthcare" className="text-light-grey hover:text-warm-orange transition-colors duration-200">
+                  Healthcare
                 </Link>
               </li>
               <li>
