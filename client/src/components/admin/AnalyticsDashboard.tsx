@@ -211,37 +211,6 @@ export default function AnalyticsDashboard({ token, data }: AnalyticsDashboardPr
         </Card>
       </div>
 
-      {/* AI Recommendations Performance */}
-      <Card className="bg-gray-800 border-gray-700">
-        <CardHeader>
-          <CardTitle className="text-white">AI Recommendations Performance</CardTitle>
-          <CardDescription>How users interact with AI-powered content recommendations</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-400 mb-2">
-                {data.totalInteractions.toLocaleString()}
-              </div>
-              <div className="text-sm text-gray-400">Total AI Interactions</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-green-400 mb-2">
-                {data.clickedRecommendations.toLocaleString()}
-              </div>
-              <div className="text-sm text-gray-400">Clicked Recommendations</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-yellow-400 mb-2">
-                {data.totalInteractions > 0 ? 
-                  ((data.clickedRecommendations / data.totalInteractions) * 100).toFixed(1) : 0}%
-              </div>
-              <div className="text-sm text-gray-400">Click-through Rate</div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
       {/* Top Countries */}
       {data.countryStats.length > 0 && (
         <Card className="bg-gray-800 border-gray-700">

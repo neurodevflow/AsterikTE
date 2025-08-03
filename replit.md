@@ -29,9 +29,9 @@ Client requests made via React components and TanStack Query, processed by Expre
 
 ### Key Features and Implementations
 - **Frontend Pages**: Home, About, Services (detailed offerings including Application Modernization, Product Design, Data Analytics, AI/ML, GenAI, Cloud, DevOps, DevSecOps, Cybersecurity and Pen Testing, Managed Support, Salesforce), Approach, Contact, Insights, Privacy Policy.
-- **UI Components**: shadcn/ui integration, custom branded components, responsive navigation menus (including mobile-specific behaviors), AI-powered content recommendation sidebar using Google Gemini AI.
-- **Admin Dashboard**: Comprehensive system with secure authentication (bcrypt, JWT), analytics tracking (page views, user sessions, AI interactions), contact form management, email campaign tools, dynamic content management system (CMS) with page builder functionality to import and edit existing website pages.
-- **Database Management**: Drizzle ORM for PostgreSQL (Neon serverless), schema in `shared/schema.ts`, migrations via drizzle-kit, user management setup, additional tables for admin functionalities (users, analytics, email campaigns, content, system logs).
+- **UI Components**: shadcn/ui integration, custom branded components, responsive navigation menus (including mobile-specific behaviors).
+- **Admin Dashboard**: Comprehensive system with secure authentication (bcrypt, JWT), analytics tracking (page views, user sessions), contact form management, email campaign tools, dynamic content management system (CMS) with page builder functionality to import and edit existing website pages.
+- **Database Management**: Drizzle ORM for PostgreSQL (Neon serverless), schema in `shared/schema.ts`, migrations via drizzle-kit, user management setup, additional tables for admin functionalities (users, analytics, email campaigns, content, system logs). Removed customer login and AI interactions tracking.
 
 ## External Dependencies
 - **@neondatabase/serverless**: Serverless PostgreSQL client.
@@ -43,7 +43,14 @@ Client requests made via React components and TanStack Query, processed by Expre
 - **typescript**: Type safety.
 - **Google Fonts**: Montserrat (headings), Open Sans (body text).
 - **Font Awesome**: Icon library.
-- **Google Gemini AI**: For content recommendations.
+
 - **Recharts**: Charting library used in the admin dashboard.
 - **bcryptjs**: For password hashing.
 - **jsonwebtoken**: For JWT token management.
+
+## Recent Changes (August 2025)
+- **Removed Customer Login**: Eliminated all customer authentication functionality including CustomerLogin.tsx component and related routes.
+- **Removed AI Recommendations**: Systematically removed all Gemini AI recommendation features including components, server endpoints, analytics tracking, and database schema.
+- **Streamlined Admin Dashboard**: Cleaned up PageBuilder component by removing AI generation functionality and related UI elements.
+- **Updated Analytics**: Removed AI interaction tracking from dashboard statistics and database schema.
+- **Brevo Integration**: Configured Express server to serve static domain verification files (brevo-frame.html and sw.js) from root directory, integrated Brevo SDK script with client key for enhanced tracking and analytics.

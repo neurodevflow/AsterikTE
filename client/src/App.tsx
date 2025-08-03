@@ -3,11 +3,10 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import ContentRecommendationSidebar from "./components/ContentRecommendationSidebar";
-import AIRecommendationButton from "./components/AIRecommendationButton";
+
 import { AdminAuthProvider } from "./components/AdminAuthProvider";
 import { useAuth } from "./hooks/useAuth";
 import Home from "./pages/Home";
@@ -21,7 +20,7 @@ import Insights from "./pages/Insights";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import AdminLogin from "./pages/admin/AdminLogin";
 import Dashboard from "./pages/admin/Dashboard";
-import CustomerLogin from "./pages/CustomerLogin";
+
 import NotFound from "@/pages/not-found";
 
 function AdminRoute({ component: Component }: { component: React.ComponentType }) {
@@ -53,7 +52,6 @@ function AdminRoute({ component: Component }: { component: React.ComponentType }
 }
 
 function PublicRouter() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [location] = useLocation();
 
   // Scroll to top when route changes
@@ -77,7 +75,7 @@ function PublicRouter() {
             <Route path="/about" component={About} />
             <Route path="/insights" component={Insights} />
             <Route path="/privacy-policy" component={PrivacyPolicy} />
-            <Route path="/customer-login" component={CustomerLogin} />
+
             <Route path="/admin-login">
               <AdminAuthProvider>
                 <AdminLogin />
@@ -91,18 +89,6 @@ function PublicRouter() {
             <Route component={NotFound} />
           </Switch>
         </main>
-        
-        {/* AI Recommendation Button */}
-        <AIRecommendationButton 
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-          isActive={sidebarOpen}
-        />
-        
-        {/* AI Content Recommendation Sidebar */}
-        <ContentRecommendationSidebar 
-          isOpen={sidebarOpen}
-          onClose={() => setSidebarOpen(false)}
-        />
       </div>
       <Footer />
     </div>
