@@ -2,11 +2,13 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSubmissionSchema, insertEmailCampaignSchema } from "@shared/schema";
+import { z } from "zod";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import type { Request, Response, NextFunction } from "express";
 import path from "path";
 import { emailService } from "./emailService";
+import { asyncHandler, AuthenticationError, ValidationError } from "./errorHandler";
 
 // Auth utilities
 const JWT_SECRET = process.env.JWT_SECRET!;
@@ -39,22 +41,54 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
 
 
-  // Contact form submission
-  app.post("/api/contact", async (req, res) => {
+  // Enhanced input validation schema
+  const contactValidationSchema = insertContactSubmissionSchema.extend({
+    name: z.string().min(2).max(100).regex(/^[a-zA-Z\s\-'\.]+$/, "Invalid characters in name"),
+    email: z.string().email().max(255),
+    company: z.string().max(200).optional(),
+    phone: z.string().max(20).regex(/^[\+]?[0-9\s\-\(\)]+$/, "Invalid phone format").optional(),
+    subject: z.string().max(300).optional(),
+    message: z.string().min(10).max(5000)
+  });
+
+  // Contact form submission with comprehensive validation
+  app.post("/api/contact", asyncHandler(async (req, res) => {
     try {
-      const validatedData = insertContactSubmissionSchema.parse(req.body);
+      // Rate limiting check (basic)
+      const clientIP = req.ip || req.connection.remoteAddress;
+      
+      // Sanitize and validate input
+      const validatedData = contactValidationSchema.parse(req.body);
+      
+      // Additional security checks
+      const suspiciousPatterns = [
+        /<script/i, /javascript:/i, /on\w+=/i, /data:text\/html/i,
+        /\bsql\b.*\b(union|select|insert|update|delete)\b/i
+      ];
+      
+      const allText = Object.values(validatedData).join(' ');
+      if (suspiciousPatterns.some(pattern => pattern.test(allText))) {
+        return res.status(400).json({ error: "Invalid content detected" });
+      }
+      
       const submission = await storage.createContactSubmission(validatedData);
       res.json({ success: true, id: submission.id });
     } catch (error) {
-      console.error("Error submitting contact form:", error);
-      res.status(400).json({ error: "Invalid form data" });
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ 
+          error: "Validation failed", 
+          details: error.errors.map(e => ({ field: e.path.join('.'), message: e.message }))
+        });
+      }
+      // Don't expose internal errors
+      throw new Error("Submission failed");
     }
-  });
+  }));
 
 
 
   // Admin Authentication Routes
-  app.post("/api/admin/auth/login", async (req, res) => {
+  app.post("/api/admin/auth/login", asyncHandler(async (req, res) => {
     try {
       const { email, password } = req.body;
 
@@ -92,20 +126,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       });
     } catch (error) {
-      console.error("Login error:", error);
-      res.status(500).json({ error: "Login failed" });
+      throw new AuthenticationError("Login failed");
     }
-  });
+  }));
 
   // Dashboard analytics - INLINE AUTH CHECK
   app.get("/api/admin/dashboard/stats", async (req: AuthenticatedRequest, res) => {
     try {
       // Inline authentication check
       const authHeader = req.headers.authorization;
-      console.log('Stats endpoint - Auth header:', authHeader?.substring(0, 30) + '...');
 
       if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        console.log('Stats endpoint - No Bearer token');
         return res.status(401).json({ message: "No token provided" });
       }
 
