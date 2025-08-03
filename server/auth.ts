@@ -63,7 +63,8 @@ export async function authenticateAdmin(req: AuthenticatedRequest, res: Response
       return res.status(401).json({ message: 'Invalid token' });
     }
 
-    const adminUser = await storage.getAdminUser(decoded.id);
+    const adminUsers = await storage.getAdminUsers();
+    const adminUser = adminUsers.find(user => user.id === decoded.id);
     if (!adminUser || !adminUser.isActive) {
       return res.status(401).json({ message: 'Admin user not found or inactive' });
     }
