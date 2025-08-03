@@ -6,7 +6,7 @@ export default function OilAndGas() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Energy & Oil & Gas
+              Oil and Gas
             </h1>
             <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto">
               Drive operational excellence in the energy sector with advanced technology solutions. From upstream exploration to downstream operations, we optimize processes and enhance safety across the oil and gas value chain.

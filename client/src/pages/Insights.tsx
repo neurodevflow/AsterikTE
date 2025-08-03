@@ -38,7 +38,10 @@ export default function Insights() {
                 <p className="text-charcoal mb-6 leading-relaxed">
                   Exploring how regulatory technology is reshaping enterprise transformation strategies in the GCC region, with insights from recent implementations across financial services and government sectors.
                 </p>
-                <button className="font-semibold text-navy-blue hover:text-warm-orange transition-colors duration-200">
+                <button 
+                  onClick={() => window.location.href = '/insights/regtech-compliance-transformation'}
+                  className="font-semibold text-navy-blue hover:text-warm-orange transition-colors duration-200 cursor-pointer"
+                >
                   Read Full Article <i className="fas fa-arrow-right ml-2"></i>
                 </button>
               </div>
@@ -64,7 +67,10 @@ export default function Insights() {
                 <p className="text-charcoal text-sm mb-4">
                   Key technology trends shaping enterprise digital strategies in regulated industries.
                 </p>
-                <button className="text-sm font-semibold text-navy-blue hover:text-warm-orange transition-colors duration-200">
+                <button 
+                  onClick={() => window.location.href = '/insights/digital-transformation-trends-2024'}
+                  className="text-sm font-semibold text-navy-blue hover:text-warm-orange transition-colors duration-200 cursor-pointer"
+                >
                   Read More <i className="fas fa-arrow-right ml-1"></i>
                 </button>
               </div>
@@ -87,7 +93,10 @@ export default function Insights() {
                 <p className="text-charcoal text-sm mb-4">
                   Strategies for assembling high-performing regulatory technology teams.
                 </p>
-                <button className="text-sm font-semibold text-navy-blue hover:text-warm-orange transition-colors duration-200">
+                <button 
+                  onClick={() => window.location.href = '/insights/building-regtech-teams'}
+                  className="text-sm font-semibold text-navy-blue hover:text-warm-orange transition-colors duration-200 cursor-pointer"
+                >
                   Read More <i className="fas fa-arrow-right ml-1"></i>
                 </button>
               </div>
@@ -110,7 +119,10 @@ export default function Insights() {
                 <p className="text-charcoal text-sm mb-4">
                   Best practices for retaining top IT talent in competitive markets.
                 </p>
-                <button className="text-sm font-semibold text-navy-blue hover:text-warm-orange transition-colors duration-200">
+                <button 
+                  onClick={() => window.location.href = '/insights/talent-retention-strategies'}
+                  className="text-sm font-semibold text-navy-blue hover:text-warm-orange transition-colors duration-200 cursor-pointer"
+                >
                   Read More <i className="fas fa-arrow-right ml-1"></i>
                 </button>
               </div>
