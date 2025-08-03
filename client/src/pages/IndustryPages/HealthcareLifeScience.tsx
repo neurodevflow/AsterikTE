@@ -6,10 +6,10 @@ export default function HealthcareLifeScience() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Healthcare & Life Sciences
+              Healthcare
             </h1>
             <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto">
-              Transform healthcare delivery with innovative technology solutions. From patient care optimization to clinical research acceleration, we enable healthcare organizations to improve outcomes and operational efficiency.
+              Transform healthcare delivery with innovative technology solutions. From patient care optimization to research acceleration, we enable healthcare organizations to improve outcomes and operational efficiency.
             </p>
           </div>
         </div>
@@ -23,7 +23,7 @@ export default function HealthcareLifeScience() {
               Healthcare Technology Solutions
             </h2>
             <p className="text-xl text-charcoal max-w-3xl mx-auto">
-              Comprehensive technology solutions designed specifically for healthcare and life sciences organizations
+              Comprehensive technology solutions designed specifically for healthcare organizations
             </p>
           </div>
 

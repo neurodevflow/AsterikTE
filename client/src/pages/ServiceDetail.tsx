@@ -16,10 +16,10 @@ import Salesforce from "./ServicePages/Salesforce";
 import DevSecOps from "./ServicePages/DevSecOps";
 
 // Import industry pages
+import GovernmentRegTech from "./IndustryPages/GovernmentRegTech";
 import OilGas from "./IndustryPages/OilGas";
 import HealthcareLifeScience from "./IndustryPages/HealthcareLifeScience";
 import FinancialServices from "./IndustryPages/FinancialServices";
-import WealthManagement from "./IndustryPages/WealthManagement";
 import Energy from "./IndustryPages/Energy";
 import RetailEcommerce from "./IndustryPages/RetailEcommerce";
 import Logistics from "./IndustryPages/Logistics";
@@ -290,10 +290,10 @@ export default function ServiceDetail() {
   if (serviceId === "devsecops") return <DevSecOps />;
   
   // Handle industry pages
+  if (industryId === "government-regtech") return <GovernmentRegTech />;
   if (industryId === "oil-gas") return <OilGas />;
-  if (industryId === "healthcare-life-science") return <HealthcareLifeScience />;
+  if (industryId === "healthcare-life-science" || industryId === "healthcare") return <HealthcareLifeScience />;
   if (industryId === "financial-services") return <FinancialServices />;
-  if (industryId === "wealth-management") return <WealthManagement />;
   if (industryId === "energy") return <Energy />;
   if (industryId === "retail-ecommerce") return <RetailEcommerce />;
   if (industryId === "logistics") return <Logistics />;
