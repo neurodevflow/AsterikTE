@@ -15,6 +15,7 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Industries from "./pages/Industries";
 import ServiceDetail from "./pages/ServiceDetail";
+import IndustryDetail from "./pages/IndustryDetail";
 import Approach from "./pages/Approach";
 import Contact from "./pages/Contact";
 import Insights from "./pages/Insights";
@@ -70,7 +71,7 @@ function PublicRouter() {
             <Route path="/" component={Home} />
             <Route path="/services/:serviceId" component={ServiceDetail} />
             <Route path="/services" component={Services} />
-            <Route path="/industries/:industryId" component={ServiceDetail} />
+            <Route path="/industries/:industryId" component={IndustryDetail} />
             <Route path="/industries" component={Industries} />
             <Route path="/approach" component={Approach} />
             <Route path="/contact" component={Contact} />

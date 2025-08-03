@@ -35,15 +35,29 @@ export default function Contact() {
       return;
     }
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
+    // Enhanced email validation
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    if (!emailRegex.test(formData.email.trim())) {
       toast({
         title: "Error",
         description: "Please enter a valid email address.",
         variant: "destructive",
       });
       return;
+    }
+
+    // Phone validation (optional but enhanced if provided)
+    if (formData.phone && formData.phone.trim()) {
+      const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+      const cleanPhone = formData.phone.replace(/[\s\-\(\)]/g, '');
+      if (!phoneRegex.test(cleanPhone)) {
+        toast({
+          title: "Error",
+          description: "Please enter a valid phone number.",
+          variant: "destructive",
+        });
+        return;
+      }
     }
 
     setIsSubmitting(true);
@@ -56,7 +70,13 @@ export default function Contact() {
         },
         body: JSON.stringify({
           ...formData,
+          email: formData.email.trim(),
+          name: formData.name.trim(),
+          company: formData.company.trim(),
+          phone: formData.phone.trim(),
+          message: formData.message.trim(),
           source: "contact_form",
+          timestamp: new Date().toISOString(),
         }),
       });
 
@@ -78,9 +98,14 @@ export default function Contact() {
         throw new Error("Failed to submit form");
       }
     } catch (error) {
+      let errorMessage = "Failed to send message. Please try again.";
+      if (error instanceof Error) {
+        errorMessage = error.message || errorMessage;
+      }
+      
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
