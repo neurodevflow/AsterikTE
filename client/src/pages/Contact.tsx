@@ -232,17 +232,18 @@ export default function Contact() {
 
             {/* Contact Information & Map */}
             <div className="space-y-8">
-              {/* Map Placeholder */}
-              <div className="bg-soft-beige h-64 rounded-2xl flex items-center justify-center">
-                <div className="text-center">
-                  <i className="fas fa-map-marker-alt text-4xl mb-4 text-navy-blue"></i>
-                  <p className="text-charcoal font-semibold">
-                    UAE Office Location
-                  </p>
-                  <p className="text-sm text-light-grey">
-                    Interactive map integration
-                  </p>
-                </div>
+              {/* Interactive Map */}
+              <div className="bg-soft-beige h-64 rounded-2xl overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462560.6174478816!2d54.89780842226563!3d25.076280847732228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2s!4v1735428736882!5e0!3m2!1sen!2s"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="ASTERIK UAE Office Location - Dubai"
+                ></iframe>
               </div>
 
               {/* Contact Details */}
@@ -267,13 +268,17 @@ export default function Contact() {
                   <h4 className="font-bold text-lg mb-4">Follow Us</h4>
                   <div className="flex space-x-4">
                     <a
-                      href="#"
+                      href="https://www.linkedin.com/company/asterik-technology-solutions"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-warm-orange hover:text-white transition-colors duration-200"
                     >
                       <i className="fab fa-linkedin text-2xl"></i>
                     </a>
                     <a
-                      href="#"
+                      href="https://twitter.com/asteriktech"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-warm-orange hover:text-white transition-colors duration-200"
                     >
                       <i className="fab fa-twitter text-2xl"></i>

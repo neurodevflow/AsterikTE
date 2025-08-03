@@ -12,10 +12,16 @@ export default function ManagedSupport() {
               Comprehensive managed services to keep your systems running smoothly with 24/7 monitoring, proactive maintenance, and expert technical assistance.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-navy-blue text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
+              <button 
+                onClick={() => window.location.href = '/contact'}
+                className="bg-navy-blue text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium cursor-pointer"
+              >
                 Get Started
               </button>
-              <button className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium">
+              <button 
+                onClick={() => window.location.href = '/contact'}
+                className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium cursor-pointer"
+              >
                 Schedule Consultation
               </button>
             </div>
