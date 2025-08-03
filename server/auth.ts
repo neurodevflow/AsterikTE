@@ -3,7 +3,10 @@ import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 import { storage } from './storage';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'asterik-admin-secret-key';
+const JWT_SECRET = process.env.JWT_SECRET!;
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET environment variable is required for security');
+}
 const SALT_ROUNDS = 12;
 
 export interface AuthenticatedRequest extends Request {
@@ -38,13 +41,10 @@ export function generateToken(adminUser: { id: number; email: string; name: stri
 
 export function verifyToken(token: string): any {
   try {
-    console.log('Verifying token:', token.substring(0, 50) + '...');
-    console.log('JWT_SECRET:', JWT_SECRET);
     const decoded = jwt.verify(token, JWT_SECRET);
-    console.log('Token verified successfully:', decoded);
     return decoded;
   } catch (error) {
-    console.log('Token verification failed:', error);
+    // Token verification failed
     return null;
   }
 }

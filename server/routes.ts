@@ -9,7 +9,10 @@ import path from "path";
 import { emailService } from "./emailService";
 
 // Auth utilities
-const JWT_SECRET = process.env.JWT_SECRET || "asterik-admin-secret-key";
+const JWT_SECRET = process.env.JWT_SECRET!;
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET environment variable is required for security');
+}
 
 export async function hashPassword(password: string): Promise<string> {
   return await bcrypt.hash(password, 12);
@@ -29,27 +32,9 @@ interface AuthenticatedRequest extends Request {
 
 export async function registerRoutes(app: Express): Promise<Server> {
 
-  // Test endpoint for debugging
-  app.get("/api/test", (req, res) => {
-    res.json({ message: "Server is working", timestamp: new Date().toISOString() });
-  });
-
-  // Debug endpoint for domain issues
-  app.get("/api/debug", (req, res) => {
-    res.json({
-      message: "Debug info",
-      timestamp: new Date().toISOString(),
-      host: req.get('host'),
-      hostname: req.hostname,
-      protocol: req.protocol,
-      url: req.url,
-      originalUrl: req.originalUrl,
-      headers: {
-        origin: req.get('origin'),
-        referer: req.get('referer'),
-        userAgent: req.get('user-agent')
-      }
-    });
+  // Production health check endpoint only
+  app.get("/api/health", (req, res) => {
+    res.json({ status: "ok", timestamp: new Date().toISOString() });
   });
 
 
