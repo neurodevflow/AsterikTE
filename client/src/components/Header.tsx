@@ -187,15 +187,7 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Login Buttons */}
-          <div className="hidden md:flex space-x-4">
-            <Link 
-              href="/customer-login"
-              className="bg-navy-blue text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium"
-            >
-              Customer Login
-            </Link>
-          </div>
+
 
           {/* Mobile menu button */}
           <div className="md:hidden">
@@ -322,17 +314,7 @@ export default function Header() {
                 </div>
               ))}
               
-              {/* Mobile Login Buttons */}
-              <div className="pt-4 border-t border-light-grey mt-4 space-y-2">
-                <Link 
-                  href="/customer-login"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full text-center px-3 py-3 bg-navy-blue text-white rounded-md hover:bg-opacity-90 transition-all touch-manipulation font-medium min-h-[44px]"
-                  style={{ touchAction: 'manipulation' }}
-                >
-                  Customer Login
-                </Link>
-              </div>
+
             </div>
           </div>
         )}
