@@ -1,0 +1,21 @@
+﻿No.,Bug Title,Steps to Reproduce,Observed Behavior,Expected Behavior,Severity
+1,Inconsistent Page Naming for Oil and Gas,"1. From the Industries menu, select Oil and Gas.
+2. Check the hero section heading of the resulting page.","The page loads but the hero heading displays Energy Technology Solutions instead of Oil and Gas, causing confusion about whether the page is dedicated to the oil and gas industry or energy in general.",Headings should match the navigation label (Oil and Gas) to avoid misalignment with user expectations.,Low
+2,Dead Social Icons,"1. Scroll to the footer or contact page where social media icons (LinkedIn, Twitter, etc.) are displayed.
+2. Click each icon.",Certain icons do not navigate to actual social media pages; they are either unlinked or link to # placeholders.,Social icons should open the company's official profiles in new tabs.,Low
+3,Misdirected CTA (View Case Studies),"1. Go to the Application Modernization service page.
+2. Scroll to the Key Benefits section and click View Case Studies.",The button redirects to the Insights page instead of any case studies. There are no case study pages accessible.,"The button should link to a case study section or a relevant case study page, or be renamed to reflect its actual target.",Medium
+4,Placeholder Map on Contact Page,"1. Navigate to https://asterik.ae/contact.
+2. Observe the right side of the contact form.","A placeholder label reading UAE Office Location Interactive map integration appears, with no map loaded. This suggests the map integration is missing or failed to load.","An interactive map (e.g., Google Maps) showing the office location should display in place of the placeholder text.",Medium
+5,Contact Form Buttons Not Tested for Submission,"1. On the contact page, fill the form fields (Full Name, Email, Company/Organization, Phone, Message).
+2. Attempt to click Send Message.","Not tested due to policy restrictions; however, there is no visible confirmation or error feedback after filling the form.","After clicking Send Message, the form should validate inputs, display success confirmation, or show field specific error messages.",Medium
+6,Missing Links in Mega Menu,"1. Hover over the Services menu on the home page.
+2. Observe all categories and subcategories listed.","Some sub service items (e.g., GenAI) appear in the mega menu but are not available when clicked. There are blank or placeholder items that link nowhere.",Each visible subservice item should link to a relevant page or not appear until available.,Medium
+7,Intermittent 502 Bad Gateway & Certificate Errors,"1. Navigate to https://asterik.ae in the browser.
+2. Occasionally refresh or directly open https://asterik.ae/services or https://asterik.ae",At times the site fails to load and shows a 502 Bad Gateway error stating Certificate verify failed: hostname mismatch.This occurred on both the root URL and the /services page before eventually loading again later.,Pages should consistently load without certificate errors. No gateway or SSL errors should block access.,High
+8,Invalid reCAPTCHA Key on Signup Popup,"1. On pages such as Application Modernization (/services/application-modernization), wait for the subscription popup labeled Join our community to appear.
+2. Inspect the popup.","The popup shows a visible error message: ERROR for site owner: Invalid site key. The reCAPTCHA field fails to load, preventing form submission.",reCAPTCHA should load properly with a valid site key so users can subscribe. No error message should be visible.,High
+9,Non functional Read More links in Insights,"1. Open the Insights page (/insights).
+2. Hover over any article card and click Read More.",Clicking Read More does nothing the link has no click event or navigation.,Each article card should lead to the full article when clicked.,High
+10,Non Responsive Get Started and Schedule Consultation Buttons,"1. Visit any service page (e.g., Data & Analytics, AI & ML, GenAI, Application Modernization, etc.).
+2. Click Get Started Schedule Consultation at the top or bottom of the page.",These buttons do not perform any action or navigation; they appear visually active but are not bound to any URL or script.,"CTAs should be linked to a contact form, scheduling page, or capture workflow.",High
