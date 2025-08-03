@@ -261,10 +261,13 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="border-t border-charcoal pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-light-grey text-sm">© 2024 ASTERIK. All rights reserved.</p>
+          <p className="text-light-grey text-sm">© 2025 ASTERIK. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="/privacy-policy" className="text-light-grey hover:text-warm-orange text-sm transition-colors duration-200">
               Privacy Policy
+            </Link>
+            <Link href="/terms" className="text-light-grey hover:text-warm-orange text-sm transition-colors duration-200">
+              Terms of Service
             </Link>
           </div>
         </div>

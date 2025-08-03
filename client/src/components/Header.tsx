@@ -84,7 +84,7 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white shadow-sm fixed w-full top-0 z-50">
+    <header className="sticky-nav bg-white shadow-sm fixed w-full top-0 z-50">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -197,25 +197,32 @@ export default function Header() {
               aria-label="Toggle mobile menu"
               style={{ touchAction: 'manipulation' }}
             >
-              <i className={`fas fa-${mobileMenuOpen ? 'times' : 'bars'} text-xl transition-transform duration-200`}></i>
+              <i className="fas fa-bars text-xl" aria-hidden="true"></i>
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation Menu */}
+        {/* Mobile Navigation Menu - Full Screen Overlay */}
         {mobileMenuOpen && (
-          <div 
-            className="md:hidden fixed inset-x-0 top-16 bg-white shadow-lg border-t border-light-grey z-40"
-            onClick={(e) => {
-              // Close menu when clicking outside but not on menu items
-              if (e.target === e.currentTarget) {
-                setMobileMenuOpen(false);
-                setMobileServicesOpen(false);
-                setMobileIndustriesOpen(false);
-              }
-            }}
-          >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white max-h-screen overflow-y-auto">
+          <div className="md:hidden fixed inset-0 bg-white z-50 overflow-y-auto">
+            {/* Close Button */}
+            <div className="flex justify-between items-center p-4 border-b border-light-grey">
+              <Link href="/">
+                <h1 className="font-bold text-2xl text-navy-blue">ASTERIK</h1>
+              </Link>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setMobileServicesOpen(false);
+                  setMobileIndustriesOpen(false);
+                }}
+                className="text-charcoal hover:text-navy-blue focus:outline-none p-2 touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
+                aria-label="Close mobile menu"
+              >
+                <i className="fas fa-times text-xl"></i>
+              </button>
+            </div>
+            <div className="px-4 pt-4 pb-3 space-y-1">
               {navigation.map((item) => (
                 <div key={item.name}>
                   {item.hasDropdown ? (

@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { useEffect } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import CookieConsent from "./components/CookieConsent";
 
 import { AdminAuthProvider } from "./components/AdminAuthProvider";
 import { useAuth } from "./hooks/useAuth";
@@ -18,6 +19,7 @@ import Approach from "./pages/Approach";
 import Contact from "./pages/Contact";
 import Insights from "./pages/Insights";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Terms from "./pages/Terms";
 import AdminLogin from "./pages/admin/AdminLogin";
 import Dashboard from "./pages/admin/Dashboard";
 
@@ -75,6 +77,7 @@ function PublicRouter() {
             <Route path="/about" component={About} />
             <Route path="/insights" component={Insights} />
             <Route path="/privacy-policy" component={PrivacyPolicy} />
+            <Route path="/terms" component={Terms} />
 
             <Route path="/admin-login">
               <AdminAuthProvider>
@@ -91,6 +94,7 @@ function PublicRouter() {
         </main>
       </div>
       <Footer />
+      <CookieConsent />
     </div>
   );
 }
