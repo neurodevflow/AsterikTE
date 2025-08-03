@@ -1,18 +1,57 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { errorHandler, notFoundHandler } from "./errorHandler";
 
 const app = express();
 
-// CORS and security headers for custom domains
+// Enhanced security headers and restricted CORS
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  // Restricted CORS policy - only allow specific trusted domains
+  const allowedOrigins = [
+    'https://asterik.ae',
+    'https://www.asterik.ae',
+    process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : null,
+    (process.env.REPL_SLUG && process.env.REPL_OWNER) ? `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co` : null
+  ].filter(Boolean);
+  
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+  
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  
+  // Enhanced security headers
   res.header('X-Content-Type-Options', 'nosniff');
-  res.header('X-Frame-Options', 'SAMEORIGIN'); // Changed from DENY to SAMEORIGIN for custom domains
+  res.header('X-Frame-Options', 'SAMEORIGIN');
   res.header('X-XSS-Protection', '1; mode=block');
-  res.header('Cache-Control', 'no-cache, no-store, must-revalidate'); // Prevent caching issues
+  res.header('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.header('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  
+  // Content Security Policy
+  res.header('Content-Security-Policy', [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://sibforms.com https://js.brevo.com",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com",
+    "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com",
+    "img-src 'self' data: https:",
+    "connect-src 'self' https://sibforms.com https://api.brevo.com",
+    "frame-src https://sibforms.com",
+    "object-src 'none'",
+    "base-uri 'self'"
+  ].join('; '));
+  
+  // HSTS for HTTPS
+  if (req.secure || req.headers['x-forwarded-proto'] === 'https') {
+    res.header('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+  }
+  
+  // Rate limiting headers
+  res.header('X-Rate-Limit', '1000');
+  res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
   res.header('Pragma', 'no-cache');
   res.header('Expires', '0');
   
@@ -62,13 +101,8 @@ app.use((req, res, next) => {
 (async () => {
   const server = await registerRoutes(app);
 
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
-
-    res.status(status).json({ message });
-    throw err;
-  });
+  // Use comprehensive error handler
+  app.use(errorHandler);
 
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
