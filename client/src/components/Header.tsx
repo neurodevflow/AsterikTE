@@ -60,11 +60,11 @@ export default function Header() {
       href: "/industries",
       hasDropdown: true,
       dropdownItems: [
+        { name: "Government (RegTech)", href: "/industries/government-regtech" },
         { name: "Financial Services", href: "/industries/financial-services" },
-        { name: "Wealth Management", href: "/industries/wealth-management" },
         { name: "Energy", href: "/industries/energy" },
         { name: "Oil and Gas", href: "/industries/oil-gas" },
-        { name: "Healthcare and Life Science", href: "/industries/healthcare-life-science" },
+        { name: "Healthcare", href: "/industries/healthcare" },
         { name: "Retail and E-commerce", href: "/industries/retail-ecommerce" },
         { name: "Logistics", href: "/industries/logistics" },
         { name: "EdTech", href: "/industries/edtech" },
