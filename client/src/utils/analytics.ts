@@ -35,27 +35,3 @@ export async function trackPageView(path: string): Promise<void> {
 }
 
 // Track AI interaction
-export async function trackAiInteraction(
-  currentPage: string,
-  recommendationsShown: any[],
-  clickedRecommendation?: string
-): Promise<void> {
-  try {
-    const sessionId = getSessionId();
-
-    await fetch('/api/analytics/ai-interaction', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        sessionId,
-        currentPage,
-        recommendationsShown,
-        clickedRecommendation,
-      }),
-    });
-  } catch (error) {
-    console.warn('Failed to track AI interaction:', error);
-  }
-}
