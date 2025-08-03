@@ -159,14 +159,7 @@ export const userSessions = pgTable("user_sessions", {
 });
 
 // AI recommendation interactions
-export const aiInteractions = pgTable("ai_interactions", {
-  id: serial("id").primaryKey(),
-  sessionId: text("session_id").notNull(),
-  currentPage: text("current_page").notNull(),
-  recommendationsShown: jsonb("recommendations_shown").notNull(),
-  clickedRecommendation: text("clicked_recommendation"),
-  timestamp: timestamp("timestamp").notNull().defaultNow(),
-});
+
 
 // System logs for monitoring
 export const systemLogs = pgTable("system_logs", {
@@ -433,7 +426,7 @@ export type ContentBlock = typeof contentBlocks.$inferSelect;
 export type InsertPageView = z.infer<typeof insertPageViewSchema>;
 export type PageView = typeof pageViews.$inferSelect;
 export type UserSession = typeof userSessions.$inferSelect;
-export type AiInteraction = typeof aiInteractions.$inferSelect;
+
 export type SystemLog = typeof systemLogs.$inferSelect;
 export type Integration = typeof integrations.$inferSelect;
 export type InsertIntegration = z.infer<typeof insertIntegrationSchema>;

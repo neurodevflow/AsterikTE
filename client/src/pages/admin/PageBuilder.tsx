@@ -1,17 +1,16 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { Trash2, Edit, Plus, Wand2, Eye, Copy, Settings } from "lucide-react";
+import { Plus, Copy, Eye, Settings, Edit, Trash2 } from "lucide-react";
 
 interface Page {
   id: number;
@@ -23,8 +22,7 @@ interface Page {
   seoTitle?: string;
   seoDescription?: string;
   seoKeywords?: string;
-  featuredImage?: string;
-  publishedAt?: string;
+  isPublic: boolean;
   createdAt: string;
   updatedAt: string;
 }
@@ -42,13 +40,6 @@ interface PageComponent {
   updatedAt: string;
 }
 
-interface GeneratedComponent {
-  type: string;
-  name: string;
-  content: any;
-  settings: any;
-}
-
 interface PageBuilderProps {
   token?: string;
 }
@@ -56,7 +47,6 @@ interface PageBuilderProps {
 export default function PageBuilder({ token }: PageBuilderProps) {
   const [selectedPage, setSelectedPage] = useState<Page | null>(null);
   const [showCreateDialog, setShowCreateDialog] = useState(false);
-  const [showAiDialog, setShowAiDialog] = useState(false);
   const [showImportDialog, setShowImportDialog] = useState(false);
   const [activeTab, setActiveTab] = useState("pages");
   const [existingPages] = useState([
@@ -88,7 +78,7 @@ export default function PageBuilder({ token }: PageBuilderProps) {
 
   // Fetch components for selected page
   const { data: pageComponents = [], isLoading: componentsLoading } = useQuery({
-    queryKey: ["/api/admin/pages", selectedPage?.id, "components"],
+    queryKey: ["/api/admin/pages/components", selectedPage?.id],
     queryFn: async () => {
       const response = await fetch(`/api/admin/pages/${selectedPage?.id}/components`, {
         headers: {
@@ -98,76 +88,7 @@ export default function PageBuilder({ token }: PageBuilderProps) {
       if (!response.ok) throw new Error('Failed to fetch components');
       return response.json();
     },
-    enabled: !!selectedPage?.id && !!token,
-  });
-
-  // Import existing pages mutation
-  const importPagesMutation = useMutation({
-    mutationFn: async () => {
-      const response = await fetch('/api/admin/import-pages', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
-      if (!response.ok) throw new Error('Failed to import pages');
-      return response.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/admin/pages"] });
-      setShowImportDialog(false);
-      toast({
-        title: "Success",
-        description: "Existing pages imported successfully",
-      });
-    },
-    onError: () => {
-      toast({
-        title: "Error",
-        description: "Failed to import existing pages",
-        variant: "destructive",
-      });
-    },
-  });
-
-  // Load existing page for editing
-  const loadExistingPageMutation = useMutation({
-    mutationFn: async (slug: string) => {
-      const response = await fetch(`/api/admin/pages/${slug}/edit`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-      if (!response.ok) throw new Error('Failed to load page');
-      return response.json();
-    },
-    onSuccess: (data: any) => {
-      if (data.page) {
-        setSelectedPage(data.page);
-        queryClient.setQueryData(["/api/admin/pages", data.page.id, "components"], data.components || []);
-        setActiveTab("editor");
-        toast({
-          title: "Success",
-          description: `Loaded ${data.page.title} for editing`,
-        });
-      }
-    },
-    onError: (error: any) => {
-      if (error.message.includes('404')) {
-        toast({
-          title: "Page Not Found",
-          description: "This page hasn't been imported yet. Import existing pages first.",
-          variant: "destructive",
-        });
-      } else {
-        toast({
-          title: "Error",
-          description: "Failed to load page for editing",
-          variant: "destructive",
-        });
-      }
-    },
+    enabled: !!token && !!selectedPage?.id,
   });
 
   // Create page mutation
@@ -186,11 +107,35 @@ export default function PageBuilder({ token }: PageBuilderProps) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/pages"] });
-      toast({ title: "Success", description: "Page created successfully" });
       setShowCreateDialog(false);
+      toast({ title: "Success", description: "Page created successfully" });
     },
     onError: () => {
       toast({ title: "Error", description: "Failed to create page", variant: "destructive" });
+    },
+  });
+
+  // Import existing pages mutation
+  const importPagesMutation = useMutation({
+    mutationFn: async () => {
+      const response = await fetch('/api/admin/pages/import-existing', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ pages: existingPages }),
+      });
+      if (!response.ok) throw new Error('Failed to import pages');
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/pages"] });
+      setShowImportDialog(false);
+      toast({ title: "Success", description: "Pages imported successfully" });
+    },
+    onError: () => {
+      toast({ title: "Error", description: "Failed to import pages", variant: "destructive" });
     },
   });
 
@@ -209,54 +154,9 @@ export default function PageBuilder({ token }: PageBuilderProps) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/pages"] });
       toast({ title: "Success", description: "Page deleted successfully" });
-      setSelectedPage(null);
     },
     onError: () => {
       toast({ title: "Error", description: "Failed to delete page", variant: "destructive" });
-    },
-  });
-
-  // Generate AI component mutation
-  const generateComponentMutation = useMutation({
-    mutationFn: async (request: any) => {
-      const response = await fetch('/api/admin/generate/component', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(request),
-      });
-      if (!response.ok) throw new Error('Failed to generate component');
-      return await response.json() as GeneratedComponent;
-    },
-    onSuccess: (data: GeneratedComponent) => {
-      toast({ title: "Success", description: `AI ${data.type} component generated successfully` });
-    },
-    onError: () => {
-      toast({ title: "Error", description: "Failed to generate component", variant: "destructive" });
-    },
-  });
-
-  // Generate full page mutation
-  const generatePageMutation = useMutation({
-    mutationFn: async (request: any) => {
-      const response = await fetch('/api/admin/generate/page', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(request),
-      });
-      if (!response.ok) throw new Error('Failed to generate page');
-      return await response.json() as GeneratedComponent[];
-    },
-    onSuccess: (data: GeneratedComponent[]) => {
-      toast({ title: "Success", description: `AI page with ${data.length} components generated successfully` });
-    },
-    onError: () => {
-      toast({ title: "Error", description: "Failed to generate page", variant: "destructive" });
     },
   });
 
@@ -272,31 +172,6 @@ export default function PageBuilder({ token }: PageBuilderProps) {
       seoKeywords: formData.get("seoKeywords") as string,
     };
     createPageMutation.mutate(pageData);
-  };
-
-  const handleGenerateComponent = (formData: FormData) => {
-    const request = {
-      componentType: formData.get("componentType") as string,
-      industry: formData.get("industry") as string,
-      service: formData.get("service") as string,
-      targetAudience: formData.get("targetAudience") as string,
-      tone: formData.get("tone") as string,
-      businessName: "Asterik",
-      keywords: (formData.get("keywords") as string)?.split(",").map(k => k.trim()).filter(Boolean) || [],
-    };
-    generateComponentMutation.mutate(request);
-  };
-
-  const handleGeneratePage = (formData: FormData) => {
-    const request = {
-      pageType: formData.get("pageType") as string,
-      title: formData.get("title") as string,
-      industry: formData.get("industry") as string,
-      service: formData.get("service") as string,
-      targetAudience: formData.get("targetAudience") as string,
-      businessName: "Asterik",
-    };
-    generatePageMutation.mutate(request);
   };
 
   const getStatusBadgeColor = (status: string) => {
@@ -321,7 +196,7 @@ export default function PageBuilder({ token }: PageBuilderProps) {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-navy-blue">Page Builder</h1>
-          <p className="text-charcoal">Create and manage dynamic pages with AI-powered content generation</p>
+          <p className="text-charcoal">Create and manage dynamic pages with custom content</p>
         </div>
         <div className="flex gap-3">
           <Dialog open={showImportDialog} onOpenChange={setShowImportDialog}>
@@ -362,172 +237,6 @@ export default function PageBuilder({ token }: PageBuilderProps) {
                   </Button>
                 </div>
               </div>
-            </DialogContent>
-          </Dialog>
-
-          <Dialog open={showAiDialog} onOpenChange={setShowAiDialog}>
-            <DialogTrigger asChild>
-              <Button variant="outline" className="border-navy-blue text-navy-blue hover:bg-navy-blue hover:text-white">
-                <Wand2 className="w-4 h-4 mr-2" />
-                AI Generator
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-2xl">
-              <DialogHeader>
-                <DialogTitle className="text-navy-blue">AI Content Generator</DialogTitle>
-                <DialogDescription>
-                  Generate professional content components using AI
-                </DialogDescription>
-              </DialogHeader>
-              
-              <Tabs defaultValue="component" className="w-full">
-                <TabsList className="grid w-full grid-cols-2">
-                  <TabsTrigger value="component">Generate Component</TabsTrigger>
-                  <TabsTrigger value="page">Generate Full Page</TabsTrigger>
-                </TabsList>
-                
-                <TabsContent value="component" className="space-y-4">
-                  <form onSubmit={(e) => {
-                    e.preventDefault();
-                    handleGenerateComponent(new FormData(e.currentTarget));
-                  }} className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="componentType">Component Type</Label>
-                        <Select name="componentType" required>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select component type" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="hero">Hero Section</SelectItem>
-                            <SelectItem value="content">Content Section</SelectItem>
-                            <SelectItem value="features">Features Section</SelectItem>
-                            <SelectItem value="testimonials">Testimonials</SelectItem>
-                            <SelectItem value="cta">Call to Action</SelectItem>
-                            <SelectItem value="gallery">Gallery</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div>
-                        <Label htmlFor="tone">Tone</Label>
-                        <Select name="tone" defaultValue="professional">
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select tone" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="professional">Professional</SelectItem>
-                            <SelectItem value="friendly">Friendly</SelectItem>
-                            <SelectItem value="technical">Technical</SelectItem>
-                            <SelectItem value="persuasive">Persuasive</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="industry">Industry Focus</Label>
-                        <Input name="industry" placeholder="e.g., Financial Services" />
-                      </div>
-                      <div>
-                        <Label htmlFor="service">Service Focus</Label>
-                        <Input name="service" placeholder="e.g., Cloud Solutions" />
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="targetAudience">Target Audience</Label>
-                      <Input name="targetAudience" placeholder="e.g., Business Executives" />
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="keywords">Keywords (comma-separated)</Label>
-                      <Input name="keywords" placeholder="e.g., innovation, efficiency, digital transformation" />
-                    </div>
-                    
-                    <Button 
-                      type="submit" 
-                      disabled={generateComponentMutation.isPending}
-                      className="w-full bg-navy-blue hover:bg-navy-blue/90"
-                    >
-                      {generateComponentMutation.isPending ? (
-                        <>
-                          <Wand2 className="w-4 h-4 mr-2 animate-spin" />
-                          Generating...
-                        </>
-                      ) : (
-                        <>
-                          <Wand2 className="w-4 h-4 mr-2" />
-                          Generate Component
-                        </>
-                      )}
-                    </Button>
-                  </form>
-                </TabsContent>
-                
-                <TabsContent value="page" className="space-y-4">
-                  <form onSubmit={(e) => {
-                    e.preventDefault();
-                    handleGeneratePage(new FormData(e.currentTarget));
-                  }} className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="pageType">Page Type</Label>
-                        <Select name="pageType" required>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select page type" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="landing">Landing Page</SelectItem>
-                            <SelectItem value="service">Service Page</SelectItem>
-                            <SelectItem value="industry">Industry Page</SelectItem>
-                            <SelectItem value="about">About Page</SelectItem>
-                            <SelectItem value="contact">Contact Page</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div>
-                        <Label htmlFor="title">Page Title</Label>
-                        <Input name="title" placeholder="e.g., Healthcare Solutions" required />
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="industry">Industry Focus</Label>
-                        <Input name="industry" placeholder="e.g., Healthcare" />
-                      </div>
-                      <div>
-                        <Label htmlFor="service">Service Focus</Label>
-                        <Input name="service" placeholder="e.g., Digital Health" />
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="targetAudience">Target Audience</Label>
-                      <Input name="targetAudience" placeholder="e.g., Healthcare Executives" />
-                    </div>
-                    
-                    <Button 
-                      type="submit" 
-                      disabled={generatePageMutation.isPending}
-                      className="w-full bg-navy-blue hover:bg-navy-blue/90"
-                    >
-                      {generatePageMutation.isPending ? (
-                        <>
-                          <Wand2 className="w-4 h-4 mr-2 animate-spin" />
-                          Generating Page...
-                        </>
-                      ) : (
-                        <>
-                          <Wand2 className="w-4 h-4 mr-2" />
-                          Generate Full Page
-                        </>
-                      )}
-                    </Button>
-                  </form>
-                </TabsContent>
-              </Tabs>
             </DialogContent>
           </Dialog>
           
@@ -581,41 +290,48 @@ export default function PageBuilder({ token }: PageBuilderProps) {
                   </div>
                   <div>
                     <Label htmlFor="template">Template</Label>
-                    <Select name="template" defaultValue="default">
+                    <Select name="template" defaultValue="standard">
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="default">Default</SelectItem>
+                        <SelectItem value="standard">Standard</SelectItem>
                         <SelectItem value="landing">Landing Page</SelectItem>
-                        <SelectItem value="blog">Blog Post</SelectItem>
+                        <SelectItem value="service">Service Page</SelectItem>
+                        <SelectItem value="industry">Industry Page</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                 </div>
                 
-                <div>
-                  <Label htmlFor="seoTitle">SEO Title</Label>
-                  <Input name="seoTitle" placeholder="SEO optimized title" />
+                <div className="space-y-4">
+                  <h4 className="font-medium text-navy-blue">SEO Settings</h4>
+                  <div>
+                    <Label htmlFor="seoTitle">SEO Title</Label>
+                    <Input name="seoTitle" placeholder="SEO optimized title" />
+                  </div>
+                  <div>
+                    <Label htmlFor="seoDescription">SEO Description</Label>
+                    <Textarea name="seoDescription" placeholder="Meta description for search engines" />
+                  </div>
+                  <div>
+                    <Label htmlFor="seoKeywords">SEO Keywords</Label>
+                    <Input name="seoKeywords" placeholder="comma, separated, keywords" />
+                  </div>
                 </div>
                 
-                <div>
-                  <Label htmlFor="seoDescription">SEO Description</Label>
-                  <Textarea name="seoDescription" placeholder="SEO meta description" />
+                <div className="flex justify-end gap-2">
+                  <Button type="button" variant="outline" onClick={() => setShowCreateDialog(false)}>
+                    Cancel
+                  </Button>
+                  <Button 
+                    type="submit" 
+                    disabled={createPageMutation.isPending}
+                    className="bg-navy-blue hover:bg-navy-blue/90"
+                  >
+                    {createPageMutation.isPending ? "Creating..." : "Create Page"}
+                  </Button>
                 </div>
-                
-                <div>
-                  <Label htmlFor="seoKeywords">SEO Keywords</Label>
-                  <Input name="seoKeywords" placeholder="keyword1, keyword2, keyword3" />
-                </div>
-                
-                <Button 
-                  type="submit" 
-                  disabled={createPageMutation.isPending}
-                  className="w-full bg-navy-blue hover:bg-navy-blue/90"
-                >
-                  {createPageMutation.isPending ? "Creating..." : "Create Page"}
-                </Button>
               </form>
             </DialogContent>
           </Dialog>
@@ -629,43 +345,31 @@ export default function PageBuilder({ token }: PageBuilderProps) {
         </TabsList>
         
         <TabsContent value="pages" className="space-y-6">
-          {/* Existing Website Pages Section */}
+          {/* Existing Pages Section */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Copy className="h-5 w-5" />
-                Existing Website Pages
+                <Eye className="h-5 w-5" />
+                Current Website Pages
               </CardTitle>
               <CardDescription>
-                Load existing website pages into the editor for customization. Import pages first if they haven't been loaded yet.
+                These are your current website pages. Import them to start editing with the page builder.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {existingPages.map((page) => (
-                  <Card key={page.slug} className="hover:shadow-md transition-shadow">
-                    <CardContent className="p-4">
-                      <div className="space-y-3">
-                        <div>
-                          <h4 className="font-medium text-navy-blue">{page.title}</h4>
-                          <p className="text-sm text-charcoal">/{page.slug}</p>
-                          <p className="text-xs text-muted-foreground mt-1">{page.description}</p>
-                        </div>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => loadExistingPageMutation.mutate(page.slug)}
-                          disabled={loadExistingPageMutation.isPending}
-                          className="w-full"
-                        >
-                          {loadExistingPageMutation.isPending ? (
-                            <>Loading...</>
-                          ) : (
-                            <>
-                              <Edit className="h-4 w-4 mr-2" />
-                              Edit Page
-                            </>
-                          )}
+                  <Card key={page.slug} className="border-dashed border-2 hover:border-navy-blue/50 transition-colors">
+                    <CardHeader>
+                      <CardTitle className="text-sm font-medium text-navy-blue">{page.title}</CardTitle>
+                      <CardDescription className="text-xs">/{page.slug}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-charcoal mb-3">{page.description}</p>
+                      <div className="flex gap-2">
+                        <Button variant="outline" size="sm" className="text-xs">
+                          <Eye className="w-3 h-3 mr-1" />
+                          View Live
                         </Button>
                       </div>
                     </CardContent>
@@ -713,25 +417,25 @@ export default function PageBuilder({ token }: PageBuilderProps) {
                           setActiveTab("editor");
                         }}
                       >
-                        <Edit className="w-4 h-4 mr-2" />
+                        <Edit className="w-4 h-4 mr-1" />
                         Edit
                       </Button>
                       <Button
                         variant="outline"
                         size="sm"
                         onClick={() => deletePageMutation.mutate(page.id)}
-                        disabled={deletePageMutation.isPending}
                       >
                         <Trash2 className="w-4 h-4" />
                       </Button>
                     </div>
                   </div>
                 </CardHeader>
-                {page.description && (
-                  <CardContent>
-                    <p className="text-charcoal">{page.description}</p>
-                  </CardContent>
-                )}
+                <CardContent>
+                  <p className="text-sm text-charcoal">{page.description}</p>
+                  <div className="mt-2 text-xs text-muted-foreground">
+                    Created: {new Date(page.createdAt).toLocaleDateString()}
+                  </div>
+                </CardContent>
               </Card>
                   ))}
                 </div>
@@ -774,11 +478,11 @@ export default function PageBuilder({ token }: PageBuilderProps) {
                     <div className="text-center py-8">
                       <div className="text-charcoal mb-4">No components added yet</div>
                       <Button
-                        onClick={() => setShowAiDialog(true)}
+                        onClick={() => setShowCreateDialog(true)}
                         className="bg-navy-blue hover:bg-navy-blue/90"
                       >
-                        <Wand2 className="w-4 h-4 mr-2" />
-                        Generate with AI
+                        <Plus className="w-4 h-4 mr-2" />
+                        Add Component
                       </Button>
                     </div>
                   ) : (
@@ -808,6 +512,11 @@ export default function PageBuilder({ token }: PageBuilderProps) {
                               </div>
                             </div>
                           </CardHeader>
+                          <CardContent>
+                            <div className="text-sm text-charcoal">
+                              <strong>Content:</strong> {JSON.stringify(component.content).substring(0, 100)}...
+                            </div>
+                          </CardContent>
                         </Card>
                       ))}
                     </div>

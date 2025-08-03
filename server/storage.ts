@@ -2,7 +2,6 @@ import { db } from "./db";
 import { 
   contactSubmissions, 
   pageViews, 
-  aiInteractions, 
   userSessions,
   adminUsers,
   emailCampaigns,
@@ -19,7 +18,7 @@ import {
   type InsertContactSubmission,
   type PageView,
   type InsertPageView,
-  type AiInteraction,
+
   type UserSession,
   type AdminUser,
   type InsertAdminUser,
@@ -54,7 +53,7 @@ export interface IStorage {
 
   // Analytics
   createPageView(pageView: InsertPageView): Promise<PageView>;
-  createAiInteraction(interaction: any): Promise<AiInteraction>;
+
   createUserSession(session: any): Promise<UserSession>;
 
   // Dashboard stats
@@ -62,11 +61,6 @@ export interface IStorage {
     totalPageViews: number;
     totalContacts: number;
     totalSessions: number;
-    aiInteractions: number;
-  }>;
-  getAiInteractionStats(): Promise<{
-    totalInteractions: number;
-    clickedRecommendations: number;
   }>;
   getTopPages(limit: number): Promise<Array<{ path: string; count: number }>>;
   getDeviceStats(): Promise<Array<{ device: string; count: number }>>;
@@ -154,13 +148,7 @@ export class DatabaseStorage implements IStorage {
     return view;
   }
 
-  async createAiInteraction(interaction: any): Promise<AiInteraction> {
-    const [ai] = await db
-      .insert(aiInteractions)
-      .values(interaction)
-      .returning();
-    return ai;
-  }
+
 
   async createUserSession(session: any): Promise<UserSession> {
     const [userSession] = await db
@@ -175,36 +163,18 @@ export class DatabaseStorage implements IStorage {
     totalPageViews: number;
     totalContacts: number;
     totalSessions: number;
-    aiInteractions: number;
   }> {
     const [pageViewCount] = await db.select({ count: count() }).from(pageViews);
     const [contactCount] = await db.select({ count: count() }).from(contactSubmissions);
     const [sessionCount] = await db.select({ count: count() }).from(userSessions);
-    const [aiCount] = await db.select({ count: count() }).from(aiInteractions);
-
     return {
       totalPageViews: pageViewCount.count,
       totalContacts: contactCount.count,
-      totalSessions: sessionCount.count,
-      aiInteractions: aiCount.count
+      totalSessions: sessionCount.count
     };
   }
 
-  async getAiInteractionStats(): Promise<{
-    totalInteractions: number;
-    clickedRecommendations: number;
-  }> {
-    const [totalResult] = await db.select({ count: count() }).from(aiInteractions);
-    const [clickedResult] = await db
-      .select({ count: count() })
-      .from(aiInteractions)
-      .where(eq(aiInteractions.clickedRecommendation, "true"));
 
-    return {
-      totalInteractions: totalResult.count,
-      clickedRecommendations: clickedResult.count
-    };
-  }
 
   async getTopPages(limit: number): Promise<Array<{ path: string; count: number }>> {
     const results = await db
