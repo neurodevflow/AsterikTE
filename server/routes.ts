@@ -143,10 +143,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const token = authHeader.substring(7);
       try {
         const decoded = jwt.verify(token, JWT_SECRET) as any;
-        console.log('Stats endpoint - Token verified for user:', decoded.email);
+        // Token verified successfully
         req.user = decoded;
       } catch (jwtError) {
-        console.log('Stats endpoint - JWT verification failed:', jwtError);
+        // JWT verification failed
         return res.status(401).json({ message: "Invalid token" });
       }
 
@@ -164,7 +164,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         countryStats
       });
     } catch (error) {
-      console.error("Error fetching dashboard stats:", error);
+      // Error fetching dashboard stats
       res.status(500).json({ error: "Failed to fetch stats" });
     }
   });
