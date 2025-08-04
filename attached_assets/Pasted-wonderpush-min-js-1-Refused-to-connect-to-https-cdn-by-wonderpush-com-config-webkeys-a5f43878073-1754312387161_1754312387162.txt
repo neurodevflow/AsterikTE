@@ -1,0 +1,86 @@
+wonderpush.min.js:1  Refused to connect to 'https://cdn.by.wonderpush.com/config/webkeys/a5f4387807379dccfe6ea1a52dd2188ad1a0c5e49b5432fb9888cff548c7e5d8?_=1754312270776' because it violates the following Content Security Policy directive: "connect-src 'self' https://api.brevo.com https://conversations.brevo.com https://sibtrackandtrace.co https://chat.brevo.com https://ws.brevo.com https://analytics.brevo.com https://www.google-analytics.com https://sibautomation.com https://in-automate.brevo.com".
+
+fetchConfigWithVersion @ wonderpush.min.js:1
+fetchAndStoreConfigWithVersion @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+Promise.then
+read @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+Promise.then
+(anonymous) @ wonderpush.min.js:1
+Promise.then
+o @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+k.init @ wonderpush.min.js:1
+apply @ wonderpush.min.js:1
+D.ready @ wonderpush.min.js:1
+c @ wonderpush.min.js:1
+setTimeout
+(anonymous) @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+4276 @ wonderpush.min.js:1
+__webpack_require__ @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+wonderpush.min.js:1  Fetch API cannot load https://cdn.by.wonderpush.com/config/webkeys/a5f4387807379dccfe6ea1a52dd2188ad1a0c5e49b5432fb9888cff548c7e5d8?_=1754312270776. Refused to connect because it violates the document's Content Security Policy.
+fetchConfigWithVersion @ wonderpush.min.js:1
+fetchAndStoreConfigWithVersion @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+Promise.then
+read @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+Promise.then
+(anonymous) @ wonderpush.min.js:1
+Promise.then
+o @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+k.init @ wonderpush.min.js:1
+apply @ wonderpush.min.js:1
+D.ready @ wonderpush.min.js:1
+c @ wonderpush.min.js:1
+setTimeout
+(anonymous) @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+4276 @ wonderpush.min.js:1
+__webpack_require__ @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+wonderpush.min.js:1  [17:57:50.778] [WonderPush] [website] [remoteconfig] [fetchAndStoreConfigWithVersion] Could not fetch RemoteConfig from server TypeError: Failed to fetch. Refused to connect because it violates the document's Content Security Policy.
+    at p.fetchConfigWithVersion (wonderpush.min.js:1:12220)
+    at t.RemoteConfigManager.fetchAndStoreConfigWithVersion (wonderpush.min.js:1:9847)
+    at wonderpush.min.js:1:8666
+overrideMethod @ hook.js:608
+t.error @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+Promise.catch
+fetchAndStoreConfigWithVersion @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+Promise.then
+read @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+Promise.then
+(anonymous) @ wonderpush.min.js:1
+Promise.then
+o @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+k.init @ wonderpush.min.js:1
+apply @ wonderpush.min.js:1
+D.ready @ wonderpush.min.js:1
+c @ wonderpush.min.js:1
+setTimeout
+(anonymous) @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+4276 @ wonderpush.min.js:1
+__webpack_require__ @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+wonderpush.min.js:1 Could not fetch config. Please try again later. TypeError: Failed to fetch. Refused to connect because it violates the document's Content Security Policy.
+    at p.fetchConfigWithVersion (wonderpush.min.js:1:12220)
+    at t.RemoteConfigManager.fetchAndStoreConfigWithVersion (wonderpush.min.js:1:9847)
+    at wonderpush.min.js:1:8666

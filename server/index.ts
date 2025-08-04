@@ -9,52 +9,64 @@ const app = express();
 app.use((req, res, next) => {
   // Restricted CORS policy - only allow specific trusted domains
   const allowedOrigins = [
-    'https://asterik.ae',
-    'https://www.asterik.ae',
-    process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : null,
-    (process.env.REPL_SLUG && process.env.REPL_OWNER) ? `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co` : null
+    "https://asterik.ae",
+    "https://www.asterik.ae",
+    process.env.NODE_ENV === "development" ? "http://localhost:5000" : null,
+    process.env.REPL_SLUG && process.env.REPL_OWNER
+      ? `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co`
+      : null,
   ].filter(Boolean);
-  
+
   const origin = req.headers.origin;
   if (origin && allowedOrigins.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin);
+    res.header("Access-Control-Allow-Origin", origin);
   }
-  
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  res.header('Access-Control-Allow-Credentials', 'true');
-  
+
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+  );
+  res.header("Access-Control-Allow-Credentials", "true");
+
   // Enhanced security headers
-  res.header('X-Content-Type-Options', 'nosniff');
-  res.header('X-Frame-Options', 'SAMEORIGIN');
-  res.header('X-XSS-Protection', '1; mode=block');
-  res.header('Referrer-Policy', 'strict-origin-when-cross-origin');
-  res.header('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
-  
+  res.header("X-Content-Type-Options", "nosniff");
+  res.header("X-Frame-Options", "ALLOWALL");
+  res.header("X-XSS-Protection", "1; mode=block");
+  res.header("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.header("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+
   // Content Security Policy
-  res.header('Content-Security-Policy', [
-    "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://replit.com",
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com",
-    "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:",
-    "img-src 'self' data: https:",
-    "connect-src 'self'",
-    "object-src 'none'",
-    "base-uri 'self'"
-  ].join('; '));
-  
+  res.header(
+    "Content-Security-Policy",
+    [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://replit.com https://cdn.brevo.com",
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com",
+      "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:",
+      "img-src 'self' data: https:",
+      "frame-src 'self' https://*.brevo.com",
+      "connect-src 'self' https://*.brevo.com",
+      "object-src 'none'",
+      "base-uri 'self'",
+    ].join("; "),
+  );
+
   // HSTS for HTTPS
-  if (req.secure || req.headers['x-forwarded-proto'] === 'https') {
-    res.header('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+  if (req.secure || req.headers["x-forwarded-proto"] === "https") {
+    res.header(
+      "Strict-Transport-Security",
+      "max-age=31536000; includeSubDomains; preload",
+    );
   }
-  
+
   // Rate limiting headers
-  res.header('X-Rate-Limit', '1000');
-  res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
-  res.header('Pragma', 'no-cache');
-  res.header('Expires', '0');
-  
-  if (req.method === 'OPTIONS') {
+  res.header("X-Rate-Limit", "1000");
+  res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+  res.header("Pragma", "no-cache");
+  res.header("Expires", "0");
+
+  if (req.method === "OPTIONS") {
     res.sendStatus(200);
   } else {
     next();
@@ -65,7 +77,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Serve static files from root directory for domain verification
-app.use(express.static('.'));
+app.use(express.static("."));
 
 app.use((req, res, next) => {
   const start = Date.now();
@@ -116,11 +128,14 @@ app.use((req, res, next) => {
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
   const port = 5000;
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
+  server.listen(
+    {
+      port,
+      host: "0.0.0.0",
+      reusePort: true,
+    },
+    () => {
+      log(`serving on port ${port}`);
+    },
+  );
 })();
