@@ -18,18 +18,4 @@
        url('./montserrat-v26-latin-700.woff2') format('woff2');
 }
 
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: local('Open Sans Regular'), local('OpenSans-Regular');
-}
-
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Open Sans SemiBold'), local('OpenSans-SemiBold');
-}
+/* Open Sans fonts are loaded via Google Fonts in HTML head */
