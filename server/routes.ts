@@ -850,6 +850,44 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Newsletter subscription endpoint
+  app.post('/api/newsletter/subscribe', async (req: Request, res: Response) => {
+    try {
+      const { email } = req.body;
+
+      // Validate email
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        return res.status(400).json({ 
+          message: 'Please provide a valid email address' 
+        });
+      }
+
+      // Create a newsletter subscription as a contact submission
+      const newsletterSubmission = await storage.createContactSubmission({
+        name: 'Newsletter Subscriber',
+        email,
+        message: 'Newsletter subscription request',
+        source: 'newsletter'
+      });
+
+      // Track analytics
+      console.log('Newsletter subscription:', {
+        email,
+        submissionId: newsletterSubmission.id,
+        timestamp: new Date().toISOString()
+      });
+
+      res.status(201).json({ 
+        message: 'Successfully subscribed to newsletter'
+      });
+    } catch (error) {
+      console.error('Error processing newsletter subscription:', error);
+      res.status(500).json({ 
+        message: 'Failed to process newsletter subscription' 
+      });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

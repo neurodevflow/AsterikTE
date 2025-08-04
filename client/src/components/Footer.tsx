@@ -21,26 +21,22 @@ export default function Footer() {
         return;
       }
 
-      // Create form data for Brevo submission
-      const formData = new FormData();
-      formData.append('EMAIL', email);
-      formData.append('email_address_check', ''); // honeypot field
-      formData.append('locale', 'en');
-
-      console.log('Submitting newsletter subscription for:', email);
-
-      // Submit to Brevo endpoint
-      const response = await fetch('https://26a619dc.sibforms.com/serve/MUIFALANaSS80kD1wkCfojx-Wy_8_R7kayoeJzMAWYpyTGRIGTvNFh3y-rqyEbkiU5sMZI4yloAOIQvGQqOVJXL2MqXSvc6hLv5igsoNvG71OmKkHUXXyWlQyyjeFsX2N6Yo9g3KedMrcsdP9wlkoGpWyMgBhNTGGLdsYi0nE-9lVHmbJMZWoqkpVqfGiZQ6nyrE_CXhzUE2j8vV', {
+      // Submit newsletter subscription to backend
+      const response = await fetch('/api/newsletter/subscribe', {
         method: 'POST',
-        body: formData,
-        mode: 'no-cors' // Brevo doesn't support CORS
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
       });
 
-      console.log('Newsletter subscription submitted successfully');
-
-      // Since we can't read the response due to no-cors, assume success
-      setMessage("Thank you for subscribing to our newsletter!");
-      setEmail("");
+      if (response.ok) {
+        setMessage("Thank you for subscribing to our newsletter!");
+        setEmail("");
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Subscription failed');
+      }
     } catch (error) {
       console.error('Newsletter subscription error:', error);
       if (error instanceof Error) {

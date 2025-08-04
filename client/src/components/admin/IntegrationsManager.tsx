@@ -255,7 +255,6 @@ export default function IntegrationsManager({ token }: IntegrationsManagerProps)
   const getIntegrationIcon = (type: string) => {
     switch (type) {
       case 'zapier': return <Zap className="h-5 w-5 text-orange-500" />;
-      case 'brevo': return <Mail className="h-5 w-5 text-blue-500" />;
       case 'webhook': return <Webhook className="h-5 w-5 text-purple-500" />;
       default: return <Settings className="h-5 w-5 text-gray-500" />;
     }
@@ -264,7 +263,6 @@ export default function IntegrationsManager({ token }: IntegrationsManagerProps)
   const getTypeBadgeVariant = (type: string) => {
     switch (type) {
       case 'zapier': return 'default';
-      case 'brevo': return 'secondary';
       case 'webhook': return 'outline';
       default: return 'secondary';
     }
@@ -328,7 +326,6 @@ export default function IntegrationsManager({ token }: IntegrationsManagerProps)
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="zapier">Zapier</SelectItem>
-                          <SelectItem value="brevo">Brevo (Sendinblue)</SelectItem>
                           <SelectItem value="webhook">Custom Webhook</SelectItem>
                           <SelectItem value="email">Email Service</SelectItem>
                         </SelectContent>
@@ -336,7 +333,7 @@ export default function IntegrationsManager({ token }: IntegrationsManagerProps)
                     </div>
                   </div>
                   
-                  {(formData.type === 'zapier' || formData.type === 'brevo') && (
+                  {formData.type === 'zapier' && (
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="apiKey">API Key</Label>
@@ -348,18 +345,6 @@ export default function IntegrationsManager({ token }: IntegrationsManagerProps)
                           placeholder="Enter API key"
                         />
                       </div>
-                      {formData.type === 'brevo' && (
-                        <div className="space-y-2">
-                          <Label htmlFor="apiSecret">API Secret</Label>
-                          <Input
-                            id="apiSecret"
-                            type="password"
-                            value={formData.apiSecret}
-                            onChange={(e) => setFormData({...formData, apiSecret: e.target.value})}
-                            placeholder="Enter API secret"
-                          />
-                        </div>
-                      )}
                     </div>
                   )}
                   
@@ -404,7 +389,6 @@ export default function IntegrationsManager({ token }: IntegrationsManagerProps)
             <TabsList>
               <TabsTrigger value="all">All Integrations</TabsTrigger>
               <TabsTrigger value="zapier">Zapier</TabsTrigger>
-              <TabsTrigger value="brevo">Brevo</TabsTrigger>
               <TabsTrigger value="webhook">Webhooks</TabsTrigger>
             </TabsList>
             
@@ -509,56 +493,6 @@ export default function IntegrationsManager({ token }: IntegrationsManagerProps)
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <Zap className="h-5 w-5 text-orange-500" />
-                        <span className="font-medium">{integration.name}</span>
-                        <Badge variant={integration.isActive ? 'default' : 'destructive'}>
-                          {integration.isActive ? 'Active' : 'Inactive'}
-                        </Badge>
-                      </div>
-                      <Button size="sm" variant="outline" onClick={() => openEditDialog(integration)}>
-                        Configure
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="brevo">
-              <div className="space-y-4">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Mail className="h-5 w-5 text-blue-500" />
-                      Brevo (Sendinblue) Integration Guide
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="space-y-2">
-                      <h4 className="font-semibold">Setup Instructions:</h4>
-                      <ol className="list-decimal list-inside space-y-1 text-sm text-charcoal">
-                        <li>Log in to your Brevo account</li>
-                        <li>Go to Account → SMTP & API → API Keys</li>
-                        <li>Generate a new API key with full permissions</li>
-                        <li>Copy the API key and paste it in the integration settings</li>
-                        <li>Test the connection to verify setup</li>
-                      </ol>
-                    </div>
-                    <div className="space-y-2">
-                      <h4 className="font-semibold">Features:</h4>
-                      <ul className="list-disc list-inside space-y-1 text-sm text-charcoal">
-                        <li>Automated email campaigns</li>
-                        <li>Contact list synchronization</li>
-                        <li>Transactional email sending</li>
-                        <li>Advanced analytics and reporting</li>
-                      </ul>
-                    </div>
-                  </CardContent>
-                </Card>
-                {integrations.filter(i => i.type === 'brevo').map((integration) => (
-                  <div key={integration.id} className="border rounded-lg p-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <Mail className="h-5 w-5 text-blue-500" />
                         <span className="font-medium">{integration.name}</span>
                         <Badge variant={integration.isActive ? 'default' : 'destructive'}>
                           {integration.isActive ? 'Active' : 'Inactive'}
