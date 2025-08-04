@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CookieConsent from "./components/CookieConsent";
 import BrevoPopup from "./components/BrevoPopup";
+import BrevoDebugPanel from "./components/BrevoDebugPanel";
 
 
 import { AdminAuthProvider } from "./components/AdminAuthProvider";
@@ -99,6 +100,7 @@ function PublicRouter() {
       <Footer />
       <CookieConsent />
       <BrevoPopup delayMs={3000} enabled={true} />
+      <BrevoDebugPanel />
 
     </div>
   );

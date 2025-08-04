@@ -34,12 +34,12 @@ app.use((req, res, next) => {
   // Content Security Policy
   res.header('Content-Security-Policy', [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://sibforms.com https://js.brevo.com https://cdn.brevo.com https://sibautomation.com https://www.google.com https://www.gstatic.com https://replit.com",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://sibforms.com https://js.brevo.com https://cdn.brevo.com https://sibautomation.com https://replit.com",
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com",
     "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:",
     "img-src 'self' data: https:",
-    "connect-src 'self' https://sibforms.com https://api.brevo.com https://cdn.brevo.com https://www.google.com https://www.recaptcha.net",
-    "frame-src https://sibforms.com https://www.google.com https://www.recaptcha.net",
+    "connect-src 'self' https://sibforms.com https://api.brevo.com https://cdn.brevo.com",
+    "frame-src https://sibforms.com",
     "object-src 'none'",
     "base-uri 'self'"
   ].join('; '));
