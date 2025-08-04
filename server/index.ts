@@ -31,22 +31,22 @@ app.use((req, res, next) => {
 
   // Enhanced security headers
   res.header("X-Content-Type-Options", "nosniff");
-  res.header("X-Frame-Options", "SAMEORIGIN");
+  res.header("X-Frame-Options", "ALLOWALL");
   res.header("X-XSS-Protection", "1; mode=block");
   res.header("Referrer-Policy", "strict-origin-when-cross-origin");
-  res.header("Permissions-Policy", "camera=(), microphone=(), geolocation=(self)");
+  res.header("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
 
   // Content Security Policy
   res.header(
     "Content-Security-Policy",
     [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://replit.com https://cdn.brevo.com https://js.brevo.com https://sibautomation.com https://cdn.by.wonderpush.com",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://replit.com https://cdn.brevo.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com",
       "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:",
       "img-src 'self' data: https:",
-      "frame-src 'self' https://cdn.by.wonderpush.com https://asterik.ae https://www.asterik.ae",
-      "connect-src 'self' https://api.brevo.com https://conversations.brevo.com https://sibtrackandtrace.co https://chat.brevo.com https://ws.brevo.com https://analytics.brevo.com https://www.google-analytics.com https://sibautomation.com https://in-automate.brevo.com https://cdn.by.wonderpush.com",
+      "frame-src 'self' https://*.brevo.com",
+      "connect-src 'self' https://*.brevo.com",
       "object-src 'none'",
       "base-uri 'self'",
     ].join("; "),

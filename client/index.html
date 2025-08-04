@@ -37,30 +37,17 @@
       referrerpolicy="no-referrer"
     />
 
-    <!-- Brevo SDK -->
-    <script src="https://cdn.brevo.com/js/sdk-loader.js" async onload="initBrevo()" onerror="console.warn('Brevo SDK failed to load')"></script>
+    <script src="https://cdn.brevo.com/js/sdk-loader.js" async></script>
     <script>
         // Version: 2.0
         window.Brevo = window.Brevo || [];
-        
-        function initBrevo() {
-            try {
-                Brevo.push([
-                    "init",
-                    {
-                        client_key: "gq5j34op6hpsf9idkgjdn0qm",
-                        // Optional: Add other initialization options, see documentation
-                    }
-                ]);
-            } catch (error) {
-                console.warn('Brevo initialization error:', error);
+        Brevo.push([
+            "init",
+            {
+            client_key: "gq5j34op6hpsf9idkgjdn0qm",
+            // Optional: Add other initialization options, see documentation
             }
-        }
-        
-        // Fallback initialization if script loads before this runs
-        if (window.Brevo && typeof window.Brevo.push === 'function') {
-            initBrevo();
-        }
+        ]);
     </script>
 
 
