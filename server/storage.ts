@@ -358,15 +358,6 @@ export class DatabaseStorage implements IStorage {
         webhookUrl: "",
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString()
-      },
-      {
-        id: 2,
-        name: "Brevo Email Integration",
-        type: "brevo",
-        isActive: false,
-        apiKey: "",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
       }
     ];
   }

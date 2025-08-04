@@ -7,12 +7,6 @@ import { useEffect } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CookieConsent from "./components/CookieConsent";
-import BrevoInit from "./components/BrevoInit";
-import BrevoPopup from "./components/BrevoPopup";
-import BrevoDebugPanel from "./components/BrevoDebugPanel";
-import BrevoTester from "./utils/brevo-test";
-
-
 import { AdminAuthProvider } from "./components/AdminAuthProvider";
 import { useAuth } from "./hooks/useAuth";
 import Home from "./pages/Home";
@@ -101,9 +95,6 @@ function PublicRouter() {
       </div>
       <Footer />
       <CookieConsent />
-      <BrevoPopup delayMs={3000} enabled={true} />
-      <BrevoDebugPanel />
-
     </div>
   );
 }
@@ -141,10 +132,8 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <BrevoInit>
           <Toaster />
           <Router />
-        </BrevoInit>
       </TooltipProvider>
     </QueryClientProvider>
   );

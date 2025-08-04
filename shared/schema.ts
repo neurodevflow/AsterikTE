@@ -171,11 +171,11 @@ export const systemLogs = pgTable("system_logs", {
   timestamp: timestamp("timestamp").notNull().defaultNow(),
 });
 
-// Third-party integrations (Zapier, Brevo, etc.)
+// Third-party integrations (Zapier, etc.)
 export const integrations = pgTable("integrations", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
-  type: text("type").notNull(), // 'zapier', 'brevo', etc.
+  type: text("type").notNull(), // 'zapier', etc.
   apiKey: text("api_key"),
   apiSecret: text("api_secret"),
   webhookUrl: text("webhook_url"),
