@@ -70,14 +70,12 @@
     <link rel="preload" href="/assets/images/hero-medium.jpg" as="image" media="(max-width: 1200px) and (min-width: 769px)" fetchpriority="high">
     <link rel="preload" href="/assets/images/hero-small.jpg" as="image" media="(max-width: 768px)" fetchpriority="high">
     
-    <!-- Preload critical local fonts -->
-    <link rel="preload" href="/assets/fonts/montserrat-v26-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/assets/fonts/montserrat-v26-latin-700.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/assets/fonts/opensans-v36-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/assets/fonts/opensans-v36-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Use Google Fonts for reliable font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- Local fonts stylesheet - load synchronously for proper font display -->
-    <link rel="stylesheet" href="/assets/fonts/fonts.css" data-critical>
+
     
     <!-- Critical CSS inlined -->
     <link rel="stylesheet" href="/assets/css/critical.css" data-critical>
