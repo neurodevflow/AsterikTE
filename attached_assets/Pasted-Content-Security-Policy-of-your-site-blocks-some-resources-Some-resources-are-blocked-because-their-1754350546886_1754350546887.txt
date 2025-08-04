@@ -1,0 +1,50 @@
+Content Security Policy of your site blocks some resources
+Some resources are blocked because their origin is not listed in your site's Content Security Policy (CSP). Your site's CSP is allowlist-based, so resources must be listed in the allowlist in order to be accessed.
+
+A site's Content Security Policy is set either via an HTTP header (recommended), or via a meta HTML tag.
+
+To fix this issue do one of the following:
+
+(Recommended) If you're using an allowlist for 'script-src', consider switching from an allowlist CSP to a strict CSP, because strict CSPs are more robust against XSS. See how to set a strict CSP.
+Or carefully check that all of the blocked resources are trustworthy; if they are, include their sources in the CSP of your site. ⚠️Never add a source you don't trust to your site's CSP. If you don't trust the source, consider hosting resources on your own site instead.
+1 directive
+Resource	Status	Directive	Source location
+https://www.google-analytics.com/mp/collect?measurement_id=G-03XW3FWG7L&api_secret=Px06eCtvQLS0hVSB2MPj_g	blocked	connect-src	2d75c093-c647-46fe-9245-d4888d5a6616:7
+
+
+Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-regular.woff2Understand this warning
+asterik.ae/:1 OTS parsing error: invalid sfntVersion: 1008813135Understand this warning
+asterik.ae/:1 Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-600.woff2Understand this warning
+asterik.ae/:1 OTS parsing error: invalid sfntVersion: 1008813135Understand this warning
+166f570c-0e66-49d7-abee-d94d4f79a395:7 Refused to connect to 'https://www.google-analytics.com/mp/collect?measurement_id=G-03XW3FWG7L&api_secret=Px06eCtvQLS0hVSB2MPj_g' because it violates the following Content Security Policy directive: "connect-src 'self' https://*.brevo.com https://sibautomation.com https://cdn.by.wonderpush.com https://*.wonderpush.com https://*.sibforms.com https://measurements-api.wonderpush.com".
+
+DLsne @ 166f570c-0e66-49d7-abee-d94d4f79a395:7
+window.<computed> @ 166f570c-0e66-49d7-abee-d94d4f79a395:7
+(anonymous) @ 166f570c-0e66-49d7-abee-d94d4f79a395:7
+(anonymous) @ 166f570c-0e66-49d7-abee-d94d4f79a395:10Understand this error
+166f570c-0e66-49d7-abee-d94d4f79a395:7 Fetch API cannot load https://www.google-analytics.com/mp/collect?measurement_id=G-03XW3FWG7L&api_secret=Px06eCtvQLS0hVSB2MPj_g. Refused to connect because it violates the document's Content Security Policy.
+DLsne @ 166f570c-0e66-49d7-abee-d94d4f79a395:7
+window.<computed> @ 166f570c-0e66-49d7-abee-d94d4f79a395:7
+(anonymous) @ 166f570c-0e66-49d7-abee-d94d4f79a395:7
+(anonymous) @ 166f570c-0e66-49d7-abee-d94d4f79a395:10Understand this error
+performance-monitor.js:14 LCP: 160ms
+index-CHGRyUlO.js:253 LCP: 160ms
+asterik.ae/:1 <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes">Understand this warning
+asterik.ae/:1 Error while trying to use the following icon from the Manifest: https://asterik.ae/vite.svg (Download error or resource isn't a valid image)Understand this error
+(index):198 ServiceWorker registered
+(index):213 SW registered:  ServiceWorkerRegistration {installing: null, waiting: null, active: ServiceWorker, navigationPreload: NavigationPreloadManager, scope: 'https://asterik.ae/', …}active: ServiceWorker {scriptURL: 'https://asterik.ae/sw.js', state: 'activated', onstatechange: null, onerror: null}backgroundFetch: BackgroundFetchManager {}cookies: CookieStoreManager {}installing: nullnavigationPreload: NavigationPreloadManager {}onupdatefound: nullpaymentManager: PaymentManager {userHint: ''}periodicSync: PeriodicSyncManager {}pushManager: PushManager {}scope: "https://asterik.ae/"sync: SyncManager {}updateViaCache: "imports"waiting: null[[Prototype]]: ServiceWorkerRegistration
+wonderpush.min.js:1 [04:34:22.805] [WonderPush] [website] [sdk         ] extra call to init() dropped, sdk already instantialized!
+t.warn @ wonderpush.min.js:1
+k @ wonderpush.min.js:1
+k.init @ wonderpush.min.js:1
+apply @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+setTimeout
+O @ wonderpush.min.js:1
+D.ready @ wonderpush.min.js:1
+script.onload @ wonderpush-lazy.js:18
+script
+loadWonderPush @ wonderpush-lazy.js:12
+setTimeout
+(anonymous) @ wonderpush-lazy.js:46
+(anonymous) @ wonderpush-lazy.js:47Understand this warning

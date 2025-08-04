@@ -11,12 +11,6 @@
   "lang": "en",
   "icons": [
     {
-      "src": "/vite.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    },
-    {
       "src": "/generated-icon.png",
       "sizes": "512x512",
       "type": "image/png",
