@@ -36,7 +36,7 @@ app.use((req, res, next) => {
     "default-src 'self'",
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://sibforms.com https://js.brevo.com https://cdn.brevo.com https://www.google.com https://www.gstatic.com https://replit.com",
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com",
-    "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com",
+    "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:",
     "img-src 'self' data: https:",
     "connect-src 'self' https://sibforms.com https://api.brevo.com https://cdn.brevo.com https://www.google.com https://www.recaptcha.net",
     "frame-src https://sibforms.com https://www.google.com https://www.recaptcha.net",

@@ -123,6 +123,11 @@
       user-select: none;
     }
   }
+
+  /* Font optimization - suppress glyph bbox warnings */
+  @font-face {
+    font-display: swap;
+  }
 }
 
 @layer components {
