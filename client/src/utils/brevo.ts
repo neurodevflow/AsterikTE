@@ -12,8 +12,8 @@ export interface BrevoConfig {
 }
 
 export const BREVO_CONFIG: BrevoConfig = {
-  clientKey: 'gq5j34op6hpsf9idkgjdn0qm',
-  formId: '1' // Replace with your actual form ID from Brevo dashboard
+  clientKey: import.meta.env.VITE_BREVO_CLIENT_KEY || '',
+  formId: import.meta.env.VITE_BREVO_FORM_ID || '1'
 };
 
 export const showBrevoPopup = (formId?: string): void => {

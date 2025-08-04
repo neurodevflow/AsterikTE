@@ -42,12 +42,18 @@
     <script>
       // Brevo initialization
       window.Brevo = window.Brevo || [];
-      window.Brevo.push([
-        "init",
-        {
-          client_key: "gq5j34op6hpsf9idkgjdn0qm",
-        },
-      ]);
+      // Check if client key is available from environment
+      const brevoClientKey = '%VITE_BREVO_CLIENT_KEY%';
+      if (brevoClientKey && brevoClientKey !== '%VITE_BREVO_CLIENT_KEY%') {
+        window.Brevo.push([
+          "init",
+          {
+            client_key: brevoClientKey,
+          },
+        ]);
+      } else {
+        console.warn('Brevo client key not configured. Please set VITE_BREVO_CLIENT_KEY environment variable.');
+      }
 
       // Brevo popup configuration with your exact settings
       window.addEventListener('load', function() {
