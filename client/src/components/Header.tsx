@@ -192,8 +192,11 @@ export default function Header() {
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-charcoal hover:text-navy-blue focus:outline-none p-2 touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
+              onClick={() => {
+                console.log('Mobile menu button clicked, current state:', mobileMenuOpen);
+                setMobileMenuOpen(!mobileMenuOpen);
+              }}
+              className="mobile-menu-button text-charcoal hover:text-navy-blue focus:outline-none p-2 touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Toggle mobile menu"
               style={{ touchAction: 'manipulation' }}
             >
@@ -204,7 +207,7 @@ export default function Header() {
 
         {/* Mobile Navigation Menu - Full Screen Overlay */}
         {mobileMenuOpen && (
-          <div className="md:hidden fixed inset-0 bg-white z-50 overflow-y-auto">
+          <div className="mobile-menu-overlay md:hidden">
             {/* Close Button */}
             <div className="flex justify-between items-center p-4 border-b border-light-grey">
               <Link href="/">
