@@ -218,7 +218,10 @@ export default function ManagedSupport() {
             <button className="bg-navy-blue text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
               Contact Us Today
             </button>
-            <button className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium">
+            <button 
+              onClick={() => window.location.href = '/insights'}
+              className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium cursor-pointer"
+            >
               View Case Studies
             </button>
           </div>
