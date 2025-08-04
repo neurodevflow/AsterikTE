@@ -114,6 +114,10 @@
     z-index: 9999 !important;
     background-color: white !important;
     overflow-y: auto !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    top: 0 !important;
+    left: 0 !important;
   }
   
   /* Touch improvements for mobile */
