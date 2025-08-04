@@ -24,16 +24,30 @@ export default function Footer() {
     setMessage("");
 
     try {
+      // Validate email format
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        setMessage("Please enter a valid email address.");
+        return;
+      }
+
       // Execute reCAPTCHA v3
       const recaptchaToken = await new Promise<string>((resolve, reject) => {
         if (typeof window !== 'undefined' && window.grecaptcha) {
           window.grecaptcha.ready(() => {
-            window.grecaptcha.execute('6LfPWz4qAAAAAPsw_tAokvUAV4Eg2aF5KHTyZHaE', { action: 'newsletter_subscription' })
-              .then(resolve)
-              .catch(reject);
+            window.grecaptcha.execute('6LfP65krAAAAANLUj10EsLgK2YcGeEdA40tKOyRG', { action: 'newsletter_subscription' })
+              .then((token) => {
+                console.log('reCAPTCHA token generated successfully');
+                resolve(token);
+              })
+              .catch((error) => {
+                console.error('reCAPTCHA execution failed:', error);
+                reject(error);
+              });
           });
         } else {
           // Fallback if reCAPTCHA fails to load
+          console.warn('reCAPTCHA not loaded, using fallback');
           resolve('fallback_token');
         }
       });
@@ -45,6 +59,8 @@ export default function Footer() {
       formData.append('locale', 'en');
       formData.append('g-recaptcha-response', recaptchaToken);
 
+      console.log('Submitting newsletter subscription for:', email);
+
       // Submit to Brevo endpoint
       const response = await fetch('https://26a619dc.sibforms.com/serve/MUIFALANaSS80kD1wkCfojx-Wy_8_R7kayoeJzMAWYpyTGRIGTvNFh3y-rqyEbkiU5sMZI4yloAOIQvGQqOVJXL2MqXSvc6hLv5igsoNvG71OmKkHUXXyWlQyyjeFsX2N6Yo9g3KedMrcsdP9wlkoGpWyMgBhNTGGLdsYi0nE-9lVHmbJMZWoqkpVqfGiZQ6nyrE_CXhzUE2j8vV', {
         method: 'POST',
@@ -52,12 +68,18 @@ export default function Footer() {
         mode: 'no-cors' // Brevo doesn't support CORS
       });
 
+      console.log('Newsletter subscription submitted successfully');
+
       // Since we can't read the response due to no-cors, assume success
       setMessage("Thank you for subscribing to our newsletter!");
       setEmail("");
     } catch (error) {
       console.error('Newsletter subscription error:', error);
-      setMessage("Subscription failed. Please try again.");
+      if (error instanceof Error) {
+        setMessage(`Subscription failed: ${error.message}`);
+      } else {
+        setMessage("Subscription failed. Please try again.");
+      }
     } finally {
       setIsSubmitting(false);
     }
