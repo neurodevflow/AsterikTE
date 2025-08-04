@@ -10,20 +10,25 @@ export const usePerformanceMonitoring = () => {
       for (const entry of list.getEntries()) {
         // Track Largest Contentful Paint (LCP)
         if (entry.entryType === 'largest-contentful-paint') {
-          console.log(`LCP: ${entry.startTime}ms`);
+          if (entry.startTime > 100) {
+            console.log(`LCP: ${Math.round(entry.startTime)}ms`);
+          }
         }
         
         // Track First Input Delay (FID)
         if (entry.entryType === 'first-input') {
           const fidEntry = entry as PerformanceEventTiming;
-          console.log(`FID: ${fidEntry.processingStart - fidEntry.startTime}ms`);
+          const fid = fidEntry.processingStart - fidEntry.startTime;
+          if (fid > 50) {
+            console.log(`FID: ${Math.round(fid)}ms`);
+          }
         }
         
         // Track Cumulative Layout Shift (CLS)
         if (entry.entryType === 'layout-shift') {
           const clsEntry = entry as any;
-          if (!clsEntry.hadRecentInput) {
-            console.log(`CLS: ${clsEntry.value}`);
+          if (!clsEntry.hadRecentInput && clsEntry.value > 0.1) {
+            console.log(`CLS: ${clsEntry.value.toFixed(3)}`);
           }
         }
       }
@@ -41,11 +46,15 @@ export const usePerformanceMonitoring = () => {
       const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
       
       if (navigation) {
-        console.log('Performance Metrics:', {
-          domContentLoaded: navigation.domContentLoadedEventEnd - navigation.navigationStart,
-          loadComplete: navigation.loadEventEnd - navigation.navigationStart,
-          ttfb: navigation.responseStart - navigation.requestStart,
-        });
+        const metrics = {
+          domContentLoaded: Math.round(navigation.domContentLoadedEventEnd - navigation.startTime),
+          loadComplete: Math.round(navigation.loadEventEnd - navigation.startTime),
+          ttfb: Math.round(navigation.responseStart - navigation.requestStart),
+        };
+        // Only log if metrics are significant
+        if (metrics.domContentLoaded > 500 || metrics.loadComplete > 1000 || metrics.ttfb > 200) {
+          console.log('Performance Metrics:', metrics);
+        }
       }
       
       // Check for render-blocking resources
@@ -54,7 +63,7 @@ export const usePerformanceMonitoring = () => {
         resource.name.includes('.css') || resource.name.includes('.js')
       );
       
-      if (renderBlockingResources.length > 0) {
+      if (renderBlockingResources.length > 10) {
         console.log('Render-blocking resources:', renderBlockingResources.length);
       }
     });
@@ -75,7 +84,10 @@ export const useImagePerformance = (imageRef: React.RefObject<HTMLImageElement>)
     
     const handleLoad = () => {
       const loadTime = performance.now() - startTime;
-      console.log(`Image loaded in ${loadTime}ms: ${img.src}`);
+      // Only log slow loading images
+      if (loadTime > 1000) {
+        console.log(`Image loaded in ${Math.round(loadTime)}ms: ${img.src}`);
+      }
     };
 
     const handleError = () => {
