@@ -12,12 +12,18 @@ export default function Energy() {
               Technology solutions for asset management, energy forecasting, modernization of energy systems, and enhanced operational resilience in the energy sector.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-navy-blue text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
+              <a 
+                href="/contact" 
+                className="bg-warm-orange text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium text-center"
+              >
                 Get Started
-              </button>
-              <button className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium">
+              </a>
+              <a 
+                href="/contact" 
+                className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium text-center"
+              >
                 Schedule Consultation
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -226,12 +232,18 @@ export default function Energy() {
             Let's discuss how our energy solutions can optimize your operations and support your sustainability goals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-navy-blue text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
+            <a 
+              href="/contact" 
+              className="bg-warm-orange text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium text-center"
+            >
               Contact Us Today
-            </button>
-            <button className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium">
+            </a>
+            <a 
+              href="/insights" 
+              className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium text-center"
+            >
               View More Case Studies
-            </button>
+            </a>
           </div>
         </div>
       </section>
