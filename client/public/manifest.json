@@ -1,0 +1,26 @@
+{
+  "name": "ASTERIK - Strategic Technology Solutions",
+  "short_name": "ASTERIK",
+  "description": "Strategic Technology Solutions for Enterprise Transformation",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1d1d1d",
+  "theme_color": "#1d4ed8",
+  "orientation": "portrait-primary",
+  "categories": ["business", "productivity"],
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/generated-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

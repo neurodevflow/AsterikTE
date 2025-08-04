@@ -109,8 +109,9 @@ export default function Home() {
               <div 
                 className="bg-navy-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto"
                 aria-label="Manpower supply services"
+                role="img"
               >
-                <i className="fas fa-users text-2xl" aria-hidden="true"></i>
+                <i className="fas fa-users text-2xl" aria-hidden="true" style={{minWidth: '1em', minHeight: '1em'}}></i>
               </div>
               <h3 className="font-bold text-xl mb-4 text-center">Manpower Supply</h3>
               <p className="text-charcoal text-center">
@@ -125,8 +126,9 @@ export default function Home() {
               <div 
                 className="bg-navy-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto"
                 aria-label="IT consulting services"
+                role="img"
               >
-                <i className="fas fa-chart-line text-2xl" aria-hidden="true"></i>
+                <i className="fas fa-chart-line text-2xl" aria-hidden="true" style={{minWidth: '1em', minHeight: '1em'}}></i>
               </div>
               <h3 className="font-bold text-xl mb-4 text-center">IT Consulting</h3>
               <p className="text-charcoal text-center">
@@ -141,8 +143,9 @@ export default function Home() {
               <div 
                 className="bg-navy-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto"
                 aria-label="Talent acquisition services"
+                role="img"
               >
-                <i className="fas fa-search text-2xl" aria-hidden="true"></i>
+                <i className="fas fa-search text-2xl" aria-hidden="true" style={{minWidth: '1em', minHeight: '1em'}}></i>
               </div>
               <h3 className="font-bold text-xl mb-4 text-center">Talent Acquisition</h3>
               <p className="text-charcoal text-center">
@@ -157,8 +160,9 @@ export default function Home() {
               <div 
                 className="bg-navy-blue text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto"
                 aria-label="Project implementation services"
+                role="img"
               >
-                <i className="fas fa-cogs text-2xl" aria-hidden="true"></i>
+                <i className="fas fa-cogs text-2xl" aria-hidden="true" style={{minWidth: '1em', minHeight: '1em'}}></i>
               </div>
               <h3 className="font-bold text-xl mb-4 text-center">Project Implementation</h3>
               <p className="text-charcoal text-center">
