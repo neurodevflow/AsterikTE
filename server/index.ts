@@ -34,7 +34,7 @@ app.use((req, res, next) => {
   res.header("X-Frame-Options", "SAMEORIGIN");
   res.header("X-XSS-Protection", "1; mode=block");
   res.header("Referrer-Policy", "strict-origin-when-cross-origin");
-  res.header("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+  res.header("Permissions-Policy", "camera=(), microphone=(), geolocation=(self)");
 
   // Content Security Policy
   res.header(
@@ -45,6 +45,7 @@ app.use((req, res, next) => {
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com",
       "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:",
       "img-src 'self' data: https:",
+      "frame-src 'self' https://cdn.by.wonderpush.com https://asterik.ae https://www.asterik.ae",
       "connect-src 'self' https://api.brevo.com https://conversations.brevo.com https://sibtrackandtrace.co https://chat.brevo.com https://ws.brevo.com https://analytics.brevo.com https://www.google-analytics.com https://sibautomation.com https://in-automate.brevo.com https://cdn.by.wonderpush.com",
       "object-src 'none'",
       "base-uri 'self'",
