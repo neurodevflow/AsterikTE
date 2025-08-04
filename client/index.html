@@ -44,9 +44,37 @@
     <!-- Brevo SDK -->
     <script src="https://cdn.brevo.com/js/sdk-loader.js" async></script>
     <script>
-      // Brevo tracking and automation SDK
+      // Brevo initialization
       window.Brevo = window.Brevo || [];
-      // Initialize Brevo for tracking (optional - can be configured later)
+      window.Brevo.push([
+        "init",
+        {
+          client_key: "gq5j34op6hpsf9idkgjdn0qm",
+        },
+      ]);
+
+      // Show popup after 3 seconds of page load
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          // Check if popup hasn't been shown recently (using localStorage)
+          const lastShown = localStorage.getItem('brevo-popup-shown');
+          const now = Date.now();
+          const oneDay = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+          
+          if (!lastShown || (now - parseInt(lastShown)) > oneDay) {
+            // Show Brevo popup form
+            if (window.Brevo) {
+              window.Brevo.push(["showForm", {
+                form_id: "1", // This should be your actual form ID from Brevo
+                delay: 0 // No additional delay since we already waited 3 seconds
+              }]);
+              
+              // Mark that popup was shown
+              localStorage.setItem('brevo-popup-shown', now.toString());
+            }
+          }
+        }, 3000); // 3 seconds delay
+      });
     </script>
 
     <!-- Open Graph tags -->
