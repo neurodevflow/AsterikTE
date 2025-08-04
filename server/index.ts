@@ -1,9 +1,23 @@
 import express, { type Request, Response, NextFunction } from "express";
+import compression from "compression";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { errorHandler, notFoundHandler } from "./errorHandler";
 
 const app = express();
+
+// Enable gzip compression for all responses
+app.use(compression({
+  level: 6, // Balanced compression level
+  threshold: 1024, // Only compress responses > 1KB
+  filter: (req, res) => {
+    // Compress text-based responses
+    if (req.headers['x-no-compression']) {
+      return false;
+    }
+    return compression.filter(req, res);
+  }
+}));
 
 // Enhanced security headers and restricted CORS
 app.use((req, res, next) => {
@@ -62,9 +76,26 @@ app.use((req, res, next) => {
 
   // Rate limiting headers
   res.header("X-Rate-Limit", "1000");
-  res.header("Cache-Control", "no-cache, no-store, must-revalidate");
-  res.header("Pragma", "no-cache");
-  res.header("Expires", "0");
+  
+  // Improved caching for static assets with proper ETags
+  if (req.url.match(/\.(css|js|woff2?|png|jpg|jpeg|gif|svg|ico)$/)) {
+    res.header("Cache-Control", "public, max-age=31536000, immutable");
+    res.header("ETag", `"${Date.now()}"`);
+    // Add resource type headers for better optimization
+    if (req.url.match(/\.(woff2?)$/)) {
+      res.header("Content-Type", "font/woff2");
+    }
+    if (req.url.match(/\.(png|jpg|jpeg|gif|svg)$/)) {
+      res.header("Content-Type", "image/*");
+    }
+  } else if (req.url.match(/\.(html|json)$/)) {
+    res.header("Cache-Control", "public, max-age=3600, must-revalidate");
+    res.header("ETag", `"${Date.now()}"`);
+  } else {
+    res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.header("Pragma", "no-cache");
+    res.header("Expires", "0");
+  }
 
   if (req.method === "OPTIONS") {
     res.sendStatus(200);
