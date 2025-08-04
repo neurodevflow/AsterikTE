@@ -4,6 +4,20 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Debug mobile menu state
+  const handleMobileMenuToggle = () => {
+    const newState = !mobileMenuOpen;
+    console.log('Mobile menu toggle:', { from: mobileMenuOpen, to: newState, isMobile });
+    setMobileMenuOpen(newState);
+    
+    // Prevent body scroll when menu is open
+    if (newState) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  };
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [industriesDropdownOpen, setIndustriesDropdownOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
@@ -192,10 +206,7 @@ export default function Header() {
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
-              onClick={() => {
-                console.log('Mobile menu button clicked, current state:', mobileMenuOpen);
-                setMobileMenuOpen(!mobileMenuOpen);
-              }}
+              onClick={handleMobileMenuToggle}
               className="mobile-menu-button text-charcoal hover:text-navy-blue focus:outline-none p-2 touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Toggle mobile menu"
               style={{ touchAction: 'manipulation' }}
@@ -218,6 +229,7 @@ export default function Header() {
                   setMobileMenuOpen(false);
                   setMobileServicesOpen(false);
                   setMobileIndustriesOpen(false);
+                  document.body.style.overflow = 'unset';
                 }}
                 className="text-charcoal hover:text-navy-blue focus:outline-none p-2 touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
                 aria-label="Close mobile menu"
@@ -275,6 +287,7 @@ export default function Header() {
                                         onClick={() => {
                                           setMobileMenuOpen(false);
                                           setMobileServicesOpen(false);
+                                          document.body.style.overflow = 'unset';
                                         }}
                                         className="block py-3 px-2 text-sm text-charcoal hover:text-navy-blue hover:bg-white rounded transition-colors touch-manipulation min-h-[44px] leading-normal"
                                         style={{ touchAction: 'manipulation' }}
@@ -295,6 +308,7 @@ export default function Header() {
                                   onClick={() => {
                                     setMobileMenuOpen(false);
                                     setMobileIndustriesOpen(false);
+                                    document.body.style.overflow = 'unset';
                                   }}
                                   className="block py-3 px-2 text-sm text-charcoal hover:text-navy-blue hover:bg-white rounded transition-colors touch-manipulation min-h-[44px] leading-normal"
                                   style={{ touchAction: 'manipulation' }}
@@ -310,7 +324,10 @@ export default function Header() {
                   ) : (
                     <Link
                       href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        document.body.style.overflow = 'unset';
+                      }}
                       className={`block px-3 py-3 transition-colors touch-manipulation font-medium min-h-[44px] ${
                         isActive(item.href)
                           ? "text-navy-blue"
