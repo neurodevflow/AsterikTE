@@ -1,0 +1,764 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASTERIK - Strategic Technology Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'asterik-dark': '#1d1d1d',
+                    'asterik-red': '#cf0a2c',
+                    'asterik-orange': '#e26a2c',
+                    'asterik-light': '#f5f5f5'
+                },
+                fontFamily: {
+                    'montserrat': ['Montserrat', 'sans-serif'],
+                    'opensans': ['Open Sans', 'sans-serif']
+                }
+            }
+        }
+    };
+    </script>
+
+    <style>
+        .hero-pattern {
+            background-image: linear-gradient(135deg, #1d1d1d 25%, transparent 25%), 
+                              linear-gradient(225deg, #1d1d1d 25%, transparent 25%), 
+                              linear-gradient(45deg, #1d1d1d 25%, transparent 25%), 
+                              linear-gradient(315deg, #1d1d1d 25%, #f5f5f5 25%);
+            background-size: 60px 60px;
+            background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+        }
+        
+        .diagonal-divider {
+            clip-path: polygon(0 0, 100% 20px, 100% 100%, 0 calc(100% - 20px));
+        }
+    </style>
+</head>
+<body class="font-opensans text-asterik-dark bg-white">
+
+    <!-- Header Navigation -->
+    <header class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <h1 class="font-montserrat font-bold text-2xl text-asterik-dark">ASTERIK</h1>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="text-asterik-dark hover:text-asterik-red transition-colors duration-200 font-medium">Home</a>
+                        <a href="#about" class="text-asterik-dark hover:text-asterik-red transition-colors duration-200 font-medium">About</a>
+                        <a href="#services" class="text-asterik-dark hover:text-asterik-red transition-colors duration-200 font-medium">Services</a>
+                        <a href="#approach" class="text-asterik-dark hover:text-asterik-red transition-colors duration-200 font-medium">Approach</a>
+                        <a href="#contact" class="text-asterik-dark hover:text-asterik-red transition-colors duration-200 font-medium">Contact</a>
+                        <a href="#insights" class="text-asterik-dark hover:text-asterik-red transition-colors duration-200 font-medium">Insights</a>
+                    </div>
+                </div>
+
+                <!-- Login Buttons -->
+                <div class="hidden md:flex space-x-4">
+                    <button class="text-asterik-dark hover:text-asterik-red transition-colors duration-200 font-medium">Staff Login</button>
+                    <button class="bg-asterik-red text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">Customer Login</button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-asterik-dark hover:text-asterik-red focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div id="mobile-menu" class="md:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+                    <a href="#home" class="block px-3 py-2 text-asterik-dark hover:text-asterik-red">Home</a>
+                    <a href="#about" class="block px-3 py-2 text-asterik-dark hover:text-asterik-red">About</a>
+                    <a href="#services" class="block px-3 py-2 text-asterik-dark hover:text-asterik-red">Services</a>
+                    <a href="#approach" class="block px-3 py-2 text-asterik-dark hover:text-asterik-red">Approach</a>
+                    <a href="#contact" class="block px-3 py-2 text-asterik-dark hover:text-asterik-red">Contact</a>
+                    <a href="#insights" class="block px-3 py-2 text-asterik-dark hover:text-asterik-red">Insights</a>
+                    <div class="border-t pt-2">
+                        <a href="#" class="block px-3 py-2 text-asterik-dark hover:text-asterik-red">Staff Login</a>
+                        <a href="#" class="block px-3 py-2 bg-asterik-red text-white rounded-md mx-3 mt-2 text-center">Customer Login</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Home Page -->
+    <section id="home" class="pt-16">
+        <!-- Hero Section -->
+        <div class="hero-pattern min-h-screen flex items-center justify-center relative">
+            <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 py-20">
+                <h1 class="font-montserrat font-bold text-4xl md:text-6xl text-white mb-6 leading-tight">
+                    Strategic Technology Solutions for Enterprise Transformation
+                </h1>
+                <p class="text-xl md:text-2xl text-white mb-8 leading-relaxed">
+                    Delivering elite IT talent, digital transformation expertise, and end-to-end implementation
+                </p>
+                <button class="bg-asterik-red text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transform hover:scale-105 transition-all duration-200 shadow-lg">
+                    Schedule Consultation
+                </button>
+            </div>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="bg-white py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="font-montserrat font-bold text-3xl md:text-4xl text-asterik-dark mb-4">Our Core Services</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Comprehensive technology solutions tailored for enterprise transformation</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Service Card 1 -->
+                    <div class="bg-asterik-light p-8 rounded-xl hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+                        <div class="bg-asterik-red text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-users text-2xl"></i>
+                        </div>
+                        <h3 class="font-montserrat font-bold text-xl mb-4 text-center">Manpower Supply</h3>
+                        <p class="text-gray-600 text-center">Skilled IT professionals for regulated industries with compliance-first approach and enterprise-grade expertise.</p>
+                    </div>
+
+                    <!-- Service Card 2 -->
+                    <div class="bg-asterik-light p-8 rounded-xl hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+                        <div class="bg-asterik-orange text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-chart-line text-2xl"></i>
+                        </div>
+                        <h3 class="font-montserrat font-bold text-xl mb-4 text-center">IT Consulting</h3>
+                        <p class="text-gray-600 text-center">Strategic technology advisory services for digital transformation initiatives in government and financial sectors.</p>
+                    </div>
+
+                    <!-- Service Card 3 -->
+                    <div class="bg-asterik-light p-8 rounded-xl hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+                        <div class="bg-asterik-red text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-search text-2xl"></i>
+                        </div>
+                        <h3 class="font-montserrat font-bold text-xl mb-4 text-center">Talent Acquisition</h3>
+                        <p class="text-gray-600 text-center">Specialized recruitment for enterprise technology roles with focus on regulatory compliance requirements.</p>
+                    </div>
+
+                    <!-- Service Card 4 -->
+                    <div class="bg-asterik-light p-8 rounded-xl hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2">
+                        <div class="bg-asterik-orange text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-cogs text-2xl"></i>
+                        </div>
+                        <h3 class="font-montserrat font-bold text-xl mb-4 text-center">Project Implementation</h3>
+                        <p class="text-gray-600 text-center">End-to-end technology project delivery with proven methodologies for enterprise-scale implementations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="bg-asterik-dark py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h3 class="font-montserrat font-bold text-2xl text-white mb-8">Trusted by Industry Leaders</h3>
+                <div class="flex flex-wrap justify-center items-center space-x-8 md:space-x-16">
+                    <span class="text-white text-lg font-semibold mb-4">Serving Government Entities</span>
+                    <span class="text-asterik-orange text-2xl">|</span>
+                    <span class="text-white text-lg font-semibold mb-4">Financial Institutions</span>
+                    <span class="text-asterik-orange text-2xl">|</span>
+                    <span class="text-white text-lg font-semibold mb-4">Enterprise Organizations</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Mission Statement -->
+            <div class="text-center mb-20">
+                <h1 class="font-montserrat font-bold text-4xl md:text-5xl text-asterik-dark mb-8">About ASTERIK</h1>
+                <p class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                    To redefine enterprise technology capabilities through strategic talent solutions
+                </p>
+            </div>
+
+            <!-- Founder Section -->
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                <div class="order-2 md:order-1">
+                    <h2 class="font-montserrat font-bold text-3xl text-asterik-dark mb-6">Leadership Excellence</h2>
+                    <!-- Professional business leader headshot -->
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=400" alt="Asterik Founder - Professional business leader" class="w-64 h-64 rounded-full mx-auto md:mx-0 object-cover shadow-lg mb-6" />
+                </div>
+                <div class="order-1 md:order-2">
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        Former CX/DX lead at PwC Middle East with 15+ years experience driving transformations for ADGM, MetLife Gulf, and Fortune 500 enterprises. Our founder brings deep expertise in regulatory compliance, digital transformation, and enterprise technology implementation across the GCC region.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Values Grid -->
+            <div class="bg-asterik-light py-16 rounded-2xl">
+                <div class="max-w-6xl mx-auto px-8">
+                    <h2 class="font-montserrat font-bold text-3xl text-asterik-dark text-center mb-12">Our Core Values</h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="text-center">
+                            <div class="bg-asterik-red text-white w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <i class="fas fa-handshake text-xl"></i>
+                            </div>
+                            <h3 class="font-montserrat font-bold text-lg mb-3">Strategic Partnership</h3>
+                            <p class="text-gray-600">Long-term collaborative relationships</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-asterik-orange text-white w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <i class="fas fa-award text-xl"></i>
+                            </div>
+                            <h3 class="font-montserrat font-bold text-lg mb-3">Technology Excellence</h3>
+                            <p class="text-gray-600">Best-in-class technical expertise</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-asterik-red text-white w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <i class="fas fa-shield-alt text-xl"></i>
+                            </div>
+                            <h3 class="font-montserrat font-bold text-lg mb-3">Compliance Focus</h3>
+                            <p class="text-gray-600">Regulatory requirements first</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-asterik-orange text-white w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <i class="fas fa-chart-bar text-xl"></i>
+                            </div>
+                            <h3 class="font-montserrat font-bold text-lg mb-3">ROI-Driven</h3>
+                            <p class="text-gray-600">Measurable business outcomes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h1 class="font-montserrat font-bold text-4xl md:text-5xl text-asterik-dark mb-8">Our Services</h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Comprehensive technology solutions designed for enterprise transformation in regulated industries</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <!-- Manpower Supply Card -->
+                <div class="bg-gradient-to-br from-asterik-light to-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-asterik-red text-white w-16 h-16 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-users text-2xl"></i>
+                        </div>
+                        <h2 class="font-montserrat font-bold text-2xl text-asterik-dark">Manpower Supply</h2>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Bridging the IT talent gap in regulated industries with compliance-ready professionals who understand the complexities of government and financial sector requirements.
+                    </p>
+                    <button class="text-asterik-red font-semibold hover:text-asterik-dark transition-colors duration-200">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+
+                <!-- IT Consulting Card -->
+                <div class="bg-gradient-to-br from-asterik-light to-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-asterik-orange text-white w-16 h-16 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-chart-line text-2xl"></i>
+                        </div>
+                        <h2 class="font-montserrat font-bold text-2xl text-asterik-dark">IT Consulting</h2>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Strategic technology advisory services focusing on digital transformation initiatives that align with regulatory frameworks and enterprise governance requirements.
+                    </p>
+                    <button class="text-asterik-orange font-semibold hover:text-asterik-dark transition-colors duration-200">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+
+                <!-- Talent Acquisition Card -->
+                <div class="bg-gradient-to-br from-asterik-light to-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-asterik-red text-white w-16 h-16 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-search text-2xl"></i>
+                        </div>
+                        <h2 class="font-montserrat font-bold text-2xl text-asterik-dark">Talent Acquisition</h2>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Specialized recruitment services for enterprise technology roles with emphasis on finding candidates who excel in regulated environments and complex organizational structures.
+                    </p>
+                    <button class="text-asterik-red font-semibold hover:text-asterik-dark transition-colors duration-200">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+
+                <!-- Project Implementation Card -->
+                <div class="bg-gradient-to-br from-asterik-light to-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-asterik-orange text-white w-16 h-16 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-cogs text-2xl"></i>
+                        </div>
+                        <h2 class="font-montserrat font-bold text-2xl text-asterik-dark">Project Implementation</h2>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        End-to-end technology project delivery using proven methodologies designed for enterprise-scale implementations in mission-critical environments.
+                    </p>
+                    <button class="text-asterik-orange font-semibold hover:text-asterik-dark transition-colors duration-200">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sample Service Detail Page Structure -->
+            <div class="bg-asterik-dark rounded-2xl p-8 md:p-12 text-white">
+                <h3 class="font-montserrat font-bold text-2xl mb-6">Service Deep Dive: Manpower Supply</h3>
+                
+                <!-- Challenge Statement -->
+                <div class="mb-8">
+                    <h4 class="font-montserrat font-bold text-xl text-asterik-orange mb-4">The Challenge</h4>
+                    <p class="text-lg leading-relaxed">Bridging the IT Talent Gap in Regulated Industries</p>
+                </div>
+
+                <!-- Solution Approach -->
+                <div class="mb-8">
+                    <h4 class="font-montserrat font-bold text-xl text-asterik-orange mb-4">Our Solution</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-asterik-orange mr-3 mt-1"></i>
+                            <span>Rigorous compliance vetting process for all candidates</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-asterik-orange mr-3 mt-1"></i>
+                            <span>Industry-specific technical assessments and certifications</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-asterik-orange mr-3 mt-1"></i>
+                            <span>Ongoing professional development and regulatory training</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Use Case -->
+                <div>
+                    <h4 class="font-montserrat font-bold text-xl text-asterik-orange mb-4">Case Study</h4>
+                    <p class="text-lg leading-relaxed">How we helped a GCC Financial Institution overcome critical cybersecurity staffing challenges while maintaining regulatory compliance and reducing time-to-hire by 60%.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diagonal Divider -->
+        <div class="diagonal-divider bg-asterik-red h-24 mt-20"></div>
+    </section>
+
+    <!-- Our Approach -->
+    <section id="approach" class="py-20 bg-asterik-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h1 class="font-montserrat font-bold text-4xl md:text-5xl text-asterik-dark mb-8">Our Approach</h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">A proven framework for enterprise technology transformation</p>
+            </div>
+
+            <!-- Framework Visualization -->
+            <div class="bg-white rounded-2xl p-8 md:p-12 mb-16 shadow-lg">
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="bg-asterik-red text-white w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <span class="font-montserrat font-bold text-xl">1</span>
+                        </div>
+                        <h3 class="font-montserrat font-bold text-lg mb-3 text-asterik-dark">Discover</h3>
+                        <p class="text-gray-600">Comprehensive assessment of current capabilities and requirements</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-asterik-orange text-white w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <span class="font-montserrat font-bold text-xl">2</span>
+                        </div>
+                        <h3 class="font-montserrat font-bold text-lg mb-3 text-asterik-dark">Design</h3>
+                        <p class="text-gray-600">Strategic planning with regulatory compliance at the forefront</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-asterik-red text-white w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <span class="font-montserrat font-bold text-xl">3</span>
+                        </div>
+                        <h3 class="font-montserrat font-bold text-lg mb-3 text-asterik-dark">Deploy</h3>
+                        <p class="text-gray-600">Systematic implementation with minimal business disruption</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-asterik-orange text-white w-20 h-20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <span class="font-montserrat font-bold text-xl">4</span>
+                        </div>
+                        <h3 class="font-montserrat font-bold text-lg mb-3 text-asterik-dark">Optimize</h3>
+                        <p class="text-gray-600">Continuous improvement and performance monitoring</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Problem-Solving Principles -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="bg-asterik-red text-white w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="font-montserrat font-bold text-lg mb-3">Regulatory Compliance First</h3>
+                    <p class="text-gray-600">Every solution designed with regulatory requirements as the foundation</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="bg-asterik-orange text-white w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3 class="font-montserrat font-bold text-lg mb-3">Technology-Agnostic Advisory</h3>
+                    <p class="text-gray-600">Unbiased recommendations based on business needs, not vendor relationships</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="bg-asterik-red text-white w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </div>
+                    <h3 class="font-montserrat font-bold text-lg mb-3">Scalable Talent Models</h3>
+                    <p class="text-gray-600">Flexible resource allocation that grows with your organization</p>
+                </div>
+            </div>
+
+            <!-- Sample Case Study -->
+            <div class="bg-asterik-dark rounded-2xl p-8 md:p-12 text-white">
+                <h3 class="font-montserrat font-bold text-2xl md:text-3xl mb-8 text-center">Featured Case Study</h3>
+                <h4 class="font-montserrat font-bold text-xl text-asterik-orange mb-6">Digital Transformation for GCC Financial Institution</h4>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div>
+                        <h5 class="font-montserrat font-bold text-lg mb-3 text-asterik-orange">Phase 1: Assessment</h5>
+                        <p>Comprehensive audit of legacy systems and regulatory requirements across 12 departments</p>
+                    </div>
+                    <div>
+                        <h5 class="font-montserrat font-bold text-lg mb-3 text-asterik-orange">Phase 2: Implementation</h5>
+                        <p>Deployment of cloud-native architecture with enhanced security and compliance frameworks</p>
+                    </div>
+                    <div>
+                        <h5 class="font-montserrat font-bold text-lg mb-3 text-asterik-orange">Phase 3: Results</h5>
+                        <p>40% reduction in processing time, 99.9% uptime, and full regulatory compliance achieved</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h1 class="font-montserrat font-bold text-4xl md:text-5xl text-asterik-dark mb-8">Contact Us</h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Ready to transform your enterprise technology capabilities? Let's discuss your strategic requirements.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-asterik-light p-8 rounded-2xl">
+                    <h2 class="font-montserrat font-bold text-2xl text-asterik-dark mb-6">Get in Touch</h2>
+                    <form class="space-y-6" id="contactForm">
+                        <div>
+                            <label for="name" class="block text-sm font-semibold text-asterik-dark mb-2">Full Name *</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-asterik-red focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-semibold text-asterik-dark mb-2">Email Address *</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-asterik-red focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="company" class="block text-sm font-semibold text-asterik-dark mb-2">Company/Organization</label>
+                            <input type="text" id="company" name="company" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-asterik-red focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-semibold text-asterik-dark mb-2">Message *</label>
+                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-asterik-red focus:border-transparent"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-asterik-red text-white py-3 px-6 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Information & Map -->
+                <div class="space-y-8">
+                    <!-- Map Placeholder -->
+                    <div class="bg-gray-200 h-64 rounded-2xl flex items-center justify-center">
+                        <!-- Placeholder for Dubai/GCC region map -->
+                        <div class="text-center">
+                            <i class="fas fa-map-marker-alt text-4xl text-asterik-red mb-4"></i>
+                            <p class="text-gray-600 font-semibold">Dubai, UAE Office Location</p>
+                            <p class="text-sm text-gray-500">Interactive map integration</p>
+                        </div>
+                    </div>
+
+                    <!-- Contact Details -->
+                    <div class="bg-asterik-dark text-white p-8 rounded-2xl">
+                        <h3 class="font-montserrat font-bold text-xl mb-6">Direct Contact</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-asterik-orange mr-4"></i>
+                                <span>hello@asterik.com</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone text-asterik-orange mr-4"></i>
+                                <span>+971 X XXX XXXX</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-clock text-asterik-orange mr-4"></i>
+                                <span>Sunday-Thursday: 8AM-6PM GST</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 pt-6 border-t border-gray-600">
+                            <h4 class="font-montserrat font-bold text-lg mb-4">Follow Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="text-asterik-orange hover:text-white transition-colors duration-200">
+                                    <i class="fab fa-linkedin text-2xl"></i>
+                                </a>
+                                <a href="#" class="text-asterik-orange hover:text-white transition-colors duration-200">
+                                    <i class="fab fa-twitter text-2xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insights/Blog -->
+    <section id="insights" class="py-20 bg-asterik-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h1 class="font-montserrat font-bold text-4xl md:text-5xl text-asterik-dark mb-8">Industry Insights</h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Expert perspectives on enterprise technology trends and regulatory compliance</p>
+            </div>
+
+            <!-- Featured Post -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-12">
+                <div class="md:flex">
+                    <div class="md:w-1/2">
+                        <!-- Modern digital workplace with technology -->
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=500" alt="Modern digital workplace with technology" class="w-full h-64 md:h-full object-cover" />
+                    </div>
+                    <div class="md:w-1/2 p-8">
+                        <span class="text-asterik-red text-sm font-semibold uppercase tracking-wide">Featured Article</span>
+                        <h2 class="font-montserrat font-bold text-2xl md:text-3xl text-asterik-dark mt-2 mb-4">The Future of RegTech: Compliance-First Digital Transformation</h2>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Exploring how regulatory technology is reshaping enterprise transformation strategies in the GCC region, with insights from recent implementations across financial services and government sectors.</p>
+                        <button class="text-asterik-red font-semibold hover:text-asterik-dark transition-colors duration-200">
+                            Read Full Article <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blog Grid -->
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <!-- Article 1 -->
+                <article class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                    <!-- Technology consulting team in modern office -->
+                    <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300" alt="Technology consulting team in modern office" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <span class="text-asterik-orange text-sm font-semibold">Technology Trends</span>
+                        <h3 class="font-montserrat font-bold text-lg text-asterik-dark mt-2 mb-3">Digital Transformation Trends 2024</h3>
+                        <p class="text-gray-600 text-sm mb-4">Key technology trends shaping enterprise digital strategies in regulated industries.</p>
+                        <button class="text-asterik-red text-sm font-semibold hover:text-asterik-dark transition-colors duration-200">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                    <!-- Professional team building and collaboration -->
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300" alt="Professional team building and collaboration" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <span class="text-asterik-orange text-sm font-semibold">Talent Management</span>
+                        <h3 class="font-montserrat font-bold text-lg text-asterik-dark mt-2 mb-3">Building RegTech Teams</h3>
+                        <p class="text-gray-600 text-sm mb-4">Strategies for assembling high-performing regulatory technology teams.</p>
+                        <button class="text-asterik-red text-sm font-semibold hover:text-asterik-dark transition-colors duration-200">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                    <!-- Business strategy and growth planning -->
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300" alt="Business strategy and growth planning" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <span class="text-asterik-orange text-sm font-semibold">HR Strategy</span>
+                        <h3 class="font-montserrat font-bold text-lg text-asterik-dark mt-2 mb-3">Talent Retention Strategies</h3>
+                        <p class="text-gray-600 text-sm mb-4">Best practices for retaining top IT talent in competitive markets.</p>
+                        <button class="text-asterik-red text-sm font-semibold hover:text-asterik-dark transition-colors duration-200">
+                            Read More <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </article>
+            </div>
+
+            <!-- View All CTA -->
+            <div class="text-center">
+                <button class="bg-asterik-red text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200">
+                    View All Articles
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-asterik-dark text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="font-montserrat font-bold text-2xl mb-4">ASTERIK</h3>
+                    <p class="text-gray-300 mb-4">Strategic Technology Solutions for Enterprise Transformation</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-asterik-orange hover:text-white transition-colors duration-200">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-asterik-orange hover:text-white transition-colors duration-200">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-montserrat font-bold text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-300 hover:text-asterik-orange transition-colors duration-200">Home</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-asterik-orange transition-colors duration-200">About</a></li>
+                        <li><a href="#approach" class="text-gray-300 hover:text-asterik-orange transition-colors duration-200">Our Approach</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-asterik-orange transition-colors duration-200">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Service Offerings -->
+                <div>
+                    <h4 class="font-montserrat font-bold text-lg mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#services" class="text-gray-300 hover:text-asterik-orange transition-colors duration-200">Manpower Supply</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-asterik-orange transition-colors duration-200">IT Consulting</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-asterik-orange transition-colors duration-200">Talent Acquisition</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-asterik-orange transition-colors duration-200">Project Implementation</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter Signup -->
+                <div>
+                    <h4 class="font-montserrat font-bold text-lg mb-4">Stay Updated</h4>
+                    <p class="text-gray-300 mb-4 text-sm">Subscribe for industry insights and updates</p>
+                    <form class="flex flex-col space-y-2">
+                        <input type="email" placeholder="Your email address" class="px-4 py-2 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-asterik-red" />
+                        <button type="submit" class="bg-asterik-red text-white py-2 px-4 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-300 text-sm">© 2024 ASTERIK. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-300 hover:text-asterik-orange text-sm transition-colors duration-200">Privacy Policy</a>
+                    <a href="#" class="text-gray-300 hover:text-asterik-orange text-sm transition-colors duration-200">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // TODO: Implement business logic, API calls, or state management
+        (function() {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Smooth scrolling for navigation links
+            const navLinks = document.querySelectorAll('a[href^="#"]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        // Close mobile menu if open
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+
+            // Form validation
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(this);
+                    const name = formData.get('name');
+                    const email = formData.get('email');
+                    const message = formData.get('message');
+                    
+                    // Basic validation
+                    if (!name || !email || !message) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+                    
+                    // Email validation
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        alert('Please enter a valid email address.');
+                        return;
+                    }
+                    
+                    // Success message (in real implementation, this would submit to backend)
+                    alert('Thank you for your message. We will get back to you soon!');
+                    this.reset();
+                });
+            }
+
+            // Newsletter form
+            const newsletterForms = document.querySelectorAll('footer form');
+            newsletterForms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    if (email) {
+                        alert('Thank you for subscribing to our newsletter!');
+                        this.reset();
+                    }
+                });
+            });
+
+            // Add scroll effect to header
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 100) {
+                    header.classList.add('bg-white', 'shadow-md');
+                } else {
+                    header.classList.remove('shadow-md');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
