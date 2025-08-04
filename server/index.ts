@@ -52,7 +52,7 @@ app.use((req, res, next) => {
       "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:",
       "img-src 'self' data: https:",
       "frame-src 'self' https://*.brevo.com https://cdn.by.wonderpush.com https://*.sibforms.com",
-      "connect-src 'self' https://*.brevo.com https://sibautomation.com https://cdn.by.wonderpush.com https://*.wonderpush.com https://*.sibforms.com https://measurements-api.wonderpush.com",
+      "connect-src 'self' https://*.brevo.com https://sibautomation.com https://cdn.by.wonderpush.com https://*.wonderpush.com https://*.sibforms.com https://measurements-api.wonderpush.com https://www.google-analytics.com https://analytics.google.com https://*.googletagmanager.com",
       "object-src 'none'",
       "base-uri 'self'",
     ].join("; "),
