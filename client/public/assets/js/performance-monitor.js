@@ -9,7 +9,10 @@
       new PerformanceObserver((entryList) => {
         const entries = entryList.getEntries();
         const lastEntry = entries[entries.length - 1];
-        console.log('LCP:', lastEntry.startTime);
+        // Only log LCP if it's significant (> 100ms)
+        if (lastEntry.startTime > 100) {
+          console.log('LCP:', Math.round(lastEntry.startTime) + 'ms');
+        }
       }).observe({entryTypes: ['largest-contentful-paint']});
     }
     
@@ -17,7 +20,10 @@
     if ('FirstInputDelay' in window) {
       new PerformanceObserver((entryList) => {
         const firstInput = entryList.getEntries()[0];
-        console.log('FID:', firstInput.processingStart - firstInput.startTime);
+        const fid = firstInput.processingStart - firstInput.startTime;
+        if (fid > 50) {
+          console.log('FID:', Math.round(fid) + 'ms');
+        }
       }).observe({entryTypes: ['first-input']});
     }
     
@@ -30,7 +36,9 @@
             clsValue += entry.value;
           }
         }
-        console.log('CLS:', clsValue);
+        if (clsValue > 0.1) {
+          console.log('CLS:', clsValue.toFixed(3));
+        }
       }).observe({entryTypes: ['layout-shift']});
     }
   }
