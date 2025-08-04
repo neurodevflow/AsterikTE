@@ -12,12 +12,18 @@ export default function RetailEcommerce() {
               Custom e-commerce platforms, mobile apps, and data-powered personalization engines to enhance user experience, boost conversions, and streamline logistics.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-navy-blue text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
+              <a 
+                href="/contact" 
+                className="bg-warm-orange text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium text-center"
+              >
                 Get Started
-              </button>
-              <button className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium">
+              </a>
+              <a 
+                href="/contact" 
+                className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium text-center"
+              >
                 Schedule Consultation
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -226,12 +232,18 @@ export default function RetailEcommerce() {
             Let's discuss how our retail and e-commerce solutions can drive growth and enhance customer experiences.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-navy-blue text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
+            <a 
+              href="/contact" 
+              className="bg-warm-orange text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium text-center"
+            >
               Contact Us Today
-            </button>
-            <button className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium">
+            </a>
+            <a 
+              href="/insights" 
+              className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium text-center"
+            >
               View More Case Studies
-            </button>
+            </a>
           </div>
         </div>
       </section>

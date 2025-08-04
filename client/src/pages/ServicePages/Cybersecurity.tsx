@@ -11,6 +11,20 @@ export default function Cybersecurity() {
             <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto">
               Secure your digital infrastructure with advanced cybersecurity and penetration testing services. From vulnerability assessments to red team exercises, we identify and eliminate security risks before threats can exploit them.
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href="/contact" 
+                className="bg-warm-orange text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium text-center"
+              >
+                Get Security Assessment
+              </a>
+              <a 
+                href="/contact" 
+                className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium text-center"
+              >
+                Schedule Consultation
+              </a>
+            </div>
           </div>
         </div>
       </section>
