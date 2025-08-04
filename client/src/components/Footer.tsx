@@ -1,16 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
 
-// Extend window interface for reCAPTCHA
-declare global {
-  interface Window {
-    grecaptcha: {
-      ready: (callback: () => void) => void;
-      execute: (siteKey: string, options: { action: string }) => Promise<string>;
-    };
-  }
-}
-
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -31,33 +21,11 @@ export default function Footer() {
         return;
       }
 
-      // Execute reCAPTCHA v3
-      const recaptchaToken = await new Promise<string>((resolve, reject) => {
-        if (typeof window !== 'undefined' && window.grecaptcha) {
-          window.grecaptcha.ready(() => {
-            window.grecaptcha.execute('6LfP65krAAAAANLUj10EsLgK2YcGeEdA40tKOyRG', { action: 'newsletter_subscription' })
-              .then((token) => {
-                console.log('reCAPTCHA token generated successfully');
-                resolve(token);
-              })
-              .catch((error) => {
-                console.error('reCAPTCHA execution failed:', error);
-                reject(error);
-              });
-          });
-        } else {
-          // Fallback if reCAPTCHA fails to load
-          console.warn('reCAPTCHA not loaded, using fallback');
-          resolve('fallback_token');
-        }
-      });
-
-      // Create form data for Brevo submission
+      // Create form data for Brevo submission (no reCAPTCHA)
       const formData = new FormData();
       formData.append('EMAIL', email);
       formData.append('email_address_check', ''); // honeypot field
       formData.append('locale', 'en');
-      formData.append('g-recaptcha-response', recaptchaToken);
 
       console.log('Submitting newsletter subscription for:', email);
 
