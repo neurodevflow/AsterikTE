@@ -41,11 +41,11 @@ app.use((req, res, next) => {
     "Content-Security-Policy",
     [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://replit.com https://cdn.brevo.com https://js.brevo.com",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://replit.com https://cdn.brevo.com https://js.brevo.com https://sibautomation.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com",
       "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:",
       "img-src 'self' data: https:",
-      "connect-src 'self' https://api.brevo.com https://conversations.brevo.com https://sibtrackandtrace.co https://chat.brevo.com https://ws.brevo.com https://analytics.brevo.com",
+      "connect-src 'self' https://api.brevo.com https://conversations.brevo.com https://sibtrackandtrace.co https://chat.brevo.com https://ws.brevo.com https://analytics.brevo.com https://www.google-analytics.com https://sibautomation.com",
       "object-src 'none'",
       "base-uri 'self'",
     ].join("; "),
