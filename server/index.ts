@@ -45,7 +45,7 @@ app.use((req, res, next) => {
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com",
       "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:",
       "img-src 'self' data: https:",
-      "connect-src 'self' https://api.brevo.com https://conversations.brevo.com https://sibtrackandtrace.co https://cdn.brevo.com/js/sdk-loader.js https://chat.brevo.com https://ws.brevo.com https://analytics.brevo.com",
+      "connect-src 'self' https://api.brevo.com https://conversations.brevo.com https://sibtrackandtrace.co https://chat.brevo.com https://ws.brevo.com https://analytics.brevo.com",
       "object-src 'none'",
       "base-uri 'self'",
     ].join("; "),
