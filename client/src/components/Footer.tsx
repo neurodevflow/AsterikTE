@@ -21,7 +21,7 @@ export default function Footer() {
         return;
       }
 
-      // Create form data for Brevo submission (no reCAPTCHA)
+      // Create form data for Brevo submission
       const formData = new FormData();
       formData.append('EMAIL', email);
       formData.append('email_address_check', ''); // honeypot field
