@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import CookieConsent from "./components/CookieConsent";
 import BrevoPopup from "./components/BrevoPopup";
 import BrevoDebugPanel from "./components/BrevoDebugPanel";
+import BrevoTester from "./utils/brevo-test";
 
 
 import { AdminAuthProvider } from "./components/AdminAuthProvider";
