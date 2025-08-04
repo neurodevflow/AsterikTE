@@ -1,0 +1,132 @@
+Failed to decode downloaded font: https://39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/assets/fonts/opensans-v36-latin-regular.woff2
+39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/:1 OTS parsing error: invalid sfntVersion: 1008813135
+39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/:1 Failed to decode downloaded font: https://39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/assets/fonts/opensans-v36-latin-600.woff2
+39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/:1 OTS parsing error: invalid sfntVersion: 1008813135
+client:789 [vite] connecting...
+39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/:1 Failed to decode downloaded font: https://39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/assets/fonts/opensans-v36-latin-regular.woff2
+39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/:1 OTS parsing error: invalid sfntVersion: 1008813135
+39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/:1 Failed to decode downloaded font: https://39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/assets/fonts/opensans-v36-latin-600.woff2
+39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/:1 OTS parsing error: invalid sfntVersion: 1008813135
+chunk-SXRIVT2P.js?v=e1688966:21609 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+chunk-SXRIVT2P.js?v=e1688966:521 Warning: React does not recognize the `fetchPriority` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `fetchpriority` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+    at img
+    at picture
+    at div
+    at div
+    at div
+    at Home (https://39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/src/pages/Home.tsx?t=1754323330248:22:3)
+    at Route (https://39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=e1688966:323:16)
+    at Switch (https://39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=e1688966:379:17)
+    at main
+    at div
+    at div
+    at PublicRouter (https://39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/src/App.tsx?t=1754323330248&v=_tIyjS67dkDBqcRk67cX8:89:22)
+    at Router (https://39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/src/App.tsx?t=1754323330248&v=_tIyjS67dkDBqcRk67cX8:221:22)
+    at Provider (https://39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-M3NVYRND.js?v=e1688966:48:15)
+    at TooltipProvider (https://39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=e1688966:59:5)
+    at QueryClientProvider (https://39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=e1688966:2805:3)
+    at App (https://39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/src/App.tsx?t=1754323330248&v=_tIyjS67dkDBqcRk67cX8:269:3)
+printWarning @ chunk-SXRIVT2P.js?v=e1688966:521
+error @ chunk-SXRIVT2P.js?v=e1688966:505
+validateProperty$1 @ chunk-SXRIVT2P.js?v=e1688966:3433
+warnUnknownProperties @ chunk-SXRIVT2P.js?v=e1688966:3465
+validateProperties$2 @ chunk-SXRIVT2P.js?v=e1688966:3484
+validatePropertiesInDevelopment @ chunk-SXRIVT2P.js?v=e1688966:7378
+setInitialProperties @ chunk-SXRIVT2P.js?v=e1688966:7567
+finalizeInitialChildren @ chunk-SXRIVT2P.js?v=e1688966:8392
+completeWork @ chunk-SXRIVT2P.js?v=e1688966:16341
+completeUnitOfWork @ chunk-SXRIVT2P.js?v=e1688966:19277
+performUnitOfWork @ chunk-SXRIVT2P.js?v=e1688966:19259
+workLoopSync @ chunk-SXRIVT2P.js?v=e1688966:19190
+renderRootSync @ chunk-SXRIVT2P.js?v=e1688966:19169
+performConcurrentWorkOnRoot @ chunk-SXRIVT2P.js?v=e1688966:18728
+workLoop @ chunk-SXRIVT2P.js?v=e1688966:197
+flushWork @ chunk-SXRIVT2P.js?v=e1688966:176
+performWorkUntilDeadline @ chunk-SXRIVT2P.js?v=e1688966:384
+Show 17 more frames
+Show less
+(index):166 ServiceWorker registered
+(index):181 SW registered:  ServiceWorkerRegistration {installing: null, waiting: null, active: ServiceWorker, navigationPreload: NavigationPreloadManager, scope: 'https://39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/', …}
+performance-monitor.js:12 LCP: 571
+usePerformanceMonitoring.ts:14 LCP: 571ms
+client:802 WebSocket connection to 'wss://39548db9-07d9-4072-9e4e-242bd5564890-00-2v5q0yi968lvb.janeway.replit.dev/?token=bavBuMJgGSf-' failed: Error during WebSocket handshake: Unexpected response code: 400
+createConnection @ client:802
+connect @ client:437
+connect @ client:811
+connect @ client:290
+connect @ client:383
+(anonymous) @ client:908
+client:815 Refused to connect to 'wss://localhost:5173/?token=bavBuMJgGSf-' because it violates the following Content Security Policy directive: "connect-src 'self' https://*.brevo.com https://sibautomation.com https://cdn.by.wonderpush.com https://*.wonderpush.com https://*.sibforms.com https://measurements-api.wonderpush.com".
+
+createConnection @ client:815
+connect @ client:437
+connect @ client:822
+await in connect (async)
+connect @ client:290
+connect @ client:383
+(anonymous) @ client:908
+cdn.by.wonderpush.com/:1 Refused to frame 'https://asterik.ae/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.brevo.com https://cdn.by.wonderpush.com https://*.sibforms.com".
+
+wonderpush.min.js:1 Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://asterik.ae') does not match the recipient window's origin ('null').
+(anonymous) @ wonderpush.min.js:1
+p @ wonderpush.min.js:1
+setTimeout (async)
+probeAndInitWindowObject @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+load (async)
+t @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+l @ wonderpush.min.js:1
+t @ wonderpush.min.js:1
+Promise.then (async)
+(anonymous) @ wonderpush.min.js:1
+k.init @ wonderpush.min.js:1
+apply @ wonderpush.min.js:1
+D.ready @ wonderpush.min.js:1
+c @ wonderpush.min.js:1
+setTimeout (async)
+(anonymous) @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+4276 @ wonderpush.min.js:1
+__webpack_require__ @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+wonderpush.min.js:1 [04:20:39.009] [WonderPush] [website] [sdk         ] extra call to init() dropped, sdk already instantialized!
+t.warn @ wonderpush.min.js:1
+k @ wonderpush.min.js:1
+k.init @ wonderpush.min.js:1
+apply @ wonderpush.min.js:1
+D.ready @ wonderpush.min.js:1
+script.onload @ wonderpush-lazy.js:18
+load (async)
+loadWonderPush @ wonderpush-lazy.js:15
+setTimeout (async)
+(anonymous) @ wonderpush-lazy.js:46
+(anonymous) @ wonderpush-lazy.js:47
+wonderpush.min.js:1 WonderPush seems to be taking some time to initialize one of its external resource on the domain  https://asterik.ae .
+If you see one error or repeated errors (which will stop in about 50 seconds) about "postMessage" and "target origin […] not match[ing] the recipient window's origin", then you either:
+- have a browser extension blocking that resource;
+- see a broken integration that you would be kind to report.
+If not, then just wait around, and everything should get loaded soon.
+(anonymous) @ wonderpush.min.js:1
+setTimeout (async)
+probeAndInitWindowObject @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+load (async)
+t @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+l @ wonderpush.min.js:1
+t @ wonderpush.min.js:1
+Promise.then (async)
+(anonymous) @ wonderpush.min.js:1
+k.init @ wonderpush.min.js:1
+apply @ wonderpush.min.js:1
+D.ready @ wonderpush.min.js:1
+c @ wonderpush.min.js:1
+setTimeout (async)
+(anonymous) @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+4276 @ wonderpush.min.js:1
+__webpack_require__ @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
+(anonymous) @ wonderpush.min.js:1
