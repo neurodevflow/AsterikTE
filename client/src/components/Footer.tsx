@@ -61,7 +61,7 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://www.linkedin.com/company/asterik-technology-solutions"
+                href="https://www.linkedin.com/company/asterikfzc"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-warm-orange hover:text-white transition-colors duration-200"
@@ -69,7 +69,7 @@ export default function Footer() {
                 <i className="fab fa-linkedin text-xl"></i>
               </a>
               <a
-                href="https://twitter.com/asteriktech"
+                href="https://x.com/AsterikSocial"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-warm-orange hover:text-white transition-colors duration-200"

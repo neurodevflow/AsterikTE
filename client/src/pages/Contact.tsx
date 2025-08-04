@@ -268,7 +268,7 @@ export default function Contact() {
                   <h4 className="font-bold text-lg mb-4">Follow Us</h4>
                   <div className="flex space-x-4">
                     <a
-                      href="https://www.linkedin.com/company/asterik-technology-solutions"
+                      href="https://www.linkedin.com/company/asterikfzc"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-warm-orange hover:text-white transition-colors duration-200"
@@ -276,7 +276,7 @@ export default function Contact() {
                       <i className="fab fa-linkedin text-2xl"></i>
                     </a>
                     <a
-                      href="https://twitter.com/asteriktech"
+                      href="https://x.com/AsterikSocial"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-warm-orange hover:text-white transition-colors duration-200"
