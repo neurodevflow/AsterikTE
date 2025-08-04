@@ -31,7 +31,9 @@ export default function Home() {
               fetchPriority="high"
               loading="eager"
               decoding="async"
-              sizes="(max-width: 768px) 800px, (max-width: 1200px) 1200px, 1920px"
+              width="1920"
+              height="1080"
+              sizes="100vw"
               onError={(e) => {
                 e.currentTarget.src = '/assets/images/placeholder.svg';
               }}
