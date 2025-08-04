@@ -1,0 +1,120 @@
+/* Critical CSS - Above the fold styles */
+body { 
+  font-family: system-ui, -apple-system, sans-serif; 
+  margin: 0; 
+  font-display: swap;
+  line-height: 1.6;
+}
+
+.hero-bg { 
+  background-color: #1d1d1d; 
+  min-height: 100vh; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  text-align: center;
+  color: white;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+/* Prevent font loading flashes */
+.font-montserrat { font-family: 'Montserrat', system-ui, sans-serif; }
+.font-opensans { font-family: 'Open Sans', system-ui, sans-serif; }
+
+/* Critical above-the-fold styles */
+.btn-primary {
+  background-color: #1d4ed8;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #1e40af;
+  transform: translateY(-2px);
+}
+
+/* Navigation */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #1d4ed8;
+}
+
+/* Lazy loading styles */
+.lazy-loading {
+  background-color: #f3f4f6;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.lazy-loaded {
+  animation: none;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .8;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .nav-container {
+    padding: 0 1rem;
+  }
+}

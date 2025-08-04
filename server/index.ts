@@ -1,23 +1,15 @@
 import express, { type Request, Response, NextFunction } from "express";
 import compression from "compression";
+import path from "path";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { errorHandler, notFoundHandler } from "./errorHandler";
+import { setupPerformanceMiddleware } from "./middleware/performance";
 
 const app = express();
 
-// Enable gzip compression for all responses
-app.use(compression({
-  level: 6, // Balanced compression level
-  threshold: 1024, // Only compress responses > 1KB
-  filter: (req, res) => {
-    // Compress text-based responses
-    if (req.headers['x-no-compression']) {
-      return false;
-    }
-    return compression.filter(req, res);
-  }
-}));
+// Setup performance optimizations
+setupPerformanceMiddleware(app);
 
 // Enhanced security headers and restricted CORS
 app.use((req, res, next) => {
@@ -109,6 +101,13 @@ app.use(express.urlencoded({ extended: false }));
 
 // Serve static files from root directory for domain verification
 app.use(express.static("."));
+
+// Serve service worker with proper headers
+app.get('/sw.js', (req, res) => {
+  res.setHeader('Content-Type', 'application/javascript');
+  res.setHeader('Cache-Control', 'public, max-age=3600');
+  res.sendFile(path.join(process.cwd(), 'client/public/sw.js'));
+});
 
 app.use((req, res, next) => {
   const start = Date.now();

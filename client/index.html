@@ -38,26 +38,17 @@
     <link rel="preload" href="/assets/fonts/opensans-v36-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/opensans-v36-latin-600.woff2" as="font" type="font/woff2" crossorigin>
     
-    <!-- Local fonts stylesheet -->
-    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <!-- Local fonts stylesheet - load asynchronously -->
+    <link rel="preload" href="/assets/fonts/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/assets/fonts/fonts.css"></noscript>
     
-    <!-- Critical CSS inlined to reduce render blocking -->
+    <!-- Critical CSS inlined -->
+    <link rel="preload" href="/assets/css/critical.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/assets/css/critical.css"></noscript>
+    
+    <!-- Optimize font loading with font-display and early hint -->
     <style>
-      /* Critical path CSS for immediate rendering */
-      body { 
-        font-family: system-ui, -apple-system, sans-serif; 
-        margin: 0; 
-        font-display: swap;
-      }
-      .hero-bg { 
-        background-color: #1d1d1d; 
-        min-height: 100vh; 
-      }
-      /* Prevent font loading flashes */
-      .font-montserrat { font-family: 'Montserrat', system-ui, sans-serif; }
-      .font-opensans { font-family: 'Open Sans', system-ui, sans-serif; }
-      
-      /* Optimize font loading with font-display */
+      /* Optimize font loading */
       @font-face {
         font-family: 'Montserrat';
         font-display: swap;
@@ -67,60 +58,90 @@
         font-display: swap;
       }
       
-      /* Critical above-the-fold styles */
-      .btn-primary {
-        background-color: #1d4ed8;
-        color: white;
-        padding: 1rem 2rem;
-        border-radius: 0.5rem;
-        text-decoration: none;
-        display: inline-block;
-        transition: all 0.2s;
+      /* Reduce layout shift */
+      img, video, iframe {
+        max-width: 100%;
+        height: auto;
       }
-      .btn-primary:hover {
-        background-color: #1e40af;
-        transform: translateY(-2px);
+      
+      /* Optimize rendering */
+      * {
+        box-sizing: border-box;
+      }
+      
+      /* Prevent FOUC */
+      html {
+        visibility: visible;
+        opacity: 1;
       }
     </style>
     
     <!-- All assets now local - no external dependencies -->
     
-    <!-- Local FontAwesome and performance scripts - deferred loading -->
-    <script defer src="/assets/js/fontawesome.min.js"></script>
-    <script defer src="/assets/js/performance-monitor.js"></script>
+    <!-- Resource hints for better performance -->
+    <link rel="dns-prefetch" href="//cdn.brevo.com">
+    <link rel="dns-prefetch" href="//cdn.by.wonderpush.com">
+    <link rel="preconnect" href="//sibautomation.com">
+    
+    <!-- Local FontAwesome and performance scripts - deferred loading with async -->
+    <script async src="/assets/js/fontawesome.min.js"></script>
+    <script async src="/assets/js/performance-monitor.js"></script>
+    <script async src="/assets/js/lazy-load.js"></script>
+    <script async src="/assets/js/wonderpush-lazy.js"></script>
 
     <!-- Defer non-critical scripts to improve initial load -->
     <script>
-        // Load Brevo SDK after critical resources
+        // Load Brevo SDK after critical resources with intersection observer for performance
         function loadBrevoSDK() {
-            const script = document.createElement('script');
-            script.src = 'https://cdn.brevo.com/js/sdk-loader.js';
-            script.async = true;
-            document.head.appendChild(script);
+            // Only load if user scrolls or after significant delay
+            let loaded = false;
             
-            // Version: 2.0
-            window.Brevo = window.Brevo || [];
-            Brevo.push([
-                "init",
-                {
-                    client_key: "gq5j34op6hpsf9idkgjdn0qm",
-                    popup: {
-                        enabled: true,
-                        delay: 3000,
-                        frequency: "once_per_session"
-                    },
-                    automation: {
-                        enabled: true
+            function load() {
+                if (loaded) return;
+                loaded = true;
+                
+                const script = document.createElement('script');
+                script.src = 'https://cdn.brevo.com/js/sdk-loader.js';
+                script.async = true;
+                document.head.appendChild(script);
+                
+                // Version: 2.0
+                window.Brevo = window.Brevo || [];
+                Brevo.push([
+                    "init",
+                    {
+                        client_key: "gq5j34op6hpsf9idkgjdn0qm",
+                        popup: {
+                            enabled: true,
+                            delay: 5000, // Increased delay
+                            frequency: "once_per_session"
+                        },
+                        automation: {
+                            enabled: true
+                        }
                     }
+                ]);
+            }
+            
+            // Load on first scroll or after 3 seconds
+            let scrollLoaded = false;
+            const scrollHandler = () => {
+                if (!scrollLoaded) {
+                    scrollLoaded = true;
+                    load();
+                    document.removeEventListener('scroll', scrollHandler);
                 }
-            ]);
+            };
+            
+            document.addEventListener('scroll', scrollHandler, { passive: true });
+            setTimeout(load, 3000);
         }
         
         // Load after page load to avoid blocking critical rendering
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', loadBrevoSDK);
+            document.addEventListener('DOMContentLoaded', () => setTimeout(loadBrevoSDK, 1000));
         } else {
-            loadBrevoSDK();
+            setTimeout(loadBrevoSDK, 1000);
         }
         
         // Track Brevo events
@@ -128,6 +149,19 @@
         Brevo.push(["onReady", function() {
             console.log('Brevo SDK is ready');
         }]);
+        
+        // Register service worker for caching
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registered');
+                    })
+                    .catch(function(error) {
+                        console.log('ServiceWorker registration failed');
+                    });
+            });
+        }
     </script>
     
     <script>
@@ -174,12 +208,13 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/main.tsx" defer></script>
 
     <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
     <script
       type="text/javascript"
       src="https://replit.com/public/js/replit-dev-banner.js"
+      defer
     ></script>
   </body>
 </html>

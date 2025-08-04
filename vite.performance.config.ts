@@ -1,42 +1,103 @@
 import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 
 // Performance-optimized Vite configuration
-export const performanceConfig = {
+export default defineConfig({
+  plugins: [react()],
+  
+  // Optimized build configuration
   build: {
+    // Generate sourcemaps for debugging but exclude from production bundle
+    sourcemap: false,
+    
+    // Optimize chunk splitting for better caching
     rollupOptions: {
       output: {
         manualChunks: {
-          // Split vendor libraries into separate chunks
-          vendor: ['react', 'react-dom'],
-          router: ['wouter'],
-          query: ['@tanstack/react-query'],
-          ui: ['@radix-ui/react-avatar', '@radix-ui/react-button', '@radix-ui/react-dialog'],
+          // Vendor chunk for React and major dependencies
+          vendor: ['react', 'react-dom', 'wouter'],
+          
+          // UI components chunk
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+          
+          // Charts and data visualization
+          charts: ['recharts'],
+          
+          // Query and state management
+          query: ['@tanstack/react-query']
         },
-      },
+        
+        // Optimize chunk naming for better caching
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
+      }
     },
-    // Enable minification and compression
+    
+    // Minification settings
     minify: 'terser',
     terserOptions: {
       compress: {
         drop_console: true, // Remove console.logs in production
-        drop_debugger: true,
+        drop_debugger: true
       },
+      format: {
+        comments: false // Remove comments
+      }
     },
-    // Reduce bundle size
+    
+    // Optimize bundle size
+    target: 'es2020',
     cssCodeSplit: true,
-    sourcemap: false, // Disable sourcemaps in production for smaller files
-    reportCompressedSize: false, // Speed up build
+    
+    // Chunk size warnings
+    chunkSizeWarningLimit: 1000
   },
+  
+  // Development server optimizations
+  server: {
+    host: '0.0.0.0',
+    port: 5173,
+    hmr: {
+      overlay: false // Disable error overlay for better performance
+    }
+  },
+  
+  // Resolve optimizations
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './client/src'),
+      '@shared': resolve(__dirname, './shared'),
+      '@assets': resolve(__dirname, './client/public/assets')
+    }
+  },
+  
+  // Dependency optimization
   optimizeDeps: {
     include: [
       'react',
       'react-dom',
       'wouter',
       '@tanstack/react-query',
+      'recharts'
     ],
+    exclude: ['@vite/client', '@vite/env']
   },
-  server: {
-    preTransformRequests: false, // Disable pre-transforming for faster dev server
+  
+  // CSS optimization
+  css: {
+    devSourcemap: false,
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "./client/src/styles/variables.scss";`
+      }
+    }
   },
-};
+  
+  // Asset optimization
+  assetsInclude: ['**/*.woff2', '**/*.woff'],
+  
+  // Environment variables
+  envPrefix: 'VITE_'
+});
