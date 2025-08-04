@@ -1,3 +1,5 @@
+import { Link } from 'wouter';
+
 export default function Services() {
   return (
     <div className="pt-16 bg-white">
@@ -439,12 +441,12 @@ export default function Services() {
           <p className="text-xl mb-8 max-w-3xl mx-auto">
             Ready to transform your business with cutting-edge technology solutions?
           </p>
-          <a 
+          <Link 
             href="/contact" 
             className="inline-flex items-center bg-warm-orange text-white px-8 py-4 rounded-lg font-medium hover:bg-opacity-90 transition-colors"
           >
             Get Started Today <i className="fas fa-arrow-right ml-2"></i>
-          </a>
+          </Link>
         </div>
       </section>
     </div>

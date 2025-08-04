@@ -1,3 +1,5 @@
+import { Link } from 'wouter';
+
 export default function Insights() {
   return (
     <div className="pt-16">
@@ -131,12 +133,12 @@ export default function Insights() {
 
           {/* View All CTA */}
           <div className="text-center">
-            <a 
+            <Link 
               href="/insights" 
               className="inline-block bg-navy-blue text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200"
             >
               View All Articles
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -150,12 +152,12 @@ export default function Insights() {
           <p className="text-xl text-white mb-8 max-w-3xl mx-auto">
             Subscribe to our insights newsletter for the latest updates on enterprise technology, regulatory compliance, and digital transformation.
           </p>
-          <a 
+          <Link 
             href="/contact" 
             className="inline-block bg-white text-navy-blue px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition-all"
           >
             Subscribe to Newsletter
-          </a>
+          </Link>
         </div>
       </section>
     </div>

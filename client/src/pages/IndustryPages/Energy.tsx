@@ -1,3 +1,5 @@
+import { Link } from 'wouter';
+
 export default function Energy() {
   return (
     <div className="pt-16 bg-white">
@@ -12,18 +14,18 @@ export default function Energy() {
               Technology solutions for asset management, energy forecasting, modernization of energy systems, and enhanced operational resilience in the energy sector.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a 
+              <Link 
                 href="/contact" 
                 className="bg-warm-orange text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium text-center"
               >
                 Get Started
-              </a>
-              <a 
+              </Link>
+              <Link 
                 href="/contact" 
                 className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium text-center"
               >
                 Schedule Consultation
-              </a>
+              </Link>
             </div>
           </div>
         </div>
