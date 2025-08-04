@@ -1,0 +1,38 @@
+18:39:11.046 Error in parsing value for ‘-webkit-text-size-adjust’.  Declaration dropped. index-CiwORj33.css:1:2443
+Elements matching selector: html, :host
+NodeList [ html ]
+18:39:11.046 Unknown property ‘-moz-osx-font-smoothing’.  Declaration dropped. index-CiwORj33.css:1:5013
+Elements matching selector: body
+NodeList [ body ]
+18:39:14.558 Content-Security-Policy: The page’s settings blocked the loading of a resource (frame-src) at https://26a619dc.sibforms.com/serve/popup/MUIFANcgdzwMSpcm1B09df-ARLSdyvSRtJ0Dp_ARKt6MM8N_lXyeCUq9IEASgnZ_t90dfHrupMsqIONuKrDcGOwx0wRKU13h56ruZpPKyLUPN_K0VJcUWhTtWmzzWLMCV2RNE0KUOEkaewsGUEFPy_Aw9wkrci8UUOs6urdUO_84njPV-COXRJ21WxbGBKGOssGA3QywQnJlzJc4?t=1754301419 because it violates the following directive: “frame-src 'self' https://*.brevo.com https://cdn.by.wonderpush.com” asterik.ae
+18:39:14.570 GET
+https://26a619dc.sibforms.com/serve/popup/MUIFANcgdzwMSpcm1B09df-ARLSdyvSRtJ0Dp_ARKt6MM8N_lXyeCUq9IEASgnZ_t90dfHrupMsqIONuKrDcGOwx0wRKU13h56ruZpPKyLUPN_K0VJcUWhTtWmzzWLMCV2RNE0KUOEkaewsGUEFPy_Aw9wkrci8UUOs6urdUO_84njPV-COXRJ21WxbGBKGOssGA3QywQnJlzJc4?t=1754301419
+CSP
+
+	
+GET
+	https://26a619dc.sibforms.com/serve/popup/MUIFANcgdzwMSpcm1B09df-ARLSdyvSRtJ0Dp_ARKt6MM8N_lXyeCUq9IEASgnZ_t90dfHrupMsqIONuKrDcGOwx0wRKU13h56ruZpPKyLUPN_K0VJcUWhTtWmzzWLMCV2RNE0KUOEkaewsGUEFPy_Aw9wkrci8UUOs6urdUO_84njPV-COXRJ21WxbGBKGOssGA3QywQnJlzJc4?t=1754301419
+Transferred0 GB (0 GB size)
+Referrer Policystrict-origin-when-cross-origin
+DNS ResolutionSystem
+
+18:39:24.580 Controller error Error: Timeout waiting for iFrame load
+    iFrameInitialLoadTimeoutId https://cdn.by.wonderpush.com/sdk/1.1.40.0/inappmessaging.min.js:1
+    setTimeout handler*l https://cdn.by.wonderpush.com/sdk/1.1.40.0/inappmessaging.min.js:1
+    displayMessage https://cdn.by.wonderpush.com/sdk/1.1.40.0/inappmessaging.min.js:1
+    3838/get callback/</< https://cdn.by.wonderpush.com/sdk/1.1.40.0/inappmessaging.min.js:1
+inappmessaging.min.js:1:18105
+18:39:24.626 XHRPOST
+https://measurements-api.wonderpush.com/v1/events
+[HTTP/3 202  220ms]
+
+	
+POST
+	https://measurements-api.wonderpush.com/v1/events
+Status
+202
+VersionHTTP/3
+Transferred533 B (93 B size)
+Referrer Policystrict-origin-when-cross-origin
+DNS ResolutionSystem
+
