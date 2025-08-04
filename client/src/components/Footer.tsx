@@ -1,6 +1,16 @@
 import { useState } from "react";
 import { Link } from "wouter";
 
+// Extend window interface for reCAPTCHA
+declare global {
+  interface Window {
+    grecaptcha: {
+      ready: (callback: () => void) => void;
+      execute: (siteKey: string, options: { action: string }) => Promise<string>;
+    };
+  }
+}
+
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -14,11 +24,26 @@ export default function Footer() {
     setMessage("");
 
     try {
+      // Execute reCAPTCHA v3
+      const recaptchaToken = await new Promise<string>((resolve, reject) => {
+        if (typeof window !== 'undefined' && window.grecaptcha) {
+          window.grecaptcha.ready(() => {
+            window.grecaptcha.execute('6LfPWz4qAAAAAPsw_tAokvUAV4Eg2aF5KHTyZHaE', { action: 'newsletter_subscription' })
+              .then(resolve)
+              .catch(reject);
+          });
+        } else {
+          // Fallback if reCAPTCHA fails to load
+          resolve('fallback_token');
+        }
+      });
+
       // Create form data for Brevo submission
       const formData = new FormData();
       formData.append('EMAIL', email);
       formData.append('email_address_check', ''); // honeypot field
       formData.append('locale', 'en');
+      formData.append('g-recaptcha-response', recaptchaToken);
 
       // Submit to Brevo endpoint
       const response = await fetch('https://26a619dc.sibforms.com/serve/MUIFALANaSS80kD1wkCfojx-Wy_8_R7kayoeJzMAWYpyTGRIGTvNFh3y-rqyEbkiU5sMZI4yloAOIQvGQqOVJXL2MqXSvc6hLv5igsoNvG71OmKkHUXXyWlQyyjeFsX2N6Yo9g3KedMrcsdP9wlkoGpWyMgBhNTGGLdsYi0nE-9lVHmbJMZWoqkpVqfGiZQ6nyrE_CXhzUE2j8vV', {
