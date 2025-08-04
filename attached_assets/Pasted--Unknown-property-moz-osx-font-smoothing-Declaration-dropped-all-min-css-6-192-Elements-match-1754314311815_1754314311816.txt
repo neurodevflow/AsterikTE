@@ -1,0 +1,94 @@
+ Unknown property ‘-moz-osx-font-smoothing’.  Declaration dropped. all.min.css:6:192
+Elements matching selector: .fa, .fa-brands, .fa-classic, .fa-regular, .fa-sharp, .fa-solid, .fab, .far, .fas
+NodeList(28) [ i.fas.fa-chevron-down.ml-1.text-xs, i.fas.fa-chevron-down.ml-1.text-xs, i.fas.fa-bars.text-xl, i.fas.fa-users.text-2xl, i.fas.fa-chart-line.text-2xl, i.fas.fa-search.text-2xl, i.fas.fa-cogs.text-2xl, i.fas.fa-university.text-2xl, i.fas.fa-chart-line.text-2xl, i.fas.fa-building.text-2xl
+, … ]
+​
+0: <i class="fas fa-chevron-down ml-1 text-xs">​
+1: <i class="fas fa-chevron-down ml-1 text-xs">​
+2: <i class="fas fa-bars text-xl" aria-hidden="true">​
+3: <i class="fas fa-users text-2xl" aria-hidden="true">​
+4: <i class="fas fa-chart-line text-2xl" aria-hidden="true">​
+5: <i class="fas fa-search text-2xl" aria-hidden="true">​
+6: <i class="fas fa-cogs text-2xl" aria-hidden="true">​
+7: <i class="fas fa-university text-2xl" aria-hidden="true">​
+8: <i class="fas fa-chart-line text-2xl" aria-hidden="true">​
+9: <i class="fas fa-building text-2xl" aria-hidden="true">​
+10: <i class="fas fa-balance-scale text-xs">​
+11: <i class="fas fa-cloud text-xs">​
+12: <i class="fas fa-shield-alt text-xs">​
+13: <i class="fas fa-arrow-right ml-2">​
+14: <i class="fas fa-check-circle mr-3 text-warm-orange">​
+15: <i class="fas fa-check-circle mr-3 text-warm-orange">​
+16: <i class="fas fa-check-circle mr-3 text-warm-orange">​
+17: <i class="fas fa-check-circle mr-3 text-warm-orange mt-1">​
+18: <i class="fas fa-check-circle mr-3 text-warm-orange mt-1">​
+19: <i class="fas fa-check-circle mr-3 text-warm-orange mt-1">​
+20: <i class="fas fa-check-circle mr-3 text-warm-orange mt-1">​
+21: <i class="fas fa-arrow-right ml-2">​
+22: <i class="fas fa-brain text-2xl">​
+23: <i class="fas fa-cogs text-2xl">​
+24: <i class="fas fa-compass text-2xl">​
+25: <i class="fas fa-envelope mr-2">​
+26: <i class="fab fa-linkedin text-xl">​
+27: <i class="fab fa-twitter text-xl">
+​
+length: 28
+​
+<prototype>: NodeListPrototype { item: item(), keys: keys(), values: values(), … }
+​​
+constructor: function NodeList()
+​​
+entries: function entries()
+​​
+forEach: function forEach()
+​​
+item: function item()
+​​
+keys: function keys()
+​​
+length: 
+​​
+values: function values()
+​​
+Symbol(Symbol.iterator): function values()
+​​
+Symbol(Symbol.toStringTag): "NodeList"
+​​
+<get length()>: function length()
+​​
+<prototype>: Object { … }
+18:28:04.693
+Error in parsing value for ‘-webkit-text-size-adjust’.  Declaration dropped. index-CiwORj33.css:1:2443
+Elements matching selector: html, :host
+NodeList [ html
+]
+​
+0: <html lang="en">
+​
+length: 1
+​
+<prototype>: NodeListPrototype { item: item(), keys: keys(), values: values(), … }
+​​
+constructor: function NodeList()
+​​
+entries: function entries()
+​​
+forEach: function forEach()
+​​
+item: function item()
+​​
+keys: function keys()
+​​
+length: 
+​​
+values: function values()
+​​
+Symbol(Symbol.iterator): function values()
+​​
+Symbol(Symbol.toStringTag): "NodeList"
+​​
+<get length()>: function length()
+​​
+<prototype>: Object { … }
+18:28:04.693
+Unknown property ‘-moz-osx-font-smoothing’.  Declaration dropped. index-CiwORj33.css:1:5013
