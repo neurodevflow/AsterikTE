@@ -44,10 +44,40 @@
         Brevo.push([
             "init",
             {
-            client_key: "gq5j34op6hpsf9idkgjdn0qm",
-            // Optional: Add other initialization options, see documentation
+                client_key: "gq5j34op6hpsf9idkgjdn0qm",
+                popup: {
+                    enabled: true,
+                    delay: 3000,
+                    frequency: "once_per_session"
+                },
+                automation: {
+                    enabled: true
+                }
             }
         ]);
+        
+        // Additional configuration and debugging for popup
+        setTimeout(() => {
+            console.log('Brevo SDK check:', window.Brevo);
+            if (window.Brevo && window.Brevo.push) {
+                console.log('Triggering Brevo popup after 3 seconds');
+                Brevo.push(["showPopup"]);
+                // Alternative triggers
+                Brevo.push(["automation", "trigger"]);
+                Brevo.push(["popup", "show"]);
+            } else {
+                console.log('Brevo SDK not ready yet');
+            }
+        }, 3000);
+        
+        // Track Brevo events
+        Brevo.push(["onReady", function() {
+            console.log('Brevo SDK is ready');
+        }]);
+        
+        Brevo.push(["onLoad", function() {
+            console.log('Brevo SDK loaded');
+        }]);
     </script>
 
 
