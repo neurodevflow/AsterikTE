@@ -1,5 +1,6 @@
 
 import { usePerformanceMonitoring } from '../hooks/usePerformanceMonitoring';
+import { Link } from 'wouter';
 
 export default function Home() {
   // Monitor performance metrics
@@ -37,18 +38,18 @@ export default function Home() {
             Delivering elite IT talent, digital transformation expertise, and end-to-end implementation for government entities and financial institutions
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
+            <Link 
               href="/contact"
               className="bg-navy-blue text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transform hover:scale-105 transition-all duration-200 shadow-lg text-center"
             >
               Schedule Consultation
-            </a>
-            <a 
+            </Link>
+            <Link 
               href="/approach"
               className="text-white border-2 border-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-charcoal transition-all duration-200 text-center"
             >
               View Our Approach
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -392,18 +393,18 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a 
+                <Link 
                   href="/about"
                   className="bg-navy-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-all duration-200 text-center"
                 >
                   Learn More About Us
-                </a>
-                <a 
+                </Link>
+                <Link 
                   href="/contact"
                   className="font-semibold text-navy-blue hover:text-warm-orange transition-colors duration-200 px-6 py-3 text-center"
                 >
                   Get in Touch <i className="fas fa-arrow-right ml-2"></i>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="grid grid-cols-3 gap-8">

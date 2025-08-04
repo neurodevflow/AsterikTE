@@ -1,3 +1,5 @@
+import { Link } from 'wouter';
+
 export default function FinancialServices() {
   return (
     <div className="pt-16 bg-white">
@@ -12,18 +14,18 @@ export default function FinancialServices() {
               Drive digital transformation in financial services with secure, compliant, and innovative technology solutions that enhance customer experience and operational efficiency.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a 
+              <Link 
                 href="/contact" 
                 className="bg-warm-orange text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium text-center"
               >
                 Get Started
-              </a>
-              <a 
+              </Link>
+              <Link 
                 href="/contact" 
                 className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium text-center"
               >
                 Schedule Consultation
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,3 +1,5 @@
+import { Link } from 'wouter';
+
 export default function EdTech() {
   return (
     <div className="pt-16 bg-white">
@@ -12,12 +14,18 @@ export default function EdTech() {
               Interactive learning platforms and applications blending research and experience to improve learning outcomes and transform educational experiences.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-navy-blue text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium">
+              <Link 
+                href="/contact"
+                className="bg-navy-blue text-white px-8 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium text-center"
+              >
                 Get Started
-              </button>
-              <button className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium">
+              </Link>
+              <Link 
+                href="/contact"
+                className="border border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-navy-blue transition-all duration-200 font-medium text-center"
+              >
                 Schedule Consultation
-              </button>
+              </Link>
             </div>
           </div>
         </div>
