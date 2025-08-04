@@ -40,85 +40,8 @@
     <!-- Brevo SDK -->
     <script src="https://cdn.brevo.com/js/sdk-loader.js" async></script>
     <script>
-      // Brevo initialization
+      // Brevo initialization - environment variables will be injected by Vite
       window.Brevo = window.Brevo || [];
-      // Check if client key is available from environment
-      const brevoClientKey = '%VITE_BREVO_CLIENT_KEY%';
-      if (brevoClientKey && brevoClientKey !== '%VITE_BREVO_CLIENT_KEY%') {
-        window.Brevo.push([
-          "init",
-          {
-            client_key: brevoClientKey,
-          },
-        ]);
-      } else {
-        console.warn('Brevo client key not configured. Please set VITE_BREVO_CLIENT_KEY environment variable.');
-      }
-
-      // Brevo popup configuration with your exact settings
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          // Visit tracking with 30-minute session timeout
-          const now = Date.now();
-          const lastActivity = localStorage.getItem('brevo-last-activity');
-          const sessionTimeout = 30 * 60 * 1000; // 30 minutes
-          
-          // Check if this is a new visit (first time or after 30min inactivity)
-          let isNewVisit = false;
-          if (!lastActivity || (now - parseInt(lastActivity)) > sessionTimeout) {
-            isNewVisit = true;
-            localStorage.setItem('brevo-visit-start', now.toString());
-          }
-          localStorage.setItem('brevo-last-activity', now.toString());
-          
-          // Popup frequency control
-          const popupCount = parseInt(localStorage.getItem('brevo-popup-count') || '0');
-          const lastPopupShown = localStorage.getItem('brevo-last-popup');
-          const oneMinute = 60 * 1000; // 1 minute delay between popups
-          const maxViews = 9; // Maximum 9 views
-          const firstVisitDelay = 0; // No delay for first visit
-          
-          let shouldShowPopup = false;
-          
-          // First time visitor logic
-          if (popupCount === 0) {
-            shouldShowPopup = true;
-          } 
-          // Returning visitor logic
-          else if (popupCount < maxViews) {
-            if (!lastPopupShown || (now - parseInt(lastPopupShown)) > oneMinute) {
-              shouldShowPopup = true;
-            }
-          }
-          
-          if (shouldShowPopup && window.Brevo) {
-            window.Brevo.push(["showForm", {
-              form_id: "1", // Replace with your actual Brevo form ID
-              delay: 0
-            }]);
-            
-            // Update tracking
-            localStorage.setItem('brevo-popup-count', (popupCount + 1).toString());
-            localStorage.setItem('brevo-last-popup', now.toString());
-            
-            console.log('Brevo popup shown - View #' + (popupCount + 1));
-          }
-        }, 3000); // 3 seconds after page load
-      });
-      
-      // Track activity to maintain session
-      let activityTimer;
-      function trackActivity() {
-        clearTimeout(activityTimer);
-        activityTimer = setTimeout(() => {
-          localStorage.setItem('brevo-last-activity', Date.now().toString());
-        }, 1000);
-      }
-      
-      // Listen for user activity
-      ['click', 'scroll', 'keypress', 'mousemove'].forEach(event => {
-        document.addEventListener(event, trackActivity, { passive: true });
-      });
     </script>
 
     <!-- Open Graph tags -->

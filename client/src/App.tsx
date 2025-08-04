@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CookieConsent from "./components/CookieConsent";
+import BrevoInit from "./components/BrevoInit";
 import BrevoPopup from "./components/BrevoPopup";
 import BrevoDebugPanel from "./components/BrevoDebugPanel";
 import BrevoTester from "./utils/brevo-test";
@@ -140,8 +141,10 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Router />
+        <BrevoInit>
+          <Toaster />
+          <Router />
+        </BrevoInit>
       </TooltipProvider>
     </QueryClientProvider>
   );

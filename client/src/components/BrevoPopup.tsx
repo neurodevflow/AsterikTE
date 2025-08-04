@@ -38,7 +38,7 @@ export const useBrevoPopup = () => {
   const showPopup = () => {
     if (isBrevoReady()) {
       window.Brevo.push(["showForm", {
-        form_id: "1", // Replace with your actual form ID
+        form_id: import.meta.env.VITE_BREVO_FORM_ID || "1",
         delay: 0
       }]);
     }
