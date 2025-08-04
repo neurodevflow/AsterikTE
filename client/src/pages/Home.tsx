@@ -9,26 +9,35 @@ export default function Home() {
     <div className="pt-16">
       {/* Hero Section */}
       <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Optimized Background Image with responsive loading */}
-        <picture className="absolute inset-0">
-          <source 
-            media="(max-width: 768px)" 
-            srcSet="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600&q=75"
-          />
-          <source 
-            media="(max-width: 1200px)" 
-            srcSet="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=800&q=85"
-          />
-          <img 
-            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080&q=90"
-            alt="Modern office building representing enterprise technology transformation"
-            className="w-full h-full object-cover"
-            fetchpriority="high"
-            loading="eager"
-          />
-        </picture>
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-blue/70 to-charcoal/70"></div>
+        {/* Optimized Hero Image Component with CSS overlay */}
+        <div className="absolute inset-0">
+          {/* CSS gradient overlay for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-navy-blue/75 via-charcoal/70 to-navy-blue/80 z-10"></div>
+          
+          <picture className="absolute inset-0">
+            {/* Local optimized images */}
+            <source 
+              media="(max-width: 768px)" 
+              srcSet="/assets/images/hero-small.jpg"
+            />
+            <source 
+              media="(max-width: 1200px)" 
+              srcSet="/assets/images/hero-medium.jpg"
+            />
+            <img 
+              src="/assets/images/hero-original.jpg"
+              alt="Modern office building representing enterprise technology transformation"
+              className="w-full h-full object-cover"
+              fetchPriority="high"
+              loading="eager"
+              decoding="async"
+              sizes="(max-width: 768px) 800px, (max-width: 1200px) 1200px, 1920px"
+              onError={(e) => {
+                e.currentTarget.src = '/assets/images/placeholder.svg';
+              }}
+            />
+          </picture>
+        </div>
         
         <div className="relative z-10 max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8 py-20">
           <h1 className="font-bold text-4xl md:text-6xl text-white mb-6 leading-tight">
