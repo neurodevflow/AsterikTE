@@ -27,8 +27,8 @@ export default function Home() {
           
           <img 
             src="/assets/images/hero-original.jpg"
-            srcSet="/assets/images/hero-small.jpg 480w, /assets/images/hero-medium.jpg 768w, /assets/images/hero-original.jpg 1920w"
-            sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, 1920px"
+            srcSet="/assets/images/hero-small.jpg 480w, /assets/images/hero-medium.jpg 768w, /assets/images/hero-original.jpg 1200w"
+            sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, 100vw"
             alt="Modern office building representing enterprise technology transformation"
             className="absolute inset-0 w-full h-full object-cover opacity-30"
             fetchPriority="high"
@@ -36,6 +36,7 @@ export default function Home() {
             decoding="async"
             width="1920"
             height="1080"
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
           />
         </div>
         
