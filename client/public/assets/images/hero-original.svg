@@ -1,0 +1,16 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="paint0_linear" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse">
+<stop stop-color="#1d4ed8"/>
+<stop offset="1" stop-color="#1d1d1d"/>
+</linearGradient>
+</defs>
+<rect width="1920" height="1080" fill="url(#paint0_linear)"/>
+<!-- Modern building silhouette -->
+<path d="M0 1080V600h200v480zm300-200v200h150V880zm200-150v350h180V730zm250-100v450h160V630zm220-80v530h140V550zm200-50v580h120V500zm180-30v610h100V470z" fill="rgba(255,255,255,0.1)"/>
+<!-- Technology grid overlay -->
+<pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+<path d="M60 0L0 0 0 60" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+</pattern>
+<rect width="1920" height="1080" fill="url(#grid)"/>
+</svg>
