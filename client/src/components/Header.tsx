@@ -1,9 +1,53 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Header() {
+  // All state declarations first
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [industriesDropdownOpen, setIndustriesDropdownOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false);
+  const [location] = useLocation();
+  const isMobile = useIsMobile();
+
+  // Clean up on location change to prevent caching issues
+  useEffect(() => {
+    setMobileMenuOpen(false);
+    setServicesDropdownOpen(false);
+    setIndustriesDropdownOpen(false);
+    setMobileServicesOpen(false);
+    setMobileIndustriesOpen(false);
+    document.body.style.overflow = 'unset';
+    document.body.classList.remove('mobile-menu-open');
+  }, [location]);
+
+  // Clean up on component unmount and force reset on page load
+  useEffect(() => {
+    // Force clean state on component mount
+    document.body.style.overflow = 'unset';
+    document.body.classList.remove('mobile-menu-open');
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+      document.body.classList.remove('mobile-menu-open');
+    };
+  }, []);
+
+  // Force close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.relative')) {
+        setServicesDropdownOpen(false);
+        setIndustriesDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
 
   // Mobile menu toggle with proper body scroll handling
   const handleMobileMenuToggle = () => {
@@ -25,12 +69,6 @@ export default function Header() {
       setMobileIndustriesOpen(false);
     }
   };
-  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
-  const [industriesDropdownOpen, setIndustriesDropdownOpen] = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
-  const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false);
-  const [location] = useLocation();
-  const isMobile = useIsMobile();
 
   const navigation = [
     { name: "Home", href: "/" },
@@ -118,7 +156,7 @@ export default function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
+          <div className="desktop-nav hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {navigation.map((item) => (
                 <div key={item.name} className="relative">
