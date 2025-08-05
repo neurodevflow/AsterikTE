@@ -176,9 +176,16 @@ export default function Header() {
                         if (item.name === "Services") setServicesDropdownOpen(true);
                         if (item.name === "Industries") setIndustriesDropdownOpen(true);
                       }}
-                      onMouseLeave={() => {
-                        if (item.name === "Services") setServicesDropdownOpen(false);
-                        if (item.name === "Industries") setIndustriesDropdownOpen(false);
+                      onMouseLeave={(e) => {
+                        // Add delay to prevent dropdown from closing too quickly
+                        setTimeout(() => {
+                          // Check if mouse is still within dropdown area
+                          const dropdownElement = e.currentTarget.querySelector('.dropdown-menu');
+                          if (dropdownElement && !dropdownElement.matches(':hover')) {
+                            if (item.name === "Services") setServicesDropdownOpen(false);
+                            if (item.name === "Industries") setIndustriesDropdownOpen(false);
+                          }
+                        }, 150);
                       }}
                     >
                       <Link
@@ -196,7 +203,21 @@ export default function Header() {
                       {/* Dropdown Menu */}
                       {((item.name === "Services" && servicesDropdownOpen) || 
                         (item.name === "Industries" && industriesDropdownOpen)) && (
-                        <div className="absolute top-full left-0 mt-1 bg-white rounded-lg shadow-lg border border-light-grey z-50">
+                        <div 
+                          className="dropdown-menu absolute top-full left-0 mt-1 bg-white rounded-lg shadow-lg border border-light-grey z-50"
+                          onMouseEnter={() => {
+                            // Keep dropdown open when hovering over it
+                            if (item.name === "Services") setServicesDropdownOpen(true);
+                            if (item.name === "Industries") setIndustriesDropdownOpen(true);
+                          }}
+                          onMouseLeave={() => {
+                            // Close dropdown when leaving dropdown area
+                            setTimeout(() => {
+                              if (item.name === "Services") setServicesDropdownOpen(false);
+                              if (item.name === "Industries") setIndustriesDropdownOpen(false);
+                            }, 100);
+                          }}
+                        >
                           {item.name === "Services" ? (
                             <div className="p-8 w-[1000px]">
                               <div className="grid grid-cols-4 gap-10">

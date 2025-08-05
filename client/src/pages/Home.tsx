@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Optimized Hero Image Component with CSS overlay */}
+      <div className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-navy-blue via-charcoal to-navy-blue">
+        {/* Hero background with fallback */}
         <div className="absolute inset-0">
           {/* CSS gradient overlay for better text readability */}
           <div className="absolute inset-0 bg-gradient-to-br from-navy-blue/75 via-charcoal/70 to-navy-blue/80 z-10"></div>
@@ -17,12 +17,16 @@ export default function Home() {
           <img 
             src="/assets/images/hero-original.svg"
             alt="Modern office building representing enterprise technology transformation"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover opacity-30"
             fetchPriority="high"
             loading="eager"
             decoding="async"
             width="1920"
             height="1080"
+            onError={(e) => {
+              // Fallback: hide image if it fails to load
+              e.currentTarget.style.display = 'none';
+            }}
           />
         </div>
         
