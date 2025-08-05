@@ -1,0 +1,71 @@
+Failed to decode downloaded font: <URL>
+Failed to decode downloaded font: <URL>
+Failed to decode downloaded font: <URL>
+Failed to decode downloaded font: <URL>
+Failed to decode downloaded font: <URL>
+Failed to decode downloaded font: <URL>
+Failed to decode downloaded font: <URL>
+Failed to decode downloaded font: <URL>
+Failed to decode downloaded font: <URL>
+Failed to decode downloaded font: <URL>
+Failed to decode downloaded font: <URL>
+Failed to decode downloaded font: <URL>
+asterik.ae/:1 Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-regular.woff2
+asterik.ae/:1 Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-600.woff2
+asterik.ae/:1 Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-regular.woff2
+asterik.ae/:1 Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-600.woff2
+asterik.ae/:1 Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-regular.woff2
+asterik.ae/:1 Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-600.woff2
+asterik.ae/:1 Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-regular.woff2
+asterik.ae/:1 Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-600.woff2
+asterik.ae/:1 Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-regular.woff2
+asterik.ae/:1 Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-600.woff2
+asterik.ae/:1 Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-regular.woff2
+asterik.ae/:1 Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-600.woff2
+OTS parsing error: invalid sfntVersion: 1008813135
+OTS parsing error: invalid sfntVersion: 1008813135
+OTS parsing error: invalid sfntVersion: 1008813135
+OTS parsing error: invalid sfntVersion: 1008813135
+OTS parsing error: invalid sfntVersion: 1008813135
+OTS parsing error: invalid sfntVersion: 1008813135
+OTS parsing error: invalid sfntVersion: 1008813135
+OTS parsing error: invalid sfntVersion: 1008813135
+OTS parsing error: invalid sfntVersion: 1008813135
+OTS parsing error: invalid sfntVersion: 1008813135
+OTS parsing error: invalid sfntVersion: 1008813135
+OTS parsing error: invalid sfntVersion: 1008813135
+asterik.ae/:1 OTS parsing error: invalid sfntVersion: 1008813135
+asterik.ae/:1 OTS parsing error: invalid sfntVersion: 1008813135
+asterik.ae/:1 OTS parsing error: invalid sfntVersion: 1008813135
+asterik.ae/:1 OTS parsing error: invalid sfntVersion: 1008813135
+asterik.ae/:1 OTS parsing error: invalid sfntVersion: 1008813135
+asterik.ae/:1 OTS parsing error: invalid sfntVersion: 1008813135
+asterik.ae/:1 OTS parsing error: invalid sfntVersion: 1008813135
+asterik.ae/:1 OTS parsing error: invalid sfntVersion: 1008813135
+asterik.ae/:1 OTS parsing error: invalid sfntVersion: 1008813135
+asterik.ae/:1 OTS parsing error: invalid sfntVersion: 1008813135
+asterik.ae/:1 OTS parsing error: invalid sfntVersion: 1008813135
+asterik.ae/:1 OTS parsing error: invalid sfntVersion: 1008813135
+b7e81f0b-f162-41e6-b345-f4a287c2bbe7:7 Refused to connect to 'https://www.google-analytics.com/mp/collect?measurement_id=G-03XW3FWG7L&api_secret=Px06eCtvQLS0hVSB2MPj_g' because it violates the following Content Security Policy directive: "connect-src 'self' https://*.brevo.com https://sibautomation.com https://cdn.by.wonderpush.com https://*.wonderpush.com https://*.sibforms.com https://measurements-api.wonderpush.com".
+
+DLsne @ b7e81f0b-f162-41e6-b345-f4a287c2bbe7:7
+b7e81f0b-f162-41e6-b345-f4a287c2bbe7:7 Fetch API cannot load https://www.google-analytics.com/mp/collect?measurement_id=G-03XW3FWG7L&api_secret=Px06eCtvQLS0hVSB2MPj_g. Refused to connect because it violates the document's Content Security Policy.
+DLsne @ b7e81f0b-f162-41e6-b345-f4a287c2bbe7:7
+wonderpush.min.js:1 [09:47:58.964] [WonderPush] [website] [sdk         ] extra call to init() dropped, sdk already instantialized!
+t.warn @ wonderpush.min.js:1
+(index):198 ServiceWorker registered
+(index):213 SW registered:  ServiceWorkerRegistration
+asterik.ae/:1 <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes">
+asterik.ae/:1 Error while trying to use the following icon from the Manifest: https://asterik.ae/vite.svg (Download error or resource isn't a valid image)
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+The resource <URL> was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+asterik.ae/:1 The resource https://asterik.ae/assets/fonts/opensans-v36-latin-regular.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+asterik.ae/:1 The resource https://asterik.ae/assets/fonts/opensans-v36-latin-600.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+asterik.ae/:1 The resource https://asterik.ae/assets/fonts/opensans-v36-latin-regular.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+asterik.ae/:1 The resource https://asterik.ae/assets/fonts/opensans-v36-latin-600.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+asterik.ae/:1 The resource https://asterik.ae/assets/fonts/opensans-v36-latin-regular.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+asterik.ae/:1 The resource https://asterik.ae/assets/fonts/opensans-v36-latin-600.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
