@@ -49,17 +49,27 @@ export default function Header() {
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
-  // Mobile menu toggle with proper body scroll handling
+  // Mobile menu toggle with proper body scroll handling and iOS fixes
   const handleMobileMenuToggle = () => {
     const newState = !mobileMenuOpen;
     setMobileMenuOpen(newState);
     
-    // Prevent body scroll when menu is open
+    // Prevent body scroll when menu is open with iOS-specific fixes
     if (newState) {
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.height = '100%';
       document.body.classList.add('mobile-menu-open');
+      
+      // iOS Safari viewport fix
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
     } else {
       document.body.style.overflow = 'unset';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
       document.body.classList.remove('mobile-menu-open');
     }
     
