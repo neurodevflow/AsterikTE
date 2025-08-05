@@ -26,7 +26,7 @@ export default function Home() {
           ></div>
           
           <img 
-            src="/assets/images/hero-original.svg"
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080"
             alt="Modern office building representing enterprise technology transformation"
             className="absolute inset-0 w-full h-full object-cover opacity-30"
             fetchPriority="high"
@@ -35,8 +35,8 @@ export default function Home() {
             width="1920"
             height="1080"
             onError={(e) => {
-              // Fallback: hide image if it fails to load
-              e.currentTarget.style.display = 'none';
+              // Fallback: Use a reliable image if primary fails
+              e.currentTarget.src = "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=1080";
             }}
           />
         </div>
