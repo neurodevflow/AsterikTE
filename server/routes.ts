@@ -52,7 +52,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Contact form submission with comprehensive validation
-  app.post("/api/contact", asyncHandler(async (req, res) => {
+  app.post("/api/contact", asyncHandler(async (req: Request, res: Response) => {
     try {
       // Rate limiting check (basic)
       const clientIP = req.ip || req.connection.remoteAddress;
@@ -88,7 +88,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
 
   // Admin Authentication Routes
-  app.post("/api/admin/auth/login", asyncHandler(async (req, res) => {
+  app.post("/api/admin/auth/login", asyncHandler(async (req: Request, res: Response) => {
     try {
       const { email, password } = req.body;
 

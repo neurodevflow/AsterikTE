@@ -14,31 +14,16 @@ export default function Home() {
           {/* CSS gradient overlay for better text readability */}
           <div className="absolute inset-0 bg-gradient-to-br from-navy-blue/75 via-charcoal/70 to-navy-blue/80 z-10"></div>
           
-          <picture className="absolute inset-0">
-            {/* Local optimized images */}
-            <source 
-              media="(max-width: 768px)" 
-              srcSet="/assets/images/hero-small.jpg"
-            />
-            <source 
-              media="(max-width: 1200px)" 
-              srcSet="/assets/images/hero-medium.jpg"
-            />
-            <img 
-              src="/assets/images/hero-original.jpg"
-              alt="Modern office building representing enterprise technology transformation"
-              className="w-full h-full object-cover"
-              fetchPriority="high"
-              loading="eager"
-              decoding="async"
-              width="1920"
-              height="1080"
-              sizes="100vw"
-              onError={(e) => {
-                e.currentTarget.src = '/assets/images/placeholder.svg';
-              }}
-            />
-          </picture>
+          <img 
+            src="/assets/images/hero-original.svg"
+            alt="Modern office building representing enterprise technology transformation"
+            className="absolute inset-0 w-full h-full object-cover"
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
+            width="1920"
+            height="1080"
+          />
         </div>
         
         <div className="relative z-10 max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8 py-20">

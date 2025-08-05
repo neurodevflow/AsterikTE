@@ -23,15 +23,14 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://asterik.ae" />
     <link rel="manifest" href="/manifest.json" />
-    <link rel="icon" href="/vite.svg" type="image/svg+xml">
+    <link rel="icon" href="/generated-icon.png" type="image/png">
     <link rel="apple-touch-icon" href="/generated-icon.png">
     
-    <!-- iOS specific meta tags with cache busting -->
+    <!-- iOS and PWA meta tags (fixed deprecated warnings) -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="ASTERIK">
     <meta name="format-detection" content="telephone=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     
     <!-- Cache busting for navigation fixes -->
@@ -73,10 +72,8 @@
     <link rel="preconnect" href="https://sibautomation.com" crossorigin />
     <link rel="preconnect" href="https://cdn.by.wonderpush.com" crossorigin />
     
-    <!-- Preload critical local hero images for LCP optimization -->
-    <link rel="preload" href="/assets/images/hero-original.jpg" as="image" media="(min-width: 1201px)" fetchpriority="high">
-    <link rel="preload" href="/assets/images/hero-medium.jpg" as="image" media="(max-width: 1200px) and (min-width: 769px)" fetchpriority="high">
-    <link rel="preload" href="/assets/images/hero-small.jpg" as="image" media="(max-width: 768px)" fetchpriority="high">
+    <!-- Preload critical hero image for LCP optimization -->
+    <link rel="preload" href="/assets/images/hero-original.svg" as="image" fetchpriority="high">
     
     <!-- Use Google Fonts for reliable font loading with optimized display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
