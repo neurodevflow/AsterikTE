@@ -1,0 +1,27 @@
+Failed to decode downloaded font: <URL>Understand this warning
+asterik.ae/:1 Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-regular.woff2Understand this warning
+asterik.ae/:1 Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-600.woff2Understand this warning
+asterik.ae/:1 Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-regular.woff2Understand this warning
+asterik.ae/:1 Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-600.woff2Understand this warning
+fontawesome.min.js:6 Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-regular.woff2
+i2 @ fontawesome.min.js:6Understand this warning
+fontawesome.min.js:6 Failed to decode downloaded font: https://asterik.ae/assets/fonts/opensans-v36-latin-600.woff2
+i2 @ fontawesome.min.js:6Understand this warning
+6OTS parsing error: invalid sfntVersion: 1008813135Understand this warning
+asterik.ae/:1 OTS parsing error: invalid sfntVersion: 1008813135Understand this warning
+asterik.ae/:1 OTS parsing error: invalid sfntVersion: 1008813135Understand this warning
+asterik.ae/:1 OTS parsing error: invalid sfntVersion: 1008813135Understand this warning
+asterik.ae/:1 OTS parsing error: invalid sfntVersion: 1008813135Understand this warning
+fontawesome.min.js:6 OTS parsing error: invalid sfntVersion: 1008813135
+i2 @ fontawesome.min.js:6Understand this warning
+fontawesome.min.js:6 OTS parsing error: invalid sfntVersion: 1008813135
+i2 @ fontawesome.min.js:6Understand this warning
+bc5cff1d-165c-4802-8b6b-a7d70feffa2a:7 Refused to connect to 'https://www.google-analytics.com/mp/collect?measurement_id=G-03XW3FWG7L&api_secret=Px06eCtvQLS0hVSB2MPj_g' because it violates the following Content Security Policy directive: "connect-src 'self' https://*.brevo.com https://sibautomation.com https://cdn.by.wonderpush.com https://*.wonderpush.com https://*.sibforms.com https://measurements-api.wonderpush.com".
+
+DLsne @ bc5cff1d-165c-4802-8b6b-a7d70feffa2a:7Understand this error
+bc5cff1d-165c-4802-8b6b-a7d70feffa2a:7 Fetch API cannot load https://www.google-analytics.com/mp/collect?measurement_id=G-03XW3FWG7L&api_secret=Px06eCtvQLS0hVSB2MPj_g. Refused to connect because it violates the document's Content Security Policy.
+DLsne @ bc5cff1d-165c-4802-8b6b-a7d70feffa2a:7Understand this error
+(index):198 ServiceWorker registered
+(index):213 SW registered:  ServiceWorkerRegistration
+asterik.ae/:1 <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes">Understand this warning
+asterik.ae/:1 Error while trying to use the following icon from the Manifest: https://asterik.ae/vite.svg (Download error or resource isn't a valid image)
