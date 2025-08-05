@@ -73,7 +73,31 @@
   body {
     @apply font-sans antialiased bg-background;
     font-family: 'Open Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    color: hsl(220, 13%, 15%); /* Improved contrast for body text */
+    /* Prevent layout shifts during font loading */
+    font-display: swap;
+  }
+  
+  /* Prevent layout shift by ensuring consistent sizing */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Prevent content jump during font loading */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-display: swap;
+  }
+  
+  /* Optimize critical rendering path */
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Prevent layout shifts from dynamic content */
+  [data-loading] {
+    min-height: 1rem;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -129,7 +153,7 @@
   }
 
   /* Font optimization - suppress glyph bbox warnings */
-  @font-face {
+  .font-optimized {
     font-display: swap;
   }
 }
