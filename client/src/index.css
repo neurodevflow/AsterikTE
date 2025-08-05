@@ -148,6 +148,20 @@
   body.mobile-menu-open {
     overflow: hidden !important;
   }
+
+  /* Force proper navigation layout */
+  .desktop-nav {
+    display: none !important;
+  }
+
+  @media (min-width: 768px) {
+    .desktop-nav {
+      display: flex !important;
+    }
+    .mobile-menu-overlay {
+      display: none !important;
+    }
+  }
   
   /* Touch improvements for mobile */
   @media (max-width: 767px) {
