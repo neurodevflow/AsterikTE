@@ -8,11 +8,22 @@ export default function Home() {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <div className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-navy-blue via-charcoal to-navy-blue">
+      <div 
+        className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden"
+        style={{
+          background: 'linear-gradient(135deg, hsl(206, 84%, 17%) 0%, hsl(220, 13%, 18%) 50%, hsl(206, 84%, 17%) 100%)',
+          minHeight: '100vh'
+        }}
+      >
         {/* Hero background with fallback */}
         <div className="absolute inset-0">
           {/* CSS gradient overlay for better text readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-navy-blue/75 via-charcoal/70 to-navy-blue/80 z-10"></div>
+          <div 
+            className="absolute inset-0 z-10"
+            style={{
+              background: 'linear-gradient(135deg, rgba(12, 45, 72, 0.75) 0%, rgba(31, 41, 55, 0.7) 50%, rgba(12, 45, 72, 0.8) 100%)'
+            }}
+          ></div>
           
           <img 
             src="/assets/images/hero-original.svg"
@@ -40,13 +51,29 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/contact"
-              className="bg-navy-blue text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transform hover:scale-105 transition-all duration-200 shadow-lg text-center"
+              className="text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-90 transform hover:scale-105 transition-all duration-200 shadow-lg text-center"
+              style={{
+                backgroundColor: 'hsl(206, 84%, 17%)',
+                border: '2px solid hsl(206, 84%, 17%)'
+              }}
             >
               Schedule Consultation
             </Link>
             <Link 
               href="/approach"
-              className="text-white border-2 border-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-charcoal transition-all duration-200 text-center"
+              className="text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-200 text-center"
+              style={{
+                border: '2px solid white',
+                backgroundColor: 'transparent'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'white';
+                e.currentTarget.style.color = 'hsl(220, 13%, 18%)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = 'white';
+              }}
             >
               View Our Approach
             </Link>
