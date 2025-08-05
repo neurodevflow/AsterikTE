@@ -5,17 +5,24 @@ import { useIsMobile } from "@/hooks/use-mobile";
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Debug mobile menu state
+  // Mobile menu toggle with proper body scroll handling
   const handleMobileMenuToggle = () => {
     const newState = !mobileMenuOpen;
-    console.log('Mobile menu toggle:', { from: mobileMenuOpen, to: newState, isMobile });
     setMobileMenuOpen(newState);
     
     // Prevent body scroll when menu is open
     if (newState) {
       document.body.style.overflow = 'hidden';
+      document.body.classList.add('mobile-menu-open');
     } else {
       document.body.style.overflow = 'unset';
+      document.body.classList.remove('mobile-menu-open');
+    }
+    
+    // Reset dropdown states when closing
+    if (!newState) {
+      setMobileServicesOpen(false);
+      setMobileIndustriesOpen(false);
     }
   };
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
@@ -218,26 +225,21 @@ export default function Header() {
 
         {/* Mobile Navigation Menu - Full Screen Overlay */}
         {mobileMenuOpen && (
-          <div className="mobile-menu-overlay md:hidden">
+          <div className="mobile-menu-overlay md:hidden fixed inset-0 bg-white z-[9999] overflow-y-auto">
             {/* Close Button */}
-            <div className="flex justify-between items-center p-4 border-b border-light-grey">
-              <Link href="/">
+            <div className="flex justify-between items-center p-4 border-b border-light-grey bg-white">
+              <Link href="/" onClick={handleMobileMenuToggle}>
                 <h1 className="font-bold text-2xl text-navy-blue">ASTERIK</h1>
               </Link>
               <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  setMobileServicesOpen(false);
-                  setMobileIndustriesOpen(false);
-                  document.body.style.overflow = 'unset';
-                }}
+                onClick={handleMobileMenuToggle}
                 className="text-charcoal hover:text-navy-blue focus:outline-none p-2 touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
                 aria-label="Close mobile menu"
               >
                 <i className="fas fa-times text-xl"></i>
               </button>
             </div>
-            <div className="px-4 pt-4 pb-3 space-y-1">
+            <div className="px-4 pt-4 pb-8 space-y-1 bg-white min-h-screen">
               {navigation.map((item) => (
                 <div key={item.name}>
                   {item.hasDropdown ? (
@@ -284,11 +286,7 @@ export default function Header() {
                                       <Link
                                         key={subItem.name}
                                         href={subItem.href}
-                                        onClick={() => {
-                                          setMobileMenuOpen(false);
-                                          setMobileServicesOpen(false);
-                                          document.body.style.overflow = 'unset';
-                                        }}
+                                        onClick={handleMobileMenuToggle}
                                         className="block py-3 px-2 text-sm text-charcoal hover:text-navy-blue hover:bg-white rounded transition-colors touch-manipulation min-h-[44px] leading-normal"
                                         style={{ touchAction: 'manipulation' }}
                                       >
@@ -305,11 +303,7 @@ export default function Header() {
                                 <Link
                                   key={subItem.name}
                                   href={subItem.href}
-                                  onClick={() => {
-                                    setMobileMenuOpen(false);
-                                    setMobileIndustriesOpen(false);
-                                    document.body.style.overflow = 'unset';
-                                  }}
+                                  onClick={handleMobileMenuToggle}
                                   className="block py-3 px-2 text-sm text-charcoal hover:text-navy-blue hover:bg-white rounded transition-colors touch-manipulation min-h-[44px] leading-normal"
                                   style={{ touchAction: 'manipulation' }}
                                 >
@@ -324,10 +318,7 @@ export default function Header() {
                   ) : (
                     <Link
                       href={item.href}
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                        document.body.style.overflow = 'unset';
-                      }}
+                      onClick={handleMobileMenuToggle}
                       className={`block px-3 py-3 transition-colors touch-manipulation font-medium min-h-[44px] ${
                         isActive(item.href)
                           ? "text-navy-blue"
