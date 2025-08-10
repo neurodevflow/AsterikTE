@@ -287,7 +287,7 @@ export default function Header() {
               aria-label="Toggle mobile menu"
               style={{ touchAction: 'manipulation' }}
             >
-              <i className="fas fa-bars text-xl" aria-hidden="true"></i>
+              <span style={{ fontSize: '20px', fontWeight: 'bold', lineHeight: '1' }}>☰</span>
             </button>
           </div>
         </div>
@@ -305,7 +305,7 @@ export default function Header() {
                 className="text-charcoal hover:text-navy-blue focus:outline-none p-2 touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
                 aria-label="Close mobile menu"
               >
-                <i className="fas fa-times text-xl"></i>
+                <span style={{ fontSize: '24px', fontWeight: 'bold' }}>✕</span>
               </button>
             </div>
             <div className="px-4 pt-4 pb-8 space-y-1 bg-white min-h-screen">
