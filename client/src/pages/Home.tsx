@@ -20,19 +20,27 @@ export default function Home() {
           {/* CSS gradient overlay for better text readability */}
           <div className="hero-bg-overlay absolute inset-0 z-10"></div>
           
-          <img 
-            src="/assets/images/hero-original.jpg"
-            srcSet="/assets/images/hero-small.jpg 480w, /assets/images/hero-medium.jpg 768w, /assets/images/hero-original.jpg 1200w"
-            sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, 100vw"
-            alt="Modern office building representing enterprise technology transformation"
-            className="absolute inset-0 w-full h-full object-cover opacity-30"
-            fetchPriority="high"
-            loading="eager"
-            decoding="async"
-            width="1920"
-            height="1080"
-            style={{ objectFit: 'cover', objectPosition: 'center' }}
-          />
+          <picture>
+            <source 
+              media="(max-width: 480px)" 
+              srcSet="/assets/images/hero-small.jpg"
+            />
+            <source 
+              media="(max-width: 768px)" 
+              srcSet="/assets/images/hero-medium.jpg"
+            />
+            <img 
+              src="/assets/images/hero-original.jpg"
+              alt="Modern office building representing enterprise technology transformation"
+              className="absolute inset-0 w-full h-full object-cover opacity-30"
+              fetchPriority="high"
+              loading="eager"
+              decoding="async"
+              width="1920"
+              height="1080"
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
+            />
+          </picture>
         </div>
         
         <div className="hero-content relative z-20 max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8 py-20">
