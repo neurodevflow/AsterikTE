@@ -18,12 +18,7 @@ export default function Home() {
         {/* Hero background with fallback */}
         <div className="absolute inset-0">
           {/* CSS gradient overlay for better text readability */}
-          <div 
-            className="absolute inset-0 z-10"
-            style={{
-              background: 'linear-gradient(135deg, rgba(12, 45, 72, 0.75) 0%, rgba(31, 41, 55, 0.7) 50%, rgba(12, 45, 72, 0.8) 100%)'
-            }}
-          ></div>
+          <div className="hero-bg-overlay absolute inset-0 z-10"></div>
           
           <img 
             src="/assets/images/hero-original.jpg"
@@ -40,7 +35,7 @@ export default function Home() {
           />
         </div>
         
-        <div className="relative z-10 max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8 py-20">
+        <div className="hero-content relative z-20 max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8 py-20">
           <h1 className="font-bold text-4xl md:text-6xl text-white mb-6 leading-tight">
             Strategic Technology Solutions for Enterprise Transformation
           </h1>
