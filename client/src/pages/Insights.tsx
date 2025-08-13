@@ -25,9 +25,14 @@ export default function Insights() {
             <div className="md:flex">
               <div className="md:w-1/2">
                 <img 
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=500" 
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=412&h=258" 
                   alt="Modern digital workplace with technology" 
                   className="w-full h-64 md:h-full object-cover" 
+                  loading="lazy"
+                  decoding="async"
+                  width="412"
+                  height="258"
+                  sizes="(max-width: 768px) 412px, 800px"
                 />
               </div>
               <div className="md:w-1/2 p-8">
