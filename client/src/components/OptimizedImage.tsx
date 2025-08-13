@@ -25,7 +25,14 @@ export default function OptimizedImage({
   // Generate responsive image URLs
   const generateImageUrl = (w: number, h: number, q: number = quality) => {
     if (src.includes('unsplash.com')) {
-      return `${src}&w=${w}&h=${h}&q=${q}&fit=crop&auto=format`;
+      // Parse existing URL and maintain existing parameters
+      const url = new URL(src);
+      url.searchParams.set('w', w.toString());
+      url.searchParams.set('h', h.toString());
+      url.searchParams.set('q', q.toString());
+      url.searchParams.set('fit', 'crop');
+      url.searchParams.set('auto', 'format');
+      return url.toString();
     }
     return src;
   };

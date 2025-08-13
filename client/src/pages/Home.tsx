@@ -1,6 +1,7 @@
 
 import { usePerformanceMonitoring } from '../hooks/usePerformanceMonitoring';
 import { Link } from 'wouter';
+import OptimizedImage from '../components/OptimizedImage';
 
 export default function Home() {
   // Monitor performance metrics
@@ -24,21 +25,26 @@ export default function Home() {
             <source 
               media="(max-width: 480px)" 
               srcSet="/assets/images/hero-small.jpg"
+              width="412"
+              height="309"
             />
             <source 
               media="(max-width: 768px)" 
               srcSet="/assets/images/hero-medium.jpg"
+              width="768"
+              height="576"
             />
             <img 
-              src="/assets/images/hero-original.jpg"
+              src="/assets/images/hero-medium.jpg"
               alt="Modern office building representing enterprise technology transformation"
               className="absolute inset-0 w-full h-full object-cover opacity-30"
               fetchPriority="high"
               loading="eager"
               decoding="async"
-              width="1920"
-              height="1080"
-              style={{ objectFit: 'cover', objectPosition: 'center' }}
+              width="768"
+              height="576"
+              sizes="(max-width: 480px) 412px, (max-width: 768px) 768px, 1200px"
+              style={{ objectFit: 'cover', objectPosition: 'center center' }}
             />
           </picture>
         </div>
@@ -303,10 +309,14 @@ export default function Home() {
               </button>
             </div>
             <div>
-              <img 
-                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+              <OptimizedImage 
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop" 
                 alt="Professional technology consulting team collaborating on digital strategy" 
                 className="w-full h-auto rounded-xl shadow-lg" 
+                width={412}
+                height={309}
+                priority={false}
+                quality={80}
               />
             </div>
           </div>

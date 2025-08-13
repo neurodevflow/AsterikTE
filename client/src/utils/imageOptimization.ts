@@ -1,74 +1,102 @@
-// Image optimization utilities for better performance
-export const getOptimizedImageUrl = (
-  originalUrl: string,
-  width: number,
-  height: number,
-  quality: number = 85
-): string => {
-  if (originalUrl.includes('unsplash.com')) {
-    // Optimize Unsplash images with proper parameters
-    const url = new URL(originalUrl);
-    url.searchParams.set('w', width.toString());
-    url.searchParams.set('h', height.toString());
-    url.searchParams.set('q', quality.toString());
-    url.searchParams.set('fit', 'crop');
-    url.searchParams.set('auto', 'format');
-    return url.toString();
+/**
+ * Image optimization utilities for better performance
+ */
+
+interface ImageDimensions {
+  width: number;
+  height: number;
+}
+
+interface OptimizedImageParams {
+  src: string;
+  width: number;
+  height: number;
+  quality?: number;
+  format?: 'webp' | 'avif' | 'jpg' | 'png';
+}
+
+/**
+ * Generate optimized Unsplash image URL with proper dimensions and quality
+ */
+export function optimizeUnsplashImage({
+  src,
+  width,
+  height,
+  quality = 80,
+  format = 'jpg',
+}: OptimizedImageParams): string {
+  if (!src.includes('unsplash.com')) {
+    return src;
   }
-  return originalUrl;
-};
 
-export const generateResponsiveImageSrcSet = (
-  originalUrl: string,
-  baseWidth: number,
-  baseHeight: number
-): string => {
-  const sizes = [
-    { width: Math.round(baseWidth * 0.5), height: Math.round(baseHeight * 0.5), descriptor: '480w' },
-    { width: baseWidth, height: baseHeight, descriptor: '768w' },
-    { width: Math.round(baseWidth * 1.5), height: Math.round(baseHeight * 1.5), descriptor: '1200w' },
-    { width: Math.round(baseWidth * 2), height: Math.round(baseHeight * 2), descriptor: '1920w' },
-  ];
+  const url = new URL(src);
+  
+  // Set optimized parameters
+  url.searchParams.set('w', width.toString());
+  url.searchParams.set('h', height.toString());
+  url.searchParams.set('q', quality.toString());
+  url.searchParams.set('fit', 'crop');
+  url.searchParams.set('auto', 'format');
+  url.searchParams.set('fm', format);
+  
+  return url.toString();
+}
 
-  return sizes
-    .map(({ width, height, descriptor }) => 
-      `${getOptimizedImageUrl(originalUrl, width, height)} ${descriptor}`
-    )
-    .join(', ');
-};
+/**
+ * Generate responsive image sizes for different viewports
+ */
+export function generateResponsiveSizes(baseDimensions: ImageDimensions) {
+  return {
+    mobile: {
+      width: Math.round(baseDimensions.width * 0.5),
+      height: Math.round(baseDimensions.height * 0.5),
+    },
+    tablet: {
+      width: Math.round(baseDimensions.width * 0.75),
+      height: Math.round(baseDimensions.height * 0.75),
+    },
+    desktop: baseDimensions,
+  };
+}
 
-export const preloadCriticalImages = (imageUrls: string[]) => {
-  if (typeof window !== 'undefined') {
-    imageUrls.forEach(url => {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = 'image';
-      link.href = url;
-      link.fetchPriority = 'high';
-      document.head.appendChild(link);
-    });
+/**
+ * Generate srcSet string for responsive images
+ */
+export function generateSrcSet(src: string, dimensions: ImageDimensions): string {
+  const responsive = generateResponsiveSizes(dimensions);
+  
+  if (src.includes('unsplash.com')) {
+    return [
+      `${optimizeUnsplashImage({ src, ...responsive.mobile })} ${responsive.mobile.width}w`,
+      `${optimizeUnsplashImage({ src, ...responsive.tablet })} ${responsive.tablet.width}w`,
+      `${optimizeUnsplashImage({ src, ...responsive.desktop })} ${responsive.desktop.width}w`,
+    ].join(', ');
   }
-};
+  
+  return src;
+}
 
-// Lazy loading intersection observer
-export const createImageLazyLoader = () => {
-  if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
-    return new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target as HTMLImageElement;
-          const dataSrc = img.dataset.src;
-          if (dataSrc) {
-            img.src = dataSrc;
-            img.classList.remove('lazy');
-            img.classList.add('loaded');
-          }
-        }
-      });
-    }, {
-      rootMargin: '50px 0px',
-      threshold: 0.01
-    });
+/**
+ * Generate sizes attribute for responsive images
+ */
+export function generateSizesAttribute(maxWidth: number): string {
+  return `(max-width: 480px) 412px, (max-width: 768px) 768px, ${maxWidth}px`;
+}
+
+/**
+ * Check if image should be loaded with high priority (above the fold)
+ */
+export function shouldLoadWithHighPriority(elementPosition: 'hero' | 'above-fold' | 'below-fold'): {
+  loading: 'eager' | 'lazy';
+  fetchPriority: 'high' | 'low' | 'auto';
+} {
+  switch (elementPosition) {
+    case 'hero':
+      return { loading: 'eager', fetchPriority: 'high' };
+    case 'above-fold':
+      return { loading: 'eager', fetchPriority: 'auto' };
+    case 'below-fold':
+    default:
+      return { loading: 'lazy', fetchPriority: 'low' };
   }
-  return null;
-};
+}
