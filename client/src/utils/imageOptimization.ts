@@ -88,15 +88,14 @@ export function generateSizesAttribute(maxWidth: number): string {
  */
 export function shouldLoadWithHighPriority(elementPosition: 'hero' | 'above-fold' | 'below-fold'): {
   loading: 'eager' | 'lazy';
-  fetchPriority: 'high' | 'low' | 'auto';
 } {
   switch (elementPosition) {
     case 'hero':
-      return { loading: 'eager', fetchPriority: 'high' };
+      return { loading: 'eager' };
     case 'above-fold':
-      return { loading: 'eager', fetchPriority: 'auto' };
+      return { loading: 'eager' };
     case 'below-fold':
     default:
-      return { loading: 'lazy', fetchPriority: 'low' };
+      return { loading: 'lazy' };
   }
 }
