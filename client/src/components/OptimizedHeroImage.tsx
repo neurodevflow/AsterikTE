@@ -62,7 +62,7 @@ export default function OptimizedHeroImage({
           src="/assets/images/hero-original.jpg"
           alt={alt}
           className="w-full h-full object-cover"
-          fetchPriority="high"
+
           loading="eager"
           decoding="async"
           sizes="(max-width: 768px) 800px, (max-width: 1200px) 1200px, 1920px"

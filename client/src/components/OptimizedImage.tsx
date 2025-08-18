@@ -74,7 +74,7 @@ export default function OptimizedImage({
         alt={alt}
         className={`${className} ${!isLoaded && priority ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
         loading={priority ? "eager" : "lazy"}
-        fetchPriority={priority ? "high" : "auto"}
+
         width={width}
         height={height}
         onLoad={() => setIsLoaded(true)}

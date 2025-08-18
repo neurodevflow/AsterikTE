@@ -1,74 +1,64 @@
-// Critical path optimization script
+/**
+ * Critical Path JavaScript
+ * Handles essential functionality that must load immediately
+ */
+
 (function() {
   'use strict';
   
-  // Optimize initial rendering
-  function optimizeInitialRender() {
-    // Remove unused CSS
-    const unusedStyles = document.querySelectorAll('link[rel="stylesheet"]:not([data-critical])');
-    unusedStyles.forEach(link => {
-      if (!link.href.includes('critical.css') && !link.href.includes('fonts.css')) {
-        link.media = 'print';
-        link.onload = function() {
-          this.media = 'all';
-        };
+  // Prevent FOUC (Flash of Unstyled Content)
+  document.documentElement.style.visibility = 'visible';
+  
+  // Initialize critical performance metrics
+  if (window.performance && window.performance.mark) {
+    window.performance.mark('critical-js-start');
+  }
+  
+  // Essential mobile viewport fix for iOS
+  function fixViewport() {
+    if (/iPhone|iPad/.test(navigator.userAgent)) {
+      const viewport = document.querySelector('meta[name="viewport"]');
+      if (viewport) {
+        viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
       }
-    });
-    
-    // Prioritize visible content
-    const hero = document.querySelector('.hero-bg, .min-h-screen');
-    if (hero) {
-      hero.style.willChange = 'auto';
+      
+      // Fix iOS 100vh issue
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+      
+      window.addEventListener('resize', () => {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+      });
     }
   }
   
-  // Reduce layout shift
-  function preventLayoutShift() {
-    // Reserve space for images
-    const images = document.querySelectorAll('img:not([width])');
-    images.forEach(img => {
-      if (!img.hasAttribute('width') && !img.hasAttribute('height')) {
-        img.style.aspectRatio = '16/9';
-        img.style.background = '#f3f4f6';
-      }
+  // Critical error handling
+  function handleCriticalErrors() {
+    window.addEventListener('error', function(e) {
+      console.error('Critical error:', e.error);
+      // Report critical errors without breaking the app
     });
     
-    // Reserve space for icons
-    const icons = document.querySelectorAll('i[class*="fa"]');
-    icons.forEach(icon => {
-      icon.style.minWidth = '1em';
-      icon.style.minHeight = '1em';
+    window.addEventListener('unhandledrejection', function(e) {
+      console.error('Unhandled promise rejection:', e.reason);
+      e.preventDefault();
     });
   }
   
-  // Initialize optimizations
+  // Initialize immediately
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
-      optimizeInitialRender();
-      preventLayoutShift();
+      fixViewport();
+      handleCriticalErrors();
     });
   } else {
-    optimizeInitialRender();
-    preventLayoutShift();
+    fixViewport();
+    handleCriticalErrors();
   }
   
-  // Performance observer for debugging
-  if (window.PerformanceObserver && window.location.hostname === 'localhost') {
-    const observer = new PerformanceObserver((list) => {
-      for (const entry of list.getEntries()) {
-        if (entry.entryType === 'largest-contentful-paint' && entry.startTime > 2500) {
-          console.warn('LCP is slow:', entry.startTime + 'ms');
-        }
-        if (entry.entryType === 'layout-shift' && entry.value > 0.1) {
-          console.warn('Layout shift detected:', entry.value);
-        }
-      }
-    });
-    
-    try {
-      observer.observe({ entryTypes: ['largest-contentful-paint', 'layout-shift'] });
-    } catch (e) {
-      // Silently fail if not supported
-    }
+  // Mark completion
+  if (window.performance && window.performance.mark) {
+    window.performance.mark('critical-js-end');
   }
 })();

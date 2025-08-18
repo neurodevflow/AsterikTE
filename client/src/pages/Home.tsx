@@ -38,7 +38,6 @@ export default function Home() {
               src="/assets/images/hero-medium.jpg"
               alt="Modern office building representing enterprise technology transformation"
               className="absolute inset-0 w-full h-full object-cover opacity-30"
-              fetchPriority="high"
               loading="eager"
               decoding="async"
               width="768"

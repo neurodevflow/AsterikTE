@@ -158,11 +158,10 @@
         font-display: swap;
       }
       
-      /* Reduce layout shift with aspect ratio containers */
+      /* Reduce layout shift with aspect ratio containers - Safari compatible */
       img, video, iframe {
         max-width: 100%;
         height: auto;
-        aspect-ratio: attr(width) / attr(height);
       }
       
       /* Optimize rendering and prevent CLS */
@@ -201,6 +200,9 @@
     <link rel="dns-prefetch" href="//cdn.brevo.com">
     <link rel="dns-prefetch" href="//cdn.by.wonderpush.com">
     <link rel="preconnect" href="//sibautomation.com">
+    
+    <!-- Browser compatibility fixes - load first -->
+    <script src="/assets/js/browser-compatibility.js"></script>
     
     <!-- Critical path optimization - load immediately -->
     <script src="/assets/js/critical-path.js"></script>

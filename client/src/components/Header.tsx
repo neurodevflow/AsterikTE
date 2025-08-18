@@ -172,6 +172,7 @@ export default function Header() {
                 <div key={item.name} className="relative">
                   {item.hasDropdown ? (
                     <div
+                      data-dropdown-trigger
                       onMouseEnter={() => {
                         if (item.name === "Services") setServicesDropdownOpen(true);
                         if (item.name === "Industries") setIndustriesDropdownOpen(true);
