@@ -309,7 +309,7 @@ export default function Home() {
             </div>
             <div>
               <OptimizedImage 
-                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop" 
+                src="/assets/images/downloaded/tech-consulting-team.jpg" 
                 alt="Professional technology consulting team collaborating on digital strategy" 
                 className="w-full h-auto rounded-xl shadow-lg" 
                 width={412}
@@ -338,7 +338,7 @@ export default function Home() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 <OptimizedImage 
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop"
+                  src="/assets/images/downloaded/business-collaboration.jpg"
                   alt="Modern financial institution digital transformation" 
                   className="w-full h-auto rounded-xl" 
                   width={800}

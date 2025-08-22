@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { mapUnsplashToLocal } from '../utils/localImages';
 
 interface OptimizedImageProps {
   src: string;
@@ -22,10 +23,17 @@ export default function OptimizedImage({
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
 
-  // Generate responsive image URLs
+  // Map Unsplash URLs to local images first
+  const localSrc = mapUnsplashToLocal(src);
+  
+  // Generate responsive image URLs (for local images, just return the path)
   const generateImageUrl = (w: number, h: number, q: number = quality) => {
+    if (localSrc.startsWith('/assets/images/downloaded/')) {
+      // Local image - return as-is since they're already optimized
+      return localSrc;
+    }
     if (src.includes('unsplash.com')) {
-      // Parse existing URL and maintain existing parameters
+      // External Unsplash URL (fallback)
       const url = new URL(src);
       url.searchParams.set('w', w.toString());
       url.searchParams.set('h', h.toString());
@@ -34,7 +42,7 @@ export default function OptimizedImage({
       url.searchParams.set('auto', 'format');
       return url.toString();
     }
-    return src;
+    return localSrc;
   };
 
   const smallSrc = generateImageUrl(Math.round(width * 0.5), Math.round(height * 0.5), 75);
