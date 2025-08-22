@@ -1,4 +1,5 @@
 import { Link } from 'wouter';
+import OptimizedImage from '../components/OptimizedImage';
 
 export default function Services() {
   return (
@@ -326,10 +327,14 @@ export default function Services() {
             <h2 className="text-3xl md:text-4xl font-bold text-navy-blue mb-4">
               Here's how we can cooperate
             </h2>
-            <img 
-              src="/api/placeholder/600/400" 
+            <OptimizedImage 
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop"
               alt="Two businesswomen shaking hands across a table in a modern office setting, symbolizing partnership and collaboration" 
               className="mx-auto rounded-lg shadow-lg mb-8"
+              width={600}
+              height={400}
+              priority={false}
+              quality={85}
             />
           </div>
 
