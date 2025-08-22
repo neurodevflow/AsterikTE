@@ -26,7 +26,7 @@ export default function Insights() {
             <div className="md:flex">
               <div className="md:w-1/2">
                 <OptimizedImage 
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop"
+                  src="/assets/images/downloaded/business-collaboration.jpg"
                   alt="Modern digital workplace with technology" 
                   className="w-full h-64 md:h-full object-cover" 
                   width={412}
@@ -60,7 +60,7 @@ export default function Insights() {
             {/* Article 1 */}
             <article className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <OptimizedImage 
-                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop"
+                src="/assets/images/downloaded/tech-consulting-team.jpg"
                 alt="Technology consulting team in modern office" 
                 className="w-full h-48 object-cover" 
                 width={600}
@@ -90,7 +90,7 @@ export default function Insights() {
             {/* Article 2 */}
             <article className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <OptimizedImage 
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop"
+                src="/assets/images/downloaded/team-building.jpg"
                 alt="Professional team building and collaboration" 
                 className="w-full h-48 object-cover" 
                 width={600}
