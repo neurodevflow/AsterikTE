@@ -1,4 +1,5 @@
 import { Link } from 'wouter';
+import OptimizedImage from '../components/OptimizedImage';
 
 export default function Insights() {
   return (
@@ -24,15 +25,14 @@ export default function Insights() {
           <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-12">
             <div className="md:flex">
               <div className="md:w-1/2">
-                <img 
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=412&h=258" 
+                <OptimizedImage 
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop"
                   alt="Modern digital workplace with technology" 
                   className="w-full h-64 md:h-full object-cover" 
-                  loading="lazy"
-                  decoding="async"
-                  width="412"
-                  height="258"
-                  sizes="(max-width: 768px) 412px, 800px"
+                  width={412}
+                  height={258}
+                  priority={false}
+                  quality={85}
                 />
               </div>
               <div className="md:w-1/2 p-8">
@@ -59,10 +59,14 @@ export default function Insights() {
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {/* Article 1 */}
             <article className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <img 
-                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300" 
+              <OptimizedImage 
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop"
                 alt="Technology consulting team in modern office" 
                 className="w-full h-48 object-cover" 
+                width={600}
+                height={300}
+                priority={false}
+                quality={80}
               />
               <div className="p-6">
                 <span className="text-sm font-semibold text-warm-orange">
@@ -85,10 +89,14 @@ export default function Insights() {
 
             {/* Article 2 */}
             <article className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <img 
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300" 
+              <OptimizedImage 
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop"
                 alt="Professional team building and collaboration" 
                 className="w-full h-48 object-cover" 
+                width={600}
+                height={300}
+                priority={false}
+                quality={80}
               />
               <div className="p-6">
                 <span className="text-sm font-semibold text-warm-orange">
@@ -111,10 +119,14 @@ export default function Insights() {
 
             {/* Article 3 */}
             <article className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <img 
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300" 
+              <OptimizedImage 
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop"
                 alt="Business strategy and growth planning" 
                 className="w-full h-48 object-cover" 
+                width={600}
+                height={300}
+                priority={false}
+                quality={80}
               />
               <div className="p-6">
                 <span className="text-sm font-semibold text-warm-orange">

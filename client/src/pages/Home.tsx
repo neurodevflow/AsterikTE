@@ -337,10 +337,14 @@ export default function Home() {
           <div className="bg-white rounded-2xl p-8 md:p-12">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <img 
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=500" 
+                <OptimizedImage 
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop"
                   alt="Modern financial institution digital transformation" 
                   className="w-full h-auto rounded-xl" 
+                  width={800}
+                  height={500}
+                  priority={false}
+                  quality={85}
                 />
               </div>
               <div>
