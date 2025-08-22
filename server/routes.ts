@@ -39,6 +39,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ status: "ok", timestamp: new Date().toISOString() });
   });
 
+  // Block placeholder API endpoints to prevent broken images
+  app.get("/api/placeholder/:width/:height", (req, res) => {
+    res.status(404).json({ error: "Placeholder images not supported. Use proper image URLs." });
+  });
+
 
 
   // Enhanced input validation schema
