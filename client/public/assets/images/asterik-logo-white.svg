@@ -1,0 +1,21 @@
+<svg width="150" height="36" viewBox="0 0 150 36" xmlns="http://www.w3.org/2000/svg">
+  <!-- Geometric cross icon -->
+  <g fill="#ffffff">
+    <!-- Grid pattern -->
+    <rect x="2" y="2" width="6" height="6"/>
+    <rect x="10" y="2" width="6" height="6"/>
+    <rect x="18" y="2" width="6" height="6"/>
+    <rect x="2" y="10" width="6" height="6"/>
+    <rect x="10" y="10" width="6" height="6" fill="#4fd1c7"/> <!-- Teal accent -->
+    <rect x="18" y="10" width="6" height="6"/>
+    <rect x="2" y="18" width="6" height="6"/>
+    <rect x="10" y="18" width="6" height="6"/>
+    <rect x="18" y="18" width="6" height="6"/>
+  </g>
+  
+  <!-- Navy background for text -->
+  <rect x="30" y="0" width="120" height="36" fill="#ffffff"/>
+  
+  <!-- ASTERIK text -->
+  <text x="35" y="25" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#0C2D48">ASTERIK</text>
+</svg>

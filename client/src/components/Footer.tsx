@@ -55,13 +55,9 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
           <div>
-            <img 
-              src="/assets/images/asterik-logo-150.png"
-              alt="ASTERIK - Strategic Technology Solutions"
-              className="h-9 w-auto mb-4 brightness-0 invert"
-              width="150"
-              height="36"
-            />
+            <div className="mb-4">
+              <h3 className="font-bold text-2xl text-white">ASTERIK</h3>
+            </div>
             <p className="text-light-grey mb-4">
               Strategic Technology Solutions for Enterprise Transformation
             </p>
