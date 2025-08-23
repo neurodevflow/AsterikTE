@@ -44,6 +44,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.status(404).json({ error: "Placeholder images not supported. Use proper image URLs." });
   });
 
+  // Serve sitemap files with proper headers for SEO
+  app.get('/sitemap.xml', (req, res) => {
+    res.setHeader('Content-Type', 'application/xml');
+    res.setHeader('Cache-Control', 'public, max-age=86400'); // Cache for 24 hours
+    res.sendFile(path.join(process.cwd(), 'client/public/sitemap.xml'));
+  });
+
+  app.get('/sitemap.html', (req, res) => {
+    res.setHeader('Content-Type', 'text/html');
+    res.setHeader('Cache-Control', 'public, max-age=86400'); // Cache for 24 hours
+    res.sendFile(path.join(process.cwd(), 'client/public/sitemap.html'));
+  });
+
+  app.get('/robots.txt', (req, res) => {
+    res.setHeader('Content-Type', 'text/plain');
+    res.setHeader('Cache-Control', 'public, max-age=86400'); // Cache for 24 hours
+    res.sendFile(path.join(process.cwd(), 'client/public/robots.txt'));
+  });
+
 
 
   // Enhanced input validation schema
