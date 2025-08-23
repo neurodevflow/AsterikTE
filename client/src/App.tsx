@@ -3,25 +3,29 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CookieConsent from "./components/CookieConsent";
 import { AdminAuthProvider } from "./components/AdminAuthProvider";
 import { useAuth } from "./hooks/useAuth";
+import LoadingSpinner from "./components/LoadingSpinner";
 import Home from "./pages/Home";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Industries from "./pages/Industries";
-import ServiceDetail from "./pages/ServiceDetail";
-import IndustryDetail from "./pages/IndustryDetail";
-import Approach from "./pages/Approach";
-import Contact from "./pages/Contact";
-import Insights from "./pages/Insights";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import Terms from "./pages/Terms";
-import AdminLogin from "./pages/admin/AdminLogin";
-import Dashboard from "./pages/admin/Dashboard";
+// Lazy load non-critical pages
+import {
+  LazyAbout,
+  LazyContact,
+  LazyInsights,
+  LazyPrivacyPolicy,
+  LazyTerms,
+  LazyServices,
+  LazyIndustries,
+  LazyServiceDetail,
+  LazyIndustryDetail,
+  LazyApproach,
+  LazyAdminLogin,
+  LazyAdminDashboard
+} from "./utils/lazyComponents";
 
 import NotFound from "@/pages/not-found";
 
@@ -68,25 +72,69 @@ function PublicRouter() {
         <main className="flex-1">
           <Switch>
             <Route path="/" component={Home} />
-            <Route path="/services/:serviceId" component={ServiceDetail} />
-            <Route path="/services" component={Services} />
-            <Route path="/industries/:industryId" component={IndustryDetail} />
-            <Route path="/industries" component={Industries} />
-            <Route path="/approach" component={Approach} />
-            <Route path="/contact" component={Contact} />
-            <Route path="/about" component={About} />
-            <Route path="/insights" component={Insights} />
-            <Route path="/privacy-policy" component={PrivacyPolicy} />
-            <Route path="/terms" component={Terms} />
+            <Route path="/services/:serviceId">
+              <Suspense fallback={<LoadingSpinner />}>
+                <LazyServiceDetail />
+              </Suspense>
+            </Route>
+            <Route path="/services">
+              <Suspense fallback={<LoadingSpinner />}>
+                <LazyServices />
+              </Suspense>
+            </Route>
+            <Route path="/industries/:industryId">
+              <Suspense fallback={<LoadingSpinner />}>
+                <LazyIndustryDetail />
+              </Suspense>
+            </Route>
+            <Route path="/industries">
+              <Suspense fallback={<LoadingSpinner />}>
+                <LazyIndustries />
+              </Suspense>
+            </Route>
+            <Route path="/approach">
+              <Suspense fallback={<LoadingSpinner />}>
+                <LazyApproach />
+              </Suspense>
+            </Route>
+            <Route path="/contact">
+              <Suspense fallback={<LoadingSpinner />}>
+                <LazyContact />
+              </Suspense>
+            </Route>
+            <Route path="/about">
+              <Suspense fallback={<LoadingSpinner />}>
+                <LazyAbout />
+              </Suspense>
+            </Route>
+            <Route path="/insights">
+              <Suspense fallback={<LoadingSpinner />}>
+                <LazyInsights />
+              </Suspense>
+            </Route>
+            <Route path="/privacy-policy">
+              <Suspense fallback={<LoadingSpinner />}>
+                <LazyPrivacyPolicy />
+              </Suspense>
+            </Route>
+            <Route path="/terms">
+              <Suspense fallback={<LoadingSpinner />}>
+                <LazyTerms />
+              </Suspense>
+            </Route>
 
             <Route path="/admin-login">
               <AdminAuthProvider>
-                <AdminLogin />
+                <Suspense fallback={<LoadingSpinner />}>
+                  <LazyAdminLogin />
+                </Suspense>
               </AdminAuthProvider>
             </Route>
             <Route path="/admin/login">
               <AdminAuthProvider>
-                <AdminLogin />
+                <Suspense fallback={<LoadingSpinner />}>
+                  <LazyAdminLogin />
+                </Suspense>
               </AdminAuthProvider>
             </Route>
             <Route component={NotFound} />
@@ -108,10 +156,14 @@ function Router() {
       <AdminAuthProvider>
         <Switch>
           <Route path="/admin">
-            <AdminRoute component={Dashboard} />
+            <Suspense fallback={<LoadingSpinner />}>
+              <AdminRoute component={LazyAdminDashboard} />
+            </Suspense>
           </Route>
           <Route path="/admin/dashboard">
-            <AdminRoute component={Dashboard} />
+            <Suspense fallback={<LoadingSpinner />}>
+              <AdminRoute component={LazyAdminDashboard} />
+            </Suspense>
           </Route>
           <Route component={NotFound} />
         </Switch>

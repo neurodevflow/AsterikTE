@@ -1,83 +1,156 @@
-// Service Worker for performance optimization
-const CACHE_NAME = 'asterik-v1';
-const STATIC_CACHE = 'asterik-static-v1';
-
-// Resources to cache on install
-const STATIC_RESOURCES = [
+// Service Worker for ASTERIK Website Performance Optimization
+const CACHE_NAME = 'asterik-v3.0.0';
+const CACHE_URLS = [
   '/',
-  '/assets/fonts/montserrat-v26-latin-regular.woff2',
+  '/assets/images/asterik-logo-150.png',
+  '/assets/images/hero-small.webp',
+  '/assets/images/hero-medium.webp',
+  '/assets/images/hero-original.webp',
+  '/assets/images/downloaded/business-collaboration.webp',
+  '/assets/images/downloaded/business-strategy.webp',
+  '/assets/images/downloaded/team-building.webp',
+  '/assets/images/downloaded/tech-consulting-team.webp',
   '/assets/fonts/montserrat-v26-latin-700.woff2',
-  '/assets/fonts/opensans-v36-latin-regular.woff2',
-  '/assets/fonts/opensans-v36-latin-600.woff2',
-  '/assets/fonts/fonts.css',
-  '/assets/css/critical.css',
-  '/assets/js/fontawesome.min.js',
-  '/assets/js/performance-monitor.js',
-  '/assets/js/lazy-load.js'
+  '/assets/fonts/open-sans-v35-latin-regular.woff2',
+  '/manifest.json'
 ];
 
-// Install event - cache static resources
-self.addEventListener('install', (event) => {
+// Install Service Worker
+self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(STATIC_CACHE)
-      .then((cache) => cache.addAll(STATIC_RESOURCES))
-      .then(() => self.skipWaiting())
-  );
-});
-
-// Activate event - clean up old caches
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys()
-      .then((cacheNames) => {
-        return Promise.all(
-          cacheNames.map((cacheName) => {
-            if (cacheName !== CACHE_NAME && cacheName !== STATIC_CACHE) {
-              return caches.delete(cacheName);
-            }
-          })
-        );
+    caches.open(CACHE_NAME)
+      .then(cache => {
+        console.log('SW: Cache opened');
+        return cache.addAll(CACHE_URLS);
       })
-      .then(() => self.clients.claim())
+      .then(() => {
+        console.log('SW: All resources cached');
+        return self.skipWaiting();
+      })
+      .catch(err => {
+        console.error('SW: Cache failed', err);
+      })
   );
 });
 
-// Fetch event - serve from cache with network fallback
-self.addEventListener('fetch', (event) => {
+// Activate Service Worker
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheName !== CACHE_NAME) {
+            console.log('SW: Deleting old cache', cacheName);
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    }).then(() => {
+      console.log('SW: Cache cleanup complete');
+      return self.clients.claim();
+    })
+  );
+});
+
+// Fetch Strategy: Cache First for assets, Network First for pages
+self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   
-  // Skip external requests and non-GET requests
-  if (url.origin !== location.origin || event.request.method !== 'GET') {
+  // Skip cross-origin requests
+  if (url.origin !== location.origin) {
     return;
   }
 
-  // Strategy: Cache first for static resources, network first for API
-  if (url.pathname.startsWith('/api/')) {
-    // Network first for API requests
-    event.respondWith(
-      fetch(event.request)
-        .catch(() => caches.match(event.request))
-    );
+  // Cache strategy based on resource type
+  if (isAssetRequest(event.request)) {
+    // Cache First for static assets (images, fonts, CSS, JS)
+    event.respondWith(cacheFirst(event.request));
+  } else if (isPageRequest(event.request)) {
+    // Network First for HTML pages
+    event.respondWith(networkFirst(event.request));
   } else {
-    // Cache first for static resources
-    event.respondWith(
-      caches.match(event.request)
-        .then((response) => {
-          if (response) {
-            return response;
-          }
-          
-          return fetch(event.request)
-            .then((response) => {
-              // Cache successful responses
-              if (response.status === 200) {
-                const responseClone = response.clone();
-                caches.open(CACHE_NAME)
-                  .then((cache) => cache.put(event.request, responseClone));
-              }
-              return response;
-            });
-        })
+    // Default: Network First
+    event.respondWith(networkFirst(event.request));
+  }
+});
+
+// Helper: Check if request is for static assets
+function isAssetRequest(request) {
+  const url = new URL(request.url);
+  return url.pathname.match(/\.(css|js|png|jpg|jpeg|webp|avif|svg|woff2?|ttf|eot|ico)$/);
+}
+
+// Helper: Check if request is for HTML pages
+function isPageRequest(request) {
+  return request.method === 'GET' && request.headers.get('accept')?.includes('text/html');
+}
+
+// Cache First Strategy
+async function cacheFirst(request) {
+  try {
+    const cached = await caches.match(request);
+    if (cached) {
+      return cached;
+    }
+    
+    const response = await fetch(request);
+    if (response.status === 200) {
+      const cache = await caches.open(CACHE_NAME);
+      cache.put(request, response.clone());
+    }
+    return response;
+  } catch (error) {
+    console.error('SW: Cache first failed', error);
+    // Return offline fallback if available
+    return caches.match('/offline.html') || new Response('Offline');
+  }
+}
+
+// Network First Strategy
+async function networkFirst(request) {
+  try {
+    const response = await fetch(request);
+    if (response.status === 200) {
+      const cache = await caches.open(CACHE_NAME);
+      cache.put(request, response.clone());
+    }
+    return response;
+  } catch (error) {
+    console.error('SW: Network first failed, trying cache', error);
+    const cached = await caches.match(request);
+    return cached || new Response('Offline', { status: 503 });
+  }
+}
+
+// Background sync for analytics (if needed)
+self.addEventListener('sync', event => {
+  if (event.tag === 'analytics-sync') {
+    event.waitUntil(syncAnalytics());
+  }
+});
+
+async function syncAnalytics() {
+  // Implement analytics sync if needed
+  console.log('SW: Background analytics sync');
+}
+
+// Push notifications (if needed)
+self.addEventListener('push', event => {
+  if (event.data) {
+    const data = event.data.json();
+    event.waitUntil(
+      self.registration.showNotification(data.title, {
+        body: data.body,
+        icon: '/assets/images/asterik-logo-150.png',
+        badge: '/assets/images/asterik-logo-150.png'
+      })
     );
+  }
+});
+
+// Message handling
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
   }
 });

@@ -37,6 +37,14 @@
     <!-- Cache busting for performance optimization fixes -->
     <meta name="cache-version" content="performance-optimization-v3.0">
     
+    <!-- Resource hints for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.brevo.com">
+    <link rel="preload" href="/assets/images/hero-small.webp" as="image" media="(max-width: 768px)">
+    <link rel="preload" href="/assets/images/hero-medium.webp" as="image" media="(max-width: 1200px)">
+    <link rel="preload" href="/assets/images/hero-original.webp" as="image" media="(min-width: 1201px)">
+    
     <!-- Enhanced SEO meta tags -->
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1">
@@ -237,25 +245,10 @@
             window.addEventListener('load', function() {
                 navigator.serviceWorker.register('/sw.js')
                     .then(function(registration) {
-                        console.log('ServiceWorker registered');
+                        console.log('SW: ServiceWorker registered successfully');
                     })
                     .catch(function(error) {
-                        console.log('ServiceWorker registration failed');
-                    });
-            });
-        }
-    </script>
-    
-    <script>
-        // Register Service Worker for caching
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then((registration) => {
-                        console.log('SW registered: ', registration);
-                    })
-                    .catch((registrationError) => {
-                        console.log('SW registration failed: ', registrationError);
+                        console.log('SW: ServiceWorker registration failed:', error);
                     });
             });
         }
