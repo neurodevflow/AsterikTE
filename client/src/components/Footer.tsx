@@ -55,18 +55,13 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
           <div>
-            <h3 className="font-bold text-2xl mb-4">ASTERIK</h3>
-            <div className="mb-4">
-              <a
-                href="https://webmail.asterik.ae"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-teal-green hover:bg-warm-orange text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105"
-              >
-                <i className="fas fa-envelope mr-2"></i>
-                Webmail
-              </a>
-            </div>
+            <img 
+              src="/assets/images/asterik-logo-150.png"
+              alt="ASTERIK - Strategic Technology Solutions"
+              className="h-9 w-auto mb-4 brightness-0 invert"
+              width="150"
+              height="36"
+            />
             <p className="text-light-grey mb-4">
               Strategic Technology Solutions for Enterprise Transformation
             </p>
