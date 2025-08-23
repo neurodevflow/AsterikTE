@@ -83,6 +83,14 @@ app.use((req, res, next) => {
   } else if (req.url.match(/\.(html|json)$/)) {
     res.header("Cache-Control", "public, max-age=3600, must-revalidate");
     res.header("ETag", `"${Date.now()}"`);
+  } else if (req.url.match(/sitemap\.xml$/)) {
+    // Special handling for sitemap.xml
+    res.header("Content-Type", "application/xml");
+    res.header("Cache-Control", "public, max-age=86400");
+  } else if (req.url.match(/robots\.txt$/)) {
+    // Special handling for robots.txt
+    res.header("Content-Type", "text/plain");
+    res.header("Cache-Control", "public, max-age=86400");
   } else {
     res.header("Cache-Control", "no-cache, no-store, must-revalidate");
     res.header("Pragma", "no-cache");
@@ -101,6 +109,25 @@ app.use(express.urlencoded({ extended: false }));
 
 // Serve static files from root directory for domain verification
 app.use(express.static("."));
+
+// Serve sitemap files directly from public directory with proper headers
+app.get('/sitemap.xml', (req, res) => {
+  res.setHeader('Content-Type', 'application/xml');
+  res.setHeader('Cache-Control', 'public, max-age=86400');
+  res.sendFile(path.join(process.cwd(), 'client/public/sitemap.xml'));
+});
+
+app.get('/sitemap.html', (req, res) => {
+  res.setHeader('Content-Type', 'text/html');
+  res.setHeader('Cache-Control', 'public, max-age=86400');
+  res.sendFile(path.join(process.cwd(), 'client/public/sitemap.html'));
+});
+
+app.get('/robots.txt', (req, res) => {
+  res.setHeader('Content-Type', 'text/plain');
+  res.setHeader('Cache-Control', 'public, max-age=86400');
+  res.sendFile(path.join(process.cwd(), 'client/public/robots.txt'));
+});
 
 // Serve service worker with proper headers
 app.get('/sw.js', (req, res) => {

@@ -1,0 +1,31 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://asterik.ae/sitemap.xml
+
+# Crawl-delay for responsible crawling
+Crawl-delay: 1
+
+# Allow all pages
+Allow: /services/
+Allow: /industries/
+Allow: /about
+Allow: /contact
+Allow: /approach
+Allow: /insights
+Allow: /privacy-policy
+Allow: /terms
+
+# Disallow admin pages from indexing
+Disallow: /admin/
+Disallow: /admin-login
+Disallow: /admin/login
+Disallow: /admin/dashboard
+
+# Allow sitemap access
+Allow: /sitemap.xml
+Allow: /sitemap.html
+
+# Host specification
+Host: https://asterik.ae
