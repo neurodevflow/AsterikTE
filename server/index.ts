@@ -69,8 +69,8 @@ app.use((req, res, next) => {
   // Rate limiting headers
   res.header("X-Rate-Limit", "1000");
   
-  // Improved caching for static assets with proper ETags
-  if (req.url.match(/\.(css|js|woff2?|png|jpg|jpeg|gif|svg|ico)$/)) {
+  // Improved caching for static assets with proper ETags including WebP
+  if (req.url.match(/\.(css|js|woff2?|png|jpg|jpeg|gif|svg|ico|webp|avif)$/)) {
     res.header("Cache-Control", "public, max-age=31536000, immutable");
     res.header("ETag", `"${Date.now()}"`);
     // Add resource type headers for better optimization
@@ -79,6 +79,12 @@ app.use((req, res, next) => {
     }
     if (req.url.match(/\.(png|jpg|jpeg|gif|svg)$/)) {
       res.header("Content-Type", "image/*");
+    }
+    if (req.url.match(/\.webp$/)) {
+      res.header("Content-Type", "image/webp");
+    }
+    if (req.url.match(/\.avif$/)) {
+      res.header("Content-Type", "image/avif");
     }
   } else if (req.url.match(/\.(html|json)$/)) {
     res.header("Cache-Control", "public, max-age=3600, must-revalidate");
