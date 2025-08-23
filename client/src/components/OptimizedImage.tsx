@@ -26,10 +26,10 @@ export default function OptimizedImage({
   // Map Unsplash URLs to local images first
   const localSrc = mapUnsplashToLocal(src);
   
-  // Generate responsive image URLs (for local images, just return the path)
+  // Generate responsive image URLs with WebP support
   const generateImageUrl = (w: number, h: number, q: number = quality) => {
-    if (localSrc.startsWith('/assets/images/downloaded/')) {
-      // Local image - return as-is since they're already optimized
+    if (localSrc.startsWith('/assets/images/downloaded/') || localSrc.startsWith('/assets/images/hero')) {
+      // Local image - return WebP version if available, fallback to original
       return localSrc;
     }
     if (src.includes('unsplash.com')) {
@@ -45,9 +45,22 @@ export default function OptimizedImage({
     return localSrc;
   };
 
+  // Generate WebP and fallback URLs
+  const getWebPUrl = (originalUrl: string) => {
+    if (originalUrl.includes('/assets/images/')) {
+      return originalUrl.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+    }
+    return originalUrl;
+  };
+
   const smallSrc = generateImageUrl(Math.round(width * 0.5), Math.round(height * 0.5), 75);
   const mediumSrc = generateImageUrl(width, height, quality);
   const largeSrc = generateImageUrl(Math.round(width * 1.5), Math.round(height * 1.5), quality);
+  
+  // WebP versions
+  const smallWebP = getWebPUrl(smallSrc);
+  const mediumWebP = getWebPUrl(mediumSrc);
+  const largeWebP = getWebPUrl(largeSrc);
 
   useEffect(() => {
     if (priority) {
@@ -69,6 +82,23 @@ export default function OptimizedImage({
 
   return (
     <picture>
+      {/* WebP sources for better compression */}
+      <source 
+        media="(max-width: 768px)" 
+        srcSet={smallWebP}
+        type="image/webp"
+      />
+      <source 
+        media="(max-width: 1200px)" 
+        srcSet={mediumWebP}
+        type="image/webp"
+      />
+      <source 
+        srcSet={largeWebP}
+        type="image/webp"
+      />
+      
+      {/* Fallback sources for older browsers */}
       <source 
         media="(max-width: 768px)" 
         srcSet={smallSrc}
@@ -77,12 +107,12 @@ export default function OptimizedImage({
         media="(max-width: 1200px)" 
         srcSet={mediumSrc}
       />
+      
       <img
         src={largeSrc}
         alt={alt}
         className={`${className} ${!isLoaded && priority ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
         loading={priority ? "eager" : "lazy"}
-
         width={width}
         height={height}
         onLoad={() => setIsLoaded(true)}
