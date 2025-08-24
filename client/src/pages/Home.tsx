@@ -60,6 +60,7 @@ export default function Home() {
               className="absolute inset-0 w-full h-full object-cover opacity-30"
               loading="eager"
               decoding="async"
+              fetchPriority="high"
               width="768"
               height="576"
               sizes="(max-width: 480px) 412px, (max-width: 768px) 768px, 1200px"

@@ -159,13 +159,17 @@ export default function Header() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/">
-              <img 
-                src="/assets/images/asterik-logo-150.png"
-                alt="ASTERIK - Strategic Technology Solutions"
-                className="h-9 w-auto max-w-[150px]"
-                width="150"
-                height="36"
-              />
+              <picture>
+                <source srcSet="/assets/images/asterik-logo-150.webp" type="image/webp" />
+                <img 
+                  src="/assets/images/asterik-logo-150.png"
+                  alt="ASTERIK - Strategic Technology Solutions"
+                  className="h-9 w-auto max-w-[150px]"
+                  width="150"
+                  height="36"
+                  fetchPriority="high"
+                />
+              </picture>
             </Link>
           </div>
 
@@ -303,13 +307,17 @@ export default function Header() {
             {/* Close Button */}
             <div className="flex justify-between items-center p-4 border-b border-light-grey bg-white">
               <Link href="/" onClick={handleMobileMenuToggle}>
-                <img 
-                  src="/assets/images/asterik-logo-150.png"
-                  alt="ASTERIK"
-                  className="h-9 w-auto max-w-[150px]"
-                  width="150"
-                  height="36"
-                />
+                <picture>
+                  <source srcSet="/assets/images/asterik-logo-150.webp" type="image/webp" />
+                  <img 
+                    src="/assets/images/asterik-logo-150.png"
+                    alt="ASTERIK"
+                    className="h-9 w-auto max-w-[150px]"
+                    width="150"
+                    height="36"
+                    fetchPriority="high"
+                  />
+                </picture>
               </Link>
               <button
                 onClick={handleMobileMenuToggle}
