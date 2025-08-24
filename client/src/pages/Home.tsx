@@ -24,15 +24,35 @@ export default function Home() {
           <picture>
             <source 
               media="(max-width: 480px)" 
+              srcSet="/assets/images/hero-small.webp"
+              type="image/webp"
+              width="412"
+              height="309"
+            />
+            <source 
+              media="(max-width: 480px)" 
               srcSet="/assets/images/hero-small.jpg"
               width="412"
               height="309"
             />
             <source 
               media="(max-width: 768px)" 
+              srcSet="/assets/images/hero-medium.webp"
+              type="image/webp"
+              width="768"
+              height="576"
+            />
+            <source 
+              media="(max-width: 768px)" 
               srcSet="/assets/images/hero-medium.jpg"
               width="768"
               height="576"
+            />
+            <source 
+              srcSet="/assets/images/hero-original.webp"
+              type="image/webp"
+              width="1200"
+              height="900"
             />
             <img 
               src="/assets/images/hero-medium.jpg"

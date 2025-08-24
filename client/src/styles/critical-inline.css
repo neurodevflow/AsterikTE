@@ -1,0 +1,95 @@
+/* Critical CSS to be inlined in HTML head for immediate rendering */
+:root {
+  --navy-blue: #0C2D48;
+  --white: #FFFFFF;
+  --warm-orange: #E26A2C;
+  --teal-green: #2BAE66;
+  --charcoal: #1F2937;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Open Sans', system-ui, sans-serif;
+  line-height: 1.6;
+  color: var(--charcoal);
+  background: var(--white);
+}
+
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-top: 64px;
+  background: linear-gradient(135deg, var(--navy-blue), var(--charcoal));
+}
+
+.hero-content {
+  text-align: center;
+  color: var(--white);
+  z-index: 20;
+  position: relative;
+  padding: 2rem 1rem;
+}
+
+.hero-bg-overlay {
+  background: linear-gradient(135deg, 
+    rgba(12, 45, 72, 0.8) 0%, 
+    rgba(31, 41, 55, 0.6) 50%, 
+    rgba(12, 45, 72, 0.8) 100%);
+}
+
+.sticky-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: var(--white);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  z-index: 50;
+}
+
+.nav-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.logo img {
+  height: 36px;
+  width: auto;
+  max-width: 150px;
+}
+
+h1 {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--warm-orange);
+  color: var(--white);
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+@media (max-width: 768px) {
+  .hero-section { min-height: 80vh; padding: 80px 1rem 2rem; }
+  h1 { font-size: 2.5rem; }
+}
