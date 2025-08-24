@@ -3,13 +3,13 @@
  * Ensures menus work consistently across all browsers
  */
 
-(function() {
-  'use strict';
+(function () {
+  "use strict";
 
   // Fix Chrome CSS Selector Issues
   function fixChromeCSS() {
     // Add Chrome-specific CSS fixes
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = `
       /* Fix Chrome navigation rendering */
       .mobile-menu-button {
@@ -70,42 +70,44 @@
   // Fix Chrome Event Handling
   function fixChromeEvents() {
     // Fix touch events for Chrome mobile
-    document.addEventListener('touchstart', function() {}, { passive: true });
-    
+    document.addEventListener("touchstart", function () {}, { passive: true });
+
     // Fix Chrome dropdown issues
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener("DOMContentLoaded", function () {
       // Fix menu button clicks
-      const mobileButtons = document.querySelectorAll('.mobile-menu-button');
-      mobileButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
+      const mobileButtons = document.querySelectorAll(".mobile-menu-button");
+      mobileButtons.forEach((button) => {
+        button.addEventListener("click", function (e) {
           e.preventDefault();
           e.stopPropagation();
           // Trigger React event manually if needed
-          const event = new CustomEvent('mobileMenuToggle', { bubbles: true });
+          const event = new CustomEvent("mobileMenuToggle", { bubbles: true });
           button.dispatchEvent(event);
         });
       });
-      
+
       // Fix dropdown hover issues in Chrome
-      const dropdownTriggers = document.querySelectorAll('[data-dropdown-trigger]');
-      dropdownTriggers.forEach(trigger => {
+      const dropdownTriggers = document.querySelectorAll(
+        "[data-dropdown-trigger]",
+      );
+      dropdownTriggers.forEach((trigger) => {
         let hoverTimeout;
-        
-        trigger.addEventListener('mouseenter', function() {
+
+        trigger.addEventListener("mouseenter", function () {
           clearTimeout(hoverTimeout);
-          const dropdown = trigger.querySelector('.dropdown-menu');
+          const dropdown = trigger.querySelector(".dropdown-menu");
           if (dropdown) {
-            dropdown.style.visibility = 'visible';
-            dropdown.style.opacity = '1';
+            dropdown.style.visibility = "visible";
+            dropdown.style.opacity = "1";
           }
         });
-        
-        trigger.addEventListener('mouseleave', function() {
+
+        trigger.addEventListener("mouseleave", function () {
           hoverTimeout = setTimeout(() => {
-            const dropdown = trigger.querySelector('.dropdown-menu');
+            const dropdown = trigger.querySelector(".dropdown-menu");
             if (dropdown) {
-              dropdown.style.visibility = 'hidden';
-              dropdown.style.opacity = '0';
+              dropdown.style.visibility = "hidden";
+              dropdown.style.opacity = "0";
             }
           }, 150);
         });
@@ -115,7 +117,9 @@
 
   // Detect Chrome browser
   function isChrome() {
-    return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+    return (
+      /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
+    );
   }
 
   // Initialize fixes
@@ -123,26 +127,32 @@
     if (isChrome() || /Chrome/.test(navigator.userAgent)) {
       fixChromeCSS();
       fixChromeEvents();
-      console.log('Chrome compatibility fixes applied');
+      console.log("Chrome compatibility fixes applied");
     }
-    
+
     // Apply general mobile fixes
     if (/Mobi|Android/i.test(navigator.userAgent)) {
-      document.body.classList.add('mobile-browser');
-      
+      document.body.classList.add("mobile-browser");
+
       // Fix iOS Safari viewport issues
-      if (/Safari/.test(navigator.userAgent) && /Mobile/.test(navigator.userAgent)) {
+      if (
+        /Safari/.test(navigator.userAgent) &&
+        /Mobile/.test(navigator.userAgent)
+      ) {
         const viewport = document.querySelector('meta[name="viewport"]');
         if (viewport) {
-          viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
+          viewport.setAttribute(
+            "content",
+            "width=device-width, initial-scale=1.0, maximum-scale=6.0, user-scalable=yes, viewport-fit=cover",
+          );
         }
       }
     }
   }
 
   // Run immediately and on DOM ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
   } else {
     init();
   }
@@ -150,6 +160,6 @@
   // Export for debugging
   window.browserCompatibility = {
     isChrome: isChrome,
-    init: init
+    init: init,
   };
 })();
