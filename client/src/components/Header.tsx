@@ -189,8 +189,14 @@ export default function Header() {
                         // Add delay to prevent dropdown from closing too quickly
                         setTimeout(() => {
                           // Check if mouse is still within dropdown area
-                          const dropdownElement = e.currentTarget.querySelector('.dropdown-menu');
-                          if (dropdownElement && !dropdownElement.matches(':hover')) {
+                          if (e.currentTarget) {
+                            const dropdownElement = e.currentTarget.querySelector('.dropdown-menu');
+                            if (dropdownElement && !dropdownElement.matches(':hover')) {
+                              if (item.name === "Services") setServicesDropdownOpen(false);
+                              if (item.name === "Industries") setIndustriesDropdownOpen(false);
+                            }
+                          } else {
+                            // If currentTarget is null, close dropdowns anyway
                             if (item.name === "Services") setServicesDropdownOpen(false);
                             if (item.name === "Industries") setIndustriesDropdownOpen(false);
                           }
